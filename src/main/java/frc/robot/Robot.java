@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.Drive;
 
 
 /**
@@ -33,7 +34,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    /**
+     * Ensures that instances of each subsytem are created, which is necessary for the robot to work.
+     */
+    //TODO: Change to 1100 style getInstance() command
     m_oi = new OI();
+    Drive.getInstance();
+
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);

@@ -132,4 +132,12 @@ public class RobotMap {
 	private static final int PDP_14 = 14;
 	private static final int PDP_15 = 15;
   private static final int PDP_16 = 16;
+
+  //TODO:Update with proper ports
+  //[D]rive
+  public static final int D_FRONT_LEFT = PWM_0;
+  public static final int D_FRONT_RIGHT = PWM_1;
+  public static final int D_BACK_LEFT = PWM_2;
+  public static final int D_BACK_RIGHT = PWM_3;
+
 }
