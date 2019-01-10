@@ -13,9 +13,10 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
+import frc.robot.commands.drive.DefaultDrive;
 
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * The Drive subsystem: Sets up the infrastructure for the drivetrain and its hardware.
  */
 public class Drive extends Subsystem {
   // Put methods for controlling this subsystem
@@ -64,7 +65,7 @@ public class Drive extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new DefaultDrive());
     //TODO:Set default command
   }
 

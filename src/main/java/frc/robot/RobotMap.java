@@ -83,7 +83,7 @@ public class RobotMap {
 	private final static int DIO_6 = 6;
 	private final static int DIO_7 = 7;
 	private final static int DIO_8 = 8;
-  private final static int DIO_9 = 9;
+  	private final static int DIO_9 = 9;
   
 	// see https://www.pdocs.kauailabs.com/navx-mxp/installation/io-expansion/
 	private final static int DIO_MXP_0 = 10;
@@ -131,7 +131,7 @@ public class RobotMap {
 	private static final int PDP_13 = 13;
 	private static final int PDP_14 = 14;
 	private static final int PDP_15 = 15;
-  private static final int PDP_16 = 16;
+  	private static final int PDP_16 = 16;
 
   //TODO:Update with proper ports
   //[D]rive
@@ -139,5 +139,9 @@ public class RobotMap {
   public static final int D_FRONT_RIGHT = PWM_1;
   public static final int D_BACK_LEFT = PWM_2;
   public static final int D_BACK_RIGHT = PWM_3;
+
+  //[U]ser Input
+  public static final int U_JOYSTICK_LEFT = 0;
+  public static final int U_JOYSTICK_RIGHT = 1;
 
 }

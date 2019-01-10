@@ -7,36 +7,49 @@
 
 package frc.robot;
 
+import frc.robot.input.AttackThree;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  //// CREATING BUTTONS
-  // One type of button is a joystick button which is any button on a
-  //// joystick.
-  // You create one by telling it which joystick it's on and which button
-  // number it is.
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
+  private static OI oi;
 
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
+  private static AttackThree leftStick;
+  private static AttackThree rightStick;
 
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
+   /**
+   * Used outside of the OI class to return an instance of the class.
+   * @return Returns instance of OI class formed from constructor.
+   */
+  public static OI getInstance(){
+    if (oi == null){
+      oi = new OI();
+    }
+    return oi;
+  }
 
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
+  public OI(){
+    //User Input
+    //TODO:Tune deadband
+    leftStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.1);
+    rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.1);
 
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
+  }
 
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+  /**
+   * @return the leftStick
+   */
+  public AttackThree getLeftStick() {
+    return leftStick;
+  }
+
+  /**
+   * @return the rightStick
+   */
+  public AttackThree getRightStick() {
+    return rightStick;
+  }
+
 }
