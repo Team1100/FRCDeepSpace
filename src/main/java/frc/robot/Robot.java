@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Elevator;
 
 
 /**
@@ -40,7 +41,8 @@ public class Robot extends TimedRobot {
     //TODO: Change to 1100 style getInstance() command
     m_oi = new OI();
     Drive.getInstance();
-
+    Elevator.getInstance();
+    
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);

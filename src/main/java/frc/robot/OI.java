@@ -8,6 +8,7 @@
 package frc.robot;
 
 import frc.robot.input.AttackThree;
+import frc.robot.input.XboxController;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -18,6 +19,7 @@ public class OI {
 
   private static AttackThree leftStick;
   private static AttackThree rightStick;
+  private static XboxController xboxController;
 
    /**
    * Used outside of the OI class to return an instance of the class.
@@ -36,9 +38,12 @@ public class OI {
     leftStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.1);
     rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.1);
 
+    xboxController = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.1);
+
   }
 
   /**
+   * Returns the left Joystick
    * @return the leftStick
    */
   public AttackThree getLeftStick() {
@@ -46,10 +51,19 @@ public class OI {
   }
 
   /**
+   * Returns the right Joystick
    * @return the rightStick
    */
   public AttackThree getRightStick() {
     return rightStick;
+  }
+
+  /**
+   * Returns the Xbox Controller
+   * @return the Xbox Controller
+   */
+  public XboxController getXbox() {
+      return xboxController;
   }
 
 }

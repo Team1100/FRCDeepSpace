@@ -45,17 +45,17 @@ public class RobotMap {
 	private final static int PWM_MXP_7 = 17;
 	private final static int PWM_MXP_8 = 18;
 	private final static int PWM_MXP_9 = 19;
-	
+
 	// List of PCM CAN IDs
 	private final static int PCM_CAN = 0;
 	private final static int PCM_CAN_LED = 1;
-	
+
 	// List of Talon SRX CAN IDs
 	private final static int SRX_CAN_0 = 0;
 	private final static int SRX_CAN_1 = 1;
 	private final static int SRX_CAN_2 = 2;
 	private final static int SRX_CAN_3 = 3;
-	
+
 	//List of all analog ports
 	private final static int ANALOG_0 = 0;
 	private final static int ANALOG_1 = 1;
@@ -66,13 +66,13 @@ public class RobotMap {
 	private final static int ANALOG_MXP_1 = 5;
 	private final static int ANALOG_MXP_2 = 6;
 	private final static int ANALOG_MXP_3 = 7;
-	
+
 	//List of all relays
 	private final static int RELAY_0 = 0;
 	private final static int RELAY_1 = 1;
 	private final static int RELAY_2 = 2;
 	private final static int RELAY_3 = 3;
-	
+
 	//List of all DIO ports
 	private final static int DIO_0 = 0;
 	private final static int DIO_1 = 1;
@@ -83,8 +83,8 @@ public class RobotMap {
 	private final static int DIO_6 = 6;
 	private final static int DIO_7 = 7;
 	private final static int DIO_8 = 8;
-  	private final static int DIO_9 = 9;
-  
+	private final static int DIO_9 = 9;
+
 	// see https://www.pdocs.kauailabs.com/navx-mxp/installation/io-expansion/
 	private final static int DIO_MXP_0 = 10;
 	private final static int DIO_MXP_1 = 11;
@@ -96,13 +96,13 @@ public class RobotMap {
 	private final static int DIO_MXP_7 = 21;
 	private final static int DIO_MXP_8 = 22;
 	private final static int DIO_MXP_9 = 23;
-	
+
 	//List of all USB ports
 	private static final int USB_0 = 0;
 	private static final int USB_1 = 1;
 	private static final int USB_2 = 2;
 	private static final int USB_3 = 3;
-	
+
 	// Pneumatic Control Module (PCM) ports
 	private static final int PCM_0 = 0;
 	private static final int PCM_1 = 1;
@@ -113,7 +113,7 @@ public class RobotMap {
 	private static final int PCM_6 = 6;
 	private static final int PCM_7 = 7;
 	private static final int PCM_8 = 8;
-	
+
 	//List of all PDP ports
 	private static final int PDP_0 = 0;
 	private static final int PDP_1 = 1;
@@ -131,7 +131,7 @@ public class RobotMap {
 	private static final int PDP_13 = 13;
 	private static final int PDP_14 = 14;
 	private static final int PDP_15 = 15;
-  	private static final int PDP_16 = 16;
+	private static final int PDP_16 = 16;
 
   //TODO:Update with proper ports
   //[D]rive
@@ -140,8 +140,13 @@ public class RobotMap {
   public static final int D_BACK_LEFT = PWM_2;
   public static final int D_BACK_RIGHT = PWM_3;
 
+  //[E]levator
+  public static final int E_LEFT = PWM_4;
+  public static final int E_RIGHT = PWM_5;
+
   //[U]ser Input
   public static final int U_JOYSTICK_LEFT = 0;
   public static final int U_JOYSTICK_RIGHT = 1;
+  public static final int U_XBOX_CONTROLLER = 2;
 
 }
