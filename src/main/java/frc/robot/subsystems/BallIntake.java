@@ -13,8 +13,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Add your docs here.
  */
 public class BallIntake extends Subsystem {
+
+  public static BallIntake ballintake;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+
+  public static BallIntake getInstance(){
+    if (ballintake == null){
+      ballintake = new BallIntake();
+    }
+    return ballintake;
+  }
 
   @Override
   public void initDefaultCommand() {
