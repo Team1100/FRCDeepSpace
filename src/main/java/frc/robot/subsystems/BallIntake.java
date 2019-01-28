@@ -24,10 +24,9 @@ public class BallIntake extends Subsystem {
   // here. Call these from Commands.
 
   private BallIntake() {
-    //TODO:Update with names and proper ports
     rollers = new WPI_TalonSRX(RobotMap.B_ROLLERS);
     axis_movement = new WPI_TalonSRX(RobotMap.B_AXIS_MOVEMENT);
-}
+  }
 
   public static BallIntake getInstance(){
     if (intake == null){
@@ -44,6 +43,10 @@ public class BallIntake extends Subsystem {
   public void intakeUp(double intakeSpeed) {
     rollers.set(0);
     axis_movement.set(intakeSpeed);
+  }
+
+  public void spitBall(double rollersSpeed) {
+    rollers.set(rollersSpeed);
   }
 
   @Override
