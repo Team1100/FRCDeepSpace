@@ -144,6 +144,11 @@ public class RobotMap {
   public static final int E_LEFT = PWM_4;
   public static final int E_RIGHT = PWM_5;
 
+  //[C]law
+  public static final int C_Claw_0 = PCM_0;
+  public static final int C_Claw_1 = PCM_1;
+  public static final int C_Claw_CAN = PCM_CAN;
+
   //[U]ser Input
   public static final int U_JOYSTICK_LEFT = 0;
   public static final int U_JOYSTICK_RIGHT = 1;
