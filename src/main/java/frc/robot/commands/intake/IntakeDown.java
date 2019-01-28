@@ -7,20 +7,15 @@
 
 package frc.robot.commands.intake;
 
-import frc.robot.OI;
-
-import frc.robot.input.XboxController;
-import frc.robot.input.XboxController.XboxAxis;
 import frc.robot.subsystems.BallIntake;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DefaultIntake extends Command {
+public class IntakeDown extends Command {
   
-  XboxController.XboxAxis rightTrigger = XboxAxis.kRightTrigger;
+  BallIntake intake;
+
   
-  public DefaultIntake() {
-    requires(BallIntake.getInstance());
+  public IntakeDown() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
