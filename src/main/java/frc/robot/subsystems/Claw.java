@@ -7,14 +7,48 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
  */
 public class Claw extends Subsystem {
+
+  public static Claw claw;
+  DoubleSolenoid clawManipulator;
+  private Boolean isClosed = true;
+
+
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+
+  public static Claw getInstance(){
+    if (claw == null){
+      claw = new Claw();
+    }
+    return claw;
+  }
+
+  private Claw() {
+    //Need to fill in parameters w/ robot map eventually
+		clawManipulator = new DoubleSolenoid();	
+  }
+  
+  public void openClaw() {
+    clawManipulator.set(DoubleSolenoid.Value.kForward);
+    isClosed = false;
+  }
+
+  public void closeClaw() {
+    clawManipulator.set(DoubleSolenoid.Value.kReverse);
+    isClosed = true;
+  }
+
+  public boolean isClosed () {
+    return isClosed();
+  }
 
   @Override
   public void initDefaultCommand() {
