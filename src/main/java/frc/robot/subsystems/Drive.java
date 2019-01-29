@@ -30,16 +30,16 @@ public class Drive extends Subsystem {
    * Contructor that sets up speed controllers and the drive train.
    */
   private Drive() {
-      //TODO:Update with names and proper ports
-      frontLeft = new WPI_TalonSRX(RobotMap.D_FRONT_LEFT);
-      frontRight = new WPI_TalonSRX(RobotMap.D_FRONT_RIGHT);
-      backLeft = new WPI_TalonSRX(RobotMap.D_BACK_LEFT);
-      backRight = new WPI_TalonSRX(RobotMap.D_BACK_RIGHT);
+    //TODO:Update with names and proper ports
+    frontLeft = new WPI_TalonSRX(RobotMap.D_FRONT_LEFT);
+    frontRight = new WPI_TalonSRX(RobotMap.D_FRONT_RIGHT);
+    backLeft = new WPI_TalonSRX(RobotMap.D_BACK_LEFT);
+    backRight = new WPI_TalonSRX(RobotMap.D_BACK_RIGHT);
 
-      left = new SpeedControllerGroup(frontLeft, backLeft);
-      right = new SpeedControllerGroup(frontRight, backRight);
+    left = new SpeedControllerGroup(frontLeft, backLeft);
+    right = new SpeedControllerGroup(frontRight, backRight);
 
-      drivetrain = new DifferentialDrive(left, right);
+    drivetrain = new DifferentialDrive(left, right);
   }
 
   /**
