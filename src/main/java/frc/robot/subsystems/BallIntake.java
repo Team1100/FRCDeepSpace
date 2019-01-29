@@ -35,8 +35,8 @@ public class BallIntake extends Subsystem {
     return intake;
   }
 
-  public void intakeDown(double intakeSpeed) {
-		rollers.set(intakeSpeed);
+  public void intakeDown(double intakeSpeed, double rollersSpeed) {
+		rollers.set(rollersSpeed);
 		axis_movement.set(intakeSpeed);
   }
 
