@@ -49,6 +49,11 @@ public class BallIntake extends Subsystem {
     rollers.set(rollersSpeed);
   }
 
+  public void spinOut(double rollersSpeed) {
+    rollers.setInverted(true);
+    rollers.set(rollersSpeed);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
