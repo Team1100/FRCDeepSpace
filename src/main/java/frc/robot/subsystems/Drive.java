@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 import frc.robot.commands.drive.DefaultDrive;
+import com.kauailabs.navx.frc.AHRS;
+
 
 /**
  * The Drive subsystem: Sets up the infrastructure for the drivetrain and its hardware.
@@ -25,6 +27,7 @@ public class Drive extends Subsystem {
   public static DifferentialDrive drivetrain;
   private WPI_TalonSRX frontLeft, frontRight, backLeft, backRight;
   private SpeedControllerGroup left, right;
+  private AHRS ahrs;
 
   /**
    * Contructor that sets up speed controllers and the drive train.
@@ -40,6 +43,8 @@ public class Drive extends Subsystem {
     right = new SpeedControllerGroup(frontRight, backRight);
 
     drivetrain = new DifferentialDrive(left, right);
+    ahrs = new AHRS(RobotMap.D_NAVX);
+
   }
 
   /**
@@ -60,6 +65,10 @@ public class Drive extends Subsystem {
       drive = new Drive();
     }
     return drive;
+  }
+
+  public AHRS getNavX() {
+    return ahrs;
   }
 
   @Override
