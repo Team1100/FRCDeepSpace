@@ -61,7 +61,6 @@ public class BallIntake extends Subsystem {
     rollers.set(0);
   }
 
-
   public void spitBall(double rollersSpeed) {
     rollers.set(rollersSpeed);
   }
