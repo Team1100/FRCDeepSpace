@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import frc.robot.commands.intake.IntakeDown;
+import frc.robot.commands.intake.PushBallOut;
 import frc.robot.input.AttackThree;
 import frc.robot.input.XboxController;
 
@@ -19,7 +21,7 @@ public class OI {
 
   private static AttackThree leftStick;
   private static AttackThree rightStick;
-  private static XboxController xboxController;
+  private static XboxController xbox;
 
    /**
    * Used outside of the OI class to return an instance of the class.
@@ -38,7 +40,20 @@ public class OI {
     leftStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.1);
     rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.1);
 
-    xboxController = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.1);
+    xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.1);
+
+    //Now Mapping Commands to XBox 
+
+    xbox.getButtonY().whenPressed(new RaiseElevatorL3());
+    xbox.getButtonX().whenPressed(new RaiseElevatorL2());
+    xbox.getButtonA().whenPressed(new RaiseElevatorL1());
+    xbox.getButtonB().whenPressed(new CollapseElevator());
+
+    xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());
+    
+		xbox.getDPad().getLeft().whenPressed(new PushBallOut());
+    xbox.getDPad().getDown().whenPressed(new IntakeDown());
+    xbox.getDPad().getUp().whenPressed(new IntakeUp());
 
   }
 
