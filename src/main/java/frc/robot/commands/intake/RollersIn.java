@@ -7,14 +7,15 @@
 
 package frc.robot.commands.intake;
 
+
 import frc.robot.subsystems.BallIntake;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeDown extends Command {
-  
+public class RollersIn extends Command {
+
   BallIntake intake;
 
-  public IntakeDown() {
+  public RollersIn() {
     requires(BallIntake.getInstance());
     intake = BallIntake.getInstance();
     // Use requires() here to declare subsystem dependencies
@@ -29,13 +30,13 @@ public class IntakeDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.intakeDown(.5);
+  intake.rollersIn(.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

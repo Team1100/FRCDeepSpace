@@ -19,8 +19,10 @@ public class DefaultIntake extends CommandGroup {
     BeamBreak beamBreak;
     beamBreak = BeamBreak.getInstance();
 
-    addSequential(new IntakeDown());
+    addParallel(new IntakeDown());
+    addSequential(new RollersIn());
     if(beamBreak.get()) {
+      addSequential(new StopRollers());
       addSequential(new IntakeUp());
     }
     // Add Commands here:
