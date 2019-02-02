@@ -43,7 +43,7 @@ public class OI {
     xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.1);
 
     //Now Mapping Commands to XBox 
-
+    /*
     xbox.getButtonY().whenPressed(new RaiseElevatorL3());
     xbox.getButtonX().whenPressed(new RaiseElevatorL2());
     xbox.getButtonA().whenPressed(new RaiseElevatorL1());
@@ -54,7 +54,7 @@ public class OI {
 		xbox.getDPad().getLeft().whenPressed(new PushBallOut());
     xbox.getDPad().getDown().whenPressed(new IntakeDown());
     xbox.getDPad().getUp().whenPressed(new IntakeUp());
-
+    */
   }
 
   /**
@@ -78,7 +78,7 @@ public class OI {
    * @return the Xbox Controller
    */
   public XboxController getXbox() {
-      return xboxController;
+      return xbox;
   }
 
 }

@@ -18,7 +18,9 @@ public class Claw extends Subsystem {
 
   public static Claw claw;
   DoubleSolenoid clawManipulator;
+  DoubleSolenoid clawMovement;
   private Boolean isClosed = true;
+  private Boolean isForward = false;
 
 
   // Put methods for controlling this subsystem
@@ -44,6 +46,16 @@ public class Claw extends Subsystem {
   public void closeClaw() {
     clawManipulator.set(DoubleSolenoid.Value.kReverse);
     isClosed = true;
+  }
+
+  public void pushClawForward() {
+    clawMovement.set(DoubleSolenoid.Value.kForward);
+    isForward = true;
+  }
+
+  public void pullClawBack() {
+    clawMovement.set(DoubleSolenoid.Value.kReverse);
+    isForward = false;
   }
 
   public boolean isClosed () {
