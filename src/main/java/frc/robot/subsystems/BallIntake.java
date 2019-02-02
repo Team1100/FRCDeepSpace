@@ -35,15 +35,32 @@ public class BallIntake extends Subsystem {
     return intake;
   }
 
-  public void intakeDown(double intakeSpeed, double rollersSpeed) {
-		rollers.set(rollersSpeed);
-		axis_movement.set(intakeSpeed);
-  }
+ // public void intakeUp(double intakeSpeed){
+//  axis_movement.set(intakeSpeed);
+//  rollers.set(0);
+ // }
 
-  public void intakeUp(double intakeSpeed) {
-    rollers.set(0);
+// public void intakeDown(double intakeSpeed, double rollersSpeed) {
+//		rollers.set(rollersSpeed);
+//		axis_movement.set(intakeSpeed);
+// }
+
+  public void intakeUp(double intakeSpeed){
     axis_movement.set(intakeSpeed);
   }
+
+  public void intakeDown(double intakeSpeed){
+    axis_movement.set(intakeSpeed);
+  }
+
+  public void rollersIn(double rollersSpeed){
+    rollers.set(rollersSpeed);
+  }
+
+  public void rollersOff(){
+    rollers.set(0);
+  }
+
 
   public void spitBall(double rollersSpeed) {
     rollers.set(rollersSpeed);
