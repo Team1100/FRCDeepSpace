@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.RobotMap;
 import frc.robot.commands.elevator.DefaultElevator;
 
@@ -21,6 +22,8 @@ public class Elevator extends Subsystem {
   // here. Call these from Commands.
   public static Elevator elevator;
   private WPI_TalonSRX left, right;
+  DigitalInput switchOne, switchTwo, switchThree;
+
 
   /**
    * Contructor that sets up speed controllers.
@@ -29,6 +32,10 @@ public class Elevator extends Subsystem {
       //TODO:Update with names and proper ports
       left = new WPI_TalonSRX(RobotMap.E_LEFT);
       right = new WPI_TalonSRX(RobotMap.E_RIGHT);
+      switchOne = new DigitalInput(RobotMap.E_LEVEL_ONE_SWITCH);
+      switchTwo = new DigitalInput(RobotMap.E_LEVEL_TWO_SWITCH);
+      switchThree = new DigitalInput(RobotMap.E_LEVEL_THREE_SWITCH);
+
   }
 
   /**
@@ -40,6 +47,25 @@ public class Elevator extends Subsystem {
     //TODO:Implement safeties using limits
     left.set(speed);
     right.set(speed);
+}
+/**
+ * Checks if the elevator is at level one
+ */
+  public boolean isAtLevelOne(){
+    return switchOne.get();
+  }
+
+/**
+ * Checks if the elevator is at level two
+ */
+public boolean isAtLevelTwo(){
+  return switchTwo.get();
+}
+/**
+ * Checks if the elevator is at level three
+ */
+public boolean isAtLevelThree(){
+  return switchThree.get();
 }
 
   /**
