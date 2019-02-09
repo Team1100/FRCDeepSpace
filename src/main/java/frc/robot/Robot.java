@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.drive.ChangeHeading;
+import frc.robot.commands.auto.*;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drive;
@@ -50,6 +51,7 @@ public class Robot extends TimedRobot {
     
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
+    m_chooser.addOption("Test Auto", new TestAutoPathCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
   }
@@ -93,6 +95,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    Drive.getInstance().getNavX().zeroYaw();
     m_autonomousCommand = m_chooser.getSelected();
 
     /*
