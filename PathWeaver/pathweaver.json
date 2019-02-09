@@ -4,7 +4,7 @@
   "maxVelocity": 10.0,
   "maxAcceleration": 2.0,
   "maxJerk": 60.0,
-  "wheelBase": 0.7,
+  "wheelBase": 0.7112,
   "gameName": "Destination: Deep Space",
   "outputDir": "../src/main/java/frc/robot/autonomous_pathfinder"
 }
