@@ -139,13 +139,13 @@ public class RobotMap {
   //[D]rive
   public static final int D_FRONT_LEFT = PWM_0;
   public static final int D_FRONT_RIGHT = PWM_1;
-  public static final int D_BACK_LEFT = PWM_2;
-  public static final int D_BACK_RIGHT = PWM_3;
+  public static final int D_BACK_LEFT = PWM_4;
+  public static final int D_BACK_RIGHT = PWM_5;
   public static final Port D_NAVX = SPI.Port.kMXP;
 
   //[E]levator
-  public static final int E_LEFT = PWM_4;
-  public static final int E_RIGHT = PWM_5;
+  public static final int E_LEFT = PWM_2;
+  public static final int E_RIGHT = PWM_3;
   public static final int E_LEVEL_ONE_SWITCH = DIO_1;
   public static final int E_LEVEL_TWO_SWITCH = DIO_2;
   public static final int E_LEVEL_THREE_SWITCH = DIO_3;

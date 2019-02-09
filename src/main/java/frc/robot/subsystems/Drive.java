@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
@@ -25,7 +26,7 @@ public class Drive extends Subsystem {
   // here. Call these from Commands.
   public static Drive drive;
   public static DifferentialDrive drivetrain;
-  private WPI_TalonSRX frontLeft, frontRight, backLeft, backRight;
+  private VictorSP frontLeft, frontRight, backLeft, backRight;
   private SpeedControllerGroup left, right;
   private AHRS ahrs;
 
@@ -34,26 +35,17 @@ public class Drive extends Subsystem {
    */
   private Drive() {
     //TODO:Update with names and proper ports
-    frontLeft = new WPI_TalonSRX(RobotMap.D_FRONT_LEFT);
-    frontRight = new WPI_TalonSRX(RobotMap.D_FRONT_RIGHT);
-    backLeft = new WPI_TalonSRX(RobotMap.D_BACK_LEFT);
-    backRight = new WPI_TalonSRX(RobotMap.D_BACK_RIGHT);
+    frontLeft = new VictorSP(RobotMap.D_FRONT_LEFT);
+    frontRight = new VictorSP(RobotMap.D_FRONT_RIGHT);
+    backLeft = new VictorSP(RobotMap.D_BACK_LEFT);
+    backRight = new VictorSP(RobotMap.D_BACK_RIGHT);
 
     left = new SpeedControllerGroup(frontLeft, backLeft);
     right = new SpeedControllerGroup(frontRight, backRight);
 
-    drivetrain = new DifferentialDrive(left, right);
     ahrs = new AHRS(RobotMap.D_NAVX);
+    drivetrain = new DifferentialDrive(left, right);
 
-  }
-
-  /**
-   * Used in UserDrive command to take user input and drive with it.
-   * @param leftSpeed Plug in left joystick value.
-   * @param rightSpeed Plug in right joystuck value.
-   */
-  public void tankDrive(double leftSpeed, double rightSpeed){
-    drivetrain.tankDrive(leftSpeed, rightSpeed);
   }
 
   /**
@@ -65,6 +57,27 @@ public class Drive extends Subsystem {
       drive = new Drive();
     }
     return drive;
+  }
+
+ /**
+   * Used in UserDrive command to take user input and drive with it.
+   * @param leftSpeed Plug in left joystick value.
+   * @param rightSpeed Plug in right joystuck value.
+   */
+  public void tankDrive(double leftSpeed, double rightSpeed){
+    drivetrain.tankDrive(leftSpeed, rightSpeed);
+  }
+
+  /**
+   * ONLY USE WITH DRIVE STRAIGHT
+   * <p>
+   * This makes robot drive at a given speed and heading, so it is easy to
+   * write a PID loop that uses this.
+   * @param speed speed of robot
+   * @param angle angle at which it turns while driving
+   */
+  public void arcadeDrive(double speed, double angle) {
+    drivetrain.arcadeDrive(speed, angle);
   }
 
   public AHRS getNavX() {

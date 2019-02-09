@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drive;
@@ -50,6 +51,7 @@ public class Robot extends TimedRobot {
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
   }
 
   /**
@@ -130,6 +132,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    SmartDashboard.putNumber("yaw",Drive.getInstance().getNavX().getYaw());
     Scheduler.getInstance().run();
   }
 
