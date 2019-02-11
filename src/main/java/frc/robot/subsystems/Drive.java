@@ -65,6 +65,7 @@ public class Drive extends Subsystem {
    * @param rightSpeed Plug in right joystuck value.
    */
   public void tankDrive(double leftSpeed, double rightSpeed){
+    //System.out.println(leftSpeed + "     " + rightSpeed);
     drivetrain.tankDrive(leftSpeed, rightSpeed);
   }
 

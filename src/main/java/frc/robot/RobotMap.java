@@ -138,8 +138,8 @@ public class RobotMap {
   //TODO:Update with proper ports
   //[D]rive
   public static final int D_FRONT_LEFT = PWM_0;
-  public static final int D_FRONT_RIGHT = PWM_1;
-  public static final int D_BACK_LEFT = PWM_4;
+  public static final int D_FRONT_RIGHT = PWM_4;
+  public static final int D_BACK_LEFT = PWM_1;
   public static final int D_BACK_RIGHT = PWM_5;
   public static final Port D_NAVX = SPI.Port.kMXP;
 

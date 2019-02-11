@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+/*
 package frc.robot.commands.auto;
 
 import java.io.File;
@@ -50,8 +50,8 @@ public class TestAutoPathCommand extends Command {
   public TestAutoPathCommand() {
     requires(Drive.getInstance());
 
-    leftCSV = new File("/home/****/deploy/" + pathName + ".left");
-    rightCSV = new File("/home/*****/deploy/" + pathName + ".right");
+    leftCSV = new File("/home/deploy/" + pathName + ".left");
+    rightCSV = new File("/home/deploy/" + pathName + ".right");
 
     leftTrajectory = Pathfinder.readFromCSV(leftCSV);
     rightTrajectory = Pathfinder.readFromCSV(rightCSV);
@@ -132,3 +132,4 @@ public class TestAutoPathCommand extends Command {
     }
   }
 }
+*/
