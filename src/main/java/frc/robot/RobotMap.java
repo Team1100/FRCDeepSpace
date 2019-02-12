@@ -57,6 +57,18 @@ public class RobotMap {
 	private final static int SRX_CAN_1 = 1;
 	private final static int SRX_CAN_2 = 2;
 	private final static int SRX_CAN_3 = 3;
+	private final static int SRX_CAN_4 = 4;
+	private final static int SRX_CAN_5 = 5;
+	private final static int SRX_CAN_6 = 6;
+	private final static int SRX_CAN_7 = 7;
+	private final static int SRX_CAN_8 = 8;
+	private final static int SRX_CAN_9 = 9;
+	private final static int SRX_CAN_10 = 10;
+	private final static int SRX_CAN_11 = 11;
+	private final static int SRX_CAN_12 = 12;
+	private final static int SRX_CAN_13 = 13;
+	private final static int SRX_CAN_14 = 14;
+	private final static int SRX_CAN_15 = 15;
 
 	//List of all analog ports
 	private final static int ANALOG_0 = 0;
@@ -137,12 +149,13 @@ public class RobotMap {
 
   //TODO:Update with proper ports
   //[D]rive
-  public static final int D_FRONT_LEFT = PWM_0;
-  public static final int D_FRONT_RIGHT = PWM_1;
-  public static final int D_BACK_LEFT = PWM_2;
-  public static final int D_BACK_RIGHT = PWM_3;
+  public static final int D_FRONT_LEFT = SRX_CAN_0;
+  public static final int D_FRONT_RIGHT = SRX_CAN_1;
+  public static final int D_BACK_LEFT = SRX_CAN_2;
+  public static final int D_BACK_RIGHT = SRX_CAN_3;
   public static final Port D_NAVX = SPI.Port.kMXP;
 
+  
   //[E]levator
   public static final int E_LEFT = PWM_4;
   public static final int E_RIGHT = PWM_5;
