@@ -7,9 +7,8 @@
 
 package frc.robot.commands.intake;
 
-import frc.robot.subsystems.BeamBreak;
-import frc.robot.commands.intake.*;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.subsystems.BeamBreak;
 
 public class DefaultIntake extends CommandGroup {
   /**

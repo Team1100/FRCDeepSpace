@@ -7,7 +7,6 @@
 
 package frc.robot.commands.claw;
 
-import frc.robot.commands.claw.*;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class PlaceHatch extends CommandGroup {
