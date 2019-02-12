@@ -52,23 +52,23 @@ public class RobotMap {
 	private final static int PCM_CAN = 0;
 	private final static int PCM_CAN_LED = 1;
 
-	// List of Talon SRX CAN IDs
-	private final static int SRX_CAN_0 = 0;
-	private final static int SRX_CAN_1 = 1;
-	private final static int SRX_CAN_2 = 2;
-	private final static int SRX_CAN_3 = 3;
-	private final static int SRX_CAN_4 = 4;
-	private final static int SRX_CAN_5 = 5;
-	private final static int SRX_CAN_6 = 6;
-	private final static int SRX_CAN_7 = 7;
-	private final static int SRX_CAN_8 = 8;
-	private final static int SRX_CAN_9 = 9;
-	private final static int SRX_CAN_10 = 10;
-	private final static int SRX_CAN_11 = 11;
-	private final static int SRX_CAN_12 = 12;
-	private final static int SRX_CAN_13 = 13;
-	private final static int SRX_CAN_14 = 14;
-	private final static int SRX_CAN_15 = 15;
+	// List of CAN IDs
+	private final static int CAN_0 = 0;
+	private final static int CAN_1 = 1;
+	private final static int CAN_2 = 2;
+	private final static int CAN_3 = 3;
+	private final static int CAN_4 = 4;
+	private final static int CAN_5 = 5;
+	private final static int CAN_6 = 6;
+	private final static int CAN_7 = 7;
+	private final static int CAN_8 = 8;
+	private final static int CAN_9 = 9;
+	private final static int CAN_10 = 10;
+	private final static int CAN_11 = 11;
+	private final static int CAN_12 = 12;
+	private final static int CAN_13 = 13;
+	private final static int CAN_14 = 14;
+	private final static int CAN_15 = 15;
 
 	//List of all analog ports
 	private final static int ANALOG_0 = 0;
@@ -149,10 +149,10 @@ public class RobotMap {
 
   //TODO:Update with proper ports
   //[D]rive
-  public static final int D_FRONT_LEFT = SRX_CAN_14;
-  public static final int D_FRONT_RIGHT = SRX_CAN_1;
-  public static final int D_BACK_LEFT = SRX_CAN_15;
-  public static final int D_BACK_RIGHT = SRX_CAN_0;
+  public static final int D_FRONT_LEFT = CAN_14;
+  public static final int D_FRONT_RIGHT = CAN_1;
+  public static final int D_BACK_LEFT = CAN_15;
+  public static final int D_BACK_RIGHT = CAN_0;
   public static final Port D_NAVX = SPI.Port.kMXP;
 
   
@@ -170,9 +170,15 @@ public class RobotMap {
   public static final int B_BEAM_BREAK = DIO_0;
 
   //[C]law
-  public static final int C_Claw_0 = PCM_0;
-  public static final int C_Claw_1 = PCM_1;
-  public static final int C_Claw_CAN = PCM_CAN;
+  public static final int C_CLAW_0 = PCM_0;
+  public static final int C_CLAW_1 = PCM_1;
+  public static final int C_CLAW_CAN = PCM_CAN;
+
+  //[G]antry
+  //TODO: Update with proper ports
+  public static final int G_GANTRY = CAN_2;
+  public static final int G_ENCODER_CW = DIO_4;
+  public static final int G_ENCODER_CCW = DIO_5;
 
   //[U]ser Input
   public static final int U_JOYSTICK_LEFT = 0;

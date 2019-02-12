@@ -35,7 +35,7 @@ public class Claw extends Subsystem {
 
   private Claw() {
     //Need to fill in parameters w/ robot map eventually
-		clawManipulator = new DoubleSolenoid(RobotMap.C_Claw_CAN, RobotMap.C_Claw_0, RobotMap.C_Claw_1);	
+		clawManipulator = new DoubleSolenoid(RobotMap.C_CLAW_CAN, RobotMap.C_CLAW_0, RobotMap.C_CLAW_1);	
   }
   
   public void openClaw() {

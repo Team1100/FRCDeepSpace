@@ -40,8 +40,7 @@ public class Robot extends TimedRobot {
     /**
      * Ensures that instances of each subsytem are created, which is necessary for the robot to work.
      */
-    //TODO: Change to 1100 style getInstance() command
-    m_oi = new OI();
+    m_oi = OI.getInstance();
     Drive.getInstance();
     Elevator.getInstance();
     Claw.getInstance();
