@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-/*
+
 package frc.robot.commands.auto;
 
 import java.io.File;
@@ -50,8 +50,8 @@ public class TestAutoPathCommand extends Command {
   public TestAutoPathCommand() {
     requires(Drive.getInstance());
 
-    leftCSV = new File("/home/deploy/" + pathName + ".left");
-    rightCSV = new File("/home/deploy/" + pathName + ".right");
+    leftCSV = new File("/home/lvuser/deploy/Unnamed.left.pf1.csv");
+    rightCSV = new File("/home/lvuser/deploy/Unnamed.right.pf1.csv");
 
     leftTrajectory = Pathfinder.readFromCSV(leftCSV);
     rightTrajectory = Pathfinder.readFromCSV(rightCSV);
@@ -73,8 +73,8 @@ public class TestAutoPathCommand extends Command {
     leftFollower.reset();
     rightFollower.reset();
 
-    leftFollower.configureEncoder((int)Drive.getEncoderLeft(), 128, 6 / 12);
-    rightFollower.configureEncoder((int)Drive.getEncoderRight(), 128, 6 / 12);
+    leftFollower.configureEncoder((int)chassis.getLeftEncoder().get(), 128, 6 / 12);
+    rightFollower.configureEncoder((int)chassis.getRightEncoder().get(), 128, 6 / 12);
 
     leftFollower.configurePIDVA( p,  i, d, v, a);
     rightFollower.configurePIDVA(p , i, d , v , a);
@@ -115,8 +115,8 @@ public class TestAutoPathCommand extends Command {
     public void run(){
     
     
-    double leftOutput = leftFollower.calculate((int) chassis.getEncoderLeft());
-    double rightOutput = rightFollower.calculate((int) chassis.getEncoderRight());
+    double leftOutput = leftFollower.calculate((int) chassis.getLeftEncoder().get());
+    double rightOutput = rightFollower.calculate((int) chassis.getRightEncoder().get());
     
     double gyroHeading = 0;
     
@@ -132,4 +132,3 @@ public class TestAutoPathCommand extends Command {
     }
   }
 }
-*/
