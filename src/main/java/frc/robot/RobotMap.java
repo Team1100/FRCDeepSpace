@@ -149,10 +149,10 @@ public class RobotMap {
 
   //TODO:Update with proper ports
   //[D]rive
-  public static final int D_FRONT_LEFT = SRX_CAN_0;
+  public static final int D_FRONT_LEFT = SRX_CAN_14;
   public static final int D_FRONT_RIGHT = SRX_CAN_1;
-  public static final int D_BACK_LEFT = SRX_CAN_2;
-  public static final int D_BACK_RIGHT = SRX_CAN_3;
+  public static final int D_BACK_LEFT = SRX_CAN_15;
+  public static final int D_BACK_RIGHT = SRX_CAN_0;
   public static final Port D_NAVX = SPI.Port.kMXP;
 
   
