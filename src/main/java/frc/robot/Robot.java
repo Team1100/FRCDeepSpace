@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -30,6 +31,7 @@ import frc.robot.subsystems.Vision;
  */
 public class Robot extends TimedRobot {
   public static OI m_oi;
+  public static PowerDistributionPanel pdp;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -67,6 +69,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("PDP Total Current", pdp.getTotalCurrent());
+    SmartDashboard.putNumber("Front Left Drive Current", pdp.getCurrent(14));
+    SmartDashboard.putNumber("Front Right Drive Current", pdp.getCurrent(1));
+    SmartDashboard.putNumber("Back Left Drive Current", pdp.getCurrent(15));
+    SmartDashboard.putNumber("Back Right Drive Current", pdp.getCurrent(0));
   }
 
   /**
