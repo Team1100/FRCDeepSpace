@@ -1,7 +1,6 @@
 package frc.robot.commands.vision;
 
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Vision;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -11,17 +10,17 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  * Moves the claw along the gantry until the claw is centered on the vision target
  */
-public class TranslateClawToCenter extends PIDCommand {
+public class CenterRobot extends PIDCommand {
 	private PIDController pidController = getPIDController();
   private int count;
   private boolean isAimed = false;
   Timer t;
-  
+	
 	/**
 	* Sets up PID Controller
 	* @param tolerance Percent tolerance of PID loop
 	*/
-  public TranslateClawToCenter(double tolerance) {
+  public CenterRobot(double tolerance) {
       //TODO: Tune these PID values
       super(.05, .05, 0);
       t = new Timer();
@@ -32,12 +31,14 @@ public class TranslateClawToCenter extends PIDCommand {
       pidController.setPercentTolerance(tolerance);
       //Ideally want center of target to be aligned with center of camera
       setSetpoint(0);
+      t.start();
     }
     
     protected void initialize() {
     	count = 0;
     	t.start();
     }
+
 
     /**
      * Finishes when claw is secured on target
@@ -81,6 +82,6 @@ public class TranslateClawToCenter extends PIDCommand {
 	protected void usePIDOutput(double output) {
     isAimed =  false;
     Vision.getInstance().setisAimed(isAimed);
-    Gantry.getInstance().translateGantry(output);
+    Drive.getInstance().tankDrive(output, -output);
 	}
 }
