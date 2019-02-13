@@ -32,6 +32,7 @@ import frc.robot.subsystems.Vision;
 public class Robot extends TimedRobot {
   public static OI m_oi;
   public static PowerDistributionPanel pdp;
+  public static Vision vision;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -52,7 +53,7 @@ public class Robot extends TimedRobot {
     Drive.getInstance();
     Elevator.getInstance();
     Gantry.getInstance();
-    Vision.getInstance();
+    vision = Vision.getInstance();
     
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -69,6 +70,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putBoolean("Is Aimed Correctly", vision.getisAimed());
+    SmartDashboard.putBoolean("Can Aim", vision.getcanAim());
     SmartDashboard.putNumber("PDP Total Current", pdp.getTotalCurrent());
     SmartDashboard.putNumber("Front Left Drive Current", pdp.getCurrent(14));
     SmartDashboard.putNumber("Front Right Drive Current", pdp.getCurrent(1));
