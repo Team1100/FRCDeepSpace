@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
 /**
- * Moves the glaw along the gantry until the claw is centered on the vision target
+ * Moves the claw along the gantry until the claw is centered on the vision target
  */
 public class TranslateClawToCenter extends PIDCommand {
 	private PIDController pidController = getPIDController();
@@ -50,7 +50,6 @@ public class TranslateClawToCenter extends PIDCommand {
      */
 	@Override
 	protected double returnPIDInput() {
-		//If not detected, end
 		if (Vision.getInstance().getCX() == -1) {
 			return 0;
         }
@@ -60,7 +59,7 @@ public class TranslateClawToCenter extends PIDCommand {
 	}
 	
 	/**
-	 * Tank drives based on the output of the PID controller
+	 * drives Gantry based on the output of the PID controller
 	 * @param output the output of the PID controller
 	 */
 	@Override
