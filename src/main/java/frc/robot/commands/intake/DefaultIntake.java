@@ -23,6 +23,7 @@ public class DefaultIntake extends CommandGroup {
     if(beamBreak.get()) {
       addSequential(new StopRollers());
       addSequential(new IntakeUp());
+      addSequential(new MoveBallToChute(2000));
     }
     // Add Commands here:
     // e.g. addSequential(new Command1());
