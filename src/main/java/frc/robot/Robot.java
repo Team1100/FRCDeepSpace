@@ -13,9 +13,12 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.BeamBreak;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Gantry;
+import frc.robot.subsystems.Vision;
 
 
 /**
@@ -41,10 +44,13 @@ public class Robot extends TimedRobot {
      * Ensures that instances of each subsytem are created, which is necessary for the robot to work.
      */
     m_oi = OI.getInstance();
+    BallIntake.getInstance();
+    BeamBreak.getInstance();
+    Claw.getInstance();
     Drive.getInstance();
     Elevator.getInstance();
-    Claw.getInstance();
-    BallIntake.getInstance();
+    Gantry.getInstance();
+    Vision.getInstance();
     
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
