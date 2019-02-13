@@ -41,5 +41,4 @@ public class BeamBreak extends Subsystem {
   public void initDefaultCommand() {
 
   }
-
 }
