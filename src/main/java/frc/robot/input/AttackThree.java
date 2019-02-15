@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class AttackThree extends Joystick {
 
+	public static boolean leftIsLeft = true;
+
 	/*
 	 * Total amount of buttons on the Attack Three
 	 */

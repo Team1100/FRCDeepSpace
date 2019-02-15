@@ -9,6 +9,7 @@ package frc.robot;
 
 import frc.robot.input.AttackThree;
 import frc.robot.input.XboxController;
+import frc.robot.commands.SwitchSides;
 import frc.robot.commands.claw.*;
 import frc.robot.commands.elevator.ElevatorLevelOne;
 import frc.robot.commands.elevator.ElevatorLevelThree;
@@ -41,8 +42,13 @@ public class OI {
   public OI(){
     //User Input
     //TODO:Tune deadband
-    leftStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.05);
-    rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.05);
+    if(AttackThree.leftIsLeft){
+      leftStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.05);
+      rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.05);
+    } else if (!AttackThree.leftIsLeft){
+      leftStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.05);
+      rightStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.05);
+    }
 
     xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.1);
 
@@ -61,6 +67,10 @@ public class OI {
 
     //xbox.getButtonStart().whenPressed(new Manual Control);
     
+
+    leftStick.getButton(8).whenPressed(new SwitchSides());
+    rightStick.getButton(8).whenPressed(new SwitchSides());
+
   }
 
   /**
