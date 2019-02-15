@@ -31,6 +31,7 @@ public class CenterRobot extends PIDCommand {
       pidController.setPercentTolerance(tolerance);
       //Ideally want center of target to be aligned with center of camera
       setSetpoint(0);
+      t.start();
     }
     
     protected void initialize() {
