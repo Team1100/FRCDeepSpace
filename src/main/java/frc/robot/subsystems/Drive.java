@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 import frc.robot.commands.drive.DefaultDrive;
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.Encoder;
 
 
 /**
@@ -28,6 +29,8 @@ public class Drive extends Subsystem {
   private WPI_TalonSRX frontLeft, frontRight, backLeft, backRight;
   private SpeedControllerGroup left, right;
   private AHRS ahrs;
+  Encoder encoderL, encoderR;
+  final double PULSE_PER_FOOT = 4090;
 
   /**
    * Contructor that sets up speed controllers and the drive train.
@@ -45,6 +48,10 @@ public class Drive extends Subsystem {
     drivetrain = new DifferentialDrive(left, right);
     ahrs = new AHRS(RobotMap.D_NAVX);
 
+    encoderL = new Encoder(RobotMap.D_ENCODER_LEFT_A, RobotMap.D_ENCODER_LEFT_B);
+    encoderL.setDistancePerPulse(1/PULSE_PER_FOOT);
+    encoderR = new Encoder(RobotMap.D_ENCODER_RIGHT_A, RobotMap.D_ENCODER_RIGHT_B);
+    encoderR.setDistancePerPulse(1/PULSE_PER_FOOT);
   }
 
   /**
@@ -71,6 +78,13 @@ public class Drive extends Subsystem {
     return ahrs;
   }
 
+  public Encoder getRightEncoder() {
+    return encoderR;
+  }
+
+  public Encoder getLeftEncoder() {
+    return encoderL;
+  }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

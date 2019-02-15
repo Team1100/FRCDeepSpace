@@ -154,6 +154,10 @@ public class RobotMap {
   public static final int D_BACK_LEFT = CAN_15;
   public static final int D_BACK_RIGHT = CAN_0;
   public static final Port D_NAVX = SPI.Port.kMXP;
+  public static final int D_ENCODER_LEFT_A = DIO_6;
+  public static final int D_ENCODER_LEFT_B = DIO_7;
+  public static final int D_ENCODER_RIGHT_A = DIO_8;
+  public static final int D_ENCODER_RIGHT_B = DIO_9;
 
   
   //[E]levator
