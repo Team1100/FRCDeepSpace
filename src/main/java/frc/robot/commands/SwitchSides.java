@@ -7,11 +7,14 @@
 
 package frc.robot.commands;
 
+import frc.robot.OI;
+import frc.robot.RobotMap;
 import frc.robot.input.AttackThree;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class SwitchSides extends Command {
   boolean leftState = AttackThree.leftIsLeft;
+  boolean end = false;
 
   public SwitchSides() {
     // Use requires() here to declare subsystem dependencies
@@ -21,31 +24,40 @@ public class SwitchSides extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    if (leftState == true){
-      AttackThree.leftIsLeft = false;
-    }
-
-    if (leftState == false){
-      AttackThree.leftIsLeft = true;
-    }
+    
 
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if (leftState == true){
+      AttackThree.leftIsLeft = false;
+      if(AttackThree.leftIsLeft){
+        OI.leftStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.05);
+        OI.rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.05);
+      } else if (!AttackThree.leftIsLeft){
+        OI.leftStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.05);
+        OI.rightStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.05);
+      }
+    }
 
+    if (leftState == false){
+      AttackThree.leftIsLeft = true;
+    }
+    end = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return end;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    end = false;
   }
 
   // Called when another command which requires one or more of the same

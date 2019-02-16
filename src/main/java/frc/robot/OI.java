@@ -24,8 +24,8 @@ import frc.robot.commands.intake.IntakeUp;
 public class OI {
   private static OI oi;
 
-  private static AttackThree leftStick;
-  private static AttackThree rightStick;
+  public static AttackThree leftStick;
+  public static AttackThree rightStick;
   private static XboxController xbox;
 
    /**
@@ -42,13 +42,8 @@ public class OI {
   public OI(){
     //User Input
     //TODO:Tune deadband
-    if(AttackThree.leftIsLeft){
-      leftStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.05);
-      rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.05);
-    } else if (!AttackThree.leftIsLeft){
-      leftStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.05);
-      rightStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.05);
-    }
+    leftStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.05);
+    rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.05);
 
     xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.1);
 

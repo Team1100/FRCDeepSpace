@@ -18,9 +18,10 @@ import frc.robot.subsystems.BeamBreak;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Stilts;
+import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Vision;
+import frc.robot.input.AttackThree;;
 
 
 /**
@@ -55,6 +56,7 @@ public class Robot extends TimedRobot {
     Elevator.getInstance();
     Gantry.getInstance();
     Stilts.getInstance();
+
     vision = Vision.getInstance();
     
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
@@ -72,13 +74,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putBoolean("Is Aimed Correctly", vision.getisAimed());
-    SmartDashboard.putBoolean("Can Aim", vision.getcanAim());
-    SmartDashboard.putNumber("PDP Total Current", pdp.getTotalCurrent());
-    SmartDashboard.putNumber("Front Left Drive Current", pdp.getCurrent(14));
-    SmartDashboard.putNumber("Front Right Drive Current", pdp.getCurrent(1));
-    SmartDashboard.putNumber("Back Left Drive Current", pdp.getCurrent(15));
-    SmartDashboard.putNumber("Back Right Drive Current", pdp.getCurrent(0));
+    
   }
 
   /**

@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
  * The Vision subsystem: Sets up the infrastructure for the drivetrain and its hardware.
@@ -30,6 +31,10 @@ public class Vision extends Subsystem {
       vision = new Vision();
     }
     return vision;
+  }
+
+  private Vision(){
+    nt = NetworkTableInstance.getDefault().getTable("Pi");
   }
   
   public double getCX() {
