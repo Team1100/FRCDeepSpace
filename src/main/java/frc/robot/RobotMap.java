@@ -49,7 +49,7 @@ public class RobotMap {
 	private final static int PWM_MXP_9 = 19;
 
 	// List of PCM CAN IDs
-	private final static int PCM_CAN = 0;
+	private final static int PCM_CAN = 17;
 	private final static int PCM_CAN_LED = 1;
 
 	// List of CAN IDs
