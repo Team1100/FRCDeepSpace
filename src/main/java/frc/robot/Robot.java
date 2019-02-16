@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.drive.ChangeHeading;
+import frc.robot.commands.auto.*;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.BeamBreak;
 import frc.robot.subsystems.Claw;
@@ -21,9 +23,8 @@ import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Stilts;
 import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Vision;
-import frc.robot.input.AttackThree;;
-
-
+import frc.robot.subsystems.NavX;
+import frc.robot.input.AttackThree;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -56,8 +57,14 @@ public class Robot extends TimedRobot {
     Elevator.getInstance();
     Gantry.getInstance();
     Stilts.getInstance();
+    NavX.getInstance();
 
     vision = Vision.getInstance();
+    m_chooser.setDefaultOption("Default Auto", new TestAutoPathCommand());
+    // chooser.addOption("My Auto", new MyAutoCommand());
+    //m_chooser.addOption("Test Auto", new TestAutoPathCommand());
+    SmartDashboard.putData("Auto mode", m_chooser);
+    SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
     
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -104,6 +111,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    NavX.getInstance().getNavX().zeroYaw();
     m_autonomousCommand = m_chooser.getSelected();
 
     /*
