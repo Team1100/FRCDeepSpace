@@ -16,3 +16,7 @@ SnobotSim - Branch that should be even with master for deploying code to the [Sn
  - Used for testing code at home or anywhere without access to the robot
  - Must be rebased often in order to stay even with master branch
  - Must never be merged back into the master branch
+
+Testing - Branch that tests all robot functionality through SmartDashboard
+ - Must be rebased often in order to stay even with master branch
+ - Must never be merged back into the master branch
