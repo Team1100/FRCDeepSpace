@@ -14,7 +14,19 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.drive.ChangeHeading;
+import frc.robot.commands.drive.DefaultDrive;
+import frc.robot.commands.elevator.DefaultElevator;
+import frc.robot.commands.gantry.MoveGantry;
+import frc.robot.commands.intake.DefaultIntake;
+import frc.robot.commands.intake.IntakeDown;
+import frc.robot.commands.intake.IntakeUp;
+import frc.robot.commands.intake.RollersIn;
+import frc.robot.commands.intake.StopRollers;
 import frc.robot.commands.auto.*;
+import frc.robot.commands.claw.CloseClaw;
+import frc.robot.commands.claw.OpenClaw;
+import frc.robot.commands.claw.PullClawBack;
+import frc.robot.commands.claw.PushClawForward;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.BeamBreak;
 import frc.robot.subsystems.Claw;
@@ -69,6 +81,18 @@ public class Robot extends TimedRobot {
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    SmartDashboard.putData("Test Drive", new DefaultDrive());
+    SmartDashboard.putData("Test Elevator", new DefaultElevator());
+    SmartDashboard.putData("Test RollersIn", new RollersIn());
+    SmartDashboard.putData("Test Pistons Open", new OpenClaw());
+    SmartDashboard.putData("Test Pistons Close", new CloseClaw());
+    SmartDashboard.putData("Test Push Claw Forward", new PushClawForward());
+    SmartDashboard.putData("Test Pull Claw Back", new PullClawBack());
+    SmartDashboard.putData("Test Intake Up", new IntakeUp());
+    SmartDashboard.putData("Test Intake Down", new IntakeDown());
+    SmartDashboard.putData("Test Gantry", new MoveGantry());
+
+
   }
 
   /**
