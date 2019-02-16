@@ -21,6 +21,7 @@ public class BallIntake extends Subsystem {
   private WPI_TalonSRX rollers, axis_movement;
   AnalogInput bottomSwitch, topSwitch;
   boolean canGoUp, canGoDown = false;
+  private static double motorPower;
 
   public static BallIntake ballintake;
   // Put methods for controlling this subsystem
@@ -59,6 +60,7 @@ public class BallIntake extends Subsystem {
     while (canGoUp){
       axis_movement.set(intakeSpeed);
     }
+    motorPower = intakeSpeed;
   }
 
   public void intakeDown(double intakeSpeed){
@@ -70,6 +72,11 @@ public class BallIntake extends Subsystem {
     while (canGoUp){
       axis_movement.set(-intakeSpeed);
     }
+    motorPower = -intakeSpeed;
+   }
+
+  public void incrementIntakePower(double incrementPower) {
+    this.intakeDown(motorPower + incrementPower);
    }
 
   public void rollersIn(double rollersSpeed){
