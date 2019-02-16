@@ -19,6 +19,7 @@ import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Gantry;
+import frc.robot.subsystems.Stilts;
 import frc.robot.subsystems.Vision;
 
 
@@ -53,6 +54,7 @@ public class Robot extends TimedRobot {
     Drive.getInstance();
     Elevator.getInstance();
     Gantry.getInstance();
+    Stilts.getInstance();
     vision = Vision.getInstance();
     
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());

@@ -167,9 +167,9 @@ public class RobotMap {
   public static final int E_BOTTOM_SWITCH = DIO_2;
   public static final int E_POT = ANALOG_0;
 
-
-
-
+  //[S]tilts
+  public static final int S_LEFT = PWM_8;
+  public static final int S_RIGHT = PWM_9;
 
   //[B]allIntake
   public static final int B_ROLLERS = PWM_6;
