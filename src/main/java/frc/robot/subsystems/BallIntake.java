@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.AnalogInput;
 
 /**
  * Add your docs here.
@@ -18,6 +19,7 @@ public class BallIntake extends Subsystem {
 
   public static BallIntake intake;
   private WPI_TalonSRX rollers, axis_movement;
+  AnalogInput bottomSwitch, topSwitch;
 
   public static BallIntake ballintake;
   // Put methods for controlling this subsystem
@@ -26,6 +28,8 @@ public class BallIntake extends Subsystem {
   private BallIntake() {
     rollers = new WPI_TalonSRX(RobotMap.B_ROLLERS);
     axis_movement = new WPI_TalonSRX(RobotMap.B_AXIS_MOVEMENT);
+    bottomSwitch = new AnalogInput(RobotMap.B_BOTTOM_SWITCH);
+    topSwitch = new AnalogInput(RobotMap.B_TOP_SWITCH);
   }
 
   public static BallIntake getInstance(){
@@ -35,15 +39,15 @@ public class BallIntake extends Subsystem {
     return intake;
   }
 
- // public void intakeUp(double intakeSpeed){
-//  axis_movement.set(intakeSpeed);
-//  rollers.set(0);
- // }
+  // public void intakeUp(double intakeSpeed){
+  //  axis_movement.set(intakeSpeed);
+  //  rollers.set(0);
+  // }
 
-// public void intakeDown(double intakeSpeed, double rollersSpeed) {
-//		rollers.set(rollersSpeed);
-//		axis_movement.set(intakeSpeed);
-// }
+  // public void intakeDown(double intakeSpeed, double rollersSpeed) {
+  //		rollers.set(rollersSpeed);
+  //		axis_movement.set(intakeSpeed);
+  // }
 
   public void intakeUp(double intakeSpeed){
     axis_movement.set(intakeSpeed);

@@ -174,6 +174,8 @@ public class RobotMap {
   public static final int B_ROLLERS = PWM_6;
   public static final int B_AXIS_MOVEMENT = PWM_7;
   public static final int B_BEAM_BREAK = DIO_0;
+  public static final int B_TOP_SWITCH = ANALOG_1;
+  public static final int B_BOTTOM_SWITCH = ANALOG_2;
 
   //[C]law
   public static final int C_CLAW_0 = PCM_0;
