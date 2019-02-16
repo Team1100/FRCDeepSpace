@@ -17,11 +17,19 @@ import frc.robot.RobotMap;
 public class NavX extends Subsystem {
   
   private AHRS ahrs;
+  public static NavX navx;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
   private NavX() {
     ahrs = new AHRS(RobotMap.D_NAVX);
+  }
+
+  public static NavX getInstance(){
+    if (navx == null){
+      navx = new NavX();
+    }
+    return navx;
   }
 
   public AHRS getNavX() {
