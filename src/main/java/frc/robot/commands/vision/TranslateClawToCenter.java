@@ -78,7 +78,7 @@ public class TranslateClawToCenter extends PIDCommand {
 	 * @param output the output of the PID controller
 	 */
 	@Override
-	protected void usePIDOutput(double output) {
+  protected void usePIDOutput(double output) {
     isAimed =  false;
     Vision.getInstance().setisAimed(isAimed);
     Gantry.getInstance().translateGantry(output);
