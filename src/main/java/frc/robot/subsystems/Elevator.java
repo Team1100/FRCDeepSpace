@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.RobotMap;
 import frc.robot.commands.elevator.DefaultElevator;
+import edu.wpi.first.wpilibj.AnalogInput;
 
 /**
  * The Drive subsystem: Sets up the infrastructure for the drivetrain and its hardware.
@@ -22,7 +23,12 @@ public class Elevator extends Subsystem {
   // here. Call these from Commands.
   public static Elevator elevator;
   private WPI_TalonSRX left, right;
+
   DigitalInput bottomSwitch, topSwitch;
+  AnalogInput pot;
+  double bottom;
+  double top;
+
 
 
   /**
@@ -60,7 +66,37 @@ public boolean isAtTop(){
   return topSwitch.get();
 }
 
+<<<<<<< HEAD
 
+=======
+public double getVoltage() {
+  return pot.getAverageVoltage();
+}
+
+private void setBottom() {
+  bottom = getVoltage();
+}
+
+private void setTop() {
+  top = getVoltage();
+}
+
+/**
+ * Gets the lowest height possible
+ * @return Lowest height of elevator
+ */
+public double getBottom() {
+  return bottom;
+}
+
+/**
+ * Gets the highest height possible
+ * @return Highest height of elevator
+ */
+public double getTop() {
+  return top;
+}
+>>>>>>> Added PID Elevator
   /**
    * Used outside of the Elevator subsystem to return an instance of Elevator subsystem.
    * @return Returns instance of Elevator subsystem formed from constructor.
