@@ -19,6 +19,9 @@ public class Claw extends Subsystem {
   public static Claw claw;
   DoubleSolenoid clawManipulator;
   DoubleSolenoid clawMovement;
+  private Boolean isClosed = true;
+  private Boolean isForward = false;
+
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.

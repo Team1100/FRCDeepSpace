@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 import frc.robot.commands.drive.DefaultDrive;
-import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Encoder;
 
 
@@ -28,7 +27,6 @@ public class Drive extends Subsystem {
   public static DifferentialDrive drivetrain;
   private WPI_TalonSRX frontLeft, frontRight, backLeft, backRight;
   private SpeedControllerGroup left, right;
-  private AHRS ahrs;
   Encoder encoderL, encoderR;
   final double PULSE_PER_FOOT = 4090;
 
@@ -46,7 +44,6 @@ public class Drive extends Subsystem {
     right = new SpeedControllerGroup(frontRight, backRight);
 
     drivetrain = new DifferentialDrive(left, right);
-    ahrs = new AHRS(RobotMap.D_NAVX);
 
     encoderL = new Encoder(RobotMap.D_ENCODER_LEFT_A, RobotMap.D_ENCODER_LEFT_B);
     encoderL.setDistancePerPulse(1/PULSE_PER_FOOT);
@@ -72,10 +69,6 @@ public class Drive extends Subsystem {
       drive = new Drive();
     }
     return drive;
-  }
-
-  public AHRS getNavX() {
-    return ahrs;
   }
 
   public Encoder getRightEncoder() {
