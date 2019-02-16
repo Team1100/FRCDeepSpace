@@ -21,7 +21,7 @@ public class NavX extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private NavX() {
+  private NavX() { 
     ahrs = new AHRS(RobotMap.D_NAVX);
   }
 
