@@ -10,7 +10,7 @@ import frc.robot.subsystems.Drive;
  */
 public class DefaultDrive extends Command {
 
-    double left, right;
+    double left, right; 
     AttackThreeAxis yAxis = AttackThreeAxis.kY;
 
     public DefaultDrive() {
