@@ -158,7 +158,6 @@ public class RobotMap {
   public static final int D_ENCODER_LEFT_B = DIO_7;
   public static final int D_ENCODER_RIGHT_A = DIO_8;
   public static final int D_ENCODER_RIGHT_B = DIO_9;
-
   
   //[E]levator
   public static final int E_LEFT = PWM_4;
@@ -166,10 +165,6 @@ public class RobotMap {
   public static final int E_TOP_SWITCH = DIO_1;
   public static final int E_BOTTOM_SWITCH = DIO_2;
   public static final int E_POT = ANALOG_0;
-
-
-
-
 
   //[B]allIntake
   public static final int B_ROLLERS = PWM_6;

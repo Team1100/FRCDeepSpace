@@ -6,9 +6,7 @@
 /*----------------------------------------------------------------------------*/
 package frc.robot.commands.elevator;
 
-import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Elevator;
-
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
