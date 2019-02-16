@@ -163,9 +163,12 @@ public class RobotMap {
   //[E]levator
   public static final int E_LEFT = PWM_4;
   public static final int E_RIGHT = PWM_5;
-  public static final int E_LEVEL_ONE_SWITCH = DIO_1;
-  public static final int E_LEVEL_TWO_SWITCH = DIO_2;
-  public static final int E_LEVEL_THREE_SWITCH = DIO_3;
+  public static final int E_TOP_SWITCH = DIO_1;
+  public static final int E_BOTTOM_SWITCH = DIO_2;
+  public static final int E_POT = ANALOG_0;
+
+
+
 
 
   //[B]allIntake

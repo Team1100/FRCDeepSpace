@@ -11,8 +11,8 @@ import frc.robot.input.AttackThree;
 import frc.robot.input.XboxController;
 import frc.robot.commands.SwitchSides;
 import frc.robot.commands.claw.*;
-import frc.robot.commands.elevator.ElevatorLevelOne;
-import frc.robot.commands.elevator.ElevatorLevelThree;
+import frc.robot.commands.elevator.ElevatorTop;
+import frc.robot.commands.elevator.ElevatorBottom;
 import frc.robot.commands.intake.DefaultIntake;
 import frc.robot.commands.intake.PushBallOut;
 import frc.robot.commands.intake.IntakeUp;
@@ -54,9 +54,9 @@ public class OI {
 
     //Now Mapping Commands to XBox 
     
-    xbox.getButtonY().whenPressed(new ElevatorLevelOne());
-    xbox.getButtonX().whenPressed(new ElevatorLevelThree());
-    xbox.getButtonA().whenPressed(new ElevatorLevelThree());
+    xbox.getButtonY().whenPressed(new ElevatorTop());
+    xbox.getButtonX().whenPressed(new ElevatorBottom());
+
     //xbox.getButtonB().whenPressed(new CollapseElevator());
 
     xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());

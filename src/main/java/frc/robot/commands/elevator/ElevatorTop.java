@@ -10,10 +10,10 @@ package frc.robot.commands.elevator;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Elevator;
 
-public class ElevatorLevelThree extends Command {
+public class ElevatorTop extends Command {
 
   Elevator elevator;
-  public ElevatorLevelThree() {
+  public ElevatorTop() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Elevator.getInstance());
@@ -34,7 +34,7 @@ public class ElevatorLevelThree extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return elevator.isAtLevelThree();
+    return elevator.isAtTop();
   }
 
   // Called once after isFinished returns true

@@ -22,7 +22,7 @@ public class Elevator extends Subsystem {
   // here. Call these from Commands.
   public static Elevator elevator;
   private WPI_TalonSRX left, right;
-  DigitalInput switchOne, switchTwo, switchThree;
+  DigitalInput bottomSwitch, topSwitch;
 
 
   /**
@@ -32,10 +32,8 @@ public class Elevator extends Subsystem {
       //TODO:Update with names and proper ports
       left = new WPI_TalonSRX(RobotMap.E_LEFT);
       right = new WPI_TalonSRX(RobotMap.E_RIGHT);
-      switchOne = new DigitalInput(RobotMap.E_LEVEL_ONE_SWITCH);
-      switchTwo = new DigitalInput(RobotMap.E_LEVEL_TWO_SWITCH);
-      switchThree = new DigitalInput(RobotMap.E_LEVEL_THREE_SWITCH);
-
+      bottomSwitch = new DigitalInput(RobotMap.E_BOTTOM_SWITCH);
+      topSwitch = new DigitalInput(RobotMap.E_TOP_SWITCH);
   }
 
   /**
@@ -51,22 +49,17 @@ public class Elevator extends Subsystem {
 /**
  * Checks if the elevator is at level one
  */
-  public boolean isAtLevelOne(){
-    return switchOne.get();
+  public boolean isAtBottom(){
+    return bottomSwitch.get();
   }
 
 /**
  * Checks if the elevator is at level two
  */
-public boolean isAtLevelTwo(){
-  return switchTwo.get();
+public boolean isAtTop(){
+  return topSwitch.get();
 }
-/**
- * Checks if the elevator is at level three
- */
-public boolean isAtLevelThree(){
-  return switchThree.get();
-}
+
 
   /**
    * Used outside of the Elevator subsystem to return an instance of Elevator subsystem.
