@@ -33,7 +33,7 @@ public class Drive extends Subsystem {
   /**
    * Contructor that sets up speed controllers and the drive train.
    */
-  private Drive() {
+  public Drive() {
     //TODO:Update with names and proper ports
     frontLeft = new WPI_TalonSRX(RobotMap.D_FRONT_LEFT);
     frontRight = new WPI_TalonSRX(RobotMap.D_FRONT_RIGHT);
