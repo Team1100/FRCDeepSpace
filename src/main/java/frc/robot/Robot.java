@@ -49,7 +49,7 @@ public class Robot extends TimedRobot {
     /**
      * Ensures that instances of each subsytem are created, which is necessary for the robot to work.
      */
-    m_oi = OI.getInstance();
+    OI.getInstance();
     BallIntake.getInstance();
     BeamBreak.getInstance();
     Claw.getInstance();
