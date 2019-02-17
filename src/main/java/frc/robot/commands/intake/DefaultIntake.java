@@ -7,39 +7,49 @@
 
 package frc.robot.commands.intake;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.subsystems.BeamBreak;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.input.XboxController.XboxAxis;
+import frc.robot.subsystems.BallIntake;
 
-public class DefaultIntake extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
+public class DefaultIntake extends Command {
+  double speed;
+  XboxAxis rightJoystickY = XboxAxis.kYRight;
   public DefaultIntake() {
-    BeamBreak beamBreak;
-    beamBreak = BeamBreak.getInstance();
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
+    requires(BallIntake.getInstance());
 
-    addParallel(new IntakeDown());
-    addSequential(new RollersIn());
-    if(beamBreak.get()) {
-      addSequential(new StopRollers());
-      addSequential(new IntakeUp());
-      addSequential(new MoveBallToChute(2000));
-    }
-    // Add Commands here:
-    // e.g. addSequential(new Command1());
-    // addSequential(new Command2());
-    // these will run in order.
+  }
 
-    // To run multiple commands at the same time,
-    // use addParallel()
-    // e.g. addParallel(new Command1());
-    // addSequential(new Command2());
-    // Command1 and Command2 will run in parallel.
+  // Called just before this Command runs the first time
+  @Override
+  protected void initialize() {
+    BallIntake.getInstance().setIntakeSpeed(0);
+  }
 
-    // A command group will require all of the subsystems that each member
-    // would require.
-    // e.g. if Command1 requires chassis, and Command2 requires arm,
-    // a CommandGroup containing them would require both the chassis and the
-    // arm.
+  // Called repeatedly when this Command is scheduled to run
+  @Override
+  protected void execute() {
+    speed = OI.getInstance().getXbox().getAxis(rightJoystickY);
+
+    BallIntake.getInstance().setIntakeSpeed(speed);
+  }
+
+  // Make this return true when this Command no longer needs to run execute()
+  @Override
+  protected boolean isFinished() {
+    return false;
+  }
+
+  // Called once after isFinished returns true
+  @Override
+  protected void end() {
+  }
+
+  // Called when another command which requires one or more of the same
+  // subsystems is scheduled to run
+  @Override
+  protected void interrupted() {
   }
 }

@@ -13,8 +13,9 @@ import frc.robot.commands.SwitchSides;
 import frc.robot.commands.claw.*;
 import frc.robot.commands.elevator.ElevatorTop;
 import frc.robot.commands.elevator.ElevatorBottom;
-import frc.robot.commands.intake.DefaultIntake;
 import frc.robot.commands.intake.PushBallOut;
+import frc.robot.commands.intake.RollersIn;
+import frc.robot.commands.intake.StopRollers;
 import frc.robot.commands.intake.IntakeUp;
 
 /**
@@ -52,12 +53,16 @@ public class OI {
     xbox.getButtonY().whenPressed(new ElevatorTop());
     xbox.getButtonX().whenPressed(new ElevatorBottom());
 
+    xbox.getButtonRightBumper().whenPressed(new RollersIn());
+    xbox.getButtonRightBumper().whenReleased(new StopRollers());
+
+
     //xbox.getButtonB().whenPressed(new CollapseElevator());
 
     xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());
     
 		xbox.getDPad().getLeft().whenPressed(new PushBallOut());
-    xbox.getDPad().getDown().whenPressed(new DefaultIntake());
+    //xbox.getDPad().getDown().whenPressed(new DefaultIntake());
     xbox.getDPad().getUp().whenPressed(new IntakeUp());
 
     //xbox.getButtonStart().whenPressed(new Manual Control);
