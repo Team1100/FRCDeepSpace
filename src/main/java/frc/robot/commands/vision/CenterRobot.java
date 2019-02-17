@@ -5,7 +5,6 @@ import frc.robot.subsystems.Vision;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.PIDCommand;
-import edu.wpi.first.wpilibj.Timer;
 
 /**
  * Moves the claw along the gantry until the claw is centered on the vision target
@@ -14,7 +13,6 @@ public class CenterRobot extends PIDCommand {
 	private PIDController pidController = getPIDController();
   private int count;
   private boolean isAimed = false;
-  Timer t;
 	
 	/**
 	* Sets up PID Controller
@@ -23,7 +21,6 @@ public class CenterRobot extends PIDCommand {
   public CenterRobot(double tolerance) {
       //TODO: Tune these PID values
       super(.05, .05, 0);
-      t = new Timer();
       requires(Drive.getInstance()); 
       //Max displacement from center of image (cx)
       setInputRange(0, 640);
@@ -31,12 +28,11 @@ public class CenterRobot extends PIDCommand {
       pidController.setPercentTolerance(tolerance);
       //Ideally want center of target to be aligned with center of camera
       setSetpoint(0);
-      t.start();
     }
     
     protected void initialize() {
-    	count = 0;
-    	t.start();
+      count = 0;
+      setTimeout(2.5);
     }
 
 
@@ -44,7 +40,7 @@ public class CenterRobot extends PIDCommand {
      * Finishes when claw is secured on target
      */
     protected boolean isFinished() {
-      if(t.get() > 2.5) {
+      if(isTimedOut()) {
         return true;
       }
       if (pidController.onTarget()) {
