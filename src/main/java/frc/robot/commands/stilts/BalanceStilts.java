@@ -34,7 +34,7 @@ public class BalanceStilts extends PIDCommand {
     setSetpoint(0); // Balance is at 0 pitch
     setInputRange(-180.0, 180.0);
     pidController.setContinuous();
-    pidController.setOutputRange(-speed, speed);
+    pidController.setOutputRange(0, Math.abs(speed));
     pidController.setPercentTolerance(1);
   }
 
