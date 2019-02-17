@@ -5,31 +5,28 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.auto;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.vision.CenterRobot;
-import frc.robot.commands.vision.TranslateClawToCenter;
-import frc.robot.commands.claw.PlaceHatch;
-import frc.robot.commands.drive.ChangeHeading;
-import frc.robot.commands.elevator.*;
+import frc.robot.subsystems.BeamBreak;
+import frc.robot.commands.intake.*;
 
-public class Middle_RightRocket_2Hatch extends CommandGroup {
+public class IntakeCargo extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public Middle_RightRocket_2Hatch() {
-    addSequential(new PathReader("Middle_RightRocket"));
-    addSequential(new CenterRobot(10));
-    /*
-    addSequential(new TranslateClawToCenter(5));
-    addSequential(new PIDElevatorL3());
-    addSequential(new PlaceHatch());
-    addParallel(new ElevatorBottom());
-    addSequential(new RightRocket_to_RightHPS());
-    addSequential(new ChangeHeading(180, .8));
-    addSequential(new CenterRobot(10));
-    */
+  public IntakeCargo() {
+    BeamBreak beamBreak;
+    beamBreak = BeamBreak.getInstance();
+
+    addParallel(new IntakeDown());
+    addSequential(new RollersIn());
+    if(beamBreak.get()) {
+      addSequential(new StopRollers());
+      addSequential(new IntakeUp());
+      addSequential(new MoveBallToChute(10));
+      addSequential(new StopRollers());
+    }
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
