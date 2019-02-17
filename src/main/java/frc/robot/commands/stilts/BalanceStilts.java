@@ -55,14 +55,17 @@ public class BalanceStilts extends PIDCommand {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    stilts.setSpeed(0);
+    stilts.leftExtend(0);
+    stilts.rightExtend(0);
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    stilts.setSpeed(0);
+    stilts.leftExtend(0);
+    stilts.rightExtend(0);
   }
 
   @Override
@@ -72,6 +75,7 @@ public class BalanceStilts extends PIDCommand {
 
   @Override
   protected void usePIDOutput(double output) {
-    stilts.setSpeed(output);
+    stilts.leftExtend(0);
+    stilts.rightExtend(0);
   }
 }

@@ -8,54 +8,56 @@
 package frc.robot.commands.stilts;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.input.XboxController.XboxAxis;
 import frc.robot.subsystems.Stilts;
 import edu.wpi.first.wpilibj.Timer;
 
-public class RetractStilts extends Command {
-
+public class TestLeftStilt extends Command {
+  Stilts leftStilt;
+  double speed;
+  XboxAxis leftJoystickY = XboxAxis.kYLeft;
   Timer timer;
-  private static final double PERIOD = 5;
-  private static final double RETRACT_SPEED = -0.5;
+  boolean end = false;
 
-  private Stilts stilts;
-
-  public RetractStilts() {
+  public TestLeftStilt() {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
     requires(Stilts.getInstance());
-    timer = new Timer();
+    leftStilt = new Stilts();
+    timer.start();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    timer.start();
-    stilts.leftExtend(RETRACT_SPEED);
-    stilts.rightExtend(RETRACT_SPEED);
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    speed = OI.getInstance().getXbox().getAxis(leftJoystickY);
+    leftStilt.getInstance().leftExtend(speed);
+    if(timer.get() >= 240){
+      end = true;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return timer.hasPeriodPassed(PERIOD);
+    return end;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    stilts.leftExtend(0);
-    stilts.rightExtend(0);
+    timer.stop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    stilts.leftExtend(0);
-    stilts.rightExtend(0);
   }
 }
