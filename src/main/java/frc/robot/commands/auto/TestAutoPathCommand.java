@@ -50,8 +50,8 @@ public class TestAutoPathCommand extends Command {
   public TestAutoPathCommand() {
     requires(Drive.getInstance());
 
-    leftCSV = new File("/home/lvuser/deploy/Unnamed.left.pf1.csv");
-    rightCSV = new File("/home/lvuser/deploy/Unnamed.right.pf1.csv");
+    leftCSV = new File("/home/lvuser/deploy/output/Unnamed.left.pf1.csv");
+    rightCSV = new File("/home/lvuser/deploy/output/Unnamed.right.pf1.csv");
 
     leftTrajectory = Pathfinder.readFromCSV(leftCSV);
     rightTrajectory = Pathfinder.readFromCSV(rightCSV);
@@ -126,7 +126,7 @@ public class TestAutoPathCommand extends Command {
     
     double turn = 0.08 *  (-1. / 80.) * angleDifference;
     
-    chassis.tankDrive(leftOutput - turn, rightOutput - turn);
+    chassis.tankDrive(rightOutput - turn, leftOutput - turn);
     
     segmentNumber++;
     }

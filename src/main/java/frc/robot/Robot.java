@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
     vision = Vision.getInstance();
     m_chooser.setDefaultOption("Default Auto", new TestAutoPathCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    //m_chooser.addOption("Test Auto", new TestAutoPathCommand());
+    m_chooser.addOption("Middle_RightRocket_2Hatch", new Middle_RightRocket_2Hatch());
     SmartDashboard.putData("Auto mode", m_chooser);
     SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
     
