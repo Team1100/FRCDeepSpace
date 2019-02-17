@@ -24,7 +24,7 @@ public class CenterRobot extends PIDCommand {
       requires(Drive.getInstance()); 
       //Max displacement from center of image (cx)
       setInputRange(0, 640);
-      pidController.setOutputRange(-1, 1);
+      pidController.setOutputRange(-0.5, 0.5);
       pidController.setPercentTolerance(tolerance);
       //Ideally want center of target to be aligned with center of camera
       setSetpoint(0);
@@ -32,7 +32,6 @@ public class CenterRobot extends PIDCommand {
     
     protected void initialize() {
       count = 0;
-      setTimeout(2.5);
     }
 
 
@@ -45,8 +44,6 @@ public class CenterRobot extends PIDCommand {
       }
       if (pidController.onTarget()) {
         if (count >= 3) {
-          isAimed = true;
-          Vision.getInstance().setisAimed(isAimed);
           return true;
         }
        count++;     
@@ -62,12 +59,7 @@ public class CenterRobot extends PIDCommand {
      */
 	@Override
 	protected double returnPIDInput() {
-		if (Vision.getInstance().getCX() == -1) {
-			return 0;
-    }
-    else {
       return Vision.getInstance().getCX();
-    }
   }
 	
 	/**
@@ -76,8 +68,6 @@ public class CenterRobot extends PIDCommand {
 	 */
 	@Override
 	protected void usePIDOutput(double output) {
-    isAimed =  false;
-    Vision.getInstance().setisAimed(isAimed);
     Drive.getInstance().tankDrive(output, -output);
 	}
 }
