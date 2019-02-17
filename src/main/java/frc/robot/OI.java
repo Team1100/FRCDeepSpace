@@ -13,10 +13,12 @@ import frc.robot.commands.SwitchSides;
 import frc.robot.commands.claw.*;
 import frc.robot.commands.elevator.ElevatorTop;
 import frc.robot.commands.elevator.ElevatorBottom;
+import frc.robot.commands.elevator.*;
 import frc.robot.commands.intake.PushBallOut;
 import frc.robot.commands.intake.RollersIn;
 import frc.robot.commands.intake.StopRollers;
 import frc.robot.commands.intake.IntakeUp;
+import frc.robot.commands.intake.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -50,19 +52,18 @@ public class OI {
 
     //Now Mapping Commands to XBox 
     
-    xbox.getButtonY().whenPressed(new ElevatorTop());
-    xbox.getButtonX().whenPressed(new ElevatorBottom());
+    xbox.getButtonY().whenPressed(new PIDElevatorL3());
+    xbox.getButtonB().whenPressed(new ElevatorBottom());
+    xbox.getButtonA().whenPressed(new PIDElevatorL1());
+    xbox.getButtonX().whenPressed(new PIDElevatorL2());
 
-    xbox.getButtonRightBumper().whenPressed(new RollersIn());
+    //xbox.getButtonRightBumper().whenPressed(new RollersIn());
     xbox.getButtonRightBumper().whenReleased(new StopRollers());
-
-
-    //xbox.getButtonB().whenPressed(new CollapseElevator());
 
     xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());
     
 		xbox.getDPad().getLeft().whenPressed(new PushBallOut());
-    //xbox.getDPad().getDown().whenPressed(new DefaultIntake());
+    xbox.getDPad().getDown().whenPressed(new IntakeCargo());
     xbox.getDPad().getUp().whenPressed(new IntakeUp());
 
     //xbox.getButtonStart().whenPressed(new Manual Control);
