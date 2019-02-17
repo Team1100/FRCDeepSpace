@@ -71,6 +71,14 @@ public class Elevator extends Subsystem {
     right.set(speed);
   }
 
+  public void extendLeft(double speed){
+    left.set(speed);
+  }
+
+  public void extendRight(double speed){
+    right.set(speed);
+  }
+
 /**
  * Checks if the elevator is at level one
  */

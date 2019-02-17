@@ -7,7 +7,8 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -18,19 +19,32 @@ public class Stilts extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private TalonSRX leftMotor;
-  private TalonSRX rightMotor;
+  private VictorSPX leftMotor;
+  private VictorSPX rightMotor;
   private static Stilts stilts;
 
-  private Stilts() {
-    leftMotor = new TalonSRX(RobotMap.S_LEFT);
-    rightMotor = new TalonSRX(RobotMap.S_RIGHT);
+  public Stilts() {
+    leftMotor = new VictorSPX(RobotMap.S_LEFT);
+    rightMotor = new VictorSPX(RobotMap.S_RIGHT);
   }
 
   public static Stilts getInstance() {
 		if (stilts == null) stilts = new Stilts();
 		return stilts;
-	}
+  }
+  
+  public void leftExtend(double speed){
+    leftMotor.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void rightExtend(double speed){
+    rightMotor.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void combinedExtend(double speed){
+    leftMotor.set(ControlMode.PercentOutput, speed);
+    rightMotor.set(ControlMode.PercentOutput, speed);
+  }
 
   @Override
   public void initDefaultCommand() {
