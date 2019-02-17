@@ -71,7 +71,6 @@ public class OI {
 
     leftStick.getButton(8).whenPressed(new SwitchSides());
     rightStick.getButton(8).whenPressed(new SwitchSides());
-
   }
 
   /**

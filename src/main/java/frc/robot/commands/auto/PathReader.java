@@ -39,11 +39,13 @@ public class PathReader extends Command {
   double d = 0;
   double v = 1 / 12;
   double a = 0;
-  
-  
-  public PathReader(String FileName) {
-    requires(Drive.getInstance());
 
+  boolean forward;
+  
+  
+  public PathReader(String FileName, boolean forward) {
+    requires(Drive.getInstance());
+    this.forward = forward;
     leftCSV = new File("/home/lvuser/deploy/output/" + FileName + ".left.pf1.csv");
     rightCSV = new File("/home/lvuser/deploy/output/" + FileName + ".right.pf1.csv");
 
@@ -119,8 +121,12 @@ public class PathReader extends Command {
     double angleDifference = Pathfinder.boundHalfDegrees(desiredHeading - gyroHeading);
     
     double turn = 0.08 *  (-1. / 80.) * angleDifference;
-    
-    chassis.tankDrive(leftOutput - turn, rightOutput - turn);
+    if(forward == true) {
+      chassis.tankDrive(leftOutput - turn, rightOutput - turn);
+    }
+    else {
+      chassis.tankDrive(-1*(rightOutput - turn), -1*(leftOutput - turn));
+    }
     
     segmentNumber++;
     }

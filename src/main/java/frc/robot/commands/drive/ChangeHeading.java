@@ -26,7 +26,8 @@ public class ChangeHeading extends PIDCommand {
 	 * @param speed the limiting speed of the robot while turning
 	 */
     public ChangeHeading(double target, double speed) {
-    	super(.067, .02, .1);
+      super(.067, .02, .1);
+      ahrs.zeroYaw();
       requires(Drive.getInstance());
       countOnTarget = 0;
       setSetpoint(target);

@@ -19,7 +19,7 @@ public class Middle_RightRocket_2Hatch extends CommandGroup {
    * Add your docs here.
    */
   public Middle_RightRocket_2Hatch() {
-    addSequential(new PathReader("Middle_RightRocket"));
+    addSequential(new PathReader("Middle_RightRocket", true));
     addSequential(new CenterRobot(10));
     /*
     addSequential(new TranslateClawToCenter(5));
