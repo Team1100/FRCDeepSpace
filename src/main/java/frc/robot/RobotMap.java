@@ -165,6 +165,9 @@ public class RobotMap {
   public static final int E_TOP_SWITCH = DIO_1;
   public static final int E_BOTTOM_SWITCH = DIO_2;
   public static final int E_POT = ANALOG_0;
+  public static final int E_ENCODER_A = DIO_MXP_0;
+  public static final int E_ENCODER_B = DIO_MXP_1;
+
 
   //[S]tilts
   public static final int S_LEFT = PWM_8;
