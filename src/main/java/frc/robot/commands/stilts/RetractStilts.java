@@ -5,25 +5,30 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.stilts;
 
-import frc.robot.subsystems.BallIntake;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.subsystems.Stilts;
+import edu.wpi.first.wpilibj.Timer;
 
-public class StopRollers extends Command {
-  BallIntake intake;
+public class RetractStilts extends Command {
 
-  public StopRollers() {
-    requires(BallIntake.getInstance());
-    intake = BallIntake.getInstance();
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  Timer timer;
+  private static final double PERIOD = 5;
+  private static final double RETRACT_SPEED = -0.5;
+
+  private Stilts stilts;
+
+  public RetractStilts() {
+    requires(Stilts.getInstance());
+    timer = new Timer();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    intake.rollersOff();
+    timer.start();
+    stilts.setSpeed(RETRACT_SPEED);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -34,17 +39,19 @@ public class StopRollers extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return timer.hasPeriodPassed(PERIOD);
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    stilts.setSpeed(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    stilts.setSpeed(0);
   }
 }

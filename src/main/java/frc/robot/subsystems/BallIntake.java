@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.AnalogInput;
+import frc.robot.commands.intake.DefaultIntake;
 
 /**
  * Add your docs here.
@@ -21,7 +22,7 @@ public class BallIntake extends Subsystem {
   private WPI_TalonSRX rollers, axis_movement;
   AnalogInput bottomSwitch, topSwitch;
   boolean canGoUp, canGoDown = false;
-  private static double motorPower;
+  private double motorPower;
 
   public static BallIntake ballintake;
   // Put methods for controlling this subsystem
@@ -32,6 +33,7 @@ public class BallIntake extends Subsystem {
     axis_movement = new WPI_TalonSRX(RobotMap.B_AXIS_MOVEMENT);
     bottomSwitch = new AnalogInput(RobotMap.B_BOTTOM_SWITCH);
     topSwitch = new AnalogInput(RobotMap.B_TOP_SWITCH);
+    motorPower = 0;
   }
 
   public static BallIntake getInstance(){
@@ -41,64 +43,63 @@ public class BallIntake extends Subsystem {
     return intake;
   }
 
-  // public void intakeUp(double intakeSpeed){
-  //  axis_movement.set(intakeSpeed);
-  //  rollers.set(0);
-  // }
-
-  // public void intakeDown(double intakeSpeed, double rollersSpeed) {
-  //		rollers.set(rollersSpeed);
-  //		axis_movement.set(intakeSpeed);
-  // }
-
   public void intakeUp(double intakeSpeed){
-    if(Math.round(topSwitch.getAverageValue()) == 1){
-      canGoUp = false;
-    } else if (Math.round(topSwitch.getAverageValue()) == 0){
-      canGoUp = true;
-    }
-    while (canGoUp){
-      axis_movement.set(intakeSpeed);
-    }
-    motorPower = intakeSpeed;
-  }
-
-  public void intakeDown(double intakeSpeed){
-    if(Math.round(bottomSwitch.getAverageValue()) == 1){
-      canGoDown = false;
-    } else if (Math.round(bottomSwitch.getAverageValue()) == 0){
-      canGoDown = true;
-    }
-    while (canGoUp){
-      axis_movement.set(-intakeSpeed);
-    }
-    motorPower = -intakeSpeed;
-   }
-
-  public void incrementIntakePower(double incrementPower) {
-    this.intakeDown(motorPower + incrementPower);
-   }
-
-  public void rollersIn(double rollersSpeed){
-    rollers.set(rollersSpeed);
-  }
-
-  public void rollersOff(){
+    intakeSpeed = Math.abs(intakeSpeed); // enforce positive
+    axis_movement.set(intakeSpeed);
     rollers.set(0);
   }
 
+  public void intakeDown(double intakeSpeed) {
+    intakeSpeed = -Math.abs(intakeSpeed); // enforce negative
+  	axis_movement.set(intakeSpeed);
+  }
+
+  public void setIntakeSpeed(double intakeSpeed) {
+    axis_movement.set(intakeSpeed);
+  }
+
+  public void spinRollers(double rollerSpeed) {
+    rollers.set(rollerSpeed);
+  }
+
+  public boolean isUp() {
+    return Math.round(topSwitch.getAverageValue()) == 1;
+  }
+
+  public boolean isDown() {
+    return Math.round(bottomSwitch.getAverageValue()) == 1;
+  }
+
+  public void incrementIntakePower(double incrementPower) {
+    motorPower += incrementPower;
+    this.intakeDown(motorPower + incrementPower);
+  }
+
+  public void setIntakePower(double power) {
+    motorPower = power;
+    this.intakeDown(motorPower);
+  }
+
+  public void rollersIn(double rollersSpeed){
+    spinRollers(rollersSpeed);
+  }
+
+  public void rollersOff(){
+    spinRollers(0);
+  }
+
   public void spitBall(double rollersSpeed) {
-    rollers.set(rollersSpeed);
+    spinRollers(rollersSpeed);
   }
 
   public void spinOut(double rollersSpeed) {
-    rollers.setInverted(true);
-    rollers.set(rollersSpeed);
+    rollersSpeed = -Math.abs(rollersSpeed);
+    spinRollers(rollersSpeed);
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new DefaultIntake());
   }
 }
