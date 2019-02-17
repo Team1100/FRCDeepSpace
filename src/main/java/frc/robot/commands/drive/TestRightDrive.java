@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.subsystems.Drive;
 import frc.robot.input.XboxController.XboxAxis;
-import edu.wpi.first.wpilibj.Timer;
 
 
 /**
@@ -14,12 +13,10 @@ public class TestRightDrive extends Command {
 
     double right; 
     XboxAxis leftJoystickY = XboxAxis.kYLeft;
-    Timer timer;
     boolean end;
 
     public TestRightDrive() {
         requires(Drive.getInstance()); 
-        timer.start();
     }
 
     /**
@@ -37,9 +34,6 @@ public class TestRightDrive extends Command {
     protected void execute() {
 	    right = OI.getInstance().getXbox().getAxis(leftJoystickY);
       Drive.getInstance().tankDrive(0, -right);
-      if(timer.get() >= 240){
-        end = true;
-      }
     }
 
     /**
@@ -53,7 +47,6 @@ public class TestRightDrive extends Command {
      * Not Used
      */
     protected void end() {
-      timer.stop();
     }
 
     /**

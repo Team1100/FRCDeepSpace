@@ -11,21 +11,17 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.input.XboxController.XboxAxis;
 import frc.robot.subsystems.Stilts;
-import edu.wpi.first.wpilibj.Timer;
 
 public class TestLeftStilt extends Command {
   Stilts leftStilt;
   double speed;
   XboxAxis leftJoystickY = XboxAxis.kYLeft;
-  Timer timer;
-  boolean end = false;
 
   public TestLeftStilt() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Stilts.getInstance());
     leftStilt = new Stilts();
-    timer.start();
   }
 
   // Called just before this Command runs the first time
@@ -38,21 +34,17 @@ public class TestLeftStilt extends Command {
   protected void execute() {
     speed = OI.getInstance().getXbox().getAxis(leftJoystickY);
     leftStilt.getInstance().leftExtend(speed);
-    if(timer.get() >= 240){
-      end = true;
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return end;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    timer.stop();
   }
 
   // Called when another command which requires one or more of the same

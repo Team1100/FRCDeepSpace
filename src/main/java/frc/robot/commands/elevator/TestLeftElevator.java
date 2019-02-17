@@ -4,18 +4,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.input.XboxController.XboxAxis;
 import frc.robot.subsystems.Elevator;
-import edu.wpi.first.wpilibj.Timer;
 
 
 public class TestLeftElevator extends Command {
     double speed;
     XboxAxis leftJoystickY = XboxAxis.kYLeft;
-    Timer timer;
     boolean end;
 
     public TestLeftElevator() {
         requires(Elevator.getInstance());
-        timer.start();
     }
     
     /**
@@ -30,23 +27,19 @@ public class TestLeftElevator extends Command {
     protected void execute() {
 	    speed = OI.getInstance().getXbox().getAxis(leftJoystickY);
 	    Elevator.getInstance().extendLeft(speed);
-      if(timer.get() >= 240){
-        end = true;
-      }
     }
     
     /**
      * Always false because default commands never stop
      */
     protected boolean isFinished() {
-        return end;
+        return false;
     }
     
     /**
      * Not Used
      */
     protected void end() {
-        timer.stop();
     }
     
     /**
