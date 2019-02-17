@@ -11,9 +11,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.RobotMap;
 import frc.robot.commands.elevator.DefaultElevator;
-import edu.wpi.first.wpilibj.AnalogInput;
 
 /**
  * The Drive subsystem: Sets up the infrastructure for the drivetrain and its hardware.
@@ -24,7 +24,7 @@ public class Elevator extends Subsystem {
   public static Elevator elevator;
   private WPI_TalonSRX left, right;
   DigitalInput bottomSwitch, topSwitch;
-  AnalogInput pot;
+  Encoder encoder;
   double bottom;
   double top;
   boolean canGoUp = true;
@@ -40,6 +40,7 @@ public class Elevator extends Subsystem {
       right = new WPI_TalonSRX(RobotMap.E_RIGHT);
       bottomSwitch = new DigitalInput(RobotMap.E_BOTTOM_SWITCH);
       topSwitch = new DigitalInput(RobotMap.E_TOP_SWITCH);
+      encoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
       top = 0.6;
 		  bottom = 4.2;
   }
@@ -50,9 +51,9 @@ public class Elevator extends Subsystem {
    */
   public void extend(double speed){
     //TODO:Implement safeties using limits
-    if (isAtBottom() || getVoltage() > bottom) {
+    if (isAtBottom()) {
       canGoDown = false;
-    } else if (isAtTop() || getVoltage() < top) {
+    } else if (isAtTop()) {
       canGoUp = false;
     }
     
@@ -85,18 +86,6 @@ public boolean isAtTop(){
   return topSwitch.get();
 }
 
-public double getVoltage() {
-  return pot.getAverageVoltage();
-}
-
-private void setBottom() {
-  bottom = getVoltage();
-}
-
-private void setTop() {
-  top = getVoltage();
-}
-
 /**
  * Gets the lowest height possible
  * @return Lowest height of elevator
@@ -112,6 +101,11 @@ public double getBottom() {
 public double getTop() {
   return top;
 }
+
+public Encoder getEncoder(){
+  return encoder;
+}
+
   /**
    * Used outside of the Elevator subsystem to return an instance of Elevator subsystem.
    * @return Returns instance of Elevator subsystem formed from constructor.

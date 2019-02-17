@@ -85,7 +85,7 @@ public class PIDElevator extends PIDCommand {
      */
 	@Override
 	protected double returnPIDInput() {
-		return elevator.getVoltage();
+		return elevator.getEncoder().getDistancePerPulse();
 	}
 	
 	/**
