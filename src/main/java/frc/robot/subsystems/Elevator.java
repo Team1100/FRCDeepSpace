@@ -53,6 +53,7 @@ public class Elevator extends Subsystem {
    */
   public void extend(double speed){
     //TODO:Implement safeties using limits
+    /*
     if (isAtBottom()) {
       canGoDown = false;
     } else if (isAtTop()) {
@@ -70,16 +71,17 @@ public class Elevator extends Subsystem {
     } else if (!canGoUp && speed < 0) {
       speed = 0;
     }
-    left.set(ControlMode.PercentOutput, speed);
-    right.set(ControlMode.PercentOutput, speed);
+    */
+    left.set(ControlMode.PercentOutput, -speed);
+    right.set(ControlMode.PercentOutput,-speed);
   }
 
   public void extendLeft(double speed){
-    left.set(ControlMode.PercentOutput, speed);
+    left.set(ControlMode.PercentOutput, -speed);
   }
 
   public void extendRight(double speed){
-    right.set(ControlMode.PercentOutput, speed);
+    right.set(ControlMode.PercentOutput, -speed);
   }
 
 /**
@@ -130,7 +132,7 @@ public Encoder getEncoder(){
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new DefaultElevator());
+    //setDefaultCommand(new DefaultElevator());
   }
 
 }

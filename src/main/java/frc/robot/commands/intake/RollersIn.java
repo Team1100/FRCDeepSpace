@@ -7,12 +7,14 @@
 
 package frc.robot.commands.intake;
 
-
+import frc.robot.OI;
 import frc.robot.subsystems.BallIntake;
+import frc.robot.input.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class RollersIn extends Command {
 
+  private double speed;
   BallIntake intake;
 
   public RollersIn() {
@@ -25,18 +27,21 @@ public class RollersIn extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    intake.rollersIn(.5);
+    setTimeout(120);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
+    System.out.println("Getting to RollersIn");
+    intake.rollersIn(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true

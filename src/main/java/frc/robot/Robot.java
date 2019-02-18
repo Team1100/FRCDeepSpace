@@ -87,6 +87,8 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("Middle_LeftRocket_2Hatch", new Middle_LeftRocket_2Hatches());
     m_chooser.addOption("Left_LeftRocket_2Hatch", new Left_LeftRocket_2Hatches());
     m_chooser.addOption("Right_RightRocket_2Hatch", new Right_RightRocket_2Hatches());
+    m_chooser.addOption("Roll Rollers", new RollersIn());
+    
     SmartDashboard.putData("Auto mode", m_chooser);
     SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
     

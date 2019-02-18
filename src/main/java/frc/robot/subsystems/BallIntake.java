@@ -63,6 +63,7 @@ public class BallIntake extends Subsystem {
     axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed);
     axis_movement_right.set(ControlMode.PercentOutput, intakeSpeed);
   }
+  
 
   public void spinRollers(double rollerSpeed) {
     rollers.set(ControlMode.PercentOutput, rollerSpeed);
@@ -87,6 +88,7 @@ public class BallIntake extends Subsystem {
   }
 
   public void rollersIn(double rollersSpeed){
+    System.out.println("Getting to Spin Rollers");
     spinRollers(rollersSpeed);
   }
 
@@ -106,6 +108,6 @@ public class BallIntake extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new DefaultIntake());
+    //setDefaultCommand(new DefaultIntake());
   }
 }

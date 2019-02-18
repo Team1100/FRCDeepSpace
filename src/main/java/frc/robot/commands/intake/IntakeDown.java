@@ -35,7 +35,7 @@ public class IntakeDown extends Command {
   @Override
   protected void execute() {
     speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
-    intake.intakeDown(speed);
+    intake.intakeDown(-speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
