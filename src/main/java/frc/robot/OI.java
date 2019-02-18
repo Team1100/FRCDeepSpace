@@ -17,10 +17,12 @@ import frc.robot.commands.elevator.*;
 import frc.robot.commands.intake.PushBallOut;
 import frc.robot.commands.intake.RollersIn;
 import frc.robot.commands.intake.StopRollers;
+import frc.robot.commands.kicker.RetractCargoKicker;
 import frc.robot.commands.vision.*;
 import frc.robot.commands.intake.IntakeUp;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.drive.*;
+import frc.robot.commands.kicker.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -59,11 +61,12 @@ public class OI {
     xbox.getButtonA().whenPressed(new PIDElevatorL1());
     xbox.getButtonX().whenPressed(new PIDElevatorL2());
 
-    //xbox.getButtonRightBumper().whenPressed(new RollersIn());
+    xbox.getButtonRightBumper().whenPressed(new RollersIn());
     xbox.getButtonRightBumper().whenReleased(new StopRollers());
 
     xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());
-    
+    xbox.getDPad().getRight().whenPressed(new KickCargo());
+    xbox.getDPad().getRight().whenReleased(new RetractCargoKicker());
 		xbox.getDPad().getLeft().whenPressed(new PushBallOut());
     xbox.getDPad().getDown().whenPressed(new IntakeCargo());
     xbox.getDPad().getUp().whenPressed(new IntakeUp());
