@@ -53,22 +53,22 @@ public class RobotMap {
 	private final static int PCM_CAN_LED = 1;
 
 	// List of CAN IDs
-	private final static int CAN_0 = 0;
-	private final static int CAN_1 = 1;
-	private final static int CAN_2 = 2;
-	private final static int CAN_3 = 3;
-	private final static int CAN_4 = 4;
-	private final static int CAN_5 = 5;
-	private final static int CAN_6 = 6;
-	private final static int CAN_7 = 7;
-	private final static int CAN_8 = 8;
-	private final static int CAN_9 = 9;
-	private final static int CAN_10 = 10;
-	private final static int CAN_11 = 11;
-	private final static int CAN_12 = 12;
-	private final static int CAN_13 = 13;
-	private final static int CAN_14 = 14;
-	private final static int CAN_15 = 15;
+	private final static int CAN_0 = 0; //D_BACK_RIGHT
+	private final static int CAN_1 = 1; //D_FRONT_RIGHT
+	private final static int CAN_2 = 2; //E_RIGHT
+	private final static int CAN_3 = 3; //S_RIGHT
+	private final static int CAN_4 = 4; //B_AXISMOVEMENT_RIGHT
+	private final static int CAN_5 = 5; //B_ROLLERS
+	private final static int CAN_6 = 6; //Spare Left
+	private final static int CAN_7 = 7; //Open Fuse
+	private final static int CAN_8 = 8; //Open Fuse
+	private final static int CAN_9 = 9; //Spare Right
+	private final static int CAN_10 = 10; //G_GANTRY
+	private final static int CAN_11 = 11; //B_AXISMOVEMENT_LEFT
+	private final static int CAN_12 = 12; //S_LEFT
+	private final static int CAN_13 = 13; //E_LEFT
+	private final static int CAN_14 = 14; //D_BACK_LEFT
+	private final static int CAN_15 = 15; //D_FRONT_LEFT
 
 	//List of all analog ports
 	private final static int ANALOG_0 = 0;
@@ -94,10 +94,10 @@ public class RobotMap {
 	private final static int DIO_3 = 3;
 	private final static int DIO_4 = 4;
 	private final static int DIO_5 = 5;
-	private final static int DIO_6 = 6;
-	private final static int DIO_7 = 7;
-	private final static int DIO_8 = 8;
-	private final static int DIO_9 = 9;
+	private final static int DIO_6 = 6; //D_LEFT_ENCODER_A
+	private final static int DIO_7 = 7; //D_LEFT_ENCODER_B
+	private final static int DIO_8 = 8; //D_RIGHT_ENCODER_A
+	private final static int DIO_9 = 9; //D_RIGHT_ENCODER_B
 
 	// see https://www.pdocs.kauailabs.com/navx-mxp/installation/io-expansion/
 	private final static int DIO_MXP_0 = 10;
@@ -160,8 +160,8 @@ public class RobotMap {
   public static final int D_ENCODER_RIGHT_B = DIO_9;
   
   //[E]levator
-  public static final int E_LEFT = PWM_4;
-  public static final int E_RIGHT = PWM_5;
+  public static final int E_LEFT = CAN_13;
+  public static final int E_RIGHT = CAN_2;
   public static final int E_TOP_SWITCH = DIO_1;
   public static final int E_BOTTOM_SWITCH = DIO_2;
   public static final int E_POT = ANALOG_0;
@@ -170,12 +170,13 @@ public class RobotMap {
 
 
   //[S]tilts
-  public static final int S_LEFT = PWM_8;
-  public static final int S_RIGHT = PWM_9;
+  public static final int S_LEFT = CAN_12;
+  public static final int S_RIGHT = CAN_3;
 
   //[B]allIntake
-  public static final int B_ROLLERS = PWM_6;
-  public static final int B_AXIS_MOVEMENT = PWM_7;
+  public static final int B_ROLLERS = CAN_5;
+  public static final int B_AXIS_MOVEMENT_LEFT = CAN_11;
+  public static final int B_AXIS_MOVEMENT_RIGHT = CAN_4;
   public static final int B_BEAM_BREAK = DIO_0;
   public static final int B_TOP_SWITCH = ANALOG_1;
   public static final int B_BOTTOM_SWITCH = ANALOG_2;
@@ -187,7 +188,7 @@ public class RobotMap {
 
   //[G]antry
   //TODO: Update with proper ports
-  public static final int G_GANTRY = CAN_2;
+  public static final int G_GANTRY = CAN_10;
   public static final int G_ENCODER_CW = DIO_4;
   public static final int G_ENCODER_CCW = DIO_5;
 

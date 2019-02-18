@@ -19,7 +19,7 @@ import frc.robot.commands.intake.DefaultIntake;
 public class BallIntake extends Subsystem {
 
   public static BallIntake intake;
-  private WPI_TalonSRX rollers, axis_movement;
+  private WPI_TalonSRX rollers, axis_movement_left, axis_movement_right;
   AnalogInput bottomSwitch, topSwitch;
   boolean canGoUp, canGoDown = false;
   private double motorPower;
@@ -30,7 +30,8 @@ public class BallIntake extends Subsystem {
 
   private BallIntake() {
     rollers = new WPI_TalonSRX(RobotMap.B_ROLLERS);
-    axis_movement = new WPI_TalonSRX(RobotMap.B_AXIS_MOVEMENT);
+    axis_movement_left = new WPI_TalonSRX(RobotMap.B_AXIS_MOVEMENT_LEFT);
+    axis_movement_right = new WPI_TalonSRX(RobotMap.B_AXIS_MOVEMENT_RIGHT);
     bottomSwitch = new AnalogInput(RobotMap.B_BOTTOM_SWITCH);
     topSwitch = new AnalogInput(RobotMap.B_TOP_SWITCH);
     motorPower = 0;
@@ -45,17 +46,20 @@ public class BallIntake extends Subsystem {
 
   public void intakeUp(double intakeSpeed){
     intakeSpeed = Math.abs(intakeSpeed); // enforce positive
-    axis_movement.set(intakeSpeed);
+    axis_movement_left.set(intakeSpeed);
+    axis_movement_right.set(intakeSpeed);
     rollers.set(0);
   }
 
   public void intakeDown(double intakeSpeed) {
     intakeSpeed = -Math.abs(intakeSpeed); // enforce negative
-  	axis_movement.set(intakeSpeed);
+  	axis_movement_left.set(intakeSpeed);
+    axis_movement_right.set(intakeSpeed);
   }
 
   public void setIntakeSpeed(double intakeSpeed) {
-    axis_movement.set(intakeSpeed);
+    axis_movement_left.set(intakeSpeed);
+    axis_movement_right.set(intakeSpeed);
   }
 
   public void spinRollers(double rollerSpeed) {
