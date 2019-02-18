@@ -37,7 +37,7 @@ import frc.robot.input.XboxController.XboxAxis;
 public class Robot extends TimedRobot {
   public static OI m_oi;
   public static PowerDistributionPanel pdp;
-  public static Vision vision;
+  //public static Vision vision;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -60,8 +60,9 @@ public class Robot extends TimedRobot {
     Gantry.getInstance();
     Stilts.getInstance();
     NavX.getInstance();
+    Vision.getInstance();
 
-    vision = Vision.getInstance();
+    //vision = Vision.getInstance();
     m_chooser.setDefaultOption("Default Auto", new TestAutoPathCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     m_chooser.addOption("Middle_RightRocket_2Hatch", new Middle_RightRocket_2Hatch());
@@ -70,6 +71,8 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("Right_RightRocket_2Hatch", new Right_RightRocket_2Hatches());
     SmartDashboard.putData("Auto mode", m_chooser);
     SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
+    SmartDashboard.putBoolean("Can Aim", Vision.getInstance().getcanAim());
+    SmartDashboard.putBoolean("Is Aimed", Vision.getInstance().getisAimed());
     
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
