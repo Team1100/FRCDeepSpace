@@ -20,7 +20,7 @@ public class IntakeCargo extends CommandGroup {
     beamBreak = BeamBreak.getInstance();
 
     addParallel(new IntakeDown());
-    addSequential(new RollersIn());
+    addParallel(new RollersIn());
     if(beamBreak.get()) {
       addSequential(new StopRollers());
       addSequential(new IntakeUp());
