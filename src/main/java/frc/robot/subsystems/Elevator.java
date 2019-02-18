@@ -72,8 +72,8 @@ public class Elevator extends Subsystem {
       speed = 0;
     }
     */
-    left.set(ControlMode.PercentOutput, speed);
-    right.set(ControlMode.PercentOutput, speed);
+    left.set(ControlMode.PercentOutput, -speed);
+    right.set(ControlMode.PercentOutput, -speed);
   }
 
 /**
