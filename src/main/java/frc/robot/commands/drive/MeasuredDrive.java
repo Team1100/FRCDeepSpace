@@ -14,11 +14,12 @@ public class MeasuredDrive extends Command {
   double rightDistance, leftDistance;
   double dist, pow;
   boolean completed;
-  public MeasuredDrive(double distance, double power) {
+  double PULSES_PER_FOOT = 4090;
+  public MeasuredDrive(double distanceInFeet, double power) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Drive.getInstance());
-    dist = distance;
+    dist = distanceInFeet * PULSES_PER_FOOT;
     pow = power;
     completed = false;
   }
