@@ -28,7 +28,7 @@ public class IntakeDown extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setTimeout(THREE_SECONDS);
+    setTimeout(120);
   }
 
   // Called repeatedly when this Command is scheduled to run

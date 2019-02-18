@@ -9,7 +9,6 @@ package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.subsystems.BeamBreak;
-import frc.robot.commands.intake.*;
 
 public class IntakeCargo extends CommandGroup {
   /**
@@ -19,14 +18,15 @@ public class IntakeCargo extends CommandGroup {
     BeamBreak beamBreak;
     beamBreak = BeamBreak.getInstance();
 
-    addParallel(new IntakeDown());
-    addParallel(new RollersIn());
-    if(beamBreak.get()) {
-      addSequential(new StopRollers());
-      addSequential(new IntakeUp());
-      addSequential(new MoveBallToChute(10));
-      addSequential(new StopRollers());
-    }
+    //addParallel(new IntakeDown());
+    System.out.println("We are getting to the Command Group Constructor");
+    addSequential(new RollersIn());
+    addParallel(new AcquireBall());
+    addSequential(new StopRollers());
+    //addSequential(new IntakeUp());
+    //addSequential(new MoveBallToChute(10));
+    //addSequential(new StopRollers());
+
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

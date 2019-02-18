@@ -7,47 +7,37 @@
 
 package frc.robot.commands.intake;
 
-import frc.robot.subsystems.BallIntake;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
-import frc.robot.input.XboxController;
+import frc.robot.subsystems.BeamBreak;
 
-public class IntakeUp extends Command {
-
-  BallIntake intake;
-  final int THREE_SECONDS = 3;
-  private double speed;
-
-  public IntakeUp() {
-    requires(BallIntake.getInstance());
-    intake = BallIntake.getInstance();
+public class AcquireBall extends Command {
+  private BeamBreak bb;
+  public AcquireBall() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(BeamBreak.getInstance());
+    bb = BeamBreak.getInstance();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setTimeout(120);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
-    intake.intakeUp(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return bb.get();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    intake.intakeUp(0);
   }
 
   // Called when another command which requires one or more of the same

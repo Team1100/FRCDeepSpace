@@ -22,6 +22,7 @@ import frc.robot.commands.elevator.TestLeftElevator;
 import frc.robot.commands.elevator.TestRightElevator;
 import frc.robot.commands.gantry.MoveGantry;
 import frc.robot.commands.intake.DefaultIntake;
+import frc.robot.commands.intake.IntakeCargo;
 import frc.robot.commands.intake.IntakeDown;
 import frc.robot.commands.intake.IntakeUp;
 import frc.robot.commands.intake.RollersIn;
@@ -88,7 +89,8 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("Left_LeftRocket_2Hatch", new Left_LeftRocket_2Hatches());
     m_chooser.addOption("Right_RightRocket_2Hatch", new Right_RightRocket_2Hatches());
     m_chooser.addOption("Roll Rollers", new RollersIn());
-    
+    m_chooser.addOption("Intake Cargo", new IntakeCargo());
+
     SmartDashboard.putData("Auto mode", m_chooser);
     SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
     
@@ -159,7 +161,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     NavX.getInstance().getNavX().zeroYaw();
     m_autonomousCommand = m_chooser.getSelected();
-
+    System.out.println(m_autonomousCommand.toString());
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

@@ -62,7 +62,8 @@ public class OI {
 
     xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());
     
-		xbox.getDPad().getLeft().whenPressed(new PushBallOut());
+    xbox.getDPad().getLeft().whenPressed(new PushBallOut());
+    xbox.getDPad().getRight().whenPressed(new PullClawBack());
     xbox.getDPad().getDown().whenPressed(new IntakeCargo());
     xbox.getDPad().getUp().whenPressed(new IntakeUp());
 
