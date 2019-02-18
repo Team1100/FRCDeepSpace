@@ -17,6 +17,7 @@ import frc.robot.commands.elevator.*;
 import frc.robot.commands.intake.PushBallOut;
 import frc.robot.commands.intake.RollersIn;
 import frc.robot.commands.intake.StopRollers;
+import frc.robot.commands.vision.*;
 import frc.robot.commands.intake.IntakeUp;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.drive.*;
@@ -74,6 +75,8 @@ public class OI {
     rightStick.getButton(8).whenPressed(new SwitchSides());
     leftStick.getButton(5).whenPressed(new ChangeHeading(180, .4));
     rightStick.getButton(1).whenPressed(new PickupHatchHPS());
+    leftStick.getButton(1).whenPressed(new TranslateClawToCenter(10));
+    leftStick.getButton(3).whenPressed(new CenterRobot(10));
   }
 
   /**
