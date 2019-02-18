@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
 /**
- * Moves the claw along the gantry until the claw is centered on the vision target
+ * Moves the robot until it is centered on the vision target
  */
 public class CenterRobot extends PIDCommand {
 	private PIDController pidController = getPIDController();
@@ -37,7 +37,7 @@ public class CenterRobot extends PIDCommand {
 
 
     /**
-     * Finishes when claw is secured on target
+     * Finishes when robot is locked on target
      */
     protected boolean isFinished() {
       if(Vision.getInstance().getCX() == -1){
@@ -67,7 +67,7 @@ public class CenterRobot extends PIDCommand {
   }
 	
 	/**
-	 * drives Gantry based on the output of the PID controller
+	 * drives robot based on the output of the PID controller
 	 * @param output the output of the PID controller
 	 */
 	@Override

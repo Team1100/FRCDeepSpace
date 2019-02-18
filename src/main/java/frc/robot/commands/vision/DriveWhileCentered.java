@@ -1,4 +1,4 @@
-package frc.robot.commands.drive;
+package frc.robot.commands.vision;
 
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Vision;
@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
 /**
- * Moves the claw along the gantry until the claw is centered on the vision target
+ * Moves the robot until it is centered on the vision target
  */
 public class DriveWhileCentered extends PIDCommand {
 private PIDController pidController = getPIDController();
@@ -41,7 +41,7 @@ private PIDController pidController = getPIDController();
 
 
     /**
-     * Finishes when claw is secured on target
+     * Finishes when robot is secured on target
      */
     protected boolean isFinished() {
       if(isTimedOut()) {
@@ -68,7 +68,7 @@ private PIDController pidController = getPIDController();
   }
 	
 	/**
-	 * drives Gantry based on the output of the PID controller and driver input
+	 * drives robot based on the output of the PID controller and driver input
 	 * @param output the output of the PID controller
 	 */
 	@Override
