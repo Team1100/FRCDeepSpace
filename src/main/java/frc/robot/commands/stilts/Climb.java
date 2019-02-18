@@ -8,7 +8,9 @@
 package frc.robot.commands.stilts;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.intake.IncrementIntakePower;
+import frc.robot.commands.intake.*;
+import frc.robot.commands.drive.*;
+import frc.robot.commands.stilts.*;
 
 public class Climb extends CommandGroup {
  
@@ -22,10 +24,16 @@ public class Climb extends CommandGroup {
     // 2. adjust stilts to 0 pitch (leveled robot)
     // 3. repeat this until the ball intake is at full power
     // this applies to both level2 and level3 climb
+    //addSequential(new MeasuredDrive(.1, -1));
     for (double i = 0; i < 1; i=i+LOWER_INTAKE_INC) {
       addSequential(new IncrementIntakePower(LOWER_INTAKE_INC));
       addSequential(new BalanceStilts(BALANCE_SPEED));
     }
+    /*
+    addSequential(new RaiseIntakeAndDrive());
+    addSequential(new RetractStilts());
+    addSequential(new MeasuredDrive(.5, -.7));
+    */
     // TODO: after this is done:
     // 1. slowly drive forward and raise ball intake in parallel
     // 2. retract stilts
