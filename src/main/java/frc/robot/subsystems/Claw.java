@@ -38,12 +38,12 @@ public class Claw extends Subsystem {
 		clawManipulator = new DoubleSolenoid(RobotMap.C_CLAW_CAN, RobotMap.C_CLAW_0, RobotMap.C_CLAW_1);	
   }
   
-  public void openClaw() {
+  public void closeClaw() {
     clawManipulator.set(DoubleSolenoid.Value.kForward);
     isClosed = false;
   }
 
-  public void closeClaw() {
+  public void openClaw() {
     clawManipulator.set(DoubleSolenoid.Value.kReverse);
     isClosed = true;
   }
