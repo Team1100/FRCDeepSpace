@@ -3,7 +3,7 @@ package frc.robot.commands.drive;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.subsystems.Drive;
-import frc.robot.input.XboxController.XboxAxis;
+import frc.robot.input.XboxController;
 
 
 /**
@@ -12,7 +12,6 @@ import frc.robot.input.XboxController.XboxAxis;
 public class TestLeftDrive extends Command {
 
     double left; 
-    XboxAxis leftJoystickY = XboxAxis.kYLeft;
     boolean end;
 
     public TestLeftDrive() {
@@ -32,7 +31,7 @@ public class TestLeftDrive extends Command {
      * Reads value of left and right joysticks and drives robot in TankDrive configuration using those values.
      */
     protected void execute() {
-	    left = OI.getInstance().getXbox().getAxis(leftJoystickY);
+      left = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
       Drive.getInstance().tankDrive(-left, 0);
     }
 

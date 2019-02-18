@@ -7,6 +7,8 @@
 
 package frc.robot.commands.intake;
 
+import frc.robot.OI;
+import frc.robot.input.XboxController;
 import frc.robot.subsystems.BallIntake;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -14,6 +16,7 @@ public class IntakeDown extends Command {
   
   BallIntake intake;
   final int THREE_SECONDS = 3;
+  private double speed;
 
   public IntakeDown() {
     requires(BallIntake.getInstance());
@@ -31,7 +34,8 @@ public class IntakeDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.intakeDown(.5);
+    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
+    intake.intakeDown(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

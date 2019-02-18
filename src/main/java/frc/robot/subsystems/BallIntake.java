@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -19,7 +21,7 @@ import frc.robot.commands.intake.DefaultIntake;
 public class BallIntake extends Subsystem {
 
   public static BallIntake intake;
-  private WPI_TalonSRX rollers, axis_movement_left, axis_movement_right;
+  private VictorSPX rollers, axis_movement_left, axis_movement_right;
   AnalogInput bottomSwitch, topSwitch;
   boolean canGoUp, canGoDown = false;
   private double motorPower;
@@ -29,9 +31,9 @@ public class BallIntake extends Subsystem {
   // here. Call these from Commands.
 
   private BallIntake() {
-    rollers = new WPI_TalonSRX(RobotMap.B_ROLLERS);
-    axis_movement_left = new WPI_TalonSRX(RobotMap.B_AXIS_MOVEMENT_LEFT);
-    axis_movement_right = new WPI_TalonSRX(RobotMap.B_AXIS_MOVEMENT_RIGHT);
+    rollers = new VictorSPX(RobotMap.B_ROLLERS);
+    axis_movement_left = new VictorSPX(RobotMap.B_AXIS_MOVEMENT_LEFT);
+    axis_movement_right = new VictorSPX(RobotMap.B_AXIS_MOVEMENT_RIGHT);
     bottomSwitch = new AnalogInput(RobotMap.B_BOTTOM_SWITCH);
     topSwitch = new AnalogInput(RobotMap.B_TOP_SWITCH);
     motorPower = 0;
@@ -46,24 +48,24 @@ public class BallIntake extends Subsystem {
 
   public void intakeUp(double intakeSpeed){
     intakeSpeed = Math.abs(intakeSpeed); // enforce positive
-    axis_movement_left.set(intakeSpeed);
-    axis_movement_right.set(intakeSpeed);
-    rollers.set(0);
+    axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed);
+    axis_movement_right.set(ControlMode.PercentOutput, intakeSpeed);
+    rollers.set(ControlMode.PercentOutput, 0);
   }
 
   public void intakeDown(double intakeSpeed) {
     intakeSpeed = -Math.abs(intakeSpeed); // enforce negative
-  	axis_movement_left.set(intakeSpeed);
-    axis_movement_right.set(intakeSpeed);
+  	axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed);
+    axis_movement_right.set(ControlMode.PercentOutput, intakeSpeed);
   }
 
   public void setIntakeSpeed(double intakeSpeed) {
-    axis_movement_left.set(intakeSpeed);
-    axis_movement_right.set(intakeSpeed);
+    axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed);
+    axis_movement_right.set(ControlMode.PercentOutput, intakeSpeed);
   }
 
   public void spinRollers(double rollerSpeed) {
-    rollers.set(rollerSpeed);
+    rollers.set(ControlMode.PercentOutput, rollerSpeed);
   }
 
   public boolean isUp() {

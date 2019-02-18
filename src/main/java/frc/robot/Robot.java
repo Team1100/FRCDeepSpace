@@ -58,7 +58,7 @@ public class Robot extends TimedRobot {
   public static PowerDistributionPanel pdp;
   public static Vision vision;
 
-  Command m_autonomousCommand;
+  Command m_autonomousCommand, testing_chooser_command;
   SendableChooser<Command>  m_chooser = new SendableChooser<>();
   SendableChooser<Command>  testing_chooser = new SendableChooser<>();
   /**
@@ -188,6 +188,13 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    testing_chooser_command = testing_chooser.getSelected();
+
+    if(testing_chooser_command != null){
+      testing_chooser_command.start();
+    }
+
   }
 
   /**

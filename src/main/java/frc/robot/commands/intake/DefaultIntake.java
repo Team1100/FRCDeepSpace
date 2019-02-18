@@ -9,12 +9,11 @@ package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
-import frc.robot.input.XboxController.XboxAxis;
+import frc.robot.input.XboxController;
 import frc.robot.subsystems.BallIntake;
 
 public class DefaultIntake extends Command {
   double speed;
-  XboxAxis rightJoystickY = XboxAxis.kYRight;
   public DefaultIntake() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -31,7 +30,7 @@ public class DefaultIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    speed = OI.getInstance().getXbox().getAxis(rightJoystickY);
+    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
 
     BallIntake.getInstance().setIntakeSpeed(speed);
   }

@@ -2,13 +2,12 @@ package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
-import frc.robot.input.XboxController.XboxAxis;
+import frc.robot.input.XboxController;
 import frc.robot.subsystems.Elevator;
 
 
 public class TestRightElevator extends Command {
     double speed;
-    XboxAxis leftJoystickY = XboxAxis.kYLeft;
     boolean end;
 
     public TestRightElevator() {
@@ -25,7 +24,7 @@ public class TestRightElevator extends Command {
      * Uses left stick of xbox controller to move elevator up and down
      */
     protected void execute() {
-	    speed = OI.getInstance().getXbox().getAxis(leftJoystickY);
+	    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
 	    Elevator.getInstance().extendRight(speed);
     }
     

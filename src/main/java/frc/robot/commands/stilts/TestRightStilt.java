@@ -9,13 +9,12 @@ package frc.robot.commands.stilts;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
-import frc.robot.input.XboxController.XboxAxis;
+import frc.robot.input.XboxController;
 import frc.robot.subsystems.Stilts;
 
 public class TestRightStilt extends Command {
   Stilts rightStilt;
   double speed;
-  XboxAxis leftJoystickY = XboxAxis.kYLeft;
 
   public TestRightStilt() {
     // Use requires() here to declare subsystem dependencies
@@ -32,7 +31,7 @@ public class TestRightStilt extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    speed = OI.getInstance().getXbox().getAxis(leftJoystickY);
+    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
     rightStilt.getInstance().rightExtend(speed);
   }
 
