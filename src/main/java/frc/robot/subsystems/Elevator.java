@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -22,7 +24,7 @@ public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static Elevator elevator;
-  private WPI_TalonSRX left, right;
+  private VictorSPX left, right;
   DigitalInput bottomSwitch, topSwitch;
   Encoder encoder;
   double bottom;
@@ -36,8 +38,8 @@ public class Elevator extends Subsystem {
    */
   private Elevator() {
       //TODO:Update with names and proper ports
-      left = new WPI_TalonSRX(RobotMap.E_LEFT);
-      right = new WPI_TalonSRX(RobotMap.E_RIGHT);
+      left = new VictorSPX(RobotMap.E_LEFT);
+      right = new VictorSPX(RobotMap.E_RIGHT);
       bottomSwitch = new DigitalInput(RobotMap.E_BOTTOM_SWITCH);
       topSwitch = new DigitalInput(RobotMap.E_TOP_SWITCH);
       encoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
@@ -68,16 +70,16 @@ public class Elevator extends Subsystem {
     } else if (!canGoUp && speed < 0) {
       speed = 0;
     }
-    left.set(speed);
-    right.set(speed);
+    left.set(ControlMode.PercentOutput, speed);
+    right.set(ControlMode.PercentOutput, speed);
   }
 
   public void extendLeft(double speed){
-    left.set(speed);
+    left.set(ControlMode.PercentOutput, speed);
   }
 
   public void extendRight(double speed){
-    right.set(speed);
+    right.set(ControlMode.PercentOutput, speed);
   }
 
 /**

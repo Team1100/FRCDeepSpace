@@ -109,6 +109,7 @@ public class Robot extends TimedRobot {
     testing_chooser.addOption("Test Right Stilt", new TestLeftStilt());
     testing_chooser.addOption("Test Left Stilt", new TestRightStilt());
     testing_chooser.addOption("Test Gantry", new MoveGantry());
+
     SmartDashboard.putData("Testing Functionality", testing_chooser);
 
     SmartDashboard.putData("Auto mode", m_chooser);
