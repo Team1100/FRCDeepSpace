@@ -26,7 +26,7 @@ public class Elevator extends Subsystem {
   public static Elevator elevator;
   private VictorSPX left, right;
   DigitalInput bottomSwitch, topSwitch;
-  Encoder encoder;
+  //Encoder encoder;
   double bottom;
   double top;
   boolean canGoUp = true;
@@ -42,7 +42,7 @@ public class Elevator extends Subsystem {
       right = new VictorSPX(RobotMap.E_RIGHT);
       bottomSwitch = new DigitalInput(RobotMap.E_BOTTOM_SWITCH);
       topSwitch = new DigitalInput(RobotMap.E_TOP_SWITCH);
-      encoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
+      //encoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
       top = 0.6;
 		  bottom = 4.2;
   }
@@ -106,9 +106,9 @@ public double getTop() {
   return top;
 }
 
-public Encoder getEncoder(){
-  return encoder;
-}
+//public Encoder getEncoder(){
+  //return encoder;
+//}
 
   /**
    * Used outside of the Elevator subsystem to return an instance of Elevator subsystem.
