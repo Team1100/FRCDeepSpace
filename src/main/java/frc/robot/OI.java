@@ -19,6 +19,7 @@ import frc.robot.commands.intake.RollersIn;
 import frc.robot.commands.intake.StopRollers;
 import frc.robot.commands.intake.IntakeUp;
 import frc.robot.commands.intake.*;
+import frc.robot.commands.drive.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -71,6 +72,8 @@ public class OI {
 
     leftStick.getButton(8).whenPressed(new SwitchSides());
     rightStick.getButton(8).whenPressed(new SwitchSides());
+    leftStick.getButton(5).whenPressed(new ChangeHeading(180, .4));
+    rightStick.getButton(1).whenPressed(new PickupHatchHPS());
   }
 
   /**

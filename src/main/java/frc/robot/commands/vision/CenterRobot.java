@@ -32,6 +32,7 @@ public class CenterRobot extends PIDCommand {
     
     protected void initialize() {
       count = 0;
+      setTimeout(2.5);
     }
 
 
