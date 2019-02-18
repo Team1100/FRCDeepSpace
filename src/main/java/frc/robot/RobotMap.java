@@ -184,8 +184,15 @@ public class RobotMap {
   //[C]law
   public static final int C_CLAW_0 = PCM_0;
   public static final int C_CLAW_1 = PCM_1;
+  public static final int C_CLAW_EXTEND = PCM_2;
+  public static final int C_CLAW_RETRACT = PCM_3;
   public static final int C_CLAW_CAN = PCM_CAN;
 
+  //[K]icker
+  public static final int K_KICKER_CAN = PCM_CAN;
+  public static final int K_KICK_OUT = PCM_4;
+  public static final int K_KICK_IN = PCM_5;
+  
   //[G]antry
   //TODO: Update with proper ports
   public static final int G_GANTRY = CAN_10;
