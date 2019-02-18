@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.CameraServer;
 import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.commands.auto.*;
 import frc.robot.subsystems.BallIntake;
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+  CameraServer cs;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -62,6 +64,10 @@ public class Robot extends TimedRobot {
     NavX.getInstance();
     Vision.getInstance();
 
+    cs = CameraServer.getInstance();
+    cs.startAutomaticCapture("Front Camera", 0);
+    cs.startAutomaticCapture("Rear Camera", 1);
+    
     //vision = Vision.getInstance();
     m_chooser.setDefaultOption("Default Auto", new TestAutoPathCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
