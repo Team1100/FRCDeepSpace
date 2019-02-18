@@ -40,6 +40,9 @@ public class CenterRobot extends PIDCommand {
      * Finishes when claw is secured on target
      */
     protected boolean isFinished() {
+      if(Vision.getInstance().getCX() == -1){
+        return true;
+      }
       if(isTimedOut()) {
         return true;
       }
