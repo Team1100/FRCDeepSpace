@@ -7,39 +7,35 @@
 
 package frc.robot.commands.intake;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.RobotMap;
+import frc.robot.OI;
+import frc.robot.input.XboxController;
+import frc.robot.input.XboxController.*;
 import frc.robot.subsystems.BallIntake;
 
-public class ClimbWhileIntake extends Command {
-  double rSpeed, iSpeed;
-  BallIntake intake;
-
-  public ClimbWhileIntake(double rollerSpeed, double intakeSpeed) {
+public class DefaultRollers extends Command {
+  double speed;
+  XboxAxis rightJoystickY = XboxAxis.kYRight;
+  public DefaultRollers() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(BallIntake.getInstance());
-    intake = BallIntake.getInstance();
 
-    rSpeed = rollerSpeed;
-    iSpeed = intakeSpeed;
-    
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    
+    BallIntake.getInstance().setIntakeSpeed(0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //intake.rollersIn(rSpeed);
-    intake.intakeDown(iSpeed);
+    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+    //speed = OI.getInstance().getXbox().getAxis(rightJoystickY);
+
+    BallIntake.getInstance().spinRollers(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -51,15 +47,11 @@ public class ClimbWhileIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //intake.rollersIn(0);
-    intake.intakeDown(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    //intake.rollersIn(0);
-    intake.intakeDown(0);
   }
 }
