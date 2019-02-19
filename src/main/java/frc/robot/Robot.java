@@ -42,8 +42,8 @@ public class Robot extends TimedRobot {
   public static PowerDistributionPanel pdp;
   //public static Vision vision;
 
-  Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  Command autoCommand;
+  SendableChooser<Command> auto_chooser = new SendableChooser<>();
   CameraServer cs;
 
   /**
@@ -72,13 +72,13 @@ public class Robot extends TimedRobot {
     cs.startAutomaticCapture("Rear Camera", 1);
     
     //vision = Vision.getInstance();
-    m_chooser.setDefaultOption("Default Auto", new TestAutoPathCommand());
+    auto_chooser.setDefaultOption("Default Auto", new TestAutoPathCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    m_chooser.addOption("Middle_RightRocket_2Hatch", new Middle_RightRocket_2Hatch());
-    m_chooser.addOption("Middle_LeftRocket_2Hatch", new Middle_LeftRocket_2Hatches());
-    m_chooser.addOption("Left_LeftRocket_2Hatch", new Left_LeftRocket_2Hatches());
-    m_chooser.addOption("Right_RightRocket_2Hatch", new Right_RightRocket_2Hatches());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    auto_chooser.addOption("Middle_RightRocket_2Hatch", new Middle_RightRocket_2Hatch());
+    auto_chooser.addOption("Middle_LeftRocket_2Hatch", new Middle_LeftRocket_2Hatches());
+    auto_chooser.addOption("Left_LeftRocket_2Hatch", new Left_LeftRocket_2Hatches());
+    auto_chooser.addOption("Right_RightRocket_2Hatch", new Right_RightRocket_2Hatches());
+    SmartDashboard.putData("Auto mode", auto_chooser);
     SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
     SmartDashboard.putBoolean("Can Aim", Vision.getInstance().getcanAim());
     SmartDashboard.putBoolean("Is Aimed", Vision.getInstance().getisAimed());
@@ -86,9 +86,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Claw is Pushed Forward", Claw.getInstance().isForward());
     SmartDashboard.putBoolean("Cargo Kicker is Pushed Forward", Kicker.getInstance().getIsForward());
     SmartDashboard.putData("NonPIDClimb", new NonPIDClimb(.5, .5));
-    // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    // auto_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    SmartDashboard.putData("Auto mode", auto_chooser);
   }
 
   /**
@@ -132,7 +132,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     NavX.getInstance().getNavX().zeroYaw();
-    m_autonomousCommand = m_chooser.getSelected();
+    autoCommand = auto_chooser.getSelected();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -142,8 +142,8 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
+    if (autoCommand != null) {
+      autoCommand.start();
     }
   }
 
@@ -161,8 +161,8 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    if (autoCommand != null) {
+      autoCommand.cancel();
     }
   }
 
