@@ -22,7 +22,8 @@ import frc.robot.commands.intake.DefaultIntake;
 public class BallIntake extends Subsystem {
 
   public static BallIntake intake;
-  private VictorSPX rollers;
+  //private VictorSPX rollers;
+  private BeamBreak bb;
   VictorSPX axis_movement_right;
   VictorSPX axis_movement_left;
   //DigitalInput topSwitch;
@@ -34,11 +35,12 @@ public class BallIntake extends Subsystem {
   // here. Call these from Commands.
 
   private BallIntake() {
-    rollers = new VictorSPX(RobotMap.B_ROLLERS);
+  //  rollers = new VictorSPX(RobotMap.B_ROLLERS);
     axis_movement_left = new VictorSPX(RobotMap.B_AXIS_MOVEMENT_LEFT);
     axis_movement_right = new VictorSPX(RobotMap.B_AXIS_MOVEMENT_RIGHT);
     //topSwitch = new DigitalInput(RobotMap.B_TOP_SWITCH);
     motorPower = 0;
+    bb = BeamBreak.getInstance();
   }
 
   public static BallIntake getInstance(){
@@ -65,9 +67,9 @@ public class BallIntake extends Subsystem {
     axis_movement_right.set(ControlMode.PercentOutput, -intakeSpeed);
   }
 
-  public void spinRollers(double rollerSpeed) {
-    rollers.set(ControlMode.PercentOutput, rollerSpeed);
-  }
+ // public void spinRollers(double rollerSpeed) {
+   // rollers.set(ControlMode.PercentOutput, rollerSpeed);
+  //}
 
 
   //public boolean isUp() {
@@ -86,21 +88,25 @@ public class BallIntake extends Subsystem {
     this.intakeDown(motorPower);
   }
 
-  public void rollersIn(double rollersSpeed){
-    spinRollers(-rollersSpeed);
-  }
+  //public void rollersIn(double rollersSpeed){
+   // spinRollers(-rollersSpeed);
+  //}
 
-  public void rollersOff(){
-    spinRollers(0);
-  }
+ // public void rollersOff(){
+   // spinRollers(0);
+  //}
 
-  public void spitBall(double rollersSpeed) {
-    spinRollers(rollersSpeed);
-  }
+  //public void spitBall(double rollersSpeed) {
+    //spinRollers(rollersSpeed);
+  //}
 
-  public void spinOut(double rollersSpeed) {
-    rollersSpeed = -Math.abs(rollersSpeed);
-    spinRollers(rollersSpeed);
+ // public void spinOut(double rollersSpeed) {
+   // rollersSpeed = -Math.abs(rollersSpeed);
+   // spinRollers(rollersSpeed);
+  //}
+
+  public boolean ballIsIn(){
+    return bb.get();
   }
 
   @Override

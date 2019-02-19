@@ -8,13 +8,16 @@
 package frc.robot.commands.intake;
 
 import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.Rollers;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class StopRollers extends Command {
   BallIntake intake;
+  Rollers rollers;
 
   public StopRollers() {
     requires(BallIntake.getInstance());
+    requires(Rollers.getInstance());
     intake = BallIntake.getInstance();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -23,7 +26,7 @@ public class StopRollers extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    intake.rollersOff();
+    rollers.rollersOff();
   }
 
   // Called repeatedly when this Command is scheduled to run

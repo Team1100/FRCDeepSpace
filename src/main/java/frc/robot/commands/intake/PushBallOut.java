@@ -8,15 +8,19 @@
 package frc.robot.commands.intake;
 
 import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.Rollers;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class PushBallOut extends Command {
 
   BallIntake intake;
+  Rollers rollers;
 
   public PushBallOut() {
     requires(BallIntake.getInstance());
+    requires(Rollers.getInstance());
     intake = BallIntake.getInstance();
+    rollers = Rollers.getInstance();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -29,7 +33,7 @@ public class PushBallOut extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.spinOut(.5);
+    rollers.spinOut(.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()

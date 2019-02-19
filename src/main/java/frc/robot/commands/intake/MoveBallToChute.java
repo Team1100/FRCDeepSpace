@@ -8,18 +8,21 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Timer;
 
 public class MoveBallToChute extends Command {
   
   BallIntake intake;
+  Rollers rollers;
   Timer t;
   double time;
   
   public MoveBallToChute(double time) {
     requires(BallIntake.getInstance());
+    requires(Rollers.getInstance());
     intake = BallIntake.getInstance();
+    rollers = Rollers.getInstance();
     this.time = time;
     t = new Timer();
     // Use requires() here to declare subsystem dependencies
@@ -30,13 +33,13 @@ public class MoveBallToChute extends Command {
   @Override
   protected void initialize() {
     t.start();
-    intake.rollersIn(.5);
+    rollers.rollersIn(.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.rollersIn(.5);
+    rollers.rollersIn(.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -48,13 +51,13 @@ public class MoveBallToChute extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    intake.rollersOff();
+    rollers.rollersOff();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    intake.rollersOff();
+    rollers.rollersOff();
   }
 }

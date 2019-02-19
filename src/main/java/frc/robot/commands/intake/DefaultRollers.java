@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.input.XboxController;
 import frc.robot.input.XboxController.*;
-import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 
 public class DefaultRollers extends Command {
@@ -20,6 +20,7 @@ public class DefaultRollers extends Command {
   public DefaultRollers() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Rollers.getInstance());
     requires(BallIntake.getInstance());
 
   }
@@ -36,7 +37,7 @@ public class DefaultRollers extends Command {
     speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
     //speed = OI.getInstance().getXbox().getAxis(rightJoystickY);
 
-    BallIntake.getInstance().rollersIn(speed);
+    Rollers.getInstance().rollersIn(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
