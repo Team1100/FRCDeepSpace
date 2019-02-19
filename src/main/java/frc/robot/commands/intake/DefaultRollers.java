@@ -12,6 +12,7 @@ import frc.robot.OI;
 import frc.robot.input.XboxController;
 import frc.robot.input.XboxController.*;
 import frc.robot.subsystems.BallIntake;
+import frc.robot.commands.*;
 
 public class DefaultRollers extends Command {
   double speed;
@@ -35,7 +36,7 @@ public class DefaultRollers extends Command {
     speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
     //speed = OI.getInstance().getXbox().getAxis(rightJoystickY);
 
-    BallIntake.getInstance().spinRollers(speed);
+    BallIntake.getInstance().rollersIn(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
