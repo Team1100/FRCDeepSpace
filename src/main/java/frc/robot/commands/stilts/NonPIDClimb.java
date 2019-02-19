@@ -10,7 +10,7 @@ package frc.robot.commands.stilts;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.intake.ClimbWhileIntake;
 import frc.robot.commands.intake.ClimbingIntakeDown;
-import frc.robot.commands.intake.RollersIn;
+import frc.robot.commands.rollers.RollersIn;
 
 public class NonPIDClimb extends CommandGroup {
   /**

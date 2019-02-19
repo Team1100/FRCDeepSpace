@@ -5,51 +5,55 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.rollers;
 
-
-import frc.robot.subsystems.Rollers;
-import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.input.XboxController;
+import frc.robot.input.XboxController.*;
+import frc.robot.subsystems.*;
+import frc.robot.commands.*;
 
-public class RollersIn extends Command {
-
-  Rollers rollers;
-
-  public RollersIn() {
-    requires(Rollers.getInstance());
-    rollers = Rollers.getInstance();
+public class DefaultRollers extends Command {
+  double speed;
+  XboxAxis rightJoystickY = XboxAxis.kYRight;
+  public DefaultRollers() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Rollers.getInstance());
+    //requires(BallIntake.getInstance());
+
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    rollers.rollersIn(.5);
+    Rollers.getInstance().spinRollers(0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+    //speed = OI.getInstance().getXbox().getAxis(rightJoystickY);
+
+    Rollers.getInstance().rollersIn(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Rollers.getInstance().ballIsIn();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    rollers.rollersIn(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    rollers.rollersIn(0);
   }
 }
