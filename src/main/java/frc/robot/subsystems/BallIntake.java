@@ -49,10 +49,9 @@ public class BallIntake extends Subsystem {
   }
 
   public void intakeUp(double intakeSpeed){
-    intakeSpeed = Math.abs(intakeSpeed); // enforce positive
+    //intakeSpeed = Math.abs(intakeSpeed); // enforce positive
     axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed);
     axis_movement_right.set(ControlMode.PercentOutput, -intakeSpeed);
-    rollers.set(ControlMode.PercentOutput, 0);
   }
 
   public void intakeDown(double intakeSpeed) {

@@ -20,7 +20,7 @@ public class NonPIDClimb extends CommandGroup {
     addParallel(new TestingStilts(stiltPower));
     //addParallel(new ClimbingIntakeDown(0.2));
     //addParallel(new RollersIn());
-    addParallel(new ClimbWhileIntake(0.5, intakePower));
+    addParallel(new ClimbWhileIntake(0, intakePower));
 
     // Add Commands here:
     // e.g. addSequential(new Command1());
