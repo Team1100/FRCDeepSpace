@@ -24,7 +24,7 @@ public class IntakeCargo extends CommandGroup {
     if(beamBreak.get()) {
       addSequential(new StopRollers());
       addSequential(new IntakeUp());
-      addSequential(new MoveBallToChute(10));
+      addSequential(new MoveBallToChute(3));
       addSequential(new StopRollers());
     }
     // Add Commands here:
