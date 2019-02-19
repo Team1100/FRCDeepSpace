@@ -21,25 +21,24 @@ public class RetractStilts extends Command {
 
   public RetractStilts() {
     requires(Stilts.getInstance());
-    timer = new Timer();
+    stilts = Stilts.getInstance();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    timer.start();
-    stilts.setSpeed(RETRACT_SPEED);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    stilts.setSpeed(RETRACT_SPEED);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return timer.hasPeriodPassed(PERIOD);
+    return false;
   }
 
   // Called once after isFinished returns true

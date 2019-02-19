@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.commands.auto.*;
 import frc.robot.commands.stilts.NonPIDClimb;
+import frc.robot.commands.stilts.RetractStilts;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.BeamBreak;
 import frc.robot.subsystems.Claw;
@@ -86,6 +87,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Claw is Pushed Forward", Claw.getInstance().isForward());
     SmartDashboard.putBoolean("Cargo Kicker is Pushed Forward", Kicker.getInstance().getIsForward());
     SmartDashboard.putData("NonPIDClimb", new NonPIDClimb(.5, .5));
+    SmartDashboard.putNumber("Stilt Power", 0.5);
+    SmartDashboard.putNumber("Intake Power", 0.5);
+    SmartDashboard.putData("Retract Stilts", new RetractStilts());
     // auto_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", auto_chooser);
@@ -173,6 +177,11 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     System.out.println(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft));
+    double stiltPower = SmartDashboard.getNumber("Stilt Power", 0.5);
+    double intakePower = SmartDashboard.getNumber("Intake Power", 0.5);
+
+    SmartDashboard.putData("NonPIDClimb", new NonPIDClimb(stiltPower, intakePower));
+
   }
 
   /**

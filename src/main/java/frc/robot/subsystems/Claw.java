@@ -60,7 +60,7 @@ public class Claw extends Subsystem {
   }
 
   public boolean isClosed () {
-    return isClosed();
+    return isClosed;
   }
 
   public boolean isForward() {

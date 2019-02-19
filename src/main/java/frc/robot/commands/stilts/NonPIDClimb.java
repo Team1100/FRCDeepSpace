@@ -8,7 +8,9 @@
 package frc.robot.commands.stilts;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.intake.ClimbWhileIntake;
 import frc.robot.commands.intake.ClimbingIntakeDown;
+import frc.robot.commands.intake.RollersIn;
 
 public class NonPIDClimb extends CommandGroup {
   /**
@@ -16,7 +18,9 @@ public class NonPIDClimb extends CommandGroup {
    */
   public NonPIDClimb(double stiltPower, double intakePower) {
     addParallel(new TestingStilts(stiltPower));
-    addParallel(new ClimbingIntakeDown(intakePower));
+    //addParallel(new ClimbingIntakeDown(0.2));
+    //addParallel(new RollersIn());
+    addParallel(new ClimbWhileIntake(0.5, intakePower));
 
     // Add Commands here:
     // e.g. addSequential(new Command1());
