@@ -13,7 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.AnalogInput;
-import frc.robot.commands.intake.DefaultIntake;
+import frc.robot.commands.intake.*;
 
 /**
  * Add your docs here.
@@ -108,6 +108,6 @@ public class BallIntake extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new DefaultIntake());
+    setDefaultCommand(new DefaultRollers());
   }
 }

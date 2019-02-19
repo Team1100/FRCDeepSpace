@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import frc.robot.commands.stilts.*;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -42,6 +43,7 @@ public class Stilts extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
+    setDefaultCommand(new JoystickClimb());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
