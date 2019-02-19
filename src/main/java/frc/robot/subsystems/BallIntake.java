@@ -12,8 +12,9 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.commands.intake.*;
+import edu.wpi.first.wpilibj.DigitalInput;
+import frc.robot.commands.intake.DefaultIntake;
 
 /**
  * Add your docs here.
@@ -24,7 +25,7 @@ public class BallIntake extends Subsystem {
   private VictorSPX rollers;
   VictorSPX axis_movement_right;
   VictorSPX axis_movement_left;
-  AnalogInput bottomSwitch, topSwitch;
+  //DigitalInput topSwitch;
   boolean canGoUp, canGoDown = false;
   private double motorPower;
 
@@ -36,8 +37,7 @@ public class BallIntake extends Subsystem {
     rollers = new VictorSPX(RobotMap.B_ROLLERS);
     axis_movement_left = new VictorSPX(RobotMap.B_AXIS_MOVEMENT_LEFT);
     axis_movement_right = new VictorSPX(RobotMap.B_AXIS_MOVEMENT_RIGHT);
-    bottomSwitch = new AnalogInput(RobotMap.B_BOTTOM_SWITCH);
-    topSwitch = new AnalogInput(RobotMap.B_TOP_SWITCH);
+    //topSwitch = new DigitalInput(RobotMap.B_TOP_SWITCH);
     motorPower = 0;
   }
 
@@ -70,13 +70,11 @@ public class BallIntake extends Subsystem {
   }
 
 
-  public boolean isUp() {
-    return Math.round(topSwitch.getAverageValue()) == 1;
-  }
+  //public boolean isUp() {
+    //return topSwitch.get();
+  //}
 
-  public boolean isDown() {
-    return Math.round(bottomSwitch.getAverageValue()) == 1;
-  }
+
 
   public void incrementIntakePower(double incrementPower) {
     motorPower += incrementPower;

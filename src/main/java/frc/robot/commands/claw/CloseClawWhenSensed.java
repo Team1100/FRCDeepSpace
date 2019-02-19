@@ -5,28 +5,15 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.claw;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-//import frc.robot.subsystems.BeamBreak;
-//import frc.robot.commands.intake.*;
 
-public class IntakeCargo extends CommandGroup {
+public class CloseClawWhenSensed extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public IntakeCargo() {
-    //BeamBreak beamBreak;
-    //beamBreak = BeamBreak.getInstance();
-
-    addSequential(new PrepareIntake());
-    addSequential(new AcquireBall());
-    addSequential(new StopRollers());
-    /*
-    addSequential(new IntakeUp());
-    addSequential(new MoveBallToChute(3));
-    addSequential(new StopRollers());
-    */
+  public CloseClawWhenSensed() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -38,6 +25,9 @@ public class IntakeCargo extends CommandGroup {
     // addSequential(new Command2());
     // Command1 and Command2 will run in parallel.
 
+    addSequential(new OpenClaw());
+    addSequential(new ClawAcquireBall());
+    addSequential(new CloseClaw());
     // A command group will require all of the subsystems that each member
     // would require.
     // e.g. if Command1 requires chassis, and Command2 requires arm,
