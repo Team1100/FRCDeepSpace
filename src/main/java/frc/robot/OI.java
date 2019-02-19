@@ -66,10 +66,12 @@ public class OI {
 
     //xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());
     xbox.getButtonLeftBumper().whenPressed(new PushBallOut());
-    xbox.getDPad().getRight().whenPressed(new KickCargo());
-    xbox.getDPad().getRight().whenReleased(new RetractCargoKicker());
+    //xbox.getDPad().getRight().whenPressed(new KickCargo());
+    //xbox.getDPad().getRight().whenReleased(new RetractCargoKicker());
 	//	xbox.getDPad().getLeft().whenPressed(new PushBallOut());
-    xbox.getDPad().getDown().whenPressed(new IntakeCargo());
+    //xbox.getDPad().getDown().whenPressed(new IntakeCargo());
+    xbox.getDPad().getLeft().whenPressed(new OpenClaw());
+    xbox.getDPad().getRight().whenPressed(new CloseClaw());
 
     //xbox.getDPad().getUp().whenPressed(new IntakeUp());
 
@@ -81,7 +83,9 @@ public class OI {
     leftStick.getButton(5).whenPressed(new ChangeHeading(180, .4));
     rightStick.getButton(1).whenPressed(new PickupHatchHPS());
     leftStick.getButton(1).whenPressed(new TranslateClawToCenter(10));
-    leftStick.getButton(3).whenPressed(new CenterRobot(10));
+    //leftStick.getButton(3).whenPressed(new CenterRobot(10));
+    leftStick.getButton(3).whenPressed(new PlaceHatch());
+    //rightStick.getButton(3).whenPressed(new PullClawBack());
   }
 
   /**

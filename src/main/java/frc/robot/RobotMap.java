@@ -196,7 +196,7 @@ public class RobotMap {
 
   //[G]antry
   //TODO: Update with proper ports
-  public static final int G_GANTRY = CAN_10;
+  public static final int G_GANTRY = CAN_6;
   public static final int G_ENCODER_CW = DIO_4;
   public static final int G_ENCODER_CCW = DIO_5;
 
