@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.CameraServer;
 import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.commands.auto.*;
+import frc.robot.commands.stilts.NonPIDClimb;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.BeamBreak;
 import frc.robot.subsystems.Claw;
@@ -84,7 +85,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Claw is Closed", Claw.getInstance().isClosed());
     SmartDashboard.putBoolean("Claw is Pushed Forward", Claw.getInstance().isForward());
     SmartDashboard.putBoolean("Cargo Kicker is Pushed Forward", Kicker.getInstance().getIsForward());
-    
+    SmartDashboard.putData("NonPIDClimb", new NonPIDClimb(.5, .5));
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
