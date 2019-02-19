@@ -63,6 +63,10 @@ public class Claw extends Subsystem {
     return isClosed();
   }
 
+  public boolean isForward() {
+    return isForward;
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

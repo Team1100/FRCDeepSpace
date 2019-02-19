@@ -45,6 +45,10 @@ public class Kicker extends Subsystem {
     isForward = false;
   }
 
+  public boolean getIsForward() {
+    return isForward;
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

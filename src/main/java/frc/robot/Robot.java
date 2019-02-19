@@ -25,6 +25,7 @@ import frc.robot.subsystems.Stilts;
 import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Vision;
 import frc.robot.subsystems.NavX;
+import frc.robot.subsystems.Kicker;
 import frc.robot.input.AttackThree;
 import frc.robot.input.XboxController;
 import frc.robot.input.XboxController.XboxAxis; 
@@ -63,6 +64,7 @@ public class Robot extends TimedRobot {
     Stilts.getInstance();
     NavX.getInstance();
     Vision.getInstance();
+    Kicker.getInstance();
 
     cs = CameraServer.getInstance();
     cs.startAutomaticCapture("Front Camera", 0);
@@ -79,6 +81,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
     SmartDashboard.putBoolean("Can Aim", Vision.getInstance().getcanAim());
     SmartDashboard.putBoolean("Is Aimed", Vision.getInstance().getisAimed());
+    SmartDashboard.putBoolean("Claw is Closed", Claw.getInstance().isClosed());
+    SmartDashboard.putBoolean("Claw is Pushed Forward", Claw.getInstance().isForward());
+    SmartDashboard.putBoolean("Cargo Kicker is Pushed Forward", Kicker.getInstance().getIsForward());
     
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
