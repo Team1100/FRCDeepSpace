@@ -15,7 +15,30 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.CameraServer;
 import frc.robot.commands.drive.ChangeHeading;
+import frc.robot.commands.drive.DefaultDrive;
+import frc.robot.commands.drive.MeasuredDrive;
+import frc.robot.commands.elevator.DefaultElevator;
+import frc.robot.commands.intake.AcquireBall;
+import frc.robot.commands.intake.ClimbingIntakeDown;
+import frc.robot.commands.intake.DefaultIntake;
+import frc.robot.commands.intake.IncrementIntakePower;
+import frc.robot.commands.intake.IntakeCargo;
+import frc.robot.commands.intake.IntakeDown;
+import frc.robot.commands.intake.IntakeUp;
+import frc.robot.commands.intake.MoveBallToChute;
+import frc.robot.commands.intake.PickupHatchHPS;
+import frc.robot.commands.intake.PushBallOut;
+import frc.robot.commands.rollers.DefaultRollers;
+import frc.robot.commands.rollers.RollersIn;
+import frc.robot.commands.rollers.StopRollers;
 import frc.robot.commands.auto.*;
+import frc.robot.commands.claw.ClawAcquireBall;
+import frc.robot.commands.claw.CloseClaw;
+import frc.robot.commands.claw.OpenClaw;
+import frc.robot.commands.claw.PullClawBack;
+import frc.robot.commands.claw.PushClawForward;
+import frc.robot.commands.stilts.BalanceStilts;
+import frc.robot.commands.stilts.Climb;
 import frc.robot.commands.stilts.NonPIDClimb;
 import frc.robot.commands.stilts.RetractStilts;
 import frc.robot.subsystems.BallIntake;
@@ -93,6 +116,51 @@ public class Robot extends TimedRobot {
     // auto_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", auto_chooser);
+
+  }
+
+  public void createTestingDashboard() {
+    // CLAW Commands
+    SmartDashboard.putData("Open Claw", new OpenClaw());
+    SmartDashboard.putData("Close Claw", new CloseClaw());
+    SmartDashboard.putData("PushClawForward", new PushClawForward());
+    SmartDashboard.putData("PullClawBack", new PullClawBack());
+    SmartDashboard.putData("ClawAquireBall", new ClawAcquireBall());
+
+    // DRIVE commands
+    SmartDashboard.putData("ChangeHeading", new ChangeHeading(0, 0.5));
+    SmartDashboard.putData("DefaultDrive", new DefaultDrive());
+    SmartDashboard.putData("DefaultDrive", new MeasuredDrive(0.5, 0.5));
+
+    // INTAKE commands
+    SmartDashboard.putData("ClimbingIntakeDown", new ClimbingIntakeDown(0.5));
+    SmartDashboard.putData("DefaultIntake", new DefaultIntake());
+    SmartDashboard.putData("IncrementIntakePower", new IncrementIntakePower(0.1));
+    SmartDashboard.putData("IntakeCargo", new IntakeCargo());
+    SmartDashboard.putData("IntakeDown", new IntakeDown());
+    SmartDashboard.putData("IntakeUp", new IntakeUp());
+    SmartDashboard.putData("MoveBallToChute", new MoveBallToChute(1));
+    SmartDashboard.putData("PickupHatchHPS", new PickupHatchHPS());
+    SmartDashboard.putData("PushBallOut", new PushBallOut());
+
+    // KICKER commands
+
+    // ROLLERS commands
+    SmartDashboard.putData("DefaultRollers", new DefaultRollers());
+    SmartDashboard.putData("RollersIn", new RollersIn());
+    SmartDashboard.putData("StopRollers", new StopRollers());
+
+    // STILTS commands
+    SmartDashboard.putData("Cimb", new Climb());
+    SmartDashboard.putData("BalanceStilts", new BalanceStilts(0.5));
+    SmartDashboard.putData("RetractStilts", new RetractStilts());
+
+    //ELEVATOR commands
+    SmartDashboard.putData("DefaultElevator", new DefaultElevator());
+    //SmartDashboard.putData("", new ());
+    //SmartDashboard.putData("", new ());
+    //SmartDashboard.putData("", new ());
+
   }
 
   /**
