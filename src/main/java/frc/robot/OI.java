@@ -55,11 +55,15 @@ public class OI {
     xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.1);
 
     //Now Mapping Commands to XBox 
-    
+    /*
     xbox.getButtonY().whenPressed(new PIDElevatorL3());
     xbox.getButtonB().whenPressed(new ElevatorBottom());
     xbox.getButtonA().whenPressed(new PIDElevatorL1());
     xbox.getButtonX().whenPressed(new PIDElevatorL2());
+    */
+
+    xbox.getButtonA().whenPressed(new RollersIn());
+    xbox.getButtonB().whenPressed(new StopRollers());
 
     xbox.getButtonRightBumper().whenPressed(new RollersIn());
     xbox.getButtonRightBumper().whenReleased(new StopRollers());
@@ -73,6 +77,11 @@ public class OI {
     xbox.getDPad().getLeft().whenPressed(new OpenClaw());
     xbox.getDPad().getRight().whenPressed(new CloseClaw());
 
+    xbox.getButtonLeftBumper().whenPressed(new PushClawForward());
+    xbox.getButtonRightBumper().whenPressed(new PullClawBack());
+
+
+
     //xbox.getDPad().getUp().whenPressed(new IntakeUp());
 
     //xbox.getButtonStart().whenPressed(new Manual Control);
@@ -81,8 +90,8 @@ public class OI {
     leftStick.getButton(8).whenPressed(new SwitchSides());
     rightStick.getButton(8).whenPressed(new SwitchSides());
     leftStick.getButton(5).whenPressed(new ChangeHeading(180, .4));
-    rightStick.getButton(1).whenPressed(new PickupHatchHPS());
-    leftStick.getButton(1).whenPressed(new TranslateClawToCenter(10));
+    //rightStick.getButton(1).whenPressed(new PickupHatchHPS());
+    //leftStick.getButton(1).whenPressed(new TranslateClawToCenter(10));
     //leftStick.getButton(3).whenPressed(new CenterRobot(10));
     leftStick.getButton(3).whenPressed(new PlaceHatch());
     //rightStick.getButton(3).whenPressed(new PullClawBack());

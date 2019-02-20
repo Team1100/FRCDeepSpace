@@ -14,7 +14,7 @@ public class PlaceHatch extends CommandGroup {
    * Add your docs here.
    */
   public PlaceHatch() {
-
+    addSequential(new CloseClaw());
     addSequential(new PushClawForward());
     addSequential(new OpenClaw());
     addSequential(new PullClawBack());

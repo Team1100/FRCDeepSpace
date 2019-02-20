@@ -176,7 +176,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    System.out.println(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft));
     double stiltPower = SmartDashboard.getNumber("Stilt Power", 0.5);
     double intakePower = SmartDashboard.getNumber("Intake Power", 0.5);
 
