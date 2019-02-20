@@ -43,7 +43,7 @@ public class Stilts extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new JoystickClimb());
+    //setDefaultCommand(new JoystickClimb());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
