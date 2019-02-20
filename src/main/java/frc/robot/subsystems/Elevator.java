@@ -76,6 +76,13 @@ public class Elevator extends Subsystem {
     right.set(ControlMode.PercentOutput, -speed);
   }
 
+  public void extendLeft(double speed){
+    left.set(ControlMode.PercentOutput, -speed);
+  }
+
+  public void extendRight(double speed){
+    right.set(ControlMode.PercentOutput, -speed);
+  }
 /**
  * Checks if the elevator is at level one
  */

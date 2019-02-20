@@ -7,6 +7,8 @@ public class AttackThree extends Joystick {
 
 	public static boolean leftIsLeft = true;
 
+	public static boolean isInTesting = false;
+
 	/*
 	 * Total amount of buttons on the Attack Three
 	 */
