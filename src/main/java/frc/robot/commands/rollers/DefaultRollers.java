@@ -34,13 +34,8 @@ public class DefaultRollers extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kLeftTrigger) != 0 && OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kRightTrigger) == 0){
-      speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kLeftTrigger);
-    }
-    else{
-      speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kRightTrigger) * -1;
-    }
-    //speed = OI.getInstance().getXbox().getAxis(rightJoystickY);
+    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+
 
     Rollers.getInstance().rollersIn(speed);
   }

@@ -124,7 +124,7 @@ public Encoder getEncoder(){
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new DefaultElevator());
+    //setDefaultCommand(new DefaultElevator());
   }
 
 }
