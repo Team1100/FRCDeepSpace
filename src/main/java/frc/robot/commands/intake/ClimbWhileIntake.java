@@ -7,11 +7,7 @@
 
 package frc.robot.commands.intake;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.RobotMap;
 import frc.robot.subsystems.BallIntake;
 
 public class ClimbWhileIntake extends Command {

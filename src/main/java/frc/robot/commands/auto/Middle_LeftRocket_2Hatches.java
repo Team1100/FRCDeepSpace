@@ -9,10 +9,6 @@ package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.vision.CenterRobot;
-import frc.robot.commands.vision.TranslateClawToCenter;
-import frc.robot.commands.claw.PlaceHatch;
-import frc.robot.commands.drive.ChangeHeading;
-import frc.robot.commands.elevator.*;
 
 public class Middle_LeftRocket_2Hatches extends CommandGroup {
   /**

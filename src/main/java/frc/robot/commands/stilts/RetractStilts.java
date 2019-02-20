@@ -9,12 +9,9 @@ package frc.robot.commands.stilts;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Stilts;
-import edu.wpi.first.wpilibj.Timer;
 
 public class RetractStilts extends Command {
 
-  Timer timer;
-  private static final double PERIOD = 5;
   private static final double RETRACT_SPEED = -0.5;
 
   private Stilts stilts;

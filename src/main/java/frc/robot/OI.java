@@ -7,23 +7,19 @@
 
 package frc.robot;
 
-import frc.robot.input.AttackThree;
-import frc.robot.input.XboxController;
 import frc.robot.commands.SwitchSides;
-import frc.robot.commands.claw.*;
-import frc.robot.commands.elevator.ElevatorTop;
-import frc.robot.commands.elevator.ElevatorBottom;
-import frc.robot.commands.elevator.*;
+import frc.robot.commands.TestingMode;
+import frc.robot.commands.claw.CloseClaw;
+import frc.robot.commands.claw.OpenClaw;
+import frc.robot.commands.claw.PlaceHatch;
+import frc.robot.commands.claw.PullClawBack;
+import frc.robot.commands.claw.PushClawForward;
+import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.commands.intake.PushBallOut;
 import frc.robot.commands.rollers.RollersIn;
 import frc.robot.commands.rollers.StopRollers;
-import frc.robot.commands.kicker.RetractCargoKicker;
-import frc.robot.commands.vision.*;
-import frc.robot.commands.intake.IntakeUp;
-import frc.robot.commands.intake.*;
-import frc.robot.commands.drive.*;
-import frc.robot.commands.kicker.*;
-import frc.robot.commands.TestingMode;
+import frc.robot.input.AttackThree;
+import frc.robot.input.XboxController;
 
 /**
  * This class is the glue that binds the controls on the physical operator

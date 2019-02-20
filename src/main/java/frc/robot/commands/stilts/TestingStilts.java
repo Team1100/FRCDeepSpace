@@ -12,9 +12,6 @@ import frc.robot.subsystems.Stilts;
 
 public class TestingStilts extends Command {
 
-  //Timer timer;
-  private static final double PERIOD = 5;
-  private static final double RETRACT_SPEED = -0.5;
   private Stilts stilts;
   private double speed;
 

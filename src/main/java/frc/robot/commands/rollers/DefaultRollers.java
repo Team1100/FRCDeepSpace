@@ -10,9 +10,8 @@ package frc.robot.commands.rollers;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.input.XboxController;
-import frc.robot.input.XboxController.*;
-import frc.robot.subsystems.*;
-import frc.robot.commands.*;
+import frc.robot.input.XboxController.XboxAxis;
+import frc.robot.subsystems.Rollers;
 
 public class DefaultRollers extends Command {
   double speed;

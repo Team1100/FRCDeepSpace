@@ -8,9 +8,7 @@
 package frc.robot.commands.stilts;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.intake.*;
-import frc.robot.commands.drive.*;
-import frc.robot.commands.stilts.*;
+import frc.robot.commands.intake.IncrementIntakePower;
 
 public class Climb extends CommandGroup {
  

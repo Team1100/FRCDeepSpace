@@ -7,7 +7,6 @@
 package frc.robot.commands.claw;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.BeamBreak;
 import frc.robot.subsystems.ProximitySensor;
 
 public class ClawAcquireBall extends Command {

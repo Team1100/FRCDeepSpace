@@ -17,11 +17,8 @@ package frc.robot.commands.stilts;
 
 
 import edu.wpi.first.wpilibj.command.Command;
-
 import frc.robot.OI;
-
 import frc.robot.input.XboxController;
-
 import frc.robot.subsystems.Stilts;
 
 
