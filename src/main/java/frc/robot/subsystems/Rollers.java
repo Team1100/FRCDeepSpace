@@ -9,12 +9,10 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.rollers.*;
-import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.commands.intake.DefaultIntake;
+import frc.robot.commands.rollers.DefaultRollers;
 
 /**
  * Add your docs here.
@@ -28,7 +26,6 @@ public class Rollers extends Subsystem {
   VictorSPX axis_movement_left;
   //DigitalInput topSwitch;
   boolean canGoUp, canGoDown = false;
-  private double motorPower;
 
   public static BallIntake ballintake;
   // Put methods for controlling this subsystem
@@ -37,7 +34,6 @@ public class Rollers extends Subsystem {
   private Rollers() {
     rollersMotors = new VictorSPX(RobotMap.B_ROLLERS);
     //topSwitch = new DigitalInput(RobotMap.B_TOP_SWITCH);
-    motorPower = 0;
     bb = BeamBreak.getInstance();
   }
 
