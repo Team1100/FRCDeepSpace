@@ -32,12 +32,28 @@ import frc.robot.commands.rollers.DefaultRollers;
 import frc.robot.commands.rollers.RollersIn;
 import frc.robot.commands.rollers.StopRollers;
 import frc.robot.commands.auto.*;
-import frc.robot.commands.claw.ClawAcquireBall;
+import frc.robot.commands.drive.DefaultDrive;
+import frc.robot.commands.drive.TestLeftDrive;
+import frc.robot.commands.drive.TestRightDrive;
+import frc.robot.commands.elevator.DefaultElevator;
+import frc.robot.commands.elevator.TestLeftElevator;
+import frc.robot.commands.elevator.TestRightElevator;
+import frc.robot.commands.gantry.MoveGantry;
+import frc.robot.commands.intake.DefaultIntake;
+import frc.robot.commands.intake.IntakeCargo;
+import frc.robot.commands.intake.IntakeDown;
+import frc.robot.commands.intake.IntakeUp;
+import frc.robot.commands.rollers.RollersIn;
+import frc.robot.commands.rollers.StopRollers;
+import frc.robot.commands.stilts.TestBothStilts;
+import frc.robot.commands.stilts.TestLeftStilt;
+import frc.robot.commands.stilts.TestRightStilt;
+import frc.robot.commands.stilts.*;
 import frc.robot.commands.claw.CloseClaw;
 import frc.robot.commands.claw.OpenClaw;
 import frc.robot.commands.claw.PullClawBack;
 import frc.robot.commands.claw.PushClawForward;
-import frc.robot.commands.stilts.BalanceStilts;
+import frc.robot.commands.claw.*;
 import frc.robot.commands.stilts.Climb;
 import frc.robot.commands.stilts.NonPIDClimb;
 import frc.robot.commands.stilts.RetractStilts;
@@ -153,7 +169,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("StopRollers", new StopRollers());
 
     // STILTS commands
-    SmartDashboard.putData("Cimb", new Climb());
+    SmartDashboard.putData("Climb", new Climb());
     SmartDashboard.putData("BalanceStilts", new BalanceStilts(0.5));
     SmartDashboard.putData("RetractStilts", new RetractStilts());
 
@@ -175,7 +191,35 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    
+    SendableChooser<Command>  testing_chooser = new SendableChooser<>();
+
+    if (AttackThree.isInTesting){
+      testing_chooser.addOption("Test Both Drive", new DefaultDrive());
+      testing_chooser.addOption("Test Right Drive", new TestLeftDrive());
+      testing_chooser.addOption("Test Left Drive", new TestRightDrive());
+      testing_chooser.addOption("Test Both Elevators", new DefaultElevator());
+      testing_chooser.addOption("Test Right Elevator", new TestRightElevator());
+      testing_chooser.addOption("Test Left Elevator", new TestLeftElevator());
+      testing_chooser.addOption("Test RollersIn", new RollersIn());
+      testing_chooser.addOption("Test Pistons Open", new OpenClaw());
+      testing_chooser.addOption("Test Pistons Close", new CloseClaw());
+      testing_chooser.addOption("Test Push Claw Forward", new PushClawForward());
+      testing_chooser.addOption("Test Pull Claw Back", new PullClawBack());
+      testing_chooser.addOption("Test Intake Up", new IntakeUp());
+      testing_chooser.addOption("Test Intake Down", new IntakeDown());
+      testing_chooser.addOption("Test Both Stilts", new TestBothStilts());
+      testing_chooser.addOption("Test Right Stilt", new TestLeftStilt());
+      testing_chooser.addOption("Test Left Stilt", new TestRightStilt());
+      testing_chooser.addOption("Test Gantry", new MoveGantry());
+    }
+    else
+    {
+      SmartDashboard.delete("Testing mode");
+    }
+    SmartDashboard.putData("Testing mode", testing_chooser);
+
+    SmartDashboard.putBoolean("Is In Testing", AttackThree.isInTesting);
+
   }
 
   /**
@@ -258,5 +302,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+   
   }
 }

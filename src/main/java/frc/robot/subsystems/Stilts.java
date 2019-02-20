@@ -26,7 +26,7 @@ public class Stilts extends Subsystem {
   private VictorSPX rightMotor;
   private static Stilts stilts;
 
-  private Stilts() {
+  public Stilts() {
     leftMotor = new VictorSPX(RobotMap.S_LEFT);
     rightMotor = new VictorSPX(RobotMap.S_RIGHT);
   }
@@ -40,7 +40,19 @@ public class Stilts extends Subsystem {
     leftMotor.set(ControlMode.PercentOutput, speed);
     rightMotor.set(ControlMode.PercentOutput, speed);
   }
+  public void leftExtend(double speed){
+    leftMotor.set(ControlMode.PercentOutput, speed);
+  }
 
+  public void rightExtend(double speed){
+    rightMotor.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void combinedExtend(double speed){
+    leftMotor.set(ControlMode.PercentOutput, speed);
+    rightMotor.set(ControlMode.PercentOutput, speed);
+  }
+  
   @Override
   public void initDefaultCommand() {
     //setDefaultCommand(new JoystickClimb());

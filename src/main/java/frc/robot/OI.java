@@ -23,6 +23,7 @@ import frc.robot.commands.intake.IntakeUp;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.drive.*;
 import frc.robot.commands.kicker.*;
+import frc.robot.commands.TestingMode;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -89,6 +90,8 @@ public class OI {
 
     leftStick.getButton(8).whenPressed(new SwitchSides());
     rightStick.getButton(8).whenPressed(new SwitchSides());
+    leftStick.getButton(9).whenPressed(new TestingMode());
+    rightStick.getButton(9).whenPressed(new TestingMode());
     leftStick.getButton(5).whenPressed(new ChangeHeading(180, .4));
     //rightStick.getButton(1).whenPressed(new PickupHatchHPS());
     //leftStick.getButton(1).whenPressed(new TranslateClawToCenter(10));
