@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class CloseClawWhenSensed extends CommandGroup {
   /**
-   * Add your docs here.
+   * This command group is used to close the claw when a ball moves from the intake to the claw.
+   * When the ball is sensed by the proximity sensor, the claw will automatically close around the ball.
    */
   public CloseClawWhenSensed() {
     // Add Commands here:

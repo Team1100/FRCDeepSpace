@@ -12,7 +12,7 @@ import frc.robot.commands.elevator.PIDElevator;
 
 public class PIDElevatorL1 extends CommandGroup {
   /**
-   * Add your docs here.
+   * Command to drive elevator to the first level of the rocket using the PIDElevator command.
    */
   public PIDElevatorL1() {
     addSequential(new PIDElevator(.2));

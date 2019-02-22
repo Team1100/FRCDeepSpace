@@ -9,7 +9,9 @@ package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Elevator;
-
+/**
+ * Command that drives the elevator upwards until it hits the top limit switch.
+ */
 public class ElevatorTop extends Command {
 
   Elevator elevator;
@@ -47,5 +49,6 @@ public class ElevatorTop extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Elevator.getInstance().extend(0);
   }
 }

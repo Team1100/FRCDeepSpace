@@ -25,7 +25,9 @@ import frc.robot.input.XboxController;
 import frc.robot.subsystems.Stilts;
 
 
-
+/**
+ * Used to individually test the right stilt.
+ */
 public class TestRightStilt extends Command {
 
   Stilts rightStilt;

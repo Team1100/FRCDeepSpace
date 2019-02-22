@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 //import frc.robot.subsystems.BeamBreak;
 import frc.robot.commands.rollers.*;
 
+/**
+ * This command group is to be used by the operator to put the intak down
+ * and run the rollers in to collect a ball.
+ */
 public class IntakeCargo extends CommandGroup {
   /**
    * Add your docs here.

@@ -2,14 +2,14 @@ package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
-import frc.robot.input.XboxController.*;
 import frc.robot.input.XboxController;
 import frc.robot.subsystems.Elevator;
 
-
+/**
+ * Default command to drive the elevator up and down using the joystick on the xbox controller.
+ */
 public class DefaultElevator extends Command {
     double speed;
-    XboxAxis leftJoystickY = XboxAxis.kYLeft;
 
     public DefaultElevator() {
         requires(Elevator.getInstance());
@@ -26,7 +26,8 @@ public class DefaultElevator extends Command {
      */
     protected void execute() {
         speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
-        System.out.println(speed);
+        //System.out.println(speed);
+        //Speed is currently limited because safties have not been implemented.
 	    Elevator.getInstance().extend(speed/2);
     	
     }
@@ -45,8 +46,9 @@ public class DefaultElevator extends Command {
     }
     
     /**
-     * Not Used
+     * Stops elevator if command gets interrupted
      */
     protected void interrupted() {
+        Elevator.getInstance().extend(0);
     }
 }

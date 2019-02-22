@@ -22,7 +22,9 @@ import frc.robot.input.XboxController;
 import frc.robot.subsystems.Stilts;
 
 
-
+/**
+ * Used in the testing portion of the program to test both stilts.
+ */
 public class TestBothStilts extends Command {
 
   Stilts rightStilt, leftStilt;

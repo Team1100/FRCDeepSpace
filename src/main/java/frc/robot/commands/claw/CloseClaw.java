@@ -10,6 +10,9 @@ package frc.robot.commands.claw;
 import frc.robot.subsystems.Claw;
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * This command closes the claw by triggering the pneumatic solenoid valve controlling the claw
+ */
 public class CloseClaw extends Command {
   
   Claw claw;

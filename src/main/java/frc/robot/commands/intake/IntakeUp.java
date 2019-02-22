@@ -10,6 +10,10 @@ package frc.robot.commands.intake;
 import frc.robot.subsystems.BallIntake;
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * This command puts the intake up (at half speed) with a current timeout of three seconds.
+ * Should be changed to use potentiometer value.
+ */
 public class IntakeUp extends Command {
 
   BallIntake intake;

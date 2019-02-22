@@ -14,6 +14,10 @@ import frc.robot.input.XboxController.*;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.Stilts;
 
+/**
+ * Used for testing climbing and determining optimal stiltSpeed to intakeSpeed ratio.
+ * Currently takes in input from left xbox joystick.
+ */
 public class JoystickClimb extends Command {
   double intakeSpeed, stiltSpeed, speed;
   XboxAxis rightJoystickY = XboxAxis.kYRight;

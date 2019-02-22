@@ -11,6 +11,10 @@ package frc.robot.commands.rollers;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Rollers;
 
+/**
+ * This command spins the rollers inwards.
+ * Meant to be used on the ground when picking up a ball.
+ */
 public class RollersIn extends Command {
 
   Rollers rollers;

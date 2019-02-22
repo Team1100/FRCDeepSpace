@@ -10,7 +10,10 @@ package frc.robot.commands.intake;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.claw.*;
 import frc.robot.commands.vision.TranslateClawToCenter;
-
+/**
+ * This command group will center on the Human Player station and will grap a
+ * hatch panel from there.
+ */
 public class PickupHatchHPS extends CommandGroup {
   /**
    * Add your docs here.

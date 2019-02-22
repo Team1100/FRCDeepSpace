@@ -13,6 +13,11 @@ import frc.robot.input.XboxController;
 import frc.robot.input.XboxController.*;
 import frc.robot.subsystems.BallIntake;
 
+/**
+ * This command allows for operator control of the intake
+ * It allows the operator to use the left joystick (scheduled to change) to control the speed
+ * and direction of the intake.
+ */
 public class DefaultIntake extends Command {
   double speed;
   XboxAxis rightJoystickY = XboxAxis.kYRight;

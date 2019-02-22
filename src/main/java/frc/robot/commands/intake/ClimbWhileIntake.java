@@ -9,16 +9,25 @@ package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.Rollers;
 
+/**
+ * This command is used to lower the intake while also running the rollers inward.
+ * This command is used in the climbing sequence when climbing the HAB level 3.
+ */
 public class ClimbWhileIntake extends Command {
   double rSpeed, iSpeed;
   BallIntake intake;
+  Rollers rollers;
 
   public ClimbWhileIntake(double rollerSpeed, double intakeSpeed) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(BallIntake.getInstance());
+    requires(Rollers.getInstance());
+
     intake = BallIntake.getInstance();
+    rollers = Rollers.getInstance();
 
     rSpeed = rollerSpeed;
     iSpeed = intakeSpeed;
@@ -34,7 +43,7 @@ public class ClimbWhileIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //intake.rollersIn(rSpeed);
+    rollers.rollersIn(rSpeed);
     intake.intakeDown(iSpeed);
   }
 
@@ -47,7 +56,7 @@ public class ClimbWhileIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //intake.rollersIn(0);
+    rollers.rollersIn(0);
     intake.intakeDown(0);
   }
 
@@ -55,7 +64,7 @@ public class ClimbWhileIntake extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    //intake.rollersIn(0);
+    rollers.rollersIn(0);
     intake.intakeDown(0);
   }
 }

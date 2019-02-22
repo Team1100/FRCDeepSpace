@@ -165,7 +165,7 @@ public class Robot extends TimedRobot {
       testing_chooser.addOption("Test Both Stilts", new TestBothStilts());
       testing_chooser.addOption("Test Right Stilt", new TestLeftStilt());
       testing_chooser.addOption("Test Left Stilt", new TestRightStilt());
-      testing_chooser.addOption("Test Gantry", new MoveGantry());
+      testing_chooser.addOption("Test Gantry", new DefaultGantry());
     }
     else
     {

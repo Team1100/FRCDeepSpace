@@ -10,6 +10,9 @@ package frc.robot.commands.stilts;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.intake.ClimbWhileIntake;
 
+/**
+ * Command group currently being used to climb onto the HAB level 3
+ */
 public class NonPIDClimb extends CommandGroup {
   /**
    * Add your docs here.

@@ -10,6 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.input.AttackThree;
 
+/**
+ * Switches the robot into testing mode.
+ */
 public class TestingMode extends Command {
   public TestingMode() {
     // Use requires() here to declare subsystem dependencies

@@ -9,6 +9,12 @@ package frc.robot.commands.claw;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.ProximitySensor;
 
+/**
+ * This command will end when the current state of the proximity sensor returns true
+ * The proximity sensor will be used to detect when the ball is in the claw and will close
+ * the claw onto the ball, therefore capturing it.
+ * Can be used in command groups as a sequential command.
+ */
 public class ClawAcquireBall extends Command {
   private ProximitySensor ps;
   public ClawAcquireBall() {

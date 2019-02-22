@@ -13,7 +13,9 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.NavX;;
-
+/**
+ * Command that turns the robot to a certain heading.
+ */
 public class ChangeHeading extends PIDCommand {
  
   private PIDController pidController = getPIDController();

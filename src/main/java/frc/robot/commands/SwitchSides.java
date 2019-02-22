@@ -12,6 +12,10 @@ import frc.robot.RobotMap;
 import frc.robot.input.AttackThree;
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * Switches the robots interpretation of the left and right joysticks.
+ * DOES NOT WORK YET.
+ */
 public class SwitchSides extends Command {
   boolean leftState = AttackThree.leftIsLeft;
   boolean end = false;

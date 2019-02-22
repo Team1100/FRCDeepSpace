@@ -5,24 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.gantry;
 
-import frc.robot.subsystems.BallIntake;
-import frc.robot.subsystems.Rollers;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.subsystems.Gantry;
+import frc.robot.input.XboxController;
 
-public class PushBallOut extends Command {
-
-  BallIntake intake;
-  Rollers rollers;
-
-  public PushBallOut() {
-    requires(BallIntake.getInstance());
-    requires(Rollers.getInstance());
-    intake = BallIntake.getInstance();
-    rollers = Rollers.getInstance();
+public class DefaultGantry extends Command {
+  private double speed;
+  public DefaultGantry() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Gantry.getInstance());
   }
 
   // Called just before this Command runs the first time
@@ -33,7 +28,8 @@ public class PushBallOut extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    rollers.spinOut(.5);
+    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
+    Gantry.getInstance().translateGantry(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -51,5 +47,7 @@ public class PushBallOut extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Gantry.getInstance().translateGantry(0);
   }
+
 }

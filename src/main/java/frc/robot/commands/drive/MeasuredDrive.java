@@ -9,11 +9,14 @@ package frc.robot.commands.drive;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Drive;
-
+/**
+ * This command drives the robot based off of a input distance in feet.
+ */
 public class MeasuredDrive extends Command {
   double rightDistance, leftDistance;
   double dist, pow;
   boolean completed;
+  //TODO: Measure the PULSES_PER_FOOT value.
   double PULSES_PER_FOOT = 4090;
   public MeasuredDrive(double distanceInFeet, double power) {
     // Use requires() here to declare subsystem dependencies

@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class PlaceHatch extends CommandGroup {
   /**
-   * Add your docs here.
+   * This command group is used to score a hatch. It will push the claw forward, open the claw,
+   * placing it on the Cargo Ship/Rocket, and then pull the claw back.
    */
   public PlaceHatch() {
-    addSequential(new CloseClaw());
     addSequential(new PushClawForward());
     addSequential(new OpenClaw());
     addSequential(new PullClawBack());

@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.drive.*;
 
+/**
+ * Command group meant to be used after deploying stilts and on HAB level 3.
+ * Will raise intake and allow robot to be fully seated on platform.
+ */
 public class RaiseIntakeAndDrive extends CommandGroup {
   /**
    * Add your docs here.

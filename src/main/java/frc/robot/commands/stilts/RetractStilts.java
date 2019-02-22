@@ -10,6 +10,9 @@ package frc.robot.commands.stilts;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Stilts;
 
+/**
+ * Command to retract the stilts upwards after we are seated on the HAB.
+ */
 public class RetractStilts extends Command {
 
   private static final double RETRACT_SPEED = -0.5;

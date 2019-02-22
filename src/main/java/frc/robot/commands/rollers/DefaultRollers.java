@@ -13,6 +13,10 @@ import frc.robot.input.XboxController;
 import frc.robot.input.XboxController.XboxAxis;
 import frc.robot.subsystems.Rollers;
 
+/**
+ * Gives the operator control of the rollers.
+ * Currently bound to the right joystick on the Xbox Controller
+ */
 public class DefaultRollers extends Command {
   double speed;
   XboxAxis rightJoystickY = XboxAxis.kYRight;

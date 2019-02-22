@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 
 /**
  * PIDElevator uses the Elevator subsystem and is based on the 
- * PIDCommand class. A potentiometer is used to sense the 
+ * PIDCommand class. An encoder is used to sense the 
  * height. 
  */
 public class PIDElevator extends PIDCommand {

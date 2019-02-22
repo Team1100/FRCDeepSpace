@@ -11,6 +11,9 @@ import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.Rollers;
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * This command stops the rollers from running.
+ */
 public class StopRollers extends Command {
   BallIntake intake;
   Rollers rollers;

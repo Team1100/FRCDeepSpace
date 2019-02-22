@@ -9,6 +9,9 @@ package frc.robot.commands.intake;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.BeamBreak;
 
+/**
+ * This command ends when the ball is detected in the intake
+ */
 public class AcquireBall extends Command {
   private BeamBreak bb;
   public AcquireBall() {

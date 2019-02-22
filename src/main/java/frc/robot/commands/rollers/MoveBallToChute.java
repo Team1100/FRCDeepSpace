@@ -5,23 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.rollers;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Timer;
 
+/**
+ * This command is meant to be run when the intake is up and has the ball.
+ * It will run the rollers in such a way that the ball leaves the intake
+ * in the direction of the claw.
+ */
 public class MoveBallToChute extends Command {
   
-  BallIntake intake;
   Rollers rollers;
   Timer t;
   double time;
   
   public MoveBallToChute(double time) {
-    requires(BallIntake.getInstance());
     requires(Rollers.getInstance());
-    intake = BallIntake.getInstance();
     rollers = Rollers.getInstance();
     this.time = time;
     t = new Timer();

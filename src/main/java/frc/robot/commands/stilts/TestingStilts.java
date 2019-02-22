@@ -10,6 +10,9 @@ package frc.robot.commands.stilts;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Stilts;
 
+/**
+ * Used to test both stilts. Has no use anymore?
+ */
 public class TestingStilts extends Command {
 
   private Stilts stilts;

@@ -9,6 +9,10 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * Generic toggle command to switch between two command with a button press or 
+ * any other trigger.
+ */
 public class ToggleCommand extends Command {
   Command commandA;
   Command commandB;

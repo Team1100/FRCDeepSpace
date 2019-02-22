@@ -9,7 +9,10 @@ package frc.robot.commands.intake;
 
 import frc.robot.subsystems.BallIntake;
 import edu.wpi.first.wpilibj.command.Command;
-
+/**
+ * This command allows you to increment the current speed of the intake
+ * by a given increment.
+ */
 public class IncrementIntakePower extends Command {
   
   double incrementPower;

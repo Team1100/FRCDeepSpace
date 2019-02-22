@@ -10,6 +10,9 @@ package frc.robot.commands.intake;
 import frc.robot.subsystems.BallIntake;
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * This command is used in the climbing phase of the game to lower the intake onto the HAB
+ */
 public class ClimbingIntakeDown extends Command {
   
   BallIntake intake;
