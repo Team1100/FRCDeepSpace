@@ -60,7 +60,6 @@ public class Robot extends TimedRobot {
     Stilts.getInstance();
     NavX.getInstance();
     Vision.getInstance();
-    Kicker.getInstance();
 
     cs = CameraServer.getInstance();
     cs.startAutomaticCapture("Front Camera", 0);
@@ -79,7 +78,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Is Aimed", Vision.getInstance().getisAimed());
     SmartDashboard.putBoolean("Claw is Closed", Claw.getInstance().isClosed());
     SmartDashboard.putBoolean("Claw is Pushed Forward", Claw.getInstance().isForward());
-    SmartDashboard.putBoolean("Cargo Kicker is Pushed Forward", Kicker.getInstance().getIsForward());
     SmartDashboard.putData("NonPIDClimb", new NonPIDClimb(.5, .5));
     SmartDashboard.putNumber("Stilt Power", 0.5);
     SmartDashboard.putNumber("Intake Power", 0.5);
