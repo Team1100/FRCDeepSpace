@@ -61,6 +61,9 @@ public class Robot extends TimedRobot {
     NavX.getInstance();
     Vision.getInstance();
 
+    //Prints out our logo to the console
+    ShowLogo.ShowLogoOnStartup();
+
     cs = CameraServer.getInstance();
     cs.startAutomaticCapture("Front Camera", 0);
     cs.startAutomaticCapture("Rear Camera", 1);
