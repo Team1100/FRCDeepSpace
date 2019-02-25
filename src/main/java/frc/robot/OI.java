@@ -10,12 +10,15 @@ package frc.robot;
 import frc.robot.commands.SwitchSides;
 import frc.robot.commands.TestingMode;
 import frc.robot.commands.claw.CloseClaw;
+import frc.robot.commands.claw.CloseClawWhenSensed;
 import frc.robot.commands.claw.OpenClaw;
+import frc.robot.commands.claw.PickupHatchHPS;
 import frc.robot.commands.claw.PlaceHatch;
 import frc.robot.commands.claw.PullClawBack;
 import frc.robot.commands.claw.PushClawForward;
 import frc.robot.commands.drive.ChangeHeading;
-import frc.robot.commands.rollers.PushBallOut;
+import frc.robot.commands.intake.IntakeUp;
+import frc.robot.commands.intake.IntakeDown;
 import frc.robot.commands.rollers.RollersIn;
 import frc.robot.commands.rollers.StopRollers;
 import frc.robot.input.AttackThree;
@@ -61,6 +64,8 @@ public class OI {
 
     xbox.getButtonA().whenPressed(new RollersIn());
     xbox.getButtonB().whenPressed(new StopRollers());
+    xbox.getButtonX().whenPressed(new CloseClawWhenSensed());
+    xbox.getButtonY().whenPressed(new PickupHatchHPS());
 
     //xbox.getButtonRightBumper().whenPressed(new RollersIn());
     //xbox.getButtonRightBumper().whenReleased(new StopRollers());
@@ -73,6 +78,8 @@ public class OI {
     //xbox.getDPad().getDown().whenPressed(new IntakeCargo());
     xbox.getDPad().getLeft().whenPressed(new OpenClaw());
     xbox.getDPad().getRight().whenPressed(new CloseClaw());
+    xbox.getDPad().getUp().whenPressed(new IntakeUp());
+    xbox.getDPad().getDown().whenPressed(new IntakeDown());
 
     xbox.getButtonLeftBumper().whenPressed(new PushClawForward());
     xbox.getButtonRightBumper().whenPressed(new PullClawBack());
