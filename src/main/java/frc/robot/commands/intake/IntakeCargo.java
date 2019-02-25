@@ -25,9 +25,10 @@ public class IntakeCargo extends CommandGroup {
 
     addParallel(new IntakeDown());
     addParallel(new RollersIn());
+    addSequential(new AcquireBall());
     /*
     addSequential(new IntakeUp());
-    addSequential(new MoveBallToChute(3));
+    addSequential(new MoveBallToChute(1));
     addSequential(new StopRollers());
     */
     // Add Commands here:
