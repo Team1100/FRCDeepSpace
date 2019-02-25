@@ -5,9 +5,8 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+package frc.robot.commands.testing;
 
-
-package frc.robot.commands.stilts;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.input.XboxController;
@@ -15,17 +14,18 @@ import frc.robot.subsystems.Stilts;
 
 
 /**
- * Used to individually test the right stilt.
+ * Used in the testing portion of the program to test both stilts.
  */
-public class TestRightStilt extends Command {
-  Stilts rightStilt;
+public class TestBothStilts extends Command {
+  Stilts rightStilt, leftStilt;
   double speed;
 
-  public TestRightStilt() {
+  public TestBothStilts() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Stilts.getInstance());
     rightStilt = new Stilts();
+    leftStilt = new Stilts();
   }
 
   // Called just before this Command runs the first time
@@ -38,6 +38,7 @@ public class TestRightStilt extends Command {
   protected void execute() {
     speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
     rightStilt.getInstance().rightExtend(speed);
+    leftStilt.getInstance().leftExtend(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

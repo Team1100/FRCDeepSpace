@@ -22,6 +22,7 @@ import frc.robot.commands.gantry.*;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.rollers.*;
 import frc.robot.commands.stilts.*;
+import frc.robot.commands.testing.*;
 import frc.robot.input.*;
 import frc.robot.subsystems.*;
 

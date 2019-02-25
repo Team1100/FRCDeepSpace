@@ -7,7 +7,7 @@
 
 
 
-package frc.robot.commands.stilts;
+package frc.robot.commands.testing;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.input.XboxController;
@@ -60,3 +60,4 @@ public class TestLeftStilt extends Command {
   protected void interrupted() {
   }
 
+}

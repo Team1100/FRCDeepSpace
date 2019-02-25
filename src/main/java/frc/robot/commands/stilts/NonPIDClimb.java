@@ -9,6 +9,7 @@ package frc.robot.commands.stilts;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.intake.ClimbWhileIntake;
+import frc.robot.commands.testing.TestingStilts;
 
 /**
  * Command group currently being used to climb onto the HAB level 3

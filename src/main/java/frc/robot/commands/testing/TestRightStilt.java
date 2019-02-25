@@ -5,55 +5,56 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.stilts;
 
+
+package frc.robot.commands.testing;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.input.XboxController;
 import frc.robot.subsystems.Stilts;
 
+
 /**
- * Used to test both stilts. Has no use anymore?
+ * Used to individually test the right stilt.
  */
-public class TestingStilts extends Command {
+public class TestRightStilt extends Command {
+  Stilts rightStilt;
+  double speed;
 
-  private Stilts stilts;
-  private double speed;
-
-  public TestingStilts(double power) {
-    requires(Stilts.getInstance());
-    stilts = Stilts.getInstance();
-    speed = power;
+  public TestRightStilt() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Stilts.getInstance());
+    rightStilt = new Stilts();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setTimeout(5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    stilts.setSpeed(speed);
+    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
+    rightStilt.getInstance().rightExtend(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    stilts.setSpeed(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    stilts.setSpeed(0);
   }
+
 }
