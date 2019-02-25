@@ -14,13 +14,14 @@ import frc.robot.commands.vision.TranslateClawToCenter;
  * This command group will center on the Human Player station and will grap a
  * hatch panel from there.
  */
-public class PickupHatchHPS extends CommandGroup {
+public class PickupHatchHPS_Vision extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public PickupHatchHPS() {
+  public PickupHatchHPS_Vision() {
     addParallel(new OpenClaw());
-    addParallel(new PushClawForward());
+    addParallel(new TranslateClawToCenter(10));
+    addSequential(new PushClawForward());
     addSequential(new CloseClaw());
     addSequential(new PullClawBack());
 
