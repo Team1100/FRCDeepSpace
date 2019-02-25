@@ -19,14 +19,14 @@ import frc.robot.subsystems.NavX;;
 public class ChangeHeading extends PIDCommand {
  
   private PIDController pidController = getPIDController();
-	private AHRS ahrs = NavX.getInstance().getNavX();
-	private int countOnTarget;
-	
-	/**
-	 * Uses Drive subsystem. Sets up pidController.
-	 * @param target desired heading for robot, based on position set when robot was enabled (0)
-	 * @param speed the limiting speed of the robot while turning
-	 */
+  private AHRS ahrs = NavX.getInstance().getNavX();
+  private int countOnTarget;
+  
+  /**
+   * Uses Drive subsystem. Sets up pidController.
+   * @param target desired heading for robot, based on position set when robot was enabled (0)
+   * @param speed the limiting speed of the robot while turning
+   */
     public ChangeHeading(double target, double speed) {
       super(.067, .02, .1);
       ahrs.zeroYaw();
@@ -43,7 +43,7 @@ public class ChangeHeading extends PIDCommand {
      * Returns the input for the PID controller. Called by that controller.
      */
     protected double returnPIDInput() {
-        return ahrs.getYaw();
+      return ahrs.getYaw();
     }
     
     /**
@@ -51,7 +51,7 @@ public class ChangeHeading extends PIDCommand {
      * PID controller.
      */
     protected void usePIDOutput(double output) {
-    	Drive.getInstance().tankDrive(output,-output); // TODO: Are the signs still correct?
+      Drive.getInstance().tankDrive(output,-output); // TODO: Are the signs still correct?
     }
     
     /**
@@ -59,16 +59,16 @@ public class ChangeHeading extends PIDCommand {
      * @return Boolean representing whether the robot is facing the correct heading or not
      */
     protected boolean isFinished() {
-    	if (pidController.onTarget()) {
-    		if (countOnTarget >= 3) {
-    			return true;
-    		}
-    		countOnTarget++;
-    		
-    	} else {
-    		countOnTarget = 0;
-    	}
-    	return false;
-}
+      if (pidController.onTarget()) {
+        if (countOnTarget >= 3) {
+          return true;
+        }
+        countOnTarget++;
+
+      } else {
+        countOnTarget = 0;
+      }
+      return false;
+    }
 
 }

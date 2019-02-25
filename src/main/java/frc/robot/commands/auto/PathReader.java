@@ -123,8 +123,7 @@ public class PathReader extends Command {
     double turn = 0.08 *  (-1. / 80.) * angleDifference;
     if(forward == true) {
       chassis.tankDrive(leftOutput - turn, rightOutput - turn);
-    }
-    else {
+    } else {
       chassis.tankDrive(-1*(rightOutput - turn), -1*(leftOutput - turn));
     }
     

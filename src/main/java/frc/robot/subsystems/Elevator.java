@@ -35,14 +35,14 @@ public class Elevator extends Subsystem {
    * Contructor that sets up speed controllers.
    */
   private Elevator() {
-      //TODO:Update with names and proper ports
-      left = new VictorSPX(RobotMap.E_LEFT);
-      right = new VictorSPX(RobotMap.E_RIGHT);
-      bottomSwitch = new DigitalInput(RobotMap.E_BOTTOM_SWITCH);
-      topSwitch = new DigitalInput(RobotMap.E_TOP_SWITCH);
-      encoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
-      top = 0.6;
-		  bottom = 4.2;
+    //TODO:Update with names and proper ports
+    left = new VictorSPX(RobotMap.E_LEFT);
+    right = new VictorSPX(RobotMap.E_RIGHT);
+    bottomSwitch = new DigitalInput(RobotMap.E_BOTTOM_SWITCH);
+    topSwitch = new DigitalInput(RobotMap.E_TOP_SWITCH);
+    encoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
+    top = 0.6;
+    bottom = 4.2;
   }
 
   /**
@@ -53,21 +53,21 @@ public class Elevator extends Subsystem {
     //TODO:Implement safeties using limits
     /*
     if (isAtBottom()) {
-      canGoDown = false;
+    canGoDown = false;
     } else if (isAtTop()) {
-      canGoUp = false;
+    canGoUp = false;
     }
-    
+
     if (speed < 0) {
-      canGoDown = true;
+    canGoDown = true;
     } else if (speed > 0) {
-      canGoUp = true;
+    canGoUp = true;
     }
-    
+
     if (!canGoDown && speed > 0) {
-      speed = 0;
+    speed = 0;
     } else if (!canGoUp && speed < 0) {
-      speed = 0;
+    speed = 0;
     }
     */
     left.set(ControlMode.PercentOutput, -speed);
@@ -81,39 +81,39 @@ public class Elevator extends Subsystem {
   public void extendRight(double speed){
     right.set(ControlMode.PercentOutput, -speed);
   }
-/**
- * Checks if the elevator is at level one
- */
+  /**
+   * Checks if the elevator is at level one
+   */
   public boolean isAtBottom(){
     return bottomSwitch.get();
   }
 
-/**
- * Checks if the elevator is at level two
- */
-public boolean isAtTop(){
-  return topSwitch.get();
-}
+  /**
+   * Checks if the elevator is at level two
+   */
+  public boolean isAtTop(){
+    return topSwitch.get();
+  }
 
-/**
- * Gets the lowest height possible
- * @return Lowest height of elevator
- */
-public double getBottom() {
-  return bottom;
-}
+  /**
+   * Gets the lowest height possible
+   * @return Lowest height of elevator
+   */
+  public double getBottom() {
+    return bottom;
+  }
 
-/**
- * Gets the highest height possible
- * @return Highest height of elevator
- */
-public double getTop() {
-  return top;
-}
+  /**
+   * Gets the highest height possible
+   * @return Highest height of elevator
+   */
+  public double getTop() {
+    return top;
+  }
 
-public Encoder getEncoder(){
-  return encoder;
-}
+  public Encoder getEncoder(){
+    return encoder;
+  }
 
   /**
    * Used outside of the Elevator subsystem to return an instance of Elevator subsystem.
@@ -131,5 +131,4 @@ public Encoder getEncoder(){
     // Set the default command for a subsystem here.
     //setDefaultCommand(new DefaultElevator());
   }
-
 }

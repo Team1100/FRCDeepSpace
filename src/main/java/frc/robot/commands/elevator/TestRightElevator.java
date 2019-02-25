@@ -6,49 +6,44 @@ import frc.robot.input.XboxController;
 import frc.robot.subsystems.Elevator;
 
 public class TestRightElevator extends Command {
-    double speed;
+  double speed;
 
-    public TestRightElevator() {
-        requires(Elevator.getInstance());
-    }
+  public TestRightElevator() {
+    requires(Elevator.getInstance());
+  }
 
-    /**
-     * Not Used
-     */
+  /**
+   * Not Used
+   */
+  protected void initialize() {
+  }
 
-    protected void initialize() {
-    }
+  /**
+   * Uses left stick of xbox controller to move the right side of the elevator up and down
+   */
+  protected void execute() {
+    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
+    Elevator.getInstance().extendRight(speed);
+  }
 
-    /**
-     * Uses left stick of xbox controller to move the right side of the elevator up and down
-     */
+  /**
+   * Always false because default commands never stop
+   */
+  protected boolean isFinished() {
+    return false;
+  }
 
-    protected void execute() {
-	    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
-	    Elevator.getInstance().extendRight(speed);
-    }
+  /**
+   * Not Used
+   */
+  protected void end() {
+  }
 
-    /**
-     * Always false because default commands never stop
-     */
-
-    protected boolean isFinished() {
-        return false;
-    }
-
-    /**
-     * Not Used
-     */
-
-    protected void end() {
-    }
-
-    /**
-     * Stops the elevator when interrupted.
-     */
-
-    protected void interrupted() {
-        Elevator.getInstance().extendRight(0);
-    }
+  /**
+   * Stops the elevator when interrupted.
+   */
+  protected void interrupted() {
+    Elevator.getInstance().extendRight(0);
+  }
 
 }

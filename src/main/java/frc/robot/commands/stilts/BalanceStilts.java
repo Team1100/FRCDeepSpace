@@ -20,10 +20,10 @@ public class BalanceStilts extends PIDCommand {
   private AHRS ahrs;
   private Stilts stilts;
 
-  	/**
-	  * Uses Stilts subsystem. Sets up pidController.
-	  * @param speed the limiting speed of the robot while balancing
-	  */
+  /**
+   * Uses Stilts subsystem. Sets up pidController.
+   * @param speed the limiting speed of the robot while balancing
+   */
   public BalanceStilts(double speed) {
     super(.067, .02, .1); // TODO: Tune PID inputs
     requires(Stilts.getInstance());

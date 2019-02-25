@@ -56,7 +56,7 @@ public class BallIntake extends Subsystem {
 
   public void intakeDown(double intakeSpeed) {
     //intakeSpeed = -Math.abs(intakeSpeed); // enforce negative
-  	axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed);
+    axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed);
     axis_movement_right.set(ControlMode.PercentOutput, -intakeSpeed);
   }
 

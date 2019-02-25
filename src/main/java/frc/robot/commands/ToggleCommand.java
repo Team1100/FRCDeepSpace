@@ -38,8 +38,7 @@ public class ToggleCommand extends Command {
     if(a){
       commandB.cancel();
       commandA.start();
-    }
-    else{
+    } else{
       commandA.cancel();
       commandB.start();
     }

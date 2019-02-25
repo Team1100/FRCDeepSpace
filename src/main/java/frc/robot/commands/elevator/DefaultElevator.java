@@ -28,8 +28,8 @@ public class DefaultElevator extends Command {
         speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
         //System.out.println(speed);
         //Speed is currently limited because safties have not been implemented.
-	    Elevator.getInstance().extend(speed/2);
-    	
+      Elevator.getInstance().extend(speed/2);
+      
     }
     
     /**

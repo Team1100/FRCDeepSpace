@@ -30,8 +30,8 @@ public class Stilts extends Subsystem {
   }
 
   public static Stilts getInstance() {
-		if (stilts == null) stilts = new Stilts();
-		return stilts;
+    if (stilts == null) stilts = new Stilts();
+    return stilts;
   }
   
   public void setSpeed(double speed) {

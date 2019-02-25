@@ -44,8 +44,7 @@ public class Vision extends Subsystem {
   public void setisAimed(boolean set) {
     if(set == true) {
       isAimed = true;
-    }
-    else {
+    } else {
       isAimed = false;
     }
   }
