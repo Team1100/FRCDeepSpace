@@ -9,13 +9,15 @@ package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.vision.CenterRobot;
+import frc.robot.commands.gantry.*;
 
 public class Right_RightRocket_2Hatches extends CommandGroup {
   /**
    * Add your docs here.
    */
   public Right_RightRocket_2Hatches() {
-    addSequential(new PathReader("Right_RightRocket", true));
+    addParallel(new CenterGantry());
+    addParallel(new PathReader("Right_RightRocket", true));
     addSequential(new CenterRobot(10));
     /*
     addSequential(new TranslateClawToCenter(5));
