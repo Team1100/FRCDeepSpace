@@ -8,31 +8,16 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-//import frc.robot.subsystems.BeamBreak;
-import frc.robot.commands.rollers.*;
+import frc.robot.commands.rollers.PushBallOut;
+import frc.robot.commands.rollers.StopRollers;
 
-/**
- * This command group is to be used by the operator to put the intak down
- * and run the rollers in to collect a ball.
- */
-public class IntakeCargo extends CommandGroup {
+public class ScoreCargo_RocketL1 extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public IntakeCargo() {
-    //BeamBreak beamBreak;
-    //beamBreak = BeamBreak.getInstance();
-
-    addParallel(new IntakeDown());
-    addParallel(new RollersIn());
-    addSequential(new AcquireBall());
-    addSequential(new StopIntake());
-    System.out.println("Sensed Ball");
-    /*
-    addSequential(new IntakeUp());
-    addSequential(new MoveBallToChute(1));
+  public ScoreCargo_RocketL1() {
+    addSequential(new PushBallOut(2));
     addSequential(new StopRollers());
-    */
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
