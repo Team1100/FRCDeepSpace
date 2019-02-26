@@ -91,7 +91,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", auto_chooser);
 
     //createTestingDashboard();
-
   }
 
   public void createTestingDashboard() {
