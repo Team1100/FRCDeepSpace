@@ -23,6 +23,8 @@ import frc.robot.commands.gantry.DefaultGantry;
 public class Gantry extends Subsystem {
 
   public static Gantry gantry;
+  public static final int PULSES_PER_INCH = 1000; //TODO: Adjust number when testing is done
+  public static final int INCHES_TO_CENTER = 6; //TODO: Adjust number when testing is done
   private VictorSPX gantryMotor;
   private Encoder encoder;
   private DigitalInput limitSwitch;

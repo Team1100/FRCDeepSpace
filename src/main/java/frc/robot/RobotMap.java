@@ -179,7 +179,7 @@ public class RobotMap {
   public static final int B_AXIS_MOVEMENT_LEFT = CAN_11;
   public static final int B_AXIS_MOVEMENT_RIGHT = CAN_4;
   public static final int B_BEAM_BREAK = DIO_0;
-  //public static final int B_TOP_SWITCH = DIO_MXP_2;
+  public static final int B_TOP_SWITCH = DIO_MXP_2;
 
   //[C]law
   public static final int C_CLAW_0 = PCM_0;
