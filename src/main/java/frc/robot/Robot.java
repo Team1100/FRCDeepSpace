@@ -114,7 +114,7 @@ public class Robot extends TimedRobot {
     ShuffleboardLayout intake_g3 = intake_tab.getLayout("BallCommands", BuiltInLayouts.kList);
     intake_g3.add(new IntakeCargo());
     intake_g3.add(new MoveBallToChute(1));
-    intake_g3.add(new PushBallOut());
+    intake_g3.add(new PushBallOut(5));
     ShuffleboardLayout intake_g4 = intake_tab.getLayout("HatchCommands", BuiltInLayouts.kList);
     intake_g4.add(new PickupHatchHPS());
 
