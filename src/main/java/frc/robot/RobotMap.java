@@ -199,6 +199,7 @@ public class RobotMap {
   public static final int G_GANTRY = CAN_6;
   public static final int G_ENCODER_CW = DIO_4;
   public static final int G_ENCODER_CCW = DIO_5;
+  public static final int G_LEFT_SWITCH = DIO_0; //TODO: Replace with correct DIO port 
 
   //[U]ser Input
   public static final int U_JOYSTICK_LEFT = 0;
