@@ -50,7 +50,7 @@ public class OI {
     xbox.getButtonA().whenPressed(new PushClawForward());
     xbox.getButtonB().whenPressed(new PullClawBack());
 
-    xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());
+    xbox.getButtonLeftBumper().whenPressed(new LaunchBall());
 
     /*
     xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());

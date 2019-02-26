@@ -8,17 +8,18 @@
 package frc.robot.commands.claw;
 
 import frc.robot.commands.claw.*;
+import frc.robot.commands.Wait;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class PlaceHatch extends CommandGroup {
+public class LaunchBall extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public PlaceHatch() {
+  public LaunchBall() {
 
     addSequential(new PushClawForward());
+    addSequential(new Wait(2500));
     addSequential(new OpenClaw());
-    addSequential(new PullClawBack());
 
     // Add Commands here:
     // e.g. addSequential(new Command1());
