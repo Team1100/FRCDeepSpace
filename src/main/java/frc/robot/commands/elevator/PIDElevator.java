@@ -30,7 +30,7 @@ public class PIDElevator extends PIDCommand {
     super(2.5,.4,1);
     requires(Elevator.getInstance());
     height = 1-height;
-    height *= 3.6;
+    height *= 5;
     elevator = Elevator.getInstance();
     setInputRange(elevator.getTop(), elevator.getBottom()); 
     this.height = height;
