@@ -54,6 +54,9 @@ public class DriveWhileCentered extends PIDCommand {
     } else {
       count = 0;
     }
+    if(returnPIDInput() <= 50) {
+      return true;
+    }
     return false;
   }
 
