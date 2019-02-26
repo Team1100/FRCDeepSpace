@@ -12,6 +12,10 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.auto.*;
@@ -69,6 +73,77 @@ public class Robot extends TimedRobot {
     cs.startAutomaticCapture("Front Camera", 0);
     cs.startAutomaticCapture("Rear Camera", 1);
     
+    setupAutoChooser();
+    //createTestingDashboard();
+  }
+
+  public void createTestingDashboard() {
+    // CLAW Commands
+    ShuffleboardTab claw_tab = Shuffleboard.getTab("Claw");
+    claw_tab.add(Claw.getInstance());
+    ShuffleboardLayout claw_g1 = claw_tab.getLayout("BasicOpen", BuiltInLayouts.kList);
+    claw_g1.add(new OpenClaw());
+    claw_g1.add(new CloseClaw());
+    ShuffleboardLayout claw_g2 = Shuffleboard.getTab("Claw").getLayout("BasicPush", BuiltInLayouts.kList);
+    claw_g2.add(new PushClawForward());
+    claw_g2.add(new PullClawBack());
+    ShuffleboardLayout claw_g3 = Shuffleboard.getTab("Claw").getLayout("Complex", BuiltInLayouts.kList);
+    claw_g3.add(new ClawAcquireBall());
+    claw_g3.add(new CloseClawWhenSensed());
+    claw_g3.add(new PlaceHatch());
+
+    // DRIVE commands
+    ShuffleboardTab drive_tab = Shuffleboard.getTab("Drive");
+    drive_tab.add(Drive.getInstance());
+    ShuffleboardLayout drive_g1 = drive_tab.getLayout("Basic", BuiltInLayouts.kList);
+    drive_g1.add(new DefaultDrive());
+    drive_g1.add(new ChangeHeading(0, 0.5));
+    drive_g1.add(new MeasuredDrive(0.5, 0.5));
+
+
+    // INTAKE commands
+    ShuffleboardTab intake_tab = Shuffleboard.getTab("Intake");
+    intake_tab.add(BallIntake.getInstance());
+    ShuffleboardLayout intake_g1 = intake_tab.getLayout("Basic", BuiltInLayouts.kList);
+    intake_g1.add(new DefaultIntake());
+    intake_g1.add(new IntakeDown());
+    intake_g1.add(new IntakeUp());
+    ShuffleboardLayout intake_g2 = intake_tab.getLayout("Climbing", BuiltInLayouts.kList);
+    intake_g2.add(new ClimbingIntakeDown(0.5));
+    intake_g2.add(new IncrementIntakePower(0.1));
+    ShuffleboardLayout intake_g3 = intake_tab.getLayout("BallCommands", BuiltInLayouts.kList);
+    intake_g3.add(new IntakeCargo());
+    intake_g3.add(new MoveBallToChute(1));
+    intake_g3.add(new PushBallOut());
+    ShuffleboardLayout intake_g4 = intake_tab.getLayout("HatchCommands", BuiltInLayouts.kList);
+    intake_g4.add(new PickupHatchHPS());
+
+    // KICKER commands
+
+    // ROLLERS commands
+    ShuffleboardTab rollers_tab = Shuffleboard.getTab("Rollers");
+    rollers_tab.add(Rollers.getInstance());
+    ShuffleboardLayout rollers_g1 = rollers_tab.getLayout("Basic", BuiltInLayouts.kList);
+    rollers_g1.add(new DefaultRollers());
+    rollers_g1.add(new RollersIn());
+    rollers_g1.add(new StopRollers());
+
+    // STILTS commands
+    ShuffleboardTab stilts_tab = Shuffleboard.getTab("Stilts");
+    stilts_tab.add(Stilts.getInstance());
+    ShuffleboardLayout stilts_g1 = stilts_tab.getLayout("Basic", BuiltInLayouts.kList);
+    stilts_g1.add(new Climb());
+    stilts_g1.add(new BalanceStilts(0.5));
+    stilts_g1.add(new RetractStilts());
+
+    //ELEVATOR commands
+    ShuffleboardTab elevator_tab = Shuffleboard.getTab("Elevator");
+    elevator_tab.add(Stilts.getInstance());
+    ShuffleboardLayout elevator_g1 = elevator_tab.getLayout("Basic", BuiltInLayouts.kList);
+    elevator_g1.add(new DefaultElevator());
+  }
+
+  public void setupAutoChooser() {
     //vision = Vision.getInstance();
     auto_chooser.setDefaultOption("Default Auto", new TestAutoPathCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -89,64 +164,9 @@ public class Robot extends TimedRobot {
     // auto_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", auto_chooser);
-
-    //createTestingDashboard();
   }
 
-  public void createTestingDashboard() {
-    // CLAW Commands
-    SmartDashboard.putData("Open Claw", new OpenClaw());
-    SmartDashboard.putData("Close Claw", new CloseClaw());
-    SmartDashboard.putData("PushClawForward", new PushClawForward());
-    SmartDashboard.putData("PullClawBack", new PullClawBack());
-    SmartDashboard.putData("ClawAquireBall", new ClawAcquireBall());
-
-    // DRIVE commands
-    SmartDashboard.putData("ChangeHeading", new ChangeHeading(0, 0.5));
-    SmartDashboard.putData("DefaultDrive", new DefaultDrive());
-    SmartDashboard.putData("DefaultDrive", new MeasuredDrive(0.5, 0.5));
-
-    // INTAKE commands
-    SmartDashboard.putData("ClimbingIntakeDown", new ClimbingIntakeDown(0.5));
-    SmartDashboard.putData("DefaultIntake", new DefaultIntake());
-    SmartDashboard.putData("IncrementIntakePower", new IncrementIntakePower(0.1));
-    SmartDashboard.putData("IntakeCargo", new IntakeCargo());
-    SmartDashboard.putData("IntakeDown", new IntakeDown());
-    SmartDashboard.putData("IntakeUp", new IntakeUp());
-    SmartDashboard.putData("MoveBallToChute", new MoveBallToChute(1));
-    SmartDashboard.putData("PickupHatchHPS", new PickupHatchHPS());
-    SmartDashboard.putData("PushBallOut", new PushBallOut());
-
-    // KICKER commands
-
-    // ROLLERS commands
-    SmartDashboard.putData("DefaultRollers", new DefaultRollers());
-    SmartDashboard.putData("RollersIn", new RollersIn());
-    SmartDashboard.putData("StopRollers", new StopRollers());
-
-    // STILTS commands
-    SmartDashboard.putData("Climb", new Climb());
-    SmartDashboard.putData("BalanceStilts", new BalanceStilts(0.5));
-    SmartDashboard.putData("RetractStilts", new RetractStilts());
-
-    //ELEVATOR commands
-    SmartDashboard.putData("DefaultElevator", new DefaultElevator());
-    //SmartDashboard.putData("", new ());
-    //SmartDashboard.putData("", new ());
-    //SmartDashboard.putData("", new ());
-
-  }
-
-  /**
-   * This function is called every robot packet, no matter the mode. Use
-   * this for items like diagnostics that you want ran during disabled,
-   * autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
-   */
-  @Override
-  public void robotPeriodic() {
+  public void setupTestingChooser() {
     SendableChooser<Command>  testing_chooser = new SendableChooser<>();
 
     if (AttackThree.isInTesting){
@@ -175,7 +195,18 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Testing mode", testing_chooser);
 
     SmartDashboard.putBoolean("Is In Testing", AttackThree.isInTesting);
+  }
 
+  /**
+   * This function is called every robot packet, no matter the mode. Use
+   * this for items like diagnostics that you want ran during disabled,
+   * autonomous, teleoperated and test.
+   *
+   * <p>This runs after the mode specific periodic functions, but before
+   * LiveWindow and SmartDashboard integrated updating.
+   */
+  @Override
+  public void robotPeriodic() {
   }
 
   /**
