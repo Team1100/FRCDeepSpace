@@ -4,20 +4,21 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-/*
-package frc.robot.commands.elevator;
+
+package frc.robot.commands.gantry;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.Elevator;
+import frc.robot.OI;
+import frc.robot.input.XboxController;
+import frc.robot.subsystems.Gantry;
 
-public class ElevatorLevelOne extends Command {
+public class DefaultGantry extends Command {
+  double aspeed;
 
-  Elevator elevator;
-  public ElevatorLevelOne() {
+  public DefaultGantry() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Elevator.getInstance());
-    elevator = Elevator.getInstance();
+    requires(Gantry.getInstance());
   }
 
   // Called just before this Command runs the first time
@@ -28,19 +29,19 @@ public class ElevatorLevelOne extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Elevator.getInstance().extend(1);
+    aspeed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+    Gantry.getInstance().driveGantryMotor(aspeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return elevator.isAtLevelOne();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Elevator.getInstance().extend(0);
   }
 
   // Called when another command which requires one or more of the same
@@ -49,4 +50,3 @@ public class ElevatorLevelOne extends Command {
   protected void interrupted() {
   }
 }
-*/

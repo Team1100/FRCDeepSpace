@@ -24,7 +24,7 @@ public class BallIntake extends Subsystem {
   // here. Call these from Commands.
 
   private BallIntake() {
-    rollers = new WPI_TalonSRX(RobotMap.B_ROLLERS);
+    //rollers = new WPI_TalonSRX(RobotMap.B_ROLLERS);
     axis_movement = new WPI_TalonSRX(RobotMap.B_AXIS_MOVEMENT);
   }
 

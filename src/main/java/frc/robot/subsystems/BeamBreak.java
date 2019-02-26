@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+/*
 package frc.robot.subsystems;
 
 import frc.robot.RobotMap;
@@ -42,3 +42,4 @@ public class BeamBreak extends Subsystem {
 
   }
 }
+*/

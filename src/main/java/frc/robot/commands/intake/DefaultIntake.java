@@ -7,7 +7,6 @@
 
 package frc.robot.commands.intake;
 
-import frc.robot.subsystems.BeamBreak;
 import frc.robot.commands.intake.*;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -16,15 +15,11 @@ public class DefaultIntake extends CommandGroup {
    * Add your docs here.
    */
   public DefaultIntake() {
-    BeamBreak beamBreak;
-    beamBreak = BeamBreak.getInstance();
+    //BeamBreak beamBreak;
+    //beamBreak = BeamBreak.getInstance();
 
     addParallel(new IntakeDown());
     addSequential(new RollersIn());
-    if(beamBreak.get()) {
-      addSequential(new StopRollers());
-      addSequential(new IntakeUp());
-    }
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

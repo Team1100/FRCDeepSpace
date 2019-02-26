@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -18,6 +19,7 @@ import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Gantry;
 
 
 /**
@@ -32,6 +34,7 @@ public class Robot extends TimedRobot {
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+  CameraServer cs;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -54,6 +57,9 @@ public class Robot extends TimedRobot {
     //m_chooser.addOption("Test Auto", new TestAutoPathCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
+
+    cs = CameraServer.getInstance();
+    cs.startAutomaticCapture("Gantry", 0);
   }
 
   /**
@@ -137,6 +143,12 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     SmartDashboard.putNumber("yaw",Drive.getInstance().getNavX().getYaw());
     Scheduler.getInstance().run();
+    SmartDashboard.putBoolean("Bottom", Elevator.getInstance().isAtBottom());
+    SmartDashboard.putBoolean("At L1", Elevator.getInstance().isAtLevelOne());
+    SmartDashboard.putNumber("Encoder", Elevator.getInstance().getEncoder().getDistance());
+    SmartDashboard.putBoolean("Gantry Left", Gantry.getInstance().isAtLeftLimit());
+    SmartDashboard.putBoolean("Gantry Right", Gantry.getInstance().isAtRightLimit());
+
   }
 
   /**

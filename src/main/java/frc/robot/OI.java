@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import frc.robot.commands.claw.*;
 import frc.robot.commands.intake.IntakeDown;
 import frc.robot.commands.intake.PushBallOut;
 import frc.robot.input.AttackThree;
@@ -43,12 +44,15 @@ public class OI {
     xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.1);
 
     //Now Mapping Commands to XBox 
-    /*
-    xbox.getButtonY().whenPressed(new RaiseElevatorL3());
-    xbox.getButtonX().whenPressed(new RaiseElevatorL2());
-    xbox.getButtonA().whenPressed(new RaiseElevatorL1());
-    xbox.getButtonB().whenPressed(new CollapseElevator());
+    
+    xbox.getButtonY().whenPressed(new OpenClaw());
+    xbox.getButtonX().whenPressed(new CloseClaw());
+    xbox.getButtonA().whenPressed(new PushClawForward());
+    xbox.getButtonB().whenPressed(new PullClawBack());
 
+    xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());
+
+    /*
     xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());
     
 		xbox.getDPad().getLeft().whenPressed(new PushBallOut());

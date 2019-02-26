@@ -148,22 +148,34 @@ public class RobotMap {
   public static final Port D_NAVX = SPI.Port.kMXP;
 
   //[E]levator
-  public static final int E_LEFT = PWM_2;
+  public static final int E_LEFT = PWM_6;
   public static final int E_RIGHT = PWM_3;
-  public static final int E_LEVEL_ONE_SWITCH = DIO_4;
-  public static final int E_LEVEL_TWO_SWITCH = DIO_5;
-  public static final int E_LEVEL_THREE_SWITCH = DIO_6;
+  public static final int E_BOTTOM = DIO_8;
+  public static final int E_LEVEL_ONE_SWITCH = DIO_9;
+  //public static final int E_LEVEL_TWO_SWITCH = DIO_5;
+  //public static final int E_LEVEL_THREE_SWITCH = DIO_6;
+  public static final int E_ENCODER_A = DIO_6;
+  public static final int E_ENCODER_B = DIO_7;
 
 
   //[B]allIntake
-  public static final int B_ROLLERS = PWM_6;
+  //public static final int B_ROLLERS = PWM_6\;
   public static final int B_AXIS_MOVEMENT = PWM_7;
-  public static final int B_BEAM_BREAK = DIO_0;
+  //public static final int B_BEAM_BREAK = DIO_0;
 
   //[C]law
-  public static final int C_Claw_0 = PCM_0;
-  public static final int C_Claw_1 = PCM_1;
-  public static final int C_Claw_CAN = PCM_CAN;
+  public static final int C_CLAW_OPEN = PCM_2;
+  public static final int C_CLAW_CLOSE = PCM_3;
+  public static final int C_CLAW_FORWARDS = PCM_0;
+  public static final int C_CLAW_BACKWARDS = PCM_1;
+  public static final int C_CLAW_CAN = PCM_CAN;
+
+  //[G]antry
+  public static final int G_MOTOR = PWM_2;
+  public static final int G_ENCODER_A = DIO_4;
+  public static final int G_ENCODER_B = DIO_5;
+  public static final int G_LIMIT_L = DIO_MXP_0;
+  public static final int G_LIMIT_R = DIO_MXP_1;
 
   //[U]ser Input
   public static final int U_JOYSTICK_LEFT = 0;

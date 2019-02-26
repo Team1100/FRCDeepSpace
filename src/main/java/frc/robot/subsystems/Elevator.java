@@ -11,6 +11,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.VictorSP;
 import frc.robot.RobotMap;
 import frc.robot.commands.elevator.DefaultElevator;
 
@@ -21,8 +23,12 @@ public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static Elevator elevator;
-  private WPI_TalonSRX left, right;
-  DigitalInput switchOne, switchTwo, switchThree;
+  private VictorSP left, right;
+  DigitalInput switchOne, switchTwo, switchThree, bottomSwitch;
+  Encoder elevatorEncoder;
+  double PULSE_PER_FOOT = 4458.75;
+  boolean canGoUp = true;
+  boolean canGoDown = true;
 
 
   /**
@@ -30,11 +36,14 @@ public class Elevator extends Subsystem {
    */
   private Elevator() {
       //TODO:Update with names and proper ports
-      left = new WPI_TalonSRX(RobotMap.E_LEFT);
-      right = new WPI_TalonSRX(RobotMap.E_RIGHT);
+      left = new VictorSP(RobotMap.E_LEFT);
+      right = new VictorSP(RobotMap.E_RIGHT);
+      bottomSwitch = new DigitalInput(RobotMap.E_BOTTOM);
       switchOne = new DigitalInput(RobotMap.E_LEVEL_ONE_SWITCH);
-      switchTwo = new DigitalInput(RobotMap.E_LEVEL_TWO_SWITCH);
-      switchThree = new DigitalInput(RobotMap.E_LEVEL_THREE_SWITCH);
+      elevatorEncoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
+      elevatorEncoder.setDistancePerPulse(1/PULSE_PER_FOOT);
+      //switchTwo = new DigitalInput(RobotMap.E_LEVEL_TWO_SWITCH);
+      //switchThree = new DigitalInput(RobotMap.E_LEVEL_THREE_SWITCH);
 
   }
 
@@ -44,13 +53,31 @@ public class Elevator extends Subsystem {
    */
 
   public void extend(double speed){
-    //TODO:Implement safeties using limits
+    if (isAtBottom()) {
+      canGoDown = false;
+    } else if (isAtLevelOne()) {
+      canGoUp = false;
+    }
+
+    if (speed < 0) {
+      canGoDown = true;
+    } else if (speed > 0) {
+      canGoUp = true;
+    }
+    
+    if (!canGoDown && speed > 0) {
+      speed = 0;
+    } else if (!canGoUp && speed < 0) {
+      speed = 0;
+    }
+
     left.set(speed);
     right.set(speed);
 }
 /**
  * Checks if the elevator is at level one
  */
+
   public boolean isAtLevelOne(){
     return switchOne.get();
   }
@@ -58,15 +85,23 @@ public class Elevator extends Subsystem {
 /**
  * Checks if the elevator is at level two
  */
-public boolean isAtLevelTwo(){
-  return switchTwo.get();
-}
-/**
- * Checks if the elevator is at level three
- */
-public boolean isAtLevelThree(){
-  return switchThree.get();
-}
+  public boolean isAtLevelTwo(){
+    return switchTwo.get();
+  }
+  /**
+   * Checks if the elevator is at level three
+   */
+  public boolean isAtLevelThree(){
+    return switchThree.get();
+  }
+
+  public boolean isAtBottom(){
+    return bottomSwitch.get();
+  }
+
+  public Encoder getEncoder(){
+    return elevatorEncoder;
+  }
 
   /**
    * Used outside of the Elevator subsystem to return an instance of Elevator subsystem.
