@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -24,6 +25,7 @@ public class Gantry extends Subsystem {
   public static Gantry gantry;
   private VictorSPX gantryMotor;
   private Encoder encoder;
+  private DigitalInput limitSwitch;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -40,6 +42,7 @@ public class Gantry extends Subsystem {
   private Gantry() {
     gantryMotor = new VictorSPX(RobotMap.G_GANTRY);
     encoder = new Encoder(RobotMap.G_ENCODER_CW, RobotMap.G_ENCODER_CCW);
+    limitSwitch = new DigitalInput(RobotMap.G_LEFT_SWITCH);
   }
   
   /**
@@ -58,6 +61,12 @@ public class Gantry extends Subsystem {
     return encoder;
   }
 
+  /**
+   * Checks if the gantry has reached the left side
+   */
+  public boolean isAtLeft(){
+    return limitSwitch.get();
+  }
   /**
    * Unused
    */
