@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class IntakeUp extends Command {
 
   BallIntake intake;
-  final int THREE_SECONDS = 3;
 
   public IntakeUp() {
     requires(BallIntake.getInstance());
@@ -29,7 +28,6 @@ public class IntakeUp extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setTimeout(THREE_SECONDS);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -41,7 +39,7 @@ public class IntakeUp extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return BallIntake.getInstance().isUp();
   }
 
   // Called once after isFinished returns true

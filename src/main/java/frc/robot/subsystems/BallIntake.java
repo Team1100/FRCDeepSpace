@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.intake.DefaultIntake;
@@ -24,7 +25,7 @@ public class BallIntake extends Subsystem {
   private BeamBreak bb;
   VictorSPX axis_movement_right;
   VictorSPX axis_movement_left;
-  //DigitalInput topSwitch;
+  DigitalInput topSwitch;
   boolean canGoUp, canGoDown = false;
   private double motorPower;
 
@@ -39,6 +40,7 @@ public class BallIntake extends Subsystem {
     //topSwitch = new DigitalInput(RobotMap.B_TOP_SWITCH);
     motorPower = 0;
     bb = BeamBreak.getInstance();
+    topSwitch = new DigitalInput(RobotMap.B_TOP_SWITCH);
   }
 
   public static BallIntake getInstance(){
@@ -70,9 +72,9 @@ public class BallIntake extends Subsystem {
   //}
 
 
-  //public boolean isUp() {
-    //return topSwitch.get();
-  //}
+  public boolean isUp() {
+    return topSwitch.get();
+  }
 
 
 
