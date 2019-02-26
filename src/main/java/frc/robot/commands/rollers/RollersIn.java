@@ -51,7 +51,6 @@ public class RollersIn extends Command {
     rollers.rollersIn(0);
   }
   
-  
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
