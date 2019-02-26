@@ -169,7 +169,9 @@ public class RobotMap {
   public static final int C_CLAW_FORWARDS = PCM_0;
   public static final int C_CLAW_BACKWARDS = PCM_1;
   public static final int C_CLAW_CAN = PCM_CAN;
-  public static final int C_PROX_SENS = DIO_MXP_2;
+
+  //[P]roximity Sensor
+  public static final int P_PROX_SENS = DIO_MXP_2;
 
   //[G]antry
   public static final int G_MOTOR = PWM_2;

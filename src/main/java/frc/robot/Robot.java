@@ -55,8 +55,8 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new TestAutoPathCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     //m_chooser.addOption("Test Auto", new TestAutoPathCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
-    SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
+    //SmartDashboard.putData("Auto mode", m_chooser);
+    //SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
 
     cs = CameraServer.getInstance();
     cs.startAutomaticCapture("Gantry", 0);
@@ -141,11 +141,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    SmartDashboard.putNumber("yaw",Drive.getInstance().getNavX().getYaw());
     Scheduler.getInstance().run();
     SmartDashboard.putBoolean("Bottom", Elevator.getInstance().isAtBottom());
     SmartDashboard.putBoolean("At L1", Elevator.getInstance().isAtLevelOne());
-    SmartDashboard.putNumber("Encoder", Elevator.getInstance().getEncoder().getDistance());
+    SmartDashboard.putNumber("Elevator Encoder", Elevator.getInstance().getEncoder().getDistance());
+    SmartDashboard.putNumber("Gantry Encoder", Gantry.getInstance().getEncoder().getDistance());
     SmartDashboard.putBoolean("Gantry Left", Gantry.getInstance().isAtLeftLimit());
     SmartDashboard.putBoolean("Gantry Right", Gantry.getInstance().isAtRightLimit());
 
