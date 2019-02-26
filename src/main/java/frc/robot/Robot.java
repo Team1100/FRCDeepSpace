@@ -249,9 +249,6 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     double stiltPower = SmartDashboard.getNumber("Stilt Power", 0.5);
     double intakePower = SmartDashboard.getNumber("Intake Power", 0.5);
-
-    SmartDashboard.putData("NonPIDClimb", new NonPIDClimb(stiltPower, intakePower));
-
   }
 
   /**
