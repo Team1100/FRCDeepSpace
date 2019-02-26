@@ -8,6 +8,7 @@
 package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.claw.PlaceHatch;
 import frc.robot.commands.elevator.PIDElevator;
 
 public class PIDElevatorL2 extends CommandGroup {
@@ -16,6 +17,7 @@ public class PIDElevatorL2 extends CommandGroup {
    */
   public PIDElevatorL2() {
     addSequential(new PIDElevator(.45));
+    addSequential(new PlaceHatch());
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
