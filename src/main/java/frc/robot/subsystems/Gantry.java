@@ -24,6 +24,8 @@ public class Gantry extends Subsystem {
   Encoder encoder;
   DigitalInput leftLimit, rightLimit;
   public static Gantry gantry;
+  boolean canGoLeft = true;
+  boolean canGoRight = true;
 
   private Gantry(){
     gantryMotor = new VictorSP(RobotMap.G_MOTOR);
@@ -40,6 +42,18 @@ public class Gantry extends Subsystem {
   }
 
   public void driveGantryMotor(double speed){
+    if(isAtLeftLimit()){
+      canGoLeft = false;
+    }else if(isAtRightLimit()){
+      canGoRight = false;
+    }
+
+    if(!canGoLeft && speed < 0){
+      speed = 0;
+    }else if(!canGoRight && speed > 0){
+      speed = 0;
+    }
+    
     gantryMotor.set(speed);
   }
 

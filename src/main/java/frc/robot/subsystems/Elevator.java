@@ -58,16 +58,10 @@ public class Elevator extends Subsystem {
     } else if (isAtLevelOne()) {
       canGoUp = false;
     }
-
-    if (speed < 0) {
-      canGoDown = true;
-    } else if (speed > 0) {
-      canGoUp = true;
-    }
     
-    if (!canGoDown && speed > 0) {
+    if (!canGoDown && speed < 0) {
       speed = 0;
-    } else if (!canGoUp && speed < 0) {
+    } else if (!canGoUp && speed > 0) {
       speed = 0;
     }
 
