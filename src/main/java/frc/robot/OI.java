@@ -47,10 +47,12 @@ public class OI {
     
     xbox.getButtonY().whenPressed(new OpenClaw());
     xbox.getButtonX().whenPressed(new CloseClaw());
-    xbox.getButtonA().whenPressed(new PushClawForward());
-    xbox.getButtonB().whenPressed(new PullClawBack());
+    xbox.getButtonB().whenPressed(new PushClawForward());
+    xbox.getButtonA().whenPressed(new PullClawBack());
 
-    xbox.getButtonLeftBumper().whenPressed(new LaunchBall());
+    //xbox.getDPad().getRight().whenPressed(new LaunchBall());
+    //xbox.getDPad().getLeft().whenPressed(new CloseOnBall());
+    xbox.getDPad().getRight().whenPressed(new PickupHatch());
 
     /*
     xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());

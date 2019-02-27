@@ -42,15 +42,17 @@ public class Gantry extends Subsystem {
   }
 
   public void driveGantryMotor(double speed){
+    canGoLeft = true;
+    canGoRight = true;
     if(isAtLeftLimit()){
       canGoLeft = false;
     }else if(isAtRightLimit()){
       canGoRight = false;
     }
 
-    if(!canGoLeft && speed < 0){
+    if(!canGoLeft && speed > 0){
       speed = 0;
-    }else if(!canGoRight && speed > 0){
+    }else if(!canGoRight && speed < 0){
       speed = 0;
     }
     

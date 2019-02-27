@@ -20,6 +20,7 @@ import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Gantry;
+import frc.robot.subsystems.ProximitySensor;
 
 
 /**
@@ -148,7 +149,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Gantry Encoder", Gantry.getInstance().getEncoder().getDistance());
     SmartDashboard.putBoolean("Gantry Left", Gantry.getInstance().isAtLeftLimit());
     SmartDashboard.putBoolean("Gantry Right", Gantry.getInstance().isAtRightLimit());
-
+    SmartDashboard.putBoolean("Prox", ProximitySensor.getInstance().isTriggered());
   }
 
   /**

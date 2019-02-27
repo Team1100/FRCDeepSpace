@@ -53,6 +53,8 @@ public class Elevator extends Subsystem {
    */
 
   public void extend(double speed){
+    canGoDown = true;
+    canGoUp = true;
     if (isAtBottom()) {
       canGoDown = false;
     } else if (isAtLevelOne()) {

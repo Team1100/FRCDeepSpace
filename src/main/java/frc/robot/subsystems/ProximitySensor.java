@@ -25,7 +25,7 @@ public class ProximitySensor extends Subsystem {
   }
 
   public Boolean isTriggered(){
-    return prox.get();
+    return !prox.get();
   }
 
   public static ProximitySensor getInstance(){

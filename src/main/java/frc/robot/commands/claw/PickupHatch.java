@@ -7,20 +7,20 @@
 
 package frc.robot.commands.claw;
 
-import frc.robot.commands.claw.*;
-import frc.robot.commands.Wait;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.*;
 
-public class LaunchBall extends CommandGroup {
+public class PickupHatch extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public LaunchBall() {
-
+  public PickupHatch() {
+    //addSequential(new OpenClaw());
     addSequential(new PushClawForward());
-    addSequential(new Wait(0.08));
-    addSequential(new OpenClaw());
-
+    addSequential(new Wait(0.25));
+    addSequential(new CloseClaw());
+    addSequential(new Wait(0.25));
+    addSequential(new PullClawBack());
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
