@@ -8,7 +8,7 @@
 package frc.robot.commands.claw;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.claw.*;
+import frc.robot.commands.*;
 import frc.robot.commands.vision.TranslateClawToCenter;
 /**
  * This command group will center on the Human Player station and will grap a
@@ -22,7 +22,9 @@ public class PickupHatchHPS_Vision extends CommandGroup {
     addParallel(new OpenClaw());
     addParallel(new TranslateClawToCenter(10));
     addSequential(new PushClawForward());
+    addSequential(new Wait(0.25));
     addSequential(new CloseClaw());
+    addSequential(new Wait(0.25));
     addSequential(new PullClawBack());
 
     // Add Commands here:

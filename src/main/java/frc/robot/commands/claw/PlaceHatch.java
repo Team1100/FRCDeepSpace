@@ -7,6 +7,8 @@
 
 package frc.robot.commands.claw;
 
+import frc.robot.commands.*;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class PlaceHatch extends CommandGroup {
@@ -16,7 +18,9 @@ public class PlaceHatch extends CommandGroup {
    */
   public PlaceHatch() {
     addSequential(new PushClawForward());
+    addSequential(new Wait(0.25));
     addSequential(new OpenClaw());
+    addSequential(new Wait(0.25));
     addSequential(new PullClawBack());
 
     // Add Commands here:

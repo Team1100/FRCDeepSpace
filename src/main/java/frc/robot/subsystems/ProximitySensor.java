@@ -15,12 +15,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ProximitySensor extends Subsystem {
 
   private static ProximitySensor proximitySensor;
-  private DigitalInput digitalInput;
+  private DigitalInput prox;
 
   public ProximitySensor() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    digitalInput = new DigitalInput(RobotMap.E_PROXIMITY);
+    prox = new DigitalInput(RobotMap.E_PROXIMITY);
   }
 
   public static ProximitySensor getInstance(){
@@ -30,12 +30,12 @@ public class ProximitySensor extends Subsystem {
     return proximitySensor;
   }
 
-  public DigitalInput getDigitalInput() {
-    return digitalInput;
+  public DigitalInput getProximitySensor() {
+    return prox;
   }
 
   public boolean get() {
-    return digitalInput.get();
+    return !prox.get();
   }
 
   public void initDefaultCommand() {
