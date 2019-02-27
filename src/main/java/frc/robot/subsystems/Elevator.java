@@ -25,8 +25,9 @@ public class Elevator extends Subsystem {
   private VictorSPX left, right;
   DigitalInput bottomSwitch, topSwitch;
   Encoder encoder;
-  double bottom;
+  double PULSE_PER_FOOT = 4458.75;
   double top;
+  double bottom;
   boolean canGoUp = true;
   boolean canGoDown = true;
 
@@ -41,8 +42,9 @@ public class Elevator extends Subsystem {
     bottomSwitch = new DigitalInput(RobotMap.E_BOTTOM_SWITCH);
     topSwitch = new DigitalInput(RobotMap.E_TOP_SWITCH);
     encoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
-    top = 0.6;
-    bottom = 4.2;
+    encoder.setDistancePerPulse(1/PULSE_PER_FOOT);
+    bottom = 0;
+    top = 7;
   }
 
   /**
@@ -50,26 +52,22 @@ public class Elevator extends Subsystem {
    * @param speed Speed of the elevator
    */
   public void extend(double speed){
-    //TODO:Implement safeties using limits
-    /*
-    if (isAtBottom()) {
-    canGoDown = false;
-    } else if (isAtTop()) {
-    canGoUp = false;
-    }
-
-    if (speed < 0) {
     canGoDown = true;
-    } else if (speed > 0) {
     canGoUp = true;
-    }
 
-    if (!canGoDown && speed > 0) {
-    speed = 0;
-    } else if (!canGoUp && speed < 0) {
-    speed = 0;
+    if (isAtBottom()) {
+      canGoDown = false;
+      bottom = encoder.getDistance();
+    } else if (isAtTop()) {
+      canGoUp = false;
+      top = encoder.getDistance();
     }
-    */
+    
+    if (!canGoDown && speed < 0) {
+      speed = 0;
+    } else if (!canGoUp && speed > 0) {
+      speed = 0;
+    }
     left.set(ControlMode.PercentOutput, -speed);
     right.set(ControlMode.PercentOutput, -speed);
   }
