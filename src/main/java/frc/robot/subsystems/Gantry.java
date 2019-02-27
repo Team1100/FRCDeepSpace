@@ -27,7 +27,10 @@ public class Gantry extends Subsystem {
   public static final int INCHES_TO_CENTER = 6; //TODO: Adjust number when testing is done
   private VictorSPX gantryMotor;
   private Encoder encoder;
-  private DigitalInput limitSwitch;
+  private DigitalInput leftLimit;
+  private DigitalInput rightLimit;
+  private Boolean canGoLeft = true;
+  private Boolean canGoRight = true;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -44,7 +47,8 @@ public class Gantry extends Subsystem {
   private Gantry() {
     gantryMotor = new VictorSPX(RobotMap.G_GANTRY);
     encoder = new Encoder(RobotMap.G_ENCODER_CW, RobotMap.G_ENCODER_CCW);
-    limitSwitch = new DigitalInput(RobotMap.G_LEFT_SWITCH);
+    leftLimit = new DigitalInput(RobotMap.G_LEFT_SWITCH);
+    rightLimit = new DigitalInput(RobotMap.G_RIGHT_SWITCH);
   }
   
   /**
@@ -52,6 +56,19 @@ public class Gantry extends Subsystem {
    * @param speed Speed to drive the gantry at. Value from -1 to 1.
    */
   public void translateGantry(double speed){
+    canGoLeft = true;
+    canGoRight = true;
+    if(isAtLeft()){
+      canGoLeft = false;
+    }else if(isAtRight()){
+      canGoRight = false;
+    }
+
+    if(!canGoLeft && speed > 0){
+      speed = 0;
+    }else if(!canGoRight && speed < 0){
+      speed = 0;
+}
     gantryMotor.set(ControlMode.PercentOutput, speed);
   }
 
@@ -67,8 +84,16 @@ public class Gantry extends Subsystem {
    * Checks if the gantry has reached the left side
    */
   public boolean isAtLeft(){
-    return limitSwitch.get();
+    return !leftLimit.get();
   }
+
+  /**
+   * Checks if the gantry has reached the right side
+   */
+  public boolean isAtRight(){
+    return !rightLimit.get();
+  }
+
   /**
    * Unused
    */
