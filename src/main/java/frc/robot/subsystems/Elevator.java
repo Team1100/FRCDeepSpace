@@ -29,6 +29,8 @@ public class Elevator extends Subsystem {
   double PULSE_PER_FOOT = 4458.75;
   boolean canGoUp = true;
   boolean canGoDown = true;
+  double bottom = 0;
+  double top = 0.413;
 
 
   /**
@@ -57,8 +59,10 @@ public class Elevator extends Subsystem {
     canGoUp = true;
     if (isAtBottom()) {
       canGoDown = false;
+      bottom = elevatorEncoder.getDistance();
     } else if (isAtLevelOne()) {
       canGoUp = false;
+      top = elevatorEncoder.getDistance();
     }
     
     if (!canGoDown && speed < 0) {
@@ -97,6 +101,14 @@ public class Elevator extends Subsystem {
 
   public Encoder getEncoder(){
     return elevatorEncoder;
+  }
+
+  public double getTop(){
+    return top;
+  }
+
+  public double getBottom(){
+    return bottom;
   }
 
   /**

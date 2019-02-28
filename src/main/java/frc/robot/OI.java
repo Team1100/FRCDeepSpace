@@ -8,10 +8,12 @@
 package frc.robot;
 
 import frc.robot.commands.claw.*;
+import frc.robot.commands.elevator.*;
 import frc.robot.commands.intake.IntakeDown;
 import frc.robot.commands.intake.PushBallOut;
 import frc.robot.input.AttackThree;
 import frc.robot.input.XboxController;
+import frc.robot.subsystems.Elevator;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -50,14 +52,17 @@ public class OI {
     xbox.getButtonB().whenPressed(new PushClawForward());
     xbox.getButtonA().whenPressed(new PullClawBack());
 
-    //xbox.getDPad().getRight().whenPressed(new LaunchBall());
-    //xbox.getDPad().getLeft().whenPressed(new CloseOnBall());
+    xbox.getButtonStart().whenPressed(new LaunchBall());
     xbox.getDPad().getRight().whenPressed(new PickupHatch());
+    xbox.getButtonLeftBumper().whenPressed(new CloseOnBall());
+    xbox.getButtonRightBumper().whenPressed(new DeployHatch());
+    xbox.getButtonBack().whenPressed(new PIDElevator(((Elevator.getInstance().getTop())/2)));
 
     /*
     xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());
     
-		xbox.getDPad().getLeft().whenPressed(new PushBallOut());
+    xbox.getDPad().getLeft().whenPressed(new PushBallOut());
+    
     xbox.getDPad().getDown().whenPressed(new IntakeDown());
     xbox.getDPad().getUp().whenPressed(new IntakeUp());
     */

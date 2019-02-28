@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+/*
 package frc.robot.commands.auto;
 
 import java.io.File;
@@ -27,6 +27,7 @@ public class TestAutoPathCommand extends Command {
 
   EncoderFollower leftFollower;
   EncoderFollower rightFollower;
+  private static final String k_path_name = "/src/main/deploy/";
 
   Drive chassis = Drive.getInstance();
 
@@ -50,11 +51,12 @@ public class TestAutoPathCommand extends Command {
   public TestAutoPathCommand() {
     requires(Drive.getInstance());
 
-    leftCSV = new File("/home/lvuser/deploy/Unnamed.left.pf1.csv");
-    rightCSV = new File("/home/lvuser/deploy/Unnamed.right.pf1.csv");
+    leftCSV = new File("/home/lvuser/deploy/left_pf1.csv");
+    rightCSV = new File("/home/lvuser/deploy/right_pf1.csv");
 
-    leftTrajectory = Pathfinder.readFromCSV(leftCSV);
-    rightTrajectory = Pathfinder.readFromCSV(rightCSV);
+    //leftTrajectory = Pathfinder.readFromCSV(leftCSV);
+    //rightTrajectory = Pathfinder.readFromCSV(rightCSV);
+    leftTrajectory = PathfinderFRC.getTrajectory();
 
     notifier = new Notifier(new RunProfile());
     dt = leftTrajectory.get(0).dt;
@@ -132,3 +134,4 @@ public class TestAutoPathCommand extends Command {
     }
   }
 }
+*/

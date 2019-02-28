@@ -14,9 +14,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.drive.ChangeHeading;
-import frc.robot.commands.auto.*;
+import frc.robot.commands.elevator.PIDElevator;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.Claw;
+//import frc.robot.commands.auto.*;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Gantry;
@@ -53,7 +54,7 @@ public class Robot extends TimedRobot {
     Claw.getInstance();
     BallIntake.getInstance();
     
-    m_chooser.setDefaultOption("Default Auto", new TestAutoPathCommand());
+    //m_chooser.setDefaultOption("Default Auto", new TestAutoPathCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     //m_chooser.addOption("Test Auto", new TestAutoPathCommand());
     //SmartDashboard.putData("Auto mode", m_chooser);
@@ -150,6 +151,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Gantry Left", Gantry.getInstance().isAtLeftLimit());
     SmartDashboard.putBoolean("Gantry Right", Gantry.getInstance().isAtRightLimit());
     SmartDashboard.putBoolean("Prox", ProximitySensor.getInstance().isTriggered());
+    SmartDashboard.putNumber("Top", Elevator.getInstance().getTop());
+    SmartDashboard.putNumber("Top", Elevator.getInstance().getTop());
+    SmartDashboard.putNumber("Bottom", Elevator.getInstance().getBottom());
   }
 
   /**

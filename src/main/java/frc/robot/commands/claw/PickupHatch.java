@@ -15,7 +15,8 @@ public class PickupHatch extends CommandGroup {
    * Add your docs here.
    */
   public PickupHatch() {
-    //addSequential(new OpenClaw());
+    addSequential(new OpenClaw());
+    addSequential(new Wait(0.15));
     addSequential(new PushClawForward());
     addSequential(new Wait(0.25));
     addSequential(new CloseClaw());

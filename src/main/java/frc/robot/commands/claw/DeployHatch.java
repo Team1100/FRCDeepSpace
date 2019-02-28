@@ -8,17 +8,19 @@
 package frc.robot.commands.claw;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.Wait;
+import frc.robot.commands.*;
 
-public class CloseOnBall extends CommandGroup {
+public class DeployHatch extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public CloseOnBall() {
+  public DeployHatch() {
+    //addSequential(new OpenClaw());
+    addSequential(new PushClawForward());
+    addSequential(new Wait(0.25));
     addSequential(new OpenClaw());
-    addSequential(new AcquireBall());
-    addSequential(new Wait(0.1));
-    addSequential(new CloseClaw());
+    addSequential(new Wait(0.25));
+    addSequential(new PullClawBack());
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
