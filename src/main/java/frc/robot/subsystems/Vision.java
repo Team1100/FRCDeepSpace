@@ -19,6 +19,8 @@ public class Vision extends Subsystem {
   // here. Call these from Commands.
   public static Vision vision;
   public static NetworkTable nt;
+  private static boolean canAim = false;
+  private static boolean isAimed = false;
 
   /**
    * Used outside of the Vision subsystem to return an instance of Vision subsystem.
@@ -37,6 +39,25 @@ public class Vision extends Subsystem {
   
   public double getCX() {
     return nt.getEntry("centerx").getDouble(-1);
+  }
+
+  public void setisAimed(boolean set) {
+    if(set == true) {
+      isAimed = true;
+    } else {
+      isAimed = false;
+    }
+  }
+
+  public boolean getisAimed(){
+    return isAimed;
+  }
+
+  public boolean getcanAim(){
+    if (Vision.getInstance().getCX() != -1) {
+      canAim = true;
+    }
+    return canAim;
   }
 
   public double getCY() {
