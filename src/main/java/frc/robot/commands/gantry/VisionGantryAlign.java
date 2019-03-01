@@ -5,27 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.claw;
+package frc.robot.commands.gantry;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.robot.commands.*;
 import frc.robot.subsystems.Gantry;
 
-public class DeployHatch extends CommandGroup {
+public class VisionGantryAlign extends CommandGroup {
   /**
    * Add your docs here.
    */
-
-  public DeployHatch() {
-    Gantry.getInstance().stopVisionGantry = true;
-    //addSequential(new OpenClaw());
-    addSequential(new PushClawForward());
-    addSequential(new Wait(0.25));
-    addSequential(new OpenClaw());
-    addSequential(new Wait(0.25));
-    addSequential(new PullClawBack());
-    Gantry.getInstance().stopVisionGantry = false;
+  public VisionGantryAlign(double setpoint) {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -42,5 +31,10 @@ public class DeployHatch extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
+    
+    while(!Gantry.getInstance().stopVisionGantry){
+      addSequential(new PIDGantry(Gantry.getInstance().calculateGantryPosition()));
+    }
+
   }
 }

@@ -7,6 +7,7 @@
 package frc.robot.commands.elevator;
 
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Gantry;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
