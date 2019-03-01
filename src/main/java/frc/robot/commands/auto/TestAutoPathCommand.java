@@ -151,7 +151,7 @@ public class TestAutoPathCommand extends Command {
     
     double turn = 0.08 *  (-1. / 80.) * angleDifference;
     
-    chassis.tankDrive(leftOutput - turn, rightOutput - turn);
+    chassis.tankDrive(rightOutput - turn, leftOutput - turn);
     
     segmentNumber++;
     }
