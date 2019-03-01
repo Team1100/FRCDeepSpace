@@ -52,6 +52,12 @@ public class RobotMap {
 	private final static int PCM_CAN = 17;
 	private final static int PCM_CAN_LED = 1;
 
+	// List of Talon SRX CAN IDs
+	private final static int SRX_CAN_0 = 0;
+	private final static int SRX_CAN_1 = 1;
+	private final static int SRX_CAN_2 = 2;
+	private final static int SRX_CAN_3 = 3;
+
 	// List of CAN IDs
 	private final static int CAN_0 = 0; //D_BACK_RIGHT
 	private final static int CAN_1 = 1; //D_FRONT_RIGHT
@@ -94,10 +100,10 @@ public class RobotMap {
 	private final static int DIO_3 = 3;
 	private final static int DIO_4 = 4;
 	private final static int DIO_5 = 5;
-	private final static int DIO_6 = 6; //D_LEFT_ENCODER_A
-	private final static int DIO_7 = 7; //D_LEFT_ENCODER_B
-	private final static int DIO_8 = 8; //D_RIGHT_ENCODER_A
-	private final static int DIO_9 = 9; //D_RIGHT_ENCODER_B
+	private final static int DIO_6 = 6;
+	private final static int DIO_7 = 7;
+	private final static int DIO_8 = 8;
+	private final static int DIO_9 = 9;
 
 	// see https://www.pdocs.kauailabs.com/navx-mxp/installation/io-expansion/
 	private final static int DIO_MXP_0 = 10;
@@ -153,11 +159,11 @@ public class RobotMap {
   public static final int D_FRONT_RIGHT = CAN_1;
   public static final int D_BACK_LEFT = CAN_15;
   public static final int D_BACK_RIGHT = CAN_0;
-  public static final Port D_NAVX = SPI.Port.kMXP;
   public static final int D_ENCODER_LEFT_A = DIO_6;
   public static final int D_ENCODER_LEFT_B = DIO_7;
   public static final int D_ENCODER_RIGHT_A = DIO_8;
   public static final int D_ENCODER_RIGHT_B = DIO_9;
+  public static final Port D_NAVX = SPI.Port.kMXP;
   
   //[E]levator
   public static final int E_LEFT = CAN_13;
@@ -165,9 +171,9 @@ public class RobotMap {
   public static final int E_TOP_SWITCH = DIO_1;
   public static final int E_BOTTOM_SWITCH = DIO_2;
   public static final int E_POT = ANALOG_0;
+  public static final int E_PROXIMITY = DIO_3;
   public static final int E_ENCODER_A = DIO_MXP_0;
   public static final int E_ENCODER_B = DIO_MXP_1;
-  public static final int E_PROXIMITY = DIO_3;
 
 
   //[S]tilts
@@ -182,10 +188,10 @@ public class RobotMap {
   public static final int B_TOP_SWITCH = DIO_MXP_2;
 
   //[C]law
-  public static final int C_CLAW_0 = PCM_0;
-  public static final int C_CLAW_1 = PCM_1;
-  public static final int C_CLAW_EXTEND = PCM_2;
-  public static final int C_CLAW_RETRACT = PCM_3;
+  public static final int C_CLAW_OPEN = PCM_0;
+  public static final int C_CLAW_CLOSE = PCM_1;
+  public static final int C_CLAW_FORWARDS = PCM_2;
+  public static final int C_CLAW_BACKWARDS = PCM_3;
   public static final int C_CLAW_CAN = PCM_CAN;
 
   //[K]icker
@@ -195,12 +201,12 @@ public class RobotMap {
 
 
   //[G]antry
-  //TODO: Update with proper ports
-  public static final int G_GANTRY = CAN_6;
-  public static final int G_ENCODER_CW = DIO_4;
-  public static final int G_ENCODER_CCW = DIO_5;
-  public static final int G_LEFT_SWITCH = DIO_MXP_3; //TODO: Replace with correct DIO port 
-  public static final int G_RIGHT_SWITCH = DIO_MXP_4;
+  public static final int G_MOTOR = CAN_6;
+  public static final int G_ENCODER_A = DIO_4;
+  public static final int G_ENCODER_B = DIO_5;
+  public static final int G_LIMIT_L = DIO_MXP_3; //TODO: Replace with correct DIO port 
+  public static final int G_LIMIT_R = DIO_MXP_4;
+
   //[U]ser Input
   public static final int U_JOYSTICK_LEFT = 0;
   public static final int U_JOYSTICK_RIGHT = 1;

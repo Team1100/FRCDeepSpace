@@ -45,10 +45,10 @@ public class Gantry extends Subsystem {
    * Sets up motors and encoders that are present on the Gantry
    */
   private Gantry() {
-    gantryMotor = new VictorSPX(RobotMap.G_GANTRY);
-    encoder = new Encoder(RobotMap.G_ENCODER_CW, RobotMap.G_ENCODER_CCW);
-    leftLimit = new DigitalInput(RobotMap.G_LEFT_SWITCH);
-    rightLimit = new DigitalInput(RobotMap.G_RIGHT_SWITCH);
+    gantryMotor = new VictorSPX(RobotMap.G_MOTOR);
+    encoder = new Encoder(RobotMap.G_ENCODER_A, RobotMap.G_ENCODER_B);
+    leftLimit = new DigitalInput(RobotMap.G_LIMIT_L);
+    rightLimit = new DigitalInput(RobotMap.G_LIMIT_R);
   }
   
   /**
