@@ -48,8 +48,8 @@ public class TestAutoPathCommand extends Command {
 
     ioerror = false;
 
-    leftCSV = new File("/home/lvuser/deploy/paths/left_pf1.csv");
-    rightCSV = new File("/home/lvuser/deploy/paths/right_pf1.csv");
+    leftCSV = new File("/home/lvuser/deploy/output/Unnamed.left.pf1.csv");
+    rightCSV = new File("/home/lvuser/deploy/output/Unnamed.right.pf1.csv");
 
     try {
       leftTrajectory = Pathfinder.readFromCSV(leftCSV);
