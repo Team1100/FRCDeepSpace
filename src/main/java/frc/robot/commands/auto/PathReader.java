@@ -8,6 +8,7 @@
 package frc.robot.commands.auto;
 
 import java.io.File;
+import java.io.IOException;
 
 import edu.wpi.first.wpilibj.Notifier;
 import jaci.pathfinder.Pathfinder;
@@ -42,15 +43,31 @@ public class PathReader extends Command {
 
   boolean forward;
   
+  boolean ioerror = false;
   
   public PathReader(String FileName, boolean forward) {
     requires(Drive.getInstance());
+
+    ioerror = false;
+
     this.forward = forward;
     leftCSV = new File("/home/lvuser/deploy/output/" + FileName + ".left.pf1.csv");
     rightCSV = new File("/home/lvuser/deploy/output/" + FileName + ".right.pf1.csv");
 
-    leftTrajectory = Pathfinder.readFromCSV(leftCSV);
-    rightTrajectory = Pathfinder.readFromCSV(rightCSV);
+    try {
+      leftTrajectory = Pathfinder.readFromCSV(leftCSV);
+      rightTrajectory = Pathfinder.readFromCSV(rightCSV);
+    } catch (IOException e) {
+      System.out.println("Error reading pathweaver CSV file!");
+      e.printStackTrace();
+      ioerror = true;
+    }
+    
+    // If an IO Error happened, then return early and do not use
+    // left/right trajectory variables
+    if (ioerror) {
+      return;
+    }
 
     notifier = new Notifier(new RunProfile());
     dt = leftTrajectory.get(0).dt;
@@ -63,6 +80,11 @@ public class PathReader extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    // If an IO Error happened in the constructor,
+    // then do not initialize anything
+    if (ioerror) {
+      return;
+    }
     leftFollower = new EncoderFollower(leftTrajectory);
     rightFollower = new EncoderFollower(rightTrajectory);
 
@@ -87,7 +109,11 @@ public class PathReader extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    System.out.println("Finished");
+    // If an IOError happened in the constructor, then
+    // this command is done.
+    if (ioerror) {
+      return true;
+    }
     return leftFollower.isFinished() && rightFollower.isFinished();
     //return false;
   }
@@ -95,6 +121,11 @@ public class PathReader extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    // If an IOError happened in the constructor, then
+    // this command is done.
+    if (ioerror) {
+      return;
+    }
     notifier.stop();
     chassis.tankDrive(0,0);
   }
