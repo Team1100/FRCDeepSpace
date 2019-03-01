@@ -26,15 +26,15 @@ public class Vision extends Subsystem {
    * Used outside of the Vision subsystem to return an instance of Vision subsystem.
    * @return Returns instance of Vision subsystem formed from constructor.
    */
+
+   private Vision(){
+     nt = NetworkTableInstance.getDefault().getTable("Pi");
+   }
   public static Vision getInstance(){
     if (vision == null){
       vision = new Vision();
     }
     return vision;
-  }
-
-  private Vision(){
-    nt = NetworkTableInstance.getDefault().getTable("Pi");
   }
   
   public double getCX() {
