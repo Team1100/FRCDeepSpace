@@ -11,11 +11,12 @@ import java.io.File;
 import java.io.IOException;
 
 import edu.wpi.first.wpilibj.Notifier;
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.Drive;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
+
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.subsystems.Drive;
 
 public class TestAutoPathCommand extends Command {
 
@@ -41,9 +42,11 @@ public class TestAutoPathCommand extends Command {
   double v = 1 / 12;
   double a = 0;
   
-  
+
   public TestAutoPathCommand() {
     requires(Drive.getInstance());
+
+    ioerror = false;
 
     leftCSV = new File("/home/lvuser/deploy/output/Unnamed.left.pf1.csv");
     rightCSV = new File("/home/lvuser/deploy/output/Unnamed.right.pf1.csv");
@@ -56,7 +59,7 @@ public class TestAutoPathCommand extends Command {
       e.printStackTrace();
       ioerror = true;
     }
-
+    
     // If an IO Error happened, then return early and do not use
     // left/right trajectory variables
     if (ioerror) {
