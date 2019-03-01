@@ -1,4 +1,4 @@
-/*----------------------------------------------------------------------------*/
+\/*----------------------------------------------------------------------------*/
 /* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import edu.wpi.first.wpilibj.Notifier;
 import jaci.pathfinder.Pathfinder;
+import jaci.pathfinder.PathfinderFRC;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
 
@@ -48,12 +49,9 @@ public class TestAutoPathCommand extends Command {
 
     ioerror = false;
 
-    leftCSV = new File("/home/lvuser/deploy/output/Unnamed.left.pf1.csv");
-    rightCSV = new File("/home/lvuser/deploy/output/Unnamed.right.pf1.csv");
-
     try {
-      leftTrajectory = Pathfinder.readFromCSV(leftCSV);
-      rightTrajectory = Pathfinder.readFromCSV(rightCSV);
+      leftTrajectory = PathfinderFRC.getTrajectory("left");
+      rightTrajectory = PathfinderFRC.getTrajectory("right");
     } catch (IOException e) {
       System.out.println("Error reading pathweaver CSV file!");
       e.printStackTrace();

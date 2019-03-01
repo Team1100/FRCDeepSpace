@@ -17,6 +17,8 @@ import jaci.pathfinder.followers.EncoderFollower;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Drive;
+import jaci.pathfinder.PathfinderFRC;
+
 
 public class PathReader extends Command {
 
@@ -50,13 +52,9 @@ public class PathReader extends Command {
 
     ioerror = false;
 
-    this.forward = forward;
-    leftCSV = new File("/home/lvuser/deploy/output/" + FileName + ".left.pf1.csv");
-    rightCSV = new File("/home/lvuser/deploy/output/" + FileName + ".right.pf1.csv");
-
     try {
-      leftTrajectory = Pathfinder.readFromCSV(leftCSV);
-      rightTrajectory = Pathfinder.readFromCSV(rightCSV);
+      leftTrajectory = PathfinderFRC.getTrajectory(FileName + ".left");
+      rightTrajectory = PathfinderFRC.getTrajectory(FileName + ".right");
     } catch (IOException e) {
       System.out.println("Error reading pathweaver CSV file!");
       e.printStackTrace();
