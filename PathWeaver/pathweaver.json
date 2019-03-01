@@ -6,5 +6,5 @@
   "maxJerk": 60.0,
   "wheelBase": 0.7112,
   "gameName": "Destination: Deep Space",
-  "outputDir": "../src/main/java/frc/robot/autonomous_pathfinder"
+  "outputDir": "../src/main/deploy"
 }

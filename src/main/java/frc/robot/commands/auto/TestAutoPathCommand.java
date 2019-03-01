@@ -10,14 +10,8 @@ package frc.robot.commands.auto;
 import java.io.File;
 import java.io.IOException;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Notifier;
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.TimedRobot;
 import jaci.pathfinder.Pathfinder;
-import jaci.pathfinder.PathfinderFRC;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
 
@@ -28,7 +22,7 @@ public class TestAutoPathCommand extends Command {
 
   EncoderFollower leftFollower;
   EncoderFollower rightFollower;
-  private static final String k_path_name = "/src/main/deploy/";
+  boolean ioerror = false;
 
   Drive chassis = Drive.getInstance();
 
@@ -48,20 +42,30 @@ public class TestAutoPathCommand extends Command {
   double v = 1 / 12;
   double a = 0;
   
-  
+
   public TestAutoPathCommand() {
     requires(Drive.getInstance());
 
-    leftCSV = new File("/home/lvuser/deploy/left_pf1.csv");
-    rightCSV = new File("/home/lvuser/deploy/right_pf1.csv");
+    ioerror = false;
 
-    //leftTrajectory = Pathfinder.readFromCSV(leftCSV);
-    //rightTrajectory = Pathfinder.readFromCSV(rightCSV);
+    leftCSV = new File("/home/lvuser/deploy/output/Unnamed.left.pf1.csv");
+    rightCSV = new File("/home/lvuser/deploy/output/Unnamed.right.pf1.csv");
+
     try {
-      leftTrajectory = PathfinderFRC.getTrajectory("left");
-    } catch(IOException e){
-        System.out.println("IO Exception. Could not locate files");
+      leftTrajectory = Pathfinder.readFromCSV(leftCSV);
+      rightTrajectory = Pathfinder.readFromCSV(rightCSV);
+    } catch (IOException e) {
+      System.out.println("Error reading pathweaver CSV file!");
+      e.printStackTrace();
+      ioerror = true;
     }
+    
+    // If an IO Error happened, then return early and do not use
+    // left/right trajectory variables
+    if (ioerror) {
+      return;
+    }
+
     notifier = new Notifier(new RunProfile());
     dt = leftTrajectory.get(0).dt;
 
@@ -73,6 +77,11 @@ public class TestAutoPathCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    // If an IO Error happened in the constructor,
+    // then do not initialize anything
+    if (ioerror) {
+      return;
+    }
     leftFollower = new EncoderFollower(leftTrajectory);
     rightFollower = new EncoderFollower(rightTrajectory);
 
@@ -97,6 +106,11 @@ public class TestAutoPathCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+    // If an IOError happened in the constructor, then
+    // this command is done.
+    if (ioerror) {
+      return true;
+    }
     System.out.println("Finished");
     return leftFollower.isFinished() && rightFollower.isFinished();
     //return false;
@@ -105,6 +119,11 @@ public class TestAutoPathCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    // If an IOError happened in the constructor, then
+    // this command is done.
+    if (ioerror) {
+      return;
+    }
     notifier.stop();
     chassis.tankDrive(0,0);
   }
@@ -132,7 +151,7 @@ public class TestAutoPathCommand extends Command {
     
     double turn = 0.08 *  (-1. / 80.) * angleDifference;
     
-    chassis.tankDrive(leftOutput - turn, rightOutput - turn);
+    chassis.tankDrive(rightOutput - turn, leftOutput - turn);
     
     segmentNumber++;
     }
