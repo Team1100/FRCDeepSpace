@@ -175,8 +175,8 @@ public class RobotMap {
 
   //[G]antry
   public static final int G_MOTOR = PWM_2;
-  public static final int G_ENCODER_A = DIO_4;
-  public static final int G_ENCODER_B = DIO_5;
+  public static final int G_ENCODER_A = DIO_5;
+  public static final int G_ENCODER_B = DIO_4;
   public static final int G_LIMIT_L = DIO_MXP_0;
   public static final int G_LIMIT_R = DIO_MXP_1;
 

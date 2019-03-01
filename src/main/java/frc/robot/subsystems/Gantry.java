@@ -32,6 +32,7 @@ public class Gantry extends Subsystem {
     encoder = new Encoder(RobotMap.G_ENCODER_A, RobotMap.G_ENCODER_B);
     leftLimit = new DigitalInput(RobotMap.G_LIMIT_L);
     rightLimit = new DigitalInput(RobotMap.G_LIMIT_R);
+    encoder.setDistancePerPulse(1/2176.25);
   }
 
    /**
@@ -46,6 +47,7 @@ public class Gantry extends Subsystem {
     canGoRight = true;
     if(isAtLeftLimit()){
       canGoLeft = false;
+      encoder.reset();
     }else if(isAtRightLimit()){
       canGoRight = false;
     }

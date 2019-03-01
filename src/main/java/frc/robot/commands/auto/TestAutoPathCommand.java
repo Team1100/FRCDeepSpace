@@ -4,10 +4,11 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-/*
+
 package frc.robot.commands.auto;
 
 import java.io.File;
+import java.io.IOException;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
@@ -56,8 +57,11 @@ public class TestAutoPathCommand extends Command {
 
     //leftTrajectory = Pathfinder.readFromCSV(leftCSV);
     //rightTrajectory = Pathfinder.readFromCSV(rightCSV);
-    leftTrajectory = PathfinderFRC.getTrajectory();
-
+    try {
+      leftTrajectory = PathfinderFRC.getTrajectory("left");
+    } catch(IOException e){
+        System.out.println("IO Exception. Could not locate files");
+    }
     notifier = new Notifier(new RunProfile());
     dt = leftTrajectory.get(0).dt;
 
@@ -134,4 +138,3 @@ public class TestAutoPathCommand extends Command {
     }
   }
 }
-*/
