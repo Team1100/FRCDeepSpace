@@ -21,7 +21,6 @@ public class Rollers extends Subsystem {
 
   public static Rollers rollers;
   private VictorSPX rollersMotors;
-  private BeamBreak bb;
   VictorSPX axis_movement_right;
   VictorSPX axis_movement_left;
   //DigitalInput topSwitch;
@@ -34,7 +33,6 @@ public class Rollers extends Subsystem {
   private Rollers() {
     rollersMotors = new VictorSPX(RobotMap.B_ROLLERS);
     //topSwitch = new DigitalInput(RobotMap.B_TOP_SWITCH);
-    bb = BeamBreak.getInstance();
   }
 
   public static Rollers getInstance(){
@@ -70,10 +68,6 @@ public class Rollers extends Subsystem {
   public void spinOut(double rollersSpeed) {
     rollersSpeed = -Math.abs(rollersSpeed);
     spinRollers(rollersSpeed);
-  }
-
-  public boolean ballIsIn(){
-    return bb.get();
   }
 
   @Override

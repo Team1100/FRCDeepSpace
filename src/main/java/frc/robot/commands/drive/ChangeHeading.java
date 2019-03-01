@@ -12,7 +12,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.NavX;;
+import frc.robot.subsystems.NavX;
 /**
  * Command that turns the robot to a certain heading.
  */
