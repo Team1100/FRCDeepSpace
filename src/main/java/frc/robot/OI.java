@@ -26,6 +26,7 @@ import frc.robot.commands.intake.IntakeDown;
 import frc.robot.commands.rollers.RollersIn;
 import frc.robot.commands.rollers.StopRollers;
 import frc.robot.commands.vision.AlignGantry;
+import frc.robot.commands.vision.CenterRobot;
 import frc.robot.input.AttackThree;
 import frc.robot.input.XboxController;
 
@@ -67,6 +68,7 @@ public class OI {
     xbox.getButtonA().whenPressed(new PullClawBack());
 
     xbox.getButtonStart().whenPressed(new AlignGantry());
+    xbox.getButtonBack().whenPressed(new CenterRobot());
     xbox.getDPad().getRight().whenPressed(new PickupHatch());
     xbox.getDPad().getDown().whenPressed(new ElevatorBottom());
     xbox.getDPad().getLeft().whenPressed(new Elevator_Rocket_L3());
