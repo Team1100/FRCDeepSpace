@@ -27,6 +27,7 @@ import frc.robot.commands.intake.*;
 import frc.robot.commands.rollers.*;
 import frc.robot.commands.stilts.*;
 import frc.robot.commands.testing.*;
+import frc.robot.commands.vision.AlignGantry;
 import frc.robot.commands.vision.CenterRobot;
 import frc.robot.commands.vision.DriveWhileCentered;
 import frc.robot.commands.vision.TranslateClawToCenter;
@@ -76,8 +77,8 @@ public class Robot extends TimedRobot {
     cs.startAutomaticCapture("Front Camera", 0);
     cs.startAutomaticCapture("Rear Camera", 1);
     
-    setupAutoChooser();
-    //createTestingDashboard();
+    //setupAutoChooser();
+    createTestingDashboard();
   }
 
   public void createTestingDashboard() {
@@ -90,16 +91,20 @@ public class Robot extends TimedRobot {
     ShuffleboardLayout claw_g2 = Shuffleboard.getTab("Claw").getLayout("BasicPush", BuiltInLayouts.kList);
     claw_g2.add(new PushClawForward());
     claw_g2.add(new PullClawBack());
-    ShuffleboardLayout claw_g3 = Shuffleboard.getTab("Claw").getLayout("Complex", BuiltInLayouts.kList);
+    ShuffleboardLayout claw_g3 = Shuffleboard.getTab("Claw").getLayout("Ball", BuiltInLayouts.kList);
     claw_g3.add(new ClawAcquireBall());
-    claw_g3.add(new CloseClawWhenSensed());
-    claw_g3.add(new PlaceHatch());
+    claw_g3.add(new CloseOnBall());
     claw_g3.add(new AcquireBallFromIntake());
-    claw_g3.add(new CloseClawWhenSensed());
-    claw_g3.add(new PickupHatchHPS_Vision());
-    claw_g3.add(new PickupHatchHPS());
-    claw_g3.add(new PlaceHatch());
     claw_g3.add(new ScoreCargo());
+    claw_g3.add(new LaunchBall());
+    ShuffleboardLayout claw_g4 = Shuffleboard.getTab("Claw").getLayout("Hatch", BuiltInLayouts.kList);
+    claw_g4.add(new PlaceHatch());
+    claw_g4.add(new PickupHatch());
+    claw_g4.add(new PickupHatchHPS_Vision());
+    claw_g4.add(new PickupHatchHPS());
+    claw_g4.add(new DeployHatch());
+    ShuffleboardLayout claw_g5 = Shuffleboard.getTab("Claw").getLayout("Complex", BuiltInLayouts.kList);
+    claw_g5.add(new CloseClawWhenSensed());
 
     // DRIVE commands
     ShuffleboardTab drive_tab = Shuffleboard.getTab("Drive");
@@ -162,6 +167,7 @@ public class Robot extends TimedRobot {
     vision_g1.add(new CenterRobot(1));
     vision_g1.add(new DriveWhileCentered(1));
     vision_g1.add(new TranslateClawToCenter(1));
+    vision_g1.add(new AlignGantry());
 
     // GANTRY commands
     ShuffleboardTab gantry_tab = Shuffleboard.getTab("Gantry");
@@ -179,13 +185,13 @@ public class Robot extends TimedRobot {
     elevator_tab.add(Elevator.getInstance());
     ShuffleboardLayout elevator_g1 = elevator_tab.getLayout("Basic", BuiltInLayouts.kList);
     elevator_g1.add(new DefaultElevator());
+    elevator_g1.add(new ElevatorBottom());
+    elevator_g1.add(new ElevatorTop());
     ShuffleboardLayout elevator_g2 = elevator_tab.getLayout("PID", BuiltInLayouts.kList);
     elevator_g2.add(new PIDElevator(5));
     elevator_g2.add(new PIDElevatorL1());
     elevator_g2.add(new PIDElevatorL2());
     elevator_g2.add(new PIDElevatorL3());
-    elevator_g2.add(new ElevatorBottom());
-    elevator_g2.add(new ElevatorTop());
 
     updateDebugTab();
   }
