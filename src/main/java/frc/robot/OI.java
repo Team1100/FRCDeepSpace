@@ -10,16 +10,22 @@ package frc.robot;
 import frc.robot.commands.SwitchSides;
 import frc.robot.commands.claw.CloseClaw;
 import frc.robot.commands.claw.CloseClawWhenSensed;
+import frc.robot.commands.claw.DeployHatch;
 import frc.robot.commands.claw.OpenClaw;
+import frc.robot.commands.claw.PickupHatch;
 import frc.robot.commands.claw.PickupHatchHPS;
 import frc.robot.commands.claw.PlaceHatch;
 import frc.robot.commands.claw.PullClawBack;
 import frc.robot.commands.claw.PushClawForward;
 import frc.robot.commands.drive.ChangeHeading;
+import frc.robot.commands.elevator.ElevatorBottom;
+import frc.robot.commands.elevator.ElevatorTop;
+import frc.robot.commands.elevator.Elevator_Rocket_L3;
 import frc.robot.commands.intake.IntakeUp;
 import frc.robot.commands.intake.IntakeDown;
 import frc.robot.commands.rollers.RollersIn;
 import frc.robot.commands.rollers.StopRollers;
+import frc.robot.commands.vision.AlignGantry;
 import frc.robot.input.AttackThree;
 import frc.robot.input.XboxController;
 
@@ -52,15 +58,32 @@ public class OI {
     rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.05);
 
     xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.1);
-
+    
     //Now Mapping Commands to XBox 
+
+    xbox.getButtonY().whenPressed(new OpenClaw());
+    xbox.getButtonX().whenPressed(new CloseClaw());
+    xbox.getButtonB().whenPressed(new PushClawForward());
+    xbox.getButtonA().whenPressed(new PullClawBack());
+
+    xbox.getButtonStart().whenPressed(new AlignGantry());
+    xbox.getDPad().getRight().whenPressed(new PickupHatch());
+    xbox.getDPad().getDown().whenPressed(new ElevatorBottom());
+    xbox.getDPad().getLeft().whenPressed(new Elevator_Rocket_L3());
+    xbox.getDPad().getUp().whenPressed(new ElevatorTop());
+
+
+    //xbox.getButtonLeftBumper().whenPressed(new CloseOnBall());
+    xbox.getButtonRightBumper().whenPressed(new DeployHatch());
+    //xbox.getButtonBack().whenPressed(new MoveToSetpoint(0.6));
+
     /*
     xbox.getButtonY().whenPressed(new PIDElevatorL3());
     xbox.getButtonB().whenPressed(new ElevatorBottom());
     xbox.getButtonA().whenPressed(new PIDElevatorL1());
     xbox.getButtonX().whenPressed(new PIDElevatorL2());
     */
-
+    /*
     xbox.getButtonA().whenPressed(new RollersIn());
     xbox.getButtonB().whenPressed(new StopRollers());
     xbox.getButtonX().whenPressed(new CloseClawWhenSensed());
@@ -82,7 +105,7 @@ public class OI {
 
     xbox.getButtonLeftBumper().whenPressed(new PushClawForward());
     xbox.getButtonRightBumper().whenPressed(new PullClawBack());
-
+    */
 
 
     //xbox.getDPad().getUp().whenPressed(new IntakeUp());
