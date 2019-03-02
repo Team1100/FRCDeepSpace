@@ -81,6 +81,8 @@ public class Robot extends TimedRobot {
     // CLAW Commands
     ShuffleboardTab claw_tab = Shuffleboard.getTab("Claw");
     claw_tab.add(Claw.getInstance());
+    claw_tab.add(Vision.getInstance());
+    claw_tab.add(Gantry.getInstance());
     ShuffleboardLayout claw_g1 = claw_tab.getLayout("BasicOpen", BuiltInLayouts.kList);
     claw_g1.add(new OpenClaw());
     claw_g1.add(new CloseClaw());
@@ -91,6 +93,12 @@ public class Robot extends TimedRobot {
     claw_g3.add(new ClawAcquireBall());
     claw_g3.add(new CloseClawWhenSensed());
     claw_g3.add(new PlaceHatch());
+    claw_g3.add(new AcquireBallFromIntake());
+    claw_g3.add(new CloseClawWhenSensed());
+    claw_g3.add(new PickupHatchHPS_Vision());
+    claw_g3.add(new PickupHatchHPS());
+    claw_g3.add(new PlaceHatch());
+    claw_g3.add(new ScoreCargo());
     claw_g3.add("Can Aim", Vision.getInstance().getcanAim());
     claw_g3.add("Is Aimed", Vision.getInstance().getisAimed());
     claw_g3.add("Claw is Closed", Claw.getInstance().isClosed());
@@ -99,6 +107,8 @@ public class Robot extends TimedRobot {
     // DRIVE commands
     ShuffleboardTab drive_tab = Shuffleboard.getTab("Drive");
     drive_tab.add(Drive.getInstance());
+    drive_tab.add(Stilts.getInstance());
+    drive_tab.add(BallIntake.getInstance());
     ShuffleboardLayout drive_g1 = drive_tab.getLayout("Basic", BuiltInLayouts.kList);
     drive_g1.add(new DefaultDrive());
     drive_g1.add(new ChangeHeading(0, 0.5));
@@ -117,13 +127,17 @@ public class Robot extends TimedRobot {
     intake_g1.add(new DefaultIntake());
     intake_g1.add(new IntakeDown());
     intake_g1.add(new IntakeUp());
+    intake_g1.add(new StopIntake());
     ShuffleboardLayout intake_g2 = intake_tab.getLayout("Climbing", BuiltInLayouts.kList);
     intake_g2.add(new ClimbingIntakeDown(0.5));
     intake_g2.add(new IncrementIntakePower(0.1));
+    intake_g2.add(new ClimbingWhileIntake());
     ShuffleboardLayout intake_g3 = intake_tab.getLayout("BallCommands", BuiltInLayouts.kList);
     intake_g3.add(new IntakeCargo());
     intake_g3.add(new MoveBallToChute(1));
     intake_g3.add(new PushBallOut(5));
+    intake_g3.add(new AcquireBall());
+    intake_g3.add(new ScoreCargo_RocketL1())
     ShuffleboardLayout intake_g4 = intake_tab.getLayout("HatchCommands", BuiltInLayouts.kList);
     intake_g4.add(new PickupHatchHPS());
 
@@ -136,6 +150,8 @@ public class Robot extends TimedRobot {
     rollers_g1.add(new DefaultRollers());
     rollers_g1.add(new RollersIn());
     rollers_g1.add(new StopRollers());
+    rollers_g1.add(new PushBallOut());
+    rollers_g1.add(new MoveBallToChute());
 
     // STILTS commands
     ShuffleboardTab stilts_tab = Shuffleboard.getTab("Stilts");
@@ -144,12 +160,21 @@ public class Robot extends TimedRobot {
     stilts_g1.add(new Climb());
     stilts_g1.add(new BalanceStilts(0.5));
     stilts_g1.add(new RetractStilts());
+    stilts_g1.add(new RaiseIntakeAndDrive());
+    stilts_g1.add(new JoystickClimb());
 
     //ELEVATOR commands
     ShuffleboardTab elevator_tab = Shuffleboard.getTab("Elevator");
-    elevator_tab.add(Stilts.getInstance());
+    elevator_tab.add(Elevator.getInstance());
     ShuffleboardLayout elevator_g1 = elevator_tab.getLayout("Basic", BuiltInLayouts.kList);
     elevator_g1.add(new DefaultElevator());
+    ShuffleboardLayout elevator_g2 = elevator_tab.getLayout("PID", BuiltInLayouts.kList);
+    elevator_g2.add(new PIDElevator());
+    elevator_g2.add(new PIDElevatorL1());
+    elevator_g2.add(new PIDElevatorL2());
+    elevator_g2.add(new PIDElevatorL3());
+    elevator_g2.add(new ElevatorBottom());
+    elevator_g2.add(new ElevatorTop());
   }
 
   public void setupAutoChooser() {
