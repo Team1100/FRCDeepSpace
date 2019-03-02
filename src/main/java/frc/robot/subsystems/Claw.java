@@ -36,15 +36,15 @@ public class Claw extends Subsystem {
   private Claw() {
     //Need to fill in parameters w/ robot map eventually
     clawManipulator = new DoubleSolenoid(RobotMap.C_CLAW_CAN, RobotMap.C_CLAW_OPEN, RobotMap.C_CLAW_CLOSE);
-    clawMovement = new DoubleSolenoid(RobotMap.C_CLAW_CAN, RobotMap.C_CLAW_FORWARDS, RobotMap.C_CLAW_BACKWARDS);
+    clawMovement = new DoubleSolenoid(RobotMap.C_CLAW_CAN, RobotMap.C_CLAW_FORWARDS, RobotMap.C_CLAW_BACKWARDS);	
   }
   
-  public void openClaw() {
+  public void closeClaw() {
     clawManipulator.set(DoubleSolenoid.Value.kForward);
     isClosed = false;
   }
 
-  public void closeClaw() {
+  public void openClaw() {
     clawManipulator.set(DoubleSolenoid.Value.kReverse);
     isClosed = true;
   }
@@ -60,7 +60,11 @@ public class Claw extends Subsystem {
   }
 
   public boolean isClosed () {
-    return isClosed();
+    return isClosed;
+  }
+
+  public boolean isForward() {
+    return isForward;
   }
 
   @Override
