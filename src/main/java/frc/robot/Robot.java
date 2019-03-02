@@ -162,7 +162,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", auto_chooser);
     // auto_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", auto_chooser);
   }
 
   public void setupTestingChooser() {
