@@ -26,7 +26,7 @@ public class IntakeCargo extends CommandGroup {
     addParallel(new IntakeDown());
     addParallel(new RollersIn());
     addSequential(new AcquireBall());
-    addSequential(new StopIntake());
+    addSequential(new StopRollers());
     System.out.println("Sensed Ball");
     /*
     addSequential(new IntakeUp());
