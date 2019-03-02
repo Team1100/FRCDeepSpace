@@ -27,9 +27,6 @@ public class Gantry extends Subsystem {
   boolean canGoLeft = true;
   boolean canGoRight = true;
 
-  public boolean stopVisionGantry;
-
-
   private Gantry(){
     gantryMotor = new VictorSP(RobotMap.G_MOTOR);
     encoder = new Encoder(RobotMap.G_ENCODER_A, RobotMap.G_ENCODER_B);
@@ -37,7 +34,6 @@ public class Gantry extends Subsystem {
     rightLimit = new DigitalInput(RobotMap.G_LIMIT_R);
     encoder.setDistancePerPulse(1/2176.25);
 
-    stopVisionGantry = false;
   }
 
    /**

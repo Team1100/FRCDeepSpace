@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.*;
 import frc.robot.subsystems.Gantry;
+import frc.robot.subsystems.Vision;
 
 public class DeployHatch extends CommandGroup {
   /**
@@ -18,14 +19,14 @@ public class DeployHatch extends CommandGroup {
    */
 
   public DeployHatch() {
-    Gantry.getInstance().stopVisionGantry = true;
+    Vision.getInstance().finishedAligning = true;
     //addSequential(new OpenClaw());
     addSequential(new PushClawForward());
     addSequential(new Wait(0.25));
     addSequential(new OpenClaw());
     addSequential(new Wait(0.25));
     addSequential(new PullClawBack());
-    Gantry.getInstance().stopVisionGantry = false;
+    Vision.getInstance().finishedAligning = false;
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

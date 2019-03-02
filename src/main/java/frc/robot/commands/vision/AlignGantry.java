@@ -7,16 +7,22 @@
 
 package frc.robot.commands.vision;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Gantry;
+import frc.robot.subsystems.Vision;
 
 public class AlignGantry extends Command {
   double sp;
   boolean isFinished;
+  Gantry gantry;
+  Encoder encoder;
   public AlignGantry() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Gantry.getInstance());
+    gantry = Gantry.getInstance();
+    encoder = Gantry.getInstance().getEncoder();
   }
 
   // Called just before this Command runs the first time
@@ -32,15 +38,15 @@ public class AlignGantry extends Command {
     sp = Gantry.getInstance().calculateGantryPosition();
     if(Gantry.getInstance().getEncoder().getDistance() < sp){
       Gantry.getInstance().driveGantryMotor(-1);
-      if(((sp-0.02) < Gantry.getInstance().getEncoder().getDistance()) && (Gantry.getInstance().getEncoder().getDistance() <(sp + 0.02))){
-        Gantry.getInstance().driveGantryMotor(0);
+      if(((sp-0.02) < encoder.getDistance()) && (encoder.getDistance() <(sp + 0.02))){
+        gantry.driveGantryMotor(0);
       }
     }
-    else if (Gantry.getInstance().getEncoder().getDistance() > sp){
-      Gantry.getInstance().driveGantryMotor(1);
+    else if (encoder.getDistance() > sp){
+      gantry.driveGantryMotor(1);
 
-      if(((sp-0.02) < Gantry.getInstance().getEncoder().getDistance()) && (Gantry.getInstance().getEncoder().getDistance() <(sp + 0.02))){
-        Gantry.getInstance().driveGantryMotor(0);
+      if(((sp-0.02) < encoder.getDistance()) && (encoder.getDistance() <(sp + 0.02))){
+        gantry.driveGantryMotor(0);
       }
     }
 
@@ -50,13 +56,13 @@ public class AlignGantry extends Command {
   @Override
   protected boolean isFinished() {
     //return(((sp-0.02) < Gantry.getInstance().getEncoder().getDistance()) && (Gantry.getInstance().getEncoder().getDistance() <(sp + 0.02)) || isTimedOut());
-    return false;    
+    return Vision.getInstance().finishedAligning;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Gantry.getInstance().driveGantryMotor(0);
+    gantry.driveGantryMotor(0);
 
   }
 
@@ -64,7 +70,7 @@ public class AlignGantry extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Gantry.getInstance().driveGantryMotor(0);
+    gantry.driveGantryMotor(0);
 
   }
 }

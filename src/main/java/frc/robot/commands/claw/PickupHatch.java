@@ -9,12 +9,14 @@ package frc.robot.commands.claw;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
+import frc.robot.subsystems.Vision;
 
 public class PickupHatch extends CommandGroup {
   /**
    * Add your docs here.
    */
   public PickupHatch() {
+    Vision.getInstance().finishedAligning = true;
     addSequential(new OpenClaw());
     addSequential(new Wait(0.15));
     addSequential(new PushClawForward());
@@ -22,6 +24,7 @@ public class PickupHatch extends CommandGroup {
     addSequential(new CloseClaw());
     addSequential(new Wait(0.25));
     addSequential(new PullClawBack());
+    Vision.getInstance().finishedAligning = false;
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
