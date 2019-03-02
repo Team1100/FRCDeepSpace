@@ -9,7 +9,7 @@ package frc.robot;
 
 import frc.robot.commands.claw.*;
 import frc.robot.commands.elevator.*;
-import frc.robot.commands.gantry.AccurateGantry;
+import frc.robot.commands.gantry.MoveToSetpoint;
 import frc.robot.commands.gantry.PIDGantry;
 import frc.robot.commands.intake.IntakeDown;
 import frc.robot.commands.intake.PushBallOut;
@@ -58,7 +58,7 @@ public class OI {
     xbox.getDPad().getRight().whenPressed(new PickupHatch());
     xbox.getButtonLeftBumper().whenPressed(new CloseOnBall());
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
-    xbox.getButtonBack().whenPressed(new AccurateGantry(0.6));
+    xbox.getButtonBack().whenPressed(new MoveToSetpoint(0.6));
 
 
     /*

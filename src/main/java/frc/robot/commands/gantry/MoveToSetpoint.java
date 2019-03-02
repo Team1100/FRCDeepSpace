@@ -10,10 +10,10 @@ package frc.robot.commands.gantry;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Gantry;
 
-public class AccurateGantry extends Command {
+public class MoveToSetpoint extends Command {
   double sp;
   boolean isFinished;
-  public AccurateGantry(double setpoint) {
+  public MoveToSetpoint(double setpoint) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Gantry.getInstance());
