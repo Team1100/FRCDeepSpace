@@ -10,9 +10,9 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 /**
@@ -26,10 +26,10 @@ public class Elevator extends Subsystem {
   DigitalInput bottomSwitch, topSwitch;
   Encoder encoder;
   double PULSE_PER_FOOT = 4458.75;
-  double top;
-  double bottom;
   boolean canGoUp = true;
   boolean canGoDown = true;
+  double bottom;
+  double top;
 
 
   /**
@@ -45,12 +45,14 @@ public class Elevator extends Subsystem {
     encoder.setDistancePerPulse(1/PULSE_PER_FOOT);
     bottom = 0;
     top = 7;
+
   }
 
   /**
    * Used to extend the Elevator at the input speed
    * @param speed Speed of the elevator
    */
+
   public void extend(double speed){
     canGoDown = true;
     canGoUp = true;
@@ -86,19 +88,16 @@ public class Elevator extends Subsystem {
     return bottomSwitch.get();
   }
 
+  public Encoder getEncoder(){
+    return encoder;
+  }
+
+
   /**
    * Checks if the elevator is at level two
    */
   public boolean isAtTop(){
     return topSwitch.get();
-  }
-
-  /**
-   * Gets the lowest height possible
-   * @return Lowest height of elevator
-   */
-  public double getBottom() {
-    return bottom;
   }
 
   /**
@@ -109,8 +108,12 @@ public class Elevator extends Subsystem {
     return top;
   }
 
-  public Encoder getEncoder(){
-    return encoder;
+  /**
+   * Gets the lowest height possible
+   * @return Lowest height of elevator
+   */
+  public double getBottom(){
+    return bottom;
   }
 
   /**

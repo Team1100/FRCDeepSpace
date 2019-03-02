@@ -7,24 +7,29 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
+/**
+ * Add your docs here.
+ */
 public class ProximitySensor extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+  DigitalInput prox;
+  public static ProximitySensor proximitySensor;
 
-  private static ProximitySensor proximitySensor;
-  private DigitalInput prox;
-
-  public ProximitySensor() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  private ProximitySensor(){
     prox = new DigitalInput(RobotMap.E_PROXIMITY);
   }
 
+  public Boolean isTriggered(){
+    return !prox.get();
+  }
+
   public static ProximitySensor getInstance(){
-    if (proximitySensor == null){
+    if(proximitySensor == null){
       proximitySensor = new ProximitySensor();
     }
     return proximitySensor;
@@ -38,8 +43,9 @@ public class ProximitySensor extends Subsystem {
     return !prox.get();
   }
 
+  @Override
   public void initDefaultCommand() {
-
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
   }
-
 }
