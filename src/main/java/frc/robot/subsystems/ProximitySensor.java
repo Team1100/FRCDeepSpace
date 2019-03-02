@@ -21,7 +21,7 @@ public class ProximitySensor extends Subsystem {
   public static ProximitySensor proximitySensor;
 
   private ProximitySensor(){
-    prox = new DigitalInput(RobotMap.E_PROXIMITY);
+    prox = new DigitalInput(RobotMap.P_PROX_SENS);
   }
 
   public Boolean isTriggered(){

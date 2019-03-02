@@ -171,7 +171,6 @@ public class RobotMap {
   public static final int E_TOP_SWITCH = DIO_1;
   public static final int E_BOTTOM_SWITCH = DIO_2;
   public static final int E_POT = ANALOG_0;
-  public static final int E_PROXIMITY = DIO_3;
   public static final int E_ENCODER_A = DIO_MXP_0;
   public static final int E_ENCODER_B = DIO_MXP_1;
 
@@ -194,11 +193,13 @@ public class RobotMap {
   public static final int C_CLAW_BACKWARDS = PCM_3;
   public static final int C_CLAW_CAN = PCM_CAN;
 
+  //[P]roximity Sensor
+  public static final int P_PROX_SENS = DIO_3;
+
   //[K]icker
   public static final int K_KICKER_CAN = PCM_CAN;
   public static final int K_KICK_OUT = PCM_4;
   public static final int K_KICK_IN = PCM_5;
-
 
   //[G]antry
   public static final int G_MOTOR = CAN_6;
