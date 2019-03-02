@@ -131,13 +131,13 @@ public class Robot extends TimedRobot {
     ShuffleboardLayout intake_g2 = intake_tab.getLayout("Climbing", BuiltInLayouts.kList);
     intake_g2.add(new ClimbingIntakeDown(0.5));
     intake_g2.add(new IncrementIntakePower(0.1));
-    intake_g2.add(new ClimbingWhileIntake());
+    intake_g2.add(new ClimbWhileIntake(5, 5));
     ShuffleboardLayout intake_g3 = intake_tab.getLayout("BallCommands", BuiltInLayouts.kList);
     intake_g3.add(new IntakeCargo());
     intake_g3.add(new MoveBallToChute(1));
     intake_g3.add(new PushBallOut(5));
     intake_g3.add(new AcquireBall());
-    intake_g3.add(new ScoreCargo_RocketL1())
+    intake_g3.add(new ScoreCargo_RocketL1());
     ShuffleboardLayout intake_g4 = intake_tab.getLayout("HatchCommands", BuiltInLayouts.kList);
     intake_g4.add(new PickupHatchHPS());
 
@@ -150,8 +150,8 @@ public class Robot extends TimedRobot {
     rollers_g1.add(new DefaultRollers());
     rollers_g1.add(new RollersIn());
     rollers_g1.add(new StopRollers());
-    rollers_g1.add(new PushBallOut());
-    rollers_g1.add(new MoveBallToChute());
+    rollers_g1.add(new PushBallOut(5));
+    rollers_g1.add(new MoveBallToChute(5));
 
     // STILTS commands
     ShuffleboardTab stilts_tab = Shuffleboard.getTab("Stilts");
@@ -169,7 +169,7 @@ public class Robot extends TimedRobot {
     ShuffleboardLayout elevator_g1 = elevator_tab.getLayout("Basic", BuiltInLayouts.kList);
     elevator_g1.add(new DefaultElevator());
     ShuffleboardLayout elevator_g2 = elevator_tab.getLayout("PID", BuiltInLayouts.kList);
-    elevator_g2.add(new PIDElevator());
+    elevator_g2.add(new PIDElevator(5));
     elevator_g2.add(new PIDElevatorL1());
     elevator_g2.add(new PIDElevatorL2());
     elevator_g2.add(new PIDElevatorL3());

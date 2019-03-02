@@ -8,45 +8,54 @@
 package frc.robot.commands.gantry;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
-import frc.robot.input.XboxController;
 import frc.robot.subsystems.Gantry;
 
-public class DefaultGantry extends Command {
-  double aspeed;
-
-  public DefaultGantry() {
+public class MoveToSetpoint extends Command {
+  double sp;
+  boolean isFinished;
+  public MoveToSetpoint(double setpoint) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Gantry.getInstance());
+    sp = setpoint;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+      setTimeout(5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    aspeed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
-    Gantry.getInstance().driveGantryMotor(aspeed);
+    if(Gantry.getInstance().getEncoder().getDistance() < sp){
+      Gantry.getInstance().driveGantryMotor(-1);
+    }
+    else if (Gantry.getInstance().getEncoder().getDistance() > sp){
+      Gantry.getInstance().driveGantryMotor(1);
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+      return(((sp-0.02) < Gantry.getInstance().getEncoder().getDistance()) && (Gantry.getInstance().getEncoder().getDistance() <(sp + 0.02)) || isTimedOut());
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Gantry.getInstance().driveGantryMotor(0);
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Gantry.getInstance().driveGantryMotor(0);
+
   }
 }

@@ -25,7 +25,7 @@ public class MoveGantryToCenter extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Gantry.getInstance().translateGantry(0.2);
+    Gantry.getInstance().driveGantryMotor(0.2);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +37,7 @@ public class MoveGantryToCenter extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Gantry.getInstance().translateGantry(0);
+    Gantry.getInstance().driveGantryMotor(0);
   }
 
   // Called when another command which requires one or more of the same

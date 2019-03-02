@@ -10,8 +10,8 @@ package frc.robot.commands.gantry;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Gantry;
 
-public class MoveGantryLeft extends Command {
-  public MoveGantryLeft() {
+public class GantryRightLimit extends Command {
+  public GantryRightLimit() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Gantry.getInstance());
@@ -25,20 +25,19 @@ public class MoveGantryLeft extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Gantry.getInstance().translateGantry(-0.2);
+    Gantry.getInstance().driveGantryMotor(1);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Gantry.getInstance().isAtLeft();
+    return Gantry.getInstance().isAtRightLimit();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Gantry.getInstance().translateGantry(0);
-    Gantry.getInstance().getEncoder().reset();
   }
 
   // Called when another command which requires one or more of the same

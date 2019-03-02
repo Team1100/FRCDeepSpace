@@ -25,12 +25,13 @@ public class Gantry extends Subsystem {
   public static Gantry gantry;
   public static final int PULSES_PER_INCH = 1000; //TODO: Adjust number when testing is done
   public static final int INCHES_TO_CENTER = 6; //TODO: Adjust number when testing is done
-  private VictorSPX gantryMotor;
-  private Encoder encoder;
-  private DigitalInput leftLimit;
-  private DigitalInput rightLimit;
-  private Boolean canGoLeft = true;
-  private Boolean canGoRight = true;
+  VictorSPX gantryMotor;
+  Encoder encoder;
+  DigitalInput leftLimit, rightLimit;
+  boolean canGoLeft = true;
+  boolean canGoRight = true;
+
+  public boolean stopVisionGantry;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -49,18 +50,29 @@ public class Gantry extends Subsystem {
     encoder = new Encoder(RobotMap.G_ENCODER_A, RobotMap.G_ENCODER_B);
     leftLimit = new DigitalInput(RobotMap.G_LIMIT_L);
     rightLimit = new DigitalInput(RobotMap.G_LIMIT_R);
+    encoder.setDistancePerPulse(1/2176.25);
+
+    stopVisionGantry = false;
   }
-  
+
+   /**
+    * @return the encoder
+    */
+  public Encoder getEncoder() {
+    return encoder;
+  }
+
   /**
    * Method for actually driving the Gantry left or right
    * @param speed Speed to drive the gantry at. Value from -1 to 1.
    */
-  public void translateGantry(double speed){
+  public void driveGantryMotor(double speed){
     canGoLeft = true;
     canGoRight = true;
-    if(isAtLeft()){
+    if(isAtLeftLimit()){
       canGoLeft = false;
-    }else if(isAtRight()){
+      encoder.reset();
+    }else if(isAtRightLimit()){
       canGoRight = false;
     }
 
@@ -68,35 +80,40 @@ public class Gantry extends Subsystem {
       speed = 0;
     }else if(!canGoRight && speed < 0){
       speed = 0;
-}
+    }
+    
     gantryMotor.set(ControlMode.PercentOutput, speed);
-  }
-
-  /**
-   * Method for referencing the Gantry encoder outside of the class
-   * @return The instance of the gantry encoder for use outside of the class
-   */
-  public Encoder getEncoder(){
-    return encoder;
   }
 
   /**
    * Checks if the gantry has reached the left side
    */
-  public boolean isAtLeft(){
+  public Boolean isAtLeftLimit(){
     return !leftLimit.get();
   }
 
   /**
    * Checks if the gantry has reached the right side
    */
-  public boolean isAtRight(){
+  public Boolean isAtRightLimit(){
     return !rightLimit.get();
   }
 
-  /**
-   * Unused
-   */
+  public double calculateGantryPosition(){
+    double encoderPos = 0.5;
+    double cx = Vision.getInstance().getCX();
+    double percentage = 0.5;
+
+    if(Vision.getInstance().getcanAim()){
+      percentage = cx/1280;
+    }
+
+    encoderPos = percentage;
+
+    return encoderPos;
+  }
+
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

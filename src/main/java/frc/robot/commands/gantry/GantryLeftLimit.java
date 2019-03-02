@@ -8,14 +8,10 @@
 package frc.robot.commands.gantry;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
-import frc.robot.input.XboxController;
 import frc.robot.subsystems.Gantry;
 
-public class DefaultGantry extends Command {
-  double aspeed;
-
-  public DefaultGantry() {
+public class GantryLeftLimit extends Command {
+  public GantryLeftLimit() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Gantry.getInstance());
@@ -29,14 +25,14 @@ public class DefaultGantry extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    aspeed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
-    Gantry.getInstance().driveGantryMotor(aspeed);
+    Gantry.getInstance().driveGantryMotor(-1);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Gantry.getInstance().isAtLeftLimit();
   }
 
   // Called once after isFinished returns true
