@@ -60,6 +60,10 @@ public class Gantry extends Subsystem {
     return encoder;
   }
 
+  /**
+   * Method for actually driving the Gantry left or right
+   * @param speed Speed to drive the gantry at. Value from -1 to 1.
+   */
   public void driveGantryMotor(double speed){
     canGoLeft = true;
     canGoRight = true;
@@ -79,10 +83,16 @@ public class Gantry extends Subsystem {
     gantryMotor.set(speed);
   }
 
+  /**
+   * Checks if the gantry has reached the left side
+   */
   public Boolean isAtLeftLimit(){
     return !leftLimit.get();
   }
 
+  /**
+   * Checks if the gantry has reached the right side
+   */
   public Boolean isAtRightLimit(){
     return !rightLimit.get();
   }
