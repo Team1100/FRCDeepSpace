@@ -68,7 +68,7 @@ public class OI {
     xbox.getButtonA().whenPressed(new PullClawBack());
 
     xbox.getButtonStart().whenPressed(new AlignGantry());
-    xbox.getButtonBack().whenPressed(new CenterRobot());
+    xbox.getButtonBack().whenPressed(new CenterRobot(5));
     xbox.getDPad().getRight().whenPressed(new PickupHatch());
     xbox.getDPad().getDown().whenPressed(new ElevatorBottom());
     xbox.getDPad().getLeft().whenPressed(new Elevator_Rocket_L3());
