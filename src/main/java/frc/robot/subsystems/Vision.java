@@ -21,6 +21,7 @@ public class Vision extends Subsystem {
   public static NetworkTable nt;
   private static boolean canAim = false;
   private static boolean isAimed = false;
+  public boolean finishedAligning = false;
 
   /**
    * Used outside of the Vision subsystem to return an instance of Vision subsystem.

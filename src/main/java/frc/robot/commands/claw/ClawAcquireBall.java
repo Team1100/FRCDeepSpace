@@ -17,27 +17,29 @@ import frc.robot.subsystems.ProximitySensor;
  */
 public class ClawAcquireBall extends Command {
   private ProximitySensor ps;
+  boolean captured = false;
   public ClawAcquireBall() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(ProximitySensor.getInstance());
+    ps = ProximitySensor.getInstance();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    ps = ProximitySensor.getInstance();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    captured = ps.getInstance().isTriggered();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return ps.get();
+    return captured;
   }
 
   // Called once after isFinished returns true
