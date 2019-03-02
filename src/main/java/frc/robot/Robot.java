@@ -173,7 +173,6 @@ public class Robot extends TimedRobot {
     ShuffleboardLayout gantry_g2 = gantry_tab.getLayout("Complex", BuiltInLayouts.kList);
     gantry_g2.add(new MoveGantryToCenter());
     gantry_g2.add(new MoveToSetpoint(0.5));
-    gantry_g2.add(new PIDGantry(0.5));
 
     //ELEVATOR commands
     ShuffleboardTab elevator_tab = Shuffleboard.getTab("Elevator");
@@ -201,7 +200,6 @@ public class Robot extends TimedRobot {
 
   public void setupAutoChooser() {
     //vision = Vision.getInstance();
-    auto_chooser.setDefaultOption("Default Auto", new TestAutoPathCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     auto_chooser.addOption("Middle_RightRocket_2Hatch", new Middle_RightRocket_2Hatch());
     auto_chooser.addOption("Middle_LeftRocket_2Hatch", new Middle_LeftRocket_2Hatches());

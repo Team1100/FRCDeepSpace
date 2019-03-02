@@ -8,7 +8,6 @@
 package frc.robot;
 
 import frc.robot.commands.SwitchSides;
-import frc.robot.commands.TestingMode;
 import frc.robot.commands.claw.CloseClaw;
 import frc.robot.commands.claw.CloseClawWhenSensed;
 import frc.robot.commands.claw.OpenClaw;
@@ -93,8 +92,6 @@ public class OI {
 
     leftStick.getButton(8).whenPressed(new SwitchSides());
     rightStick.getButton(8).whenPressed(new SwitchSides());
-    leftStick.getButton(9).whenPressed(new TestingMode());
-    rightStick.getButton(9).whenPressed(new TestingMode());
     leftStick.getButton(5).whenPressed(new ChangeHeading(180, .4));
     //rightStick.getButton(1).whenPressed(new PickupHatchHPS());
     //leftStick.getButton(1).whenPressed(new TranslateClawToCenter(10));
