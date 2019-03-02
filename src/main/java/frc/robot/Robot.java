@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.commands.elevator.PIDElevator;
-import frc.robot.commands.gantry.PIDGantry;
 import frc.robot.subsystems.Claw;
 import frc.robot.commands.auto.*;
 import frc.robot.subsystems.Drive;
@@ -136,8 +135,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-
-    SmartDashboard.putData("PID Gantry", new PIDGantry(0.5));
 
   }
 
