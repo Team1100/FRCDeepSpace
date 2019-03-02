@@ -103,10 +103,11 @@ public class Robot extends TimedRobot {
     drive_g1.add(new DefaultDrive());
     drive_g1.add(new ChangeHeading(0, 0.5));
     drive_g1.add(new MeasuredDrive(0.5, 0.5));
-    drive_g1.add("NonPIDClimb", new NonPIDClimb(.5, .5));
-    drive_g1.add("Stilt Power", 0.5);
-    drive_g1.add("Intake Power", 0.5);
-    drive_g1.add("Retract Stilts", new RetractStilts());
+    ShuffleboardLayout drive_g2 = drive_tab.getLayout("Climbing", BuiltInLayouts.kList);
+    drive_g2.add("NonPIDClimb", new NonPIDClimb(.5, .5));
+    drive_g2.add("Stilt Power", 0.5);
+    drive_g2.add("Intake Power", 0.5);
+    drive_g2.add("Retract Stilts", new RetractStilts());
 
 
     // INTAKE commands
