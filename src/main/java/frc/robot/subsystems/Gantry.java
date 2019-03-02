@@ -7,27 +7,42 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.gantry.DefaultGantry;
 
 /**
- * Add your docs here.
+ * Sets up the gantry subsystem. This subsytem controls the gantry that allows
+ * the claw to translate left and right on the elevator for easier vision tageting.
  */
 public class Gantry extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+
+  public static Gantry gantry;
+  public static final int PULSES_PER_INCH = 1000; //TODO: Adjust number when testing is done
+  public static final int INCHES_TO_CENTER = 6; //TODO: Adjust number when testing is done
   VictorSP gantryMotor;
   Encoder encoder;
   DigitalInput leftLimit, rightLimit;
-  public static Gantry gantry;
   boolean canGoLeft = true;
   boolean canGoRight = true;
 
-  private Gantry(){
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+
+  public static Gantry getInstance(){
+    if (gantry == null){
+      gantry = new Gantry();
+    }
+    return gantry;
+  }
+
+  /**
+   * Sets up motors and encoders that are present on the Gantry
+   */
+  private Gantry() {
     gantryMotor = new VictorSP(RobotMap.G_MOTOR);
     encoder = new Encoder(RobotMap.G_ENCODER_A, RobotMap.G_ENCODER_B);
     leftLimit = new DigitalInput(RobotMap.G_LIMIT_L);
@@ -43,6 +58,10 @@ public class Gantry extends Subsystem {
     return encoder;
   }
 
+  /**
+   * Method for actually driving the Gantry left or right
+   * @param speed Speed to drive the gantry at. Value from -1 to 1.
+   */
   public void driveGantryMotor(double speed){
     canGoLeft = true;
     canGoRight = true;
@@ -62,10 +81,16 @@ public class Gantry extends Subsystem {
     gantryMotor.set(speed);
   }
 
+  /**
+   * Checks if the gantry has reached the left side
+   */
   public Boolean isAtLeftLimit(){
     return !leftLimit.get();
   }
 
+  /**
+   * Checks if the gantry has reached the right side
+   */
   public Boolean isAtRightLimit(){
     return !rightLimit.get();
   }
@@ -84,12 +109,6 @@ public class Gantry extends Subsystem {
     return encoderPos;
   }
 
-  public static Gantry getInstance(){
-    if (gantry == null){
-      gantry = new Gantry();
-    }
-    return gantry;
-  }
 
   @Override
   public void initDefaultCommand() {

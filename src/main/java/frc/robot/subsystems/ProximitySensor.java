@@ -35,6 +35,14 @@ public class ProximitySensor extends Subsystem {
     return proximitySensor;
   }
 
+  public DigitalInput getProximitySensor() {
+    return prox;
+  }
+
+  public boolean get() {
+    return !prox.get();
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
