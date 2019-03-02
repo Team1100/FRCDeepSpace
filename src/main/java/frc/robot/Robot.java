@@ -91,6 +91,10 @@ public class Robot extends TimedRobot {
     claw_g3.add(new ClawAcquireBall());
     claw_g3.add(new CloseClawWhenSensed());
     claw_g3.add(new PlaceHatch());
+    claw_g3.add("Can Aim", Vision.getInstance().getcanAim());
+    claw_g3.add("Is Aimed", Vision.getInstance().getisAimed());
+    claw_g3.add("Claw is Closed", Claw.getInstance().isClosed());
+    claw_g3.add("Claw is Pushed Forward", Claw.getInstance().isForward());
 
     // DRIVE commands
     ShuffleboardTab drive_tab = Shuffleboard.getTab("Drive");
@@ -99,6 +103,10 @@ public class Robot extends TimedRobot {
     drive_g1.add(new DefaultDrive());
     drive_g1.add(new ChangeHeading(0, 0.5));
     drive_g1.add(new MeasuredDrive(0.5, 0.5));
+    drive_g1.add("NonPIDClimb", new NonPIDClimb(.5, .5));
+    drive_g1.add("Stilt Power", 0.5);
+    drive_g1.add("Intake Power", 0.5);
+    drive_g1.add("Retract Stilts", new RetractStilts());
 
 
     // INTAKE commands
@@ -152,15 +160,6 @@ public class Robot extends TimedRobot {
     auto_chooser.addOption("Left_LeftRocket_2Hatch", new Left_LeftRocket_2Hatches());
     auto_chooser.addOption("Right_RightRocket_2Hatch", new Right_RightRocket_2Hatches());
     SmartDashboard.putData("Auto mode", auto_chooser);
-    SmartDashboard.putData("ChangeHeading", new ChangeHeading(90,0.5));
-    SmartDashboard.putBoolean("Can Aim", Vision.getInstance().getcanAim());
-    SmartDashboard.putBoolean("Is Aimed", Vision.getInstance().getisAimed());
-    SmartDashboard.putBoolean("Claw is Closed", Claw.getInstance().isClosed());
-    SmartDashboard.putBoolean("Claw is Pushed Forward", Claw.getInstance().isForward());
-    SmartDashboard.putData("NonPIDClimb", new NonPIDClimb(.5, .5));
-    SmartDashboard.putNumber("Stilt Power", 0.5);
-    SmartDashboard.putNumber("Intake Power", 0.5);
-    SmartDashboard.putData("Retract Stilts", new RetractStilts());
     // auto_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", auto_chooser);
