@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.commands.elevator.PIDElevator;
 import frc.robot.commands.gantry.PIDGantry;
-import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.Claw;
 import frc.robot.commands.auto.*;
 import frc.robot.subsystems.Drive;
@@ -54,7 +53,6 @@ public class Robot extends TimedRobot {
     Drive.getInstance();
     Elevator.getInstance();
     Claw.getInstance();
-    BallIntake.getInstance();
     
     m_chooser.setDefaultOption("Default Auto", new TestAutoPathCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
