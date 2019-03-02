@@ -21,7 +21,7 @@ import frc.robot.commands.gantry.DefaultGantry;
 public class Gantry extends Subsystem {
 
   public static Gantry gantry;
-  private static final double PULSES_PER_UNIT = 2176.25;
+  public static final double PULSES_PER_UNIT = 2176.25;
   VictorSP gantryMotor;
   Encoder encoder;
   DigitalInput leftLimit, rightLimit;
