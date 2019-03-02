@@ -23,13 +23,19 @@ public class Elevator extends Subsystem {
   // here. Call these from Commands.
   public static Elevator elevator;
   private VictorSPX left, right;
-  DigitalInput bottomSwitch, topSwitch;
-  Encoder encoder;
+  /* Level information
+   * s4 = top
+   * s3
+   * s2
+   * s1 = bottom
+   */
+  DigitalInput sw0, sw1, sw2, sw3;
+  Encoder elevatorEncoder;
   double PULSE_PER_FOOT = 4458.75;
   boolean canGoUp = true;
   boolean canGoDown = true;
-  double bottom;
-  double top;
+  double bottom = 0;
+  double top = 0.413;
 
 
   /**
@@ -39,13 +45,12 @@ public class Elevator extends Subsystem {
     //TODO:Update with names and proper ports
     left = new VictorSPX(RobotMap.E_LEFT);
     right = new VictorSPX(RobotMap.E_RIGHT);
-    bottomSwitch = new DigitalInput(RobotMap.E_BOTTOM_SWITCH);
-    topSwitch = new DigitalInput(RobotMap.E_TOP_SWITCH);
-    encoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
-    encoder.setDistancePerPulse(1/PULSE_PER_FOOT);
-    bottom = 0;
-    top = 7;
-
+    sw0 = new DigitalInput(RobotMap.E_BOTTOM_SWITCH);
+    sw1 = new DigitalInput(RobotMap.E_LEVEL_ONE_SWITCH);
+    sw2 = new DigitalInput(RobotMap.E_LEVEL_TWO_SWITCH);
+    sw3 = new DigitalInput(RobotMap.E_LEVEL_THREE_SWITCH);
+    elevatorEncoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
+    elevatorEncoder.setDistancePerPulse(1/PULSE_PER_FOOT);
   }
 
   /**
@@ -59,10 +64,10 @@ public class Elevator extends Subsystem {
 
     if (isAtBottom()) {
       canGoDown = false;
-      bottom = encoder.getDistance();
-    } else if (isAtTop()) {
+      bottom = elevatorEncoder.getDistance();
+    } else if (isAtLevelThree()) {
       canGoUp = false;
-      top = encoder.getDistance();
+      top = elevatorEncoder.getDistance();
     }
     
     if (!canGoDown && speed < 0) {
@@ -74,6 +79,29 @@ public class Elevator extends Subsystem {
     right.set(ControlMode.PercentOutput, -speed);
   }
 
+  /**
+   * Checks if the elevator is at level one
+   */
+  public boolean isAtLevelOne(){
+    return sw1.get();
+  }
+
+  /**
+   * Checks if the elevator is at level two
+   */
+  public boolean isAtLevelTwo(){
+    return sw2.get();
+  }
+
+  /**
+   * Checks if the elevator is at level three
+   */
+  public boolean isAtLevelThree(){
+    return sw3.get();
+  }
+
+
+
   public void extendLeft(double speed){
     left.set(ControlMode.PercentOutput, -speed);
   }
@@ -81,23 +109,19 @@ public class Elevator extends Subsystem {
   public void extendRight(double speed){
     right.set(ControlMode.PercentOutput, -speed);
   }
+
   /**
    * Checks if the elevator is at level one
    */
   public boolean isAtBottom(){
-    return bottomSwitch.get();
+    return sw0.get();
   }
-
-  public Encoder getEncoder(){
-    return encoder;
-  }
-
 
   /**
    * Checks if the elevator is at level two
    */
   public boolean isAtTop(){
-    return topSwitch.get();
+    return sw3.get();
   }
 
   /**
@@ -114,6 +138,10 @@ public class Elevator extends Subsystem {
    */
   public double getBottom(){
     return bottom;
+  }
+
+  public Encoder getEncoder(){
+    return elevatorEncoder;
   }
 
   /**
