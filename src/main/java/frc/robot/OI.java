@@ -9,11 +9,7 @@ package frc.robot;
 
 import frc.robot.commands.claw.*;
 import frc.robot.commands.elevator.*;
-import frc.robot.commands.gantry.MoveToSetpoint;
-import frc.robot.commands.gantry.PIDGantry;
-import frc.robot.commands.intake.IntakeDown;
-import frc.robot.commands.intake.PushBallOut;
-import frc.robot.commands.vision.AlignGantry;
+import frc.robot.commands.gantry.*;
 import frc.robot.input.AttackThree;
 import frc.robot.input.XboxController;
 import frc.robot.subsystems.Elevator;
