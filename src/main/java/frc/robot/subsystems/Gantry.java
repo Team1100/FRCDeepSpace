@@ -23,15 +23,13 @@ import frc.robot.commands.gantry.DefaultGantry;
 public class Gantry extends Subsystem {
 
   public static Gantry gantry;
-  public static final int PULSES_PER_INCH = 1000; //TODO: Adjust number when testing is done
-  public static final int INCHES_TO_CENTER = 6; //TODO: Adjust number when testing is done
+  public static final double PULSES_PER_UNIT = 2176.25;
   VictorSPX gantryMotor;
   Encoder encoder;
   DigitalInput leftLimit, rightLimit;
   boolean canGoLeft = true;
   boolean canGoRight = true;
 
-  public boolean stopVisionGantry;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -50,9 +48,8 @@ public class Gantry extends Subsystem {
     encoder = new Encoder(RobotMap.G_ENCODER_A, RobotMap.G_ENCODER_B);
     leftLimit = new DigitalInput(RobotMap.G_LIMIT_L);
     rightLimit = new DigitalInput(RobotMap.G_LIMIT_R);
-    encoder.setDistancePerPulse(1/2176.25);
+    encoder.setDistancePerPulse(1/PULSES_PER_UNIT);
 
-    stopVisionGantry = false;
   }
 
    /**
