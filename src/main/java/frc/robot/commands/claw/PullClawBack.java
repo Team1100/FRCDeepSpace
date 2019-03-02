@@ -10,6 +10,9 @@ package frc.robot.commands.claw;
 import frc.robot.subsystems.Claw;
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * This command triggers a Pneumatic solenoid valve that pulls the whole claw assembly backwards.
+ */
 public class PullClawBack extends Command {
 
   Claw claw;

@@ -10,13 +10,16 @@ package frc.robot.commands.claw;
 import frc.robot.subsystems.Claw;
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * This command triggers the pneumatic solenoid valve and opens the claw accordingly.
+ */
 public class OpenClaw extends Command {
   
   Claw claw;
 
   public OpenClaw() {
     requires(Claw.getInstance());
-        claw = Claw.getInstance();
+    claw = Claw.getInstance();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

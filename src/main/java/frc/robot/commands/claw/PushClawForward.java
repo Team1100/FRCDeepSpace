@@ -9,7 +9,9 @@ package frc.robot.commands.claw;
 
 import frc.robot.subsystems.Claw;
 import edu.wpi.first.wpilibj.command.Command;
-
+/**
+ * This command triggers a pneumatic solenoid valve that pushes the claw assembly forward.
+ */
 public class PushClawForward extends Command {
 
   Claw claw;

@@ -5,7 +5,9 @@ import frc.robot.OI;
 import frc.robot.input.XboxController;
 import frc.robot.subsystems.Elevator;
 
-
+/**
+ * Default command to drive the elevator up and down using the joystick on the xbox controller.
+ */
 public class DefaultElevator extends Command {
     double speed;
 
@@ -23,9 +25,8 @@ public class DefaultElevator extends Command {
      * Uses left stick of xbox controller to move elevator up and down
      */
     protected void execute() {
-	    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
-	    Elevator.getInstance().extend(-speed);
-    	
+      speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+      Elevator.getInstance().extend(-speed);
     }
     
     /**
@@ -42,8 +43,9 @@ public class DefaultElevator extends Command {
     }
     
     /**
-     * Not Used
+     * Stops elevator if command gets interrupted
      */
     protected void interrupted() {
+      Elevator.getInstance().extend(0);
     }
 }
