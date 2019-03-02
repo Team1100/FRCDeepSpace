@@ -25,11 +25,9 @@ public class DefaultElevator extends Command {
      * Uses left stick of xbox controller to move elevator up and down
      */
     protected void execute() {
-        speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
-        //System.out.println(speed);
-        //Speed is currently limited because safties have not been implemented.
+      speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+      //Speed is currently limited because safties have not been implemented.
       Elevator.getInstance().extend(speed/2);
-      
     }
     
     /**
@@ -49,6 +47,6 @@ public class DefaultElevator extends Command {
      * Stops elevator if command gets interrupted
      */
     protected void interrupted() {
-        Elevator.getInstance().extend(0);
+      Elevator.getInstance().extend(0);
     }
 }
