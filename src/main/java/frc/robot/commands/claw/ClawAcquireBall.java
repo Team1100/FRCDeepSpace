@@ -4,19 +4,25 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package frc.robot.commands.claw;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.ProximitySensor;
 
-public class AcquireBall extends Command {
+/**
+ * This command will end when the current state of the proximity sensor returns true
+ * The proximity sensor will be used to detect when the ball is in the claw and will close
+ * the claw onto the ball, therefore capturing it.
+ * Can be used in command groups as a sequential command.
+ */
+public class ClawAcquireBall extends Command {
+  private ProximitySensor ps;
   boolean captured = false;
-
-  public AcquireBall() {
+  public ClawAcquireBall() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(ProximitySensor.getInstance());
+    ps = ProximitySensor.getInstance();
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +33,7 @@ public class AcquireBall extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    captured = ProximitySensor.getInstance().isTriggered();
+    captured = ps.getInstance().isTriggered();
   }
 
   // Make this return true when this Command no longer needs to run execute()
