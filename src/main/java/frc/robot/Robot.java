@@ -27,6 +27,9 @@ import frc.robot.commands.intake.*;
 import frc.robot.commands.rollers.*;
 import frc.robot.commands.stilts.*;
 import frc.robot.commands.testing.*;
+import frc.robot.commands.vision.CenterRobot;
+import frc.robot.commands.vision.DriveWhileCentered;
+import frc.robot.commands.vision.TranslateClawToCenter;
 import frc.robot.input.*;
 import frc.robot.subsystems.*;
 
@@ -81,8 +84,6 @@ public class Robot extends TimedRobot {
     // CLAW Commands
     ShuffleboardTab claw_tab = Shuffleboard.getTab("Claw");
     claw_tab.add(Claw.getInstance());
-    claw_tab.add(Vision.getInstance());
-    claw_tab.add(Gantry.getInstance());
     ShuffleboardLayout claw_g1 = claw_tab.getLayout("BasicOpen", BuiltInLayouts.kList);
     claw_g1.add(new OpenClaw());
     claw_g1.add(new CloseClaw());
@@ -99,25 +100,16 @@ public class Robot extends TimedRobot {
     claw_g3.add(new PickupHatchHPS());
     claw_g3.add(new PlaceHatch());
     claw_g3.add(new ScoreCargo());
-    claw_g3.add("Can Aim", Vision.getInstance().getcanAim());
-    claw_g3.add("Is Aimed", Vision.getInstance().getisAimed());
-    claw_g3.add("Claw is Closed", Claw.getInstance().isClosed());
-    claw_g3.add("Claw is Pushed Forward", Claw.getInstance().isForward());
 
     // DRIVE commands
     ShuffleboardTab drive_tab = Shuffleboard.getTab("Drive");
     drive_tab.add(Drive.getInstance());
-    drive_tab.add(Stilts.getInstance());
-    drive_tab.add(BallIntake.getInstance());
     ShuffleboardLayout drive_g1 = drive_tab.getLayout("Basic", BuiltInLayouts.kList);
     drive_g1.add(new DefaultDrive());
     drive_g1.add(new ChangeHeading(0, 0.5));
     drive_g1.add(new MeasuredDrive(0.5, 0.5));
     ShuffleboardLayout drive_g2 = drive_tab.getLayout("Climbing", BuiltInLayouts.kList);
-    drive_g2.add("NonPIDClimb", new NonPIDClimb(.5, .5));
-    drive_g2.add("Stilt Power", 0.5);
-    drive_g2.add("Intake Power", 0.5);
-    drive_g2.add("Retract Stilts", new RetractStilts());
+    drive_g2.add(new NonPIDClimb(.5, .5));
 
 
     // INTAKE commands
@@ -163,6 +155,26 @@ public class Robot extends TimedRobot {
     stilts_g1.add(new RaiseIntakeAndDrive());
     stilts_g1.add(new JoystickClimb());
 
+    // VISION commands
+    ShuffleboardTab vision_tab = Shuffleboard.getTab("Vision");
+    vision_tab.add(Vision.getInstance());
+    ShuffleboardLayout vision_g1 = vision_tab.getLayout("Basic", BuiltInLayouts.kList);
+    vision_g1.add(new CenterRobot(1));
+    vision_g1.add(new DriveWhileCentered(1));
+    vision_g1.add(new TranslateClawToCenter(1));
+
+    // GANTRY commands
+    ShuffleboardTab gantry_tab = Shuffleboard.getTab("Gantry");
+    gantry_tab.add(Gantry.getInstance());
+    ShuffleboardLayout gantry_g1 = gantry_tab.getLayout("Basic", BuiltInLayouts.kList);
+    gantry_g1.add(new CenterGantry());
+    gantry_g1.add(new DefaultGantry());
+    gantry_g1.add(new GantryLeftLimit());
+    ShuffleboardLayout gantry_g2 = gantry_tab.getLayout("Complex", BuiltInLayouts.kList);
+    gantry_g2.add(new MoveGantryToCenter());
+    gantry_g2.add(new MoveToSetpoint(0.5));
+    gantry_g2.add(new PIDGantry(0.5));
+
     //ELEVATOR commands
     ShuffleboardTab elevator_tab = Shuffleboard.getTab("Elevator");
     elevator_tab.add(Elevator.getInstance());
@@ -175,6 +187,16 @@ public class Robot extends TimedRobot {
     elevator_g2.add(new PIDElevatorL3());
     elevator_g2.add(new ElevatorBottom());
     elevator_g2.add(new ElevatorTop());
+
+    updateDebugTab();
+  }
+
+  public void updateDebugTab() {
+    ShuffleboardTab debug_tab = Shuffleboard.getTab("Debug");
+    debug_tab.add("Can Aim", Vision.getInstance().getcanAim());
+    debug_tab.add("Is Aimed", Vision.getInstance().getisAimed());
+    debug_tab.add("Claw is Closed", Claw.getInstance().isClosed());
+    debug_tab.add("Claw is Pushed Forward", Claw.getInstance().isForward());
   }
 
   public void setupAutoChooser() {
@@ -300,9 +322,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    updateDebugTab();
     Scheduler.getInstance().run();
-    double stiltPower = SmartDashboard.getNumber("Stilt Power", 0.5);
-    double intakePower = SmartDashboard.getNumber("Intake Power", 0.5);
   }
 
   /**
