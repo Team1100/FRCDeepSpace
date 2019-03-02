@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import edu.wpi.first.wpilibj.Notifier;
 import jaci.pathfinder.Pathfinder;
+import jaci.pathfinder.PathfinderFRC;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
 
@@ -48,12 +49,9 @@ public class TestAutoPathCommand extends Command {
 
     ioerror = false;
 
-    leftCSV = new File("/home/lvuser/deploy/output/Unnamed.left.pf1.csv");
-    rightCSV = new File("/home/lvuser/deploy/output/Unnamed.right.pf1.csv");
-
     try {
-      leftTrajectory = Pathfinder.readFromCSV(leftCSV);
-      rightTrajectory = Pathfinder.readFromCSV(rightCSV);
+      leftTrajectory = PathfinderFRC.getTrajectory("left");
+      rightTrajectory = PathfinderFRC.getTrajectory("right");
     } catch (IOException e) {
       System.out.println("Error reading pathweaver CSV file!");
       e.printStackTrace();
