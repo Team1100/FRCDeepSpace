@@ -24,10 +24,10 @@ public class Elevator extends Subsystem {
   public static Elevator elevator;
   private VictorSPX left, right;
   /* Level information
-   * s4 = top
-   * s3
+   * s3 = top
    * s2
-   * s1 = bottom
+   * s1
+   * s0 = bottom
    */
   DigitalInput sw0, sw1, sw2, sw3;
   Encoder elevatorEncoder;
