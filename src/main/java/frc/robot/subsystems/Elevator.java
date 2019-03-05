@@ -29,7 +29,7 @@ public class Elevator extends Subsystem {
    * s1
    * s0 = bottom
    */
-  DigitalInput sw0, sw1, sw2, sw3;
+  DigitalInput sw1, sw2, sw3;
   Encoder elevatorEncoder;
   double PULSE_PER_FOOT = 4458.75;
   boolean canGoUp = true;
@@ -45,10 +45,9 @@ public class Elevator extends Subsystem {
     //TODO:Update with names and proper ports
     left = new VictorSPX(RobotMap.E_LEFT);
     right = new VictorSPX(RobotMap.E_RIGHT);
-    sw0 = new DigitalInput(RobotMap.E_BOTTOM_SWITCH);
     sw1 = new DigitalInput(RobotMap.E_LEVEL_ONE_SWITCH);
     sw2 = new DigitalInput(RobotMap.E_LEVEL_TWO_SWITCH);
-    sw3 = new DigitalInput(RobotMap.E_LEVEL_THREE_SWITCH);
+    sw2 = new DigitalInput(RobotMap.E_LEVEL_THREE_SWITCH);
     elevatorEncoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
     elevatorEncoder.setDistancePerPulse(1/PULSE_PER_FOOT);
   }
@@ -110,19 +109,6 @@ public class Elevator extends Subsystem {
     right.set(ControlMode.PercentOutput, -speed);
   }
 
-  /**
-   * Checks if the elevator is at level one
-   */
-  public boolean isAtBottom(){
-    return sw0.get();
-  }
-
-  /**
-   * Checks if the elevator is at level two
-   */
-  public boolean isAtTop(){
-    return sw3.get();
-  }
 
   /**
    * Gets the highest height possible

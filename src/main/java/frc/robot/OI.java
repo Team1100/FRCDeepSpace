@@ -18,9 +18,7 @@ import frc.robot.commands.claw.PlaceHatch;
 import frc.robot.commands.claw.PullClawBack;
 import frc.robot.commands.claw.PushClawForward;
 import frc.robot.commands.drive.ChangeHeading;
-import frc.robot.commands.elevator.ElevatorBottom;
-import frc.robot.commands.elevator.ElevatorTop;
-import frc.robot.commands.elevator.Elevator_Rocket_L3;
+import frc.robot.commands.elevator.*;
 import frc.robot.commands.intake.IntakeUp;
 import frc.robot.commands.intake.IntakeDown;
 import frc.robot.commands.rollers.RollersIn;
@@ -70,9 +68,9 @@ public class OI {
     xbox.getButtonStart().whenPressed(new AlignGantry());
     xbox.getButtonBack().whenPressed(new CenterRobot(5));
     xbox.getDPad().getRight().whenPressed(new PickupHatch());
-    xbox.getDPad().getDown().whenPressed(new ElevatorBottom());
-    xbox.getDPad().getLeft().whenPressed(new Elevator_Rocket_L3());
-    xbox.getDPad().getUp().whenPressed(new ElevatorTop());
+    xbox.getDPad().getDown().whenPressed(new Elevator_L1());
+    xbox.getDPad().getLeft().whenPressed(new Elevator_Rocket_L2());
+    xbox.getDPad().getUp().whenPressed(new Elevator_Rocket_L3());
 
 
     //xbox.getButtonLeftBumper().whenPressed(new CloseOnBall());

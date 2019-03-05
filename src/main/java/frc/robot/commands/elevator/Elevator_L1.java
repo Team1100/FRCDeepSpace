@@ -9,13 +9,14 @@ package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Elevator;
+
 /**
- * Command that drives the elevator upwards until it hits the top limit switch.
+ * Command to drive the elevator downwards until it hits the bottom limit switch.
  */
-public class ElevatorTop extends Command {
+public class Elevator_L1 extends Command {
 
   Elevator elevator;
-  public ElevatorTop() {
+  public Elevator_L1() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Elevator.getInstance());
@@ -30,13 +31,13 @@ public class ElevatorTop extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Elevator.getInstance().extend(.5);
+    Elevator.getInstance().extend(-.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return elevator.isAtTop();
+    return elevator.isAtLevelOne();
   }
 
   // Called once after isFinished returns true
@@ -49,6 +50,5 @@ public class ElevatorTop extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Elevator.getInstance().extend(0);
   }
 }

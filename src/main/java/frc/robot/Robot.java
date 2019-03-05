@@ -185,7 +185,7 @@ public class Robot extends TimedRobot {
     elevator_tab.add(Elevator.getInstance());
     ShuffleboardLayout elevator_g1 = elevator_tab.getLayout("Basic", BuiltInLayouts.kList);
     elevator_g1.add(new DefaultElevator());
-    elevator_g1.add(new ElevatorBottom());
+    elevator_g1.add(new Elevator_L1());
     elevator_g1.add(new Elevator_Rocket_L2());
     elevator_g1.add(new Elevator_Rocket_L3());
     ShuffleboardLayout elevator_g2 = elevator_tab.getLayout("PID", BuiltInLayouts.kList);
