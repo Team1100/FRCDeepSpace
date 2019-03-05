@@ -10,6 +10,7 @@ package frc.robot;
 import frc.robot.commands.SwitchSides;
 import frc.robot.commands.claw.CloseClaw;
 import frc.robot.commands.claw.CloseClawWhenSensed;
+import frc.robot.commands.claw.CloseOnBall;
 import frc.robot.commands.claw.DeployHatch;
 import frc.robot.commands.claw.OpenClaw;
 import frc.robot.commands.claw.PickupHatch;
@@ -20,7 +21,10 @@ import frc.robot.commands.claw.PushClawForward;
 import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.intake.IntakeUp;
+import frc.robot.commands.intake.ScoreCargo_RocketL1;
+import frc.robot.commands.intake.IntakeCargo;
 import frc.robot.commands.intake.IntakeDown;
+import frc.robot.commands.rollers.MoveBallToChute;
 import frc.robot.commands.rollers.RollersIn;
 import frc.robot.commands.rollers.StopRollers;
 import frc.robot.commands.vision.AlignGantry;
@@ -60,6 +64,23 @@ public class OI {
     
     //Now Mapping Commands to XBox 
 
+    xbox.getButtonY().whenPressed(new Elevator_Rocket_L3());
+    xbox.getButtonX().whenPressed(new Elevator_Rocket_L2());
+    xbox.getButtonB().whenPressed(new AlignGantry());
+    xbox.getButtonA().whenPressed(new Elevator_L1());
+
+    xbox.getButtonBack().whenPressed(new CenterRobot(5));
+    xbox.getButtonStart().whenPressed(new PullClawBack());
+
+    xbox.getButtonLeftBumper().whenPressed(new PickupHatch());
+    xbox.getButtonRightBumper().whenPressed(new DeployHatch());
+
+    xbox.getDPad().getRight().whenPressed(new MoveBallToChute(2));
+    xbox.getDPad().getDown().whenPressed(new IntakeCargo());
+    xbox.getDPad().getLeft().whenPressed(new ScoreCargo_RocketL1());
+    xbox.getDPad().getUp().whenPressed(new PushClawForward());
+
+    /*
     xbox.getButtonY().whenPressed(new OpenClaw());
     xbox.getButtonX().whenPressed(new CloseClaw());
     xbox.getButtonB().whenPressed(new PushClawForward());
@@ -71,10 +92,10 @@ public class OI {
     xbox.getDPad().getDown().whenPressed(new Elevator_L1());
     xbox.getDPad().getLeft().whenPressed(new Elevator_Rocket_L2());
     xbox.getDPad().getUp().whenPressed(new Elevator_Rocket_L3());
-
+    */
 
     //xbox.getButtonLeftBumper().whenPressed(new CloseOnBall());
-    xbox.getButtonRightBumper().whenPressed(new DeployHatch());
+    //xbox.getButtonRightBumper().whenPressed(new DeployHatch());
     //xbox.getButtonBack().whenPressed(new MoveToSetpoint(0.6));
 
     /*
