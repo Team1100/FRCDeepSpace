@@ -10,6 +10,7 @@ package frc.robot.commands.claw;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.*;
+import frc.robot.commands.gantry.CenterGantry;
 import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Vision;
 
@@ -27,6 +28,7 @@ public class DeployHatch extends CommandGroup {
     addSequential(new Wait(0.25));
     addSequential(new PullClawBack());
     Vision.getInstance().finishedAligning = false;
+    addSequential(new CenterGantry());
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
