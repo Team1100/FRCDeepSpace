@@ -17,7 +17,7 @@ public class CloseOnBall extends CommandGroup {
   public CloseOnBall() {
     addSequential(new OpenClaw());
     addSequential(new ClawAcquireBall());
-    addSequential(new Wait(0.1));
+    //addSequential(new Wait(0.1));
     addSequential(new CloseClaw());
     // Add Commands here:
     // e.g. addSequential(new Command1());

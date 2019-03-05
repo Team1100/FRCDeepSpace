@@ -102,7 +102,7 @@ public class Gantry extends Subsystem {
     double percentage = 0.5;
 
     if(Vision.getInstance().getcanAim()){
-      percentage = cx/1280;
+      percentage = cx/640;
     }
 
     encoderPos = percentage;
