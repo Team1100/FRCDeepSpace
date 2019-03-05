@@ -42,9 +42,9 @@ public class AlignGantry extends Command {
         gantry.driveGantryMotor(0);
       }
     }
+    
     else if (encoder.getDistance() > sp){
       gantry.driveGantryMotor(1);
-
       if(((sp-0.02) < encoder.getDistance()) && (encoder.getDistance() <(sp + 0.02))){
         gantry.driveGantryMotor(0);
       }
