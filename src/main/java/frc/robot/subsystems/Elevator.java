@@ -61,7 +61,7 @@ public class Elevator extends Subsystem {
     canGoDown = true;
     canGoUp = true;
 
-    if (isAtBottom()) {
+    if (isAtLevelOne()) {
       canGoDown = false;
       bottom = elevatorEncoder.getDistance();
     } else if (isAtLevelThree()) {
