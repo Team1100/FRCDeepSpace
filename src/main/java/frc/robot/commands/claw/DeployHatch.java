@@ -19,14 +19,14 @@ public class DeployHatch extends CommandGroup {
    */
 
   public DeployHatch() {
-    Vision.getInstance().finishedAligning = true;
+    Vision.getInstance().setFinishedAligning(true);
     //addSequential(new OpenClaw());
     addSequential(new PushClawForward());
     addSequential(new Wait(0.25));
     addSequential(new OpenClaw());
     addSequential(new Wait(0.25));
     addSequential(new PullClawBack());
-    Vision.getInstance().finishedAligning = false;
+    Vision.getInstance().setFinishedAligning(false);
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

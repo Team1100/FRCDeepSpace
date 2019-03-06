@@ -154,6 +154,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Top", Elevator.getInstance().getTop());
     SmartDashboard.putNumber("Top", Elevator.getInstance().getTop());
     SmartDashboard.putNumber("CX", Vision.getInstance().getCX());
+    SmartDashboard.putBoolean("IsFInishedAliging", Vision.getInstance().returnFinishedAligning());
 
 
   }

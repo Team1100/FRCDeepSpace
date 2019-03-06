@@ -21,8 +21,7 @@ public class Vision extends Subsystem {
   public static NetworkTable nt;
   private static boolean canAim = false;
   private static boolean isAimed = false;
-  public boolean finishedAligning = false;
-
+  public static boolean finishedAligning;
   /**
    * Used outside of the Vision subsystem to return an instance of Vision subsystem.
    * @return Returns instance of Vision subsystem formed from constructor.
@@ -30,6 +29,7 @@ public class Vision extends Subsystem {
 
    private Vision(){
      nt = NetworkTableInstance.getDefault().getTable("Pi");
+     finishedAligning = true;
    }
   public static Vision getInstance(){
     if (vision == null){
@@ -67,6 +67,14 @@ public class Vision extends Subsystem {
 
   public double getArea() {
     return nt.getEntry("Area").getDouble(-1);
+  }
+
+  public void setFinishedAligning(boolean bool){
+    finishedAligning= bool;
+  }
+
+  public boolean returnFinishedAligning(){
+    return finishedAligning;
   }
 
   @Override

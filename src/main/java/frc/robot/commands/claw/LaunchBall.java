@@ -18,7 +18,7 @@ public class LaunchBall extends CommandGroup {
   public LaunchBall() {
 
     addSequential(new PushClawForward());
-    addSequential(new Wait(0.08));
+    //addSequential(new Wait(0.08));
     addSequential(new OpenClaw());
 
     // Add Commands here:
