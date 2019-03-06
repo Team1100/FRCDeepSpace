@@ -21,7 +21,8 @@ import frc.robot.commands.claw.PushClawForward;
 import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.intake.IntakeUp;
-import frc.robot.commands.intake.ScoreCargo_RocketL1;
+import frc.robot.commands.intake.ScoreCargo_Low;
+//import frc.robot.commands.intake.ScoreCargo_RocketL1;
 import frc.robot.commands.intake.IntakeCargo;
 import frc.robot.commands.intake.IntakeDown;
 import frc.robot.commands.rollers.MoveBallToChute;
@@ -77,7 +78,7 @@ public class OI {
 
     xbox.getDPad().getRight().whenPressed(new MoveBallToChute(2));
     xbox.getDPad().getDown().whenPressed(new IntakeCargo());
-    xbox.getDPad().getLeft().whenPressed(new ScoreCargo_RocketL1());
+    xbox.getDPad().getLeft().whenPressed(new ScoreCargo_Low());
     xbox.getDPad().getUp().whenPressed(new IntakeUp());
 
     /*
