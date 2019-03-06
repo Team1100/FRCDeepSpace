@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.rollers.PushBallOut;
 import frc.robot.commands.rollers.StopRollers;
 
-public class ScoreCargo_Low extends CommandGroup {
+public class ScoreCargo_Intake extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ScoreCargo_Low() {
+  public ScoreCargo_Intake() {
     addSequential(new PushBallOut(2));
     addSequential(new StopRollers());
     // Add Commands here:

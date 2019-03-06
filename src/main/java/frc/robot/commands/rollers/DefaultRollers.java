@@ -37,7 +37,7 @@ public class DefaultRollers extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
 
 
     Rollers.getInstance().rollersIn(speed);

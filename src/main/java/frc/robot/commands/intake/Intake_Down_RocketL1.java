@@ -10,12 +10,12 @@ package frc.robot.commands.intake;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.BallIntake;
 
-public class Intake_Up_RocketL1 extends Command {
+public class Intake_Down_RocketL1 extends Command {
 
   BallIntake intake;
   double pot_value;
 
-  public Intake_Up_RocketL1() {
+  public Intake_Down_RocketL1() {
     requires(BallIntake.getInstance());
     intake = BallIntake.getInstance();
     // Use requires() here to declare subsystem dependencies

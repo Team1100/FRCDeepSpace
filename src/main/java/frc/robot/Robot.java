@@ -134,7 +134,7 @@ public class Robot extends TimedRobot {
     intake_g3.add(new MoveBallToChute(1));
     intake_g3.add(new PushBallOut(5));
     intake_g3.add(new AcquireBall());
-    intake_g3.add(new ScoreCargo_Low());
+    intake_g3.add(new ScoreCargo_Intake());
     ShuffleboardLayout intake_g4 = intake_tab.getLayout("HatchCommands", BuiltInLayouts.kList);
     intake_g4.add(new PickupHatchHPS());
 
