@@ -172,7 +172,6 @@ public class RobotMap {
   public static final int E_LEVEL_ONE_SWITCH = DIO_2;
   public static final int E_LEVEL_TWO_SWITCH = DIO_MXP_5;
   public static final int E_LEVEL_THREE_SWITCH = DIO_MXP_6;
-  public static final int E_POT = ANALOG_0;
   public static final int E_ENCODER_A = DIO_MXP_0;
   public static final int E_ENCODER_B = DIO_MXP_1;
 
@@ -187,6 +186,7 @@ public class RobotMap {
   public static final int B_AXIS_MOVEMENT_RIGHT = CAN_4;
   public static final int B_BEAM_BREAK = DIO_0;
   public static final int B_TOP_SWITCH = DIO_MXP_2;
+  public static final int B_POT = ANALOG_0;
 
   //[C]law
   public static final int C_CLAW_OPEN = PCM_0;
