@@ -35,16 +35,16 @@ public class AlignGantry extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    sp = Gantry.getInstance().calculateGantryPosition();
+    sp = Gantry.getInstance().calculateGantryPosition()+0.08;
     if(Gantry.getInstance().getEncoder().getDistance() < sp){
       Gantry.getInstance().driveGantryMotor(-1);
-      if(((sp-0.02) < encoder.getDistance()) && (encoder.getDistance() <(sp + 0.02))){
+      if(((sp-0.02) < encoder.getDistance() && (encoder.getDistance() <(sp + 0.02)))){
         gantry.driveGantryMotor(0);
       }
     }
+    
     else if (encoder.getDistance() > sp){
       gantry.driveGantryMotor(1);
-
       if(((sp-0.02) < encoder.getDistance()) && (encoder.getDistance() <(sp + 0.02))){
         gantry.driveGantryMotor(0);
       }
@@ -56,7 +56,7 @@ public class AlignGantry extends Command {
   @Override
   protected boolean isFinished() {
     //return(((sp-0.02) < Gantry.getInstance().getEncoder().getDistance()) && (Gantry.getInstance().getEncoder().getDistance() <(sp + 0.02)) || isTimedOut());
-    return Vision.getInstance().finishedAligning;
+    return Vision.getInstance().returnFinishedAligning();
   }
 
   // Called once after isFinished returns true

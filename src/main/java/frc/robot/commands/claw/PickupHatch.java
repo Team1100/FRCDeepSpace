@@ -16,7 +16,7 @@ public class PickupHatch extends CommandGroup {
    * Add your docs here.
    */
   public PickupHatch() {
-    Vision.getInstance().finishedAligning = true;
+    Vision.getInstance().setFinishedAligning(true);
     addSequential(new OpenClaw());
     addSequential(new Wait(0.15));
     addSequential(new PushClawForward());
@@ -24,7 +24,7 @@ public class PickupHatch extends CommandGroup {
     addSequential(new CloseClaw());
     addSequential(new Wait(0.25));
     addSequential(new PullClawBack());
-    Vision.getInstance().finishedAligning = false;
+    //Vision.getInstance().setFinishedAligning(false);
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

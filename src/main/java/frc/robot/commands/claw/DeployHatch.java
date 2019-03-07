@@ -27,7 +27,7 @@ public class DeployHatch extends CommandGroup {
     addSequential(new OpenClaw());
     addSequential(new Wait(0.25));
     addSequential(new PullClawBack());
-    Vision.getInstance().finishedAligning = false;
+    Vision.getInstance().setFinishedAligning(false);
     addSequential(new CenterGantry());
     // Add Commands here:
     // e.g. addSequential(new Command1());
