@@ -32,7 +32,7 @@ public class PIDElevator extends PIDCommand {
     height = 1-height;
     height *= 5;
     elevator = Elevator.getInstance();
-    setInputRange(elevator.getTop(), elevator.getBottom()); 
+    setInputRange(elevator.getBottom(), elevator.getTop()); 
     this.height = height;
     setSetpoint(height+elevator.getTop());
     pidController.setOutputRange(-1, 1);
