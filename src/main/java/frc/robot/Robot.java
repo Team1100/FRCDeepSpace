@@ -131,10 +131,11 @@ public class Robot extends TimedRobot {
     intake_g2.add(new ClimbWhileIntake(5, 5));
     ShuffleboardLayout intake_g3 = intake_tab.getLayout("BallCommands", BuiltInLayouts.kList);
     intake_g3.add(new IntakeCargo());
-    intake_g3.add(new MoveBallToChute(1));
-    intake_g3.add(new PushBallOut(5));
     intake_g3.add(new AcquireBall());
     intake_g3.add(new ScoreCargo_Intake());
+    intake_g3.add(new ScoreCargo_RocketL1_Intake());
+    intake_g3.add(new Intake_Down_RocketL1());
+    
     ShuffleboardLayout intake_g4 = intake_tab.getLayout("HatchCommands", BuiltInLayouts.kList);
     intake_g4.add(new PickupHatchHPS());
 
@@ -176,6 +177,7 @@ public class Robot extends TimedRobot {
     gantry_g1.add(new CenterGantry());
     gantry_g1.add(new DefaultGantry());
     gantry_g1.add(new GantryLeftLimit());
+    gantry_g1.add(new GantryRightLimit());
     ShuffleboardLayout gantry_g2 = gantry_tab.getLayout("Complex", BuiltInLayouts.kList);
     gantry_g2.add(new MoveGantryToCenter());
     gantry_g2.add(new MoveToSetpoint(0.5));
@@ -193,6 +195,11 @@ public class Robot extends TimedRobot {
     elevator_g2.add(new PIDElevatorL1());
     elevator_g2.add(new PIDElevatorL2());
     elevator_g2.add(new PIDElevatorL3());
+
+    ShuffleboardLayout elevator_g3 = elevator_tab.getLayout("Placement", BuiltInLayouts.kList);
+    elevator_g3.add(new L1_Placement());
+    elevator_g3.add(new L2_Placement());
+    elevator_g3.add(new L3_Placement());
 
     updateDebugTab();
   }
