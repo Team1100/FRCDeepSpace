@@ -21,6 +21,7 @@ public class StopRollers extends Command {
   public StopRollers() {
     requires(BallIntake.getInstance());
     requires(Rollers.getInstance());
+    rollers = Rollers.getInstance();
     intake = BallIntake.getInstance();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);

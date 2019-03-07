@@ -71,11 +71,11 @@ public class Robot extends TimedRobot {
     Vision.getInstance();
 
     //Prints out our logo to the console
-    ShowLogo.ShowLogoOnStartup();
+    //ShowLogo.ShowLogoOnStartup();
 
     cs = CameraServer.getInstance();
-    cs.startAutomaticCapture("Front Camera", 0);
-    cs.startAutomaticCapture("Rear Camera", 1);
+    //cs.startAutomaticCapture("Front Camera", 0);
+    //cs.startAutomaticCapture("Rear Camera", 1);
     
     //setupAutoChooser();
     createTestingDashboard();
@@ -135,7 +135,7 @@ public class Robot extends TimedRobot {
     intake_g3.add(new ScoreCargo_Intake());
     intake_g3.add(new ScoreCargo_RocketL1_Intake());
     intake_g3.add(new Intake_Down_RocketL1());
-    
+
     ShuffleboardLayout intake_g4 = intake_tab.getLayout("HatchCommands", BuiltInLayouts.kList);
     intake_g4.add(new PickupHatchHPS());
 
@@ -210,6 +210,9 @@ public class Robot extends TimedRobot {
     debug_tab.add("Is Aimed", Vision.getInstance().getisAimed());
     debug_tab.add("Claw is Closed", Claw.getInstance().isClosed());
     debug_tab.add("Claw is Pushed Forward", Claw.getInstance().isForward());
+    debug_tab.add("Intake Pot", BallIntake.getInstance().getVoltage());
+    debug_tab.add("Left Limit Gantry", Gantry.getInstance().isAtLeftLimit());
+    debug_tab.add("Right Limit Gantry", Gantry.getInstance().isAtRightLimit());
   }
 
   public void setupAutoChooser() {
@@ -265,6 +268,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putBoolean("Left Limit", Gantry.getInstance().isAtLeftLimit());
+    SmartDashboard.putBoolean("Right Limit", Gantry.getInstance().isAtRightLimit());
+    SmartDashboard.putNumber("Intake Pot", BallIntake.getInstance().getVoltage());
   }
 
   /**
@@ -334,7 +340,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    updateDebugTab();
+    //updateDebugTab();
     Scheduler.getInstance().run();
   }
 

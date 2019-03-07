@@ -29,7 +29,7 @@ public class DefaultGantry extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    aspeed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+    aspeed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight);
     Gantry.getInstance().driveGantryMotor(aspeed);
   }
 

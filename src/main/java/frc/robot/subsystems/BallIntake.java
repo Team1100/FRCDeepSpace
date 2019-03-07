@@ -43,7 +43,7 @@ public class BallIntake extends Subsystem {
     motorPower = 0;
     bb = BeamBreak.getInstance();
     topSwitch = new DigitalInput(RobotMap.B_TOP_SWITCH);
-    //pot = new AnalogInput(RobotMap.B_POT);
+    pot = new AnalogInput(RobotMap.B_POT);
   }
 
   public static BallIntake getInstance(){
@@ -119,6 +119,6 @@ public class BallIntake extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new DefaultIntake());
+    //setDefaultCommand(new DefaultIntake());
   }
 }
