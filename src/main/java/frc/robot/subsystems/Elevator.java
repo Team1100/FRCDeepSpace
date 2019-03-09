@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.RobotMap;
+import frc.robot.commands.elevator.DefaultElevator;
 
 /**
  * The Drive subsystem: Sets up the infrastructure for the drivetrain and its hardware.
@@ -46,8 +47,8 @@ public class Elevator extends Subsystem {
     left = new VictorSPX(RobotMap.E_LEFT);
     right = new VictorSPX(RobotMap.E_RIGHT);
     sw1 = new DigitalInput(RobotMap.E_LEVEL_ONE_SWITCH);
-    sw2 = new DigitalInput(RobotMap.E_LEVEL_TWO_SWITCH);
-    sw2 = new DigitalInput(RobotMap.E_LEVEL_THREE_SWITCH);
+    //sw2 = new DigitalInput(RobotMap.E_LEVEL_TWO_SWITCH);
+    sw3 = new DigitalInput(RobotMap.E_LEVEL_THREE_SWITCH);
     elevatorEncoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
     elevatorEncoder.setDistancePerPulse(1/PULSE_PER_FOOT);
   }
@@ -88,9 +89,9 @@ public class Elevator extends Subsystem {
   /**
    * Checks if the elevator is at level two
    */
-  public boolean isAtLevelTwo(){
-    return sw2.get();
-  }
+  //public boolean isAtLevelTwo(){
+  //  return sw2.get();
+  //}
 
   /**
    * Checks if the elevator is at level three

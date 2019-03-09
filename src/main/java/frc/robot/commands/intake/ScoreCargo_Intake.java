@@ -16,7 +16,7 @@ public class ScoreCargo_Intake extends CommandGroup {
    * Add your docs here.
    */
   public ScoreCargo_Intake() {
-    addSequential(new PushBallOut(2));
+    addSequential(new PushBallOut(1));
     addSequential(new StopRollers());
     // Add Commands here:
     // e.g. addSequential(new Command1());

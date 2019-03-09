@@ -37,7 +37,13 @@ public class DefaultIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYLeft);
+    speed = 0;
+    if(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight) > .05) {
+      speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+    }
+    if(OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kYRight) > .05) {
+      speed = OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kYRight);
+    }
     //speed = OI.getInstance().getXbox().getAxis(rightJoystickY);
 
     BallIntake.getInstance().setIntakeSpeed(speed);

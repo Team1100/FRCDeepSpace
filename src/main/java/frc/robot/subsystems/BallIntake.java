@@ -119,6 +119,6 @@ public class BallIntake extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    //setDefaultCommand(new DefaultIntake());
+    setDefaultCommand(new DefaultIntake());
   }
 }

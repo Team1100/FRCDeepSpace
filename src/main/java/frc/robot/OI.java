@@ -44,6 +44,7 @@ public class OI {
   public static AttackThree leftStick;
   public static AttackThree rightStick;
   private static XboxController xbox;
+  private static XboxController xbox_climb;
 
    /**
    * Used outside of the OI class to return an instance of the class.
@@ -63,12 +64,14 @@ public class OI {
     rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.2);
 
     xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.1);
+    xbox_climb = new XboxController(RobotMap.U_XBOX_CONTROLLER_CLIMB, 0.1);
     
     //Now Mapping Commands to XBox 
 
     xbox.getButtonY().whenPressed(new Elevator_Rocket_L3());
     xbox.getButtonX().whenPressed(new Elevator_Rocket_L2());
-    xbox.getButtonB().whenPressed(new AlignGantry());
+    //xbox.getButtonB().whenPressed(new AlignGantry());
+    xbox.getButtonB().whenPressed(new CloseClawWhenSensed());
     xbox.getButtonA().whenPressed(new Elevator_L1());
 
     xbox.getButtonStart().whenPressed(new PushClawForward());
@@ -169,5 +172,9 @@ public class OI {
   public XboxController getXbox() {
       return xbox;
   }
+
+  public XboxController getXboxClimb() {
+    return xbox_climb;
+}
 
 }

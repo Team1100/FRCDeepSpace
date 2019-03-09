@@ -37,10 +37,16 @@ public class DefaultRollers extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+    //speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXLeft);
+    speed = 0;
+    if(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight) > .05) {
+      speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight);
+    }
+    if(OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight) > .05) {
+      speed = OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight);
+    }
 
-
-    Rollers.getInstance().rollersIn(speed);
+    Rollers.getInstance().rollersIn(speed/2);
   }
 
   // Make this return true when this Command no longer needs to run execute()

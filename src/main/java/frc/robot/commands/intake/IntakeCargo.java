@@ -21,14 +21,14 @@ public class IntakeCargo extends CommandGroup {
    */
   public IntakeCargo() {
     //BeamBreak beamBreak;
+
     //beamBreak = BeamBreak.getInstance();
 
-    addParallel(new IntakeDown());
+    //addSequential(new IntakeDown());
     addParallel(new RollersIn());
     addSequential(new AcquireBall());
     addSequential(new StopRollers());
-    addSequential(new IntakeUp());
-    System.out.println("Sensed Ball");
+    //addSequential(new IntakeUp());
     /*
     addSequential(new IntakeUp());
     addSequential(new MoveBallToChute(1));

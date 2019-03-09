@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.stilts.DefaultStilts;
 
 /**
  * Add your docs here.
@@ -55,6 +56,6 @@ public class Stilts extends Subsystem {
   public void initDefaultCommand() {
     //setDefaultCommand(new JoystickClimb());
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new DefaultStilts());
   }
 }

@@ -213,6 +213,9 @@ public class Robot extends TimedRobot {
     debug_tab.add("Intake Pot", BallIntake.getInstance().getVoltage());
     debug_tab.add("Left Limit Gantry", Gantry.getInstance().isAtLeftLimit());
     debug_tab.add("Right Limit Gantry", Gantry.getInstance().isAtRightLimit());
+    debug_tab.add("Gantry Encoder", Gantry.getInstance().getEncoder());
+    debug_tab.add("Level 3 Swich", Elevator.getInstance().isAtLevelThree());
+    debug_tab.add("Level 1 Swich", Elevator.getInstance().isAtLevelOne());
   }
 
   public void setupAutoChooser() {
@@ -271,6 +274,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Left Limit", Gantry.getInstance().isAtLeftLimit());
     SmartDashboard.putBoolean("Right Limit", Gantry.getInstance().isAtRightLimit());
     SmartDashboard.putNumber("Intake Pot", BallIntake.getInstance().getVoltage());
+    SmartDashboard.putBoolean("Level 3 Limit Elevator", Elevator.getInstance().isAtLevelThree());
+    SmartDashboard.putBoolean("Level 1 Limit Elevator", Elevator.getInstance().isAtLevelOne());
   }
 
   /**

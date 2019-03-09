@@ -168,9 +168,9 @@ public class RobotMap {
   //[E]levator
   public static final int E_LEFT = CAN_13;
   public static final int E_RIGHT = CAN_2;
-  public static final int E_LEVEL_ONE_SWITCH = DIO_1;
+  public static final int E_LEVEL_ONE_SWITCH = DIO_3;
   public static final int E_LEVEL_TWO_SWITCH = DIO_2;
-  public static final int E_LEVEL_THREE_SWITCH = DIO_3;
+  public static final int E_LEVEL_THREE_SWITCH = DIO_1;
   public static final int E_ENCODER_A = DIO_MXP_0;
   public static final int E_ENCODER_B = DIO_MXP_1;
 
@@ -213,5 +213,6 @@ public class RobotMap {
   public static final int U_JOYSTICK_LEFT = 0;
   public static final int U_JOYSTICK_RIGHT = 1;
   public static final int U_XBOX_CONTROLLER = 2;
+  public static final int U_XBOX_CONTROLLER_CLIMB = 3;
 
 }
