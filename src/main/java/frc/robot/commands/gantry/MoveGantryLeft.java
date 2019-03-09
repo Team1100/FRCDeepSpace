@@ -13,7 +13,7 @@ import frc.robot.input.XboxController;
 import frc.robot.subsystems.Gantry;
 
 public class MoveGantryLeft extends Command {
-  double aspeed = .8;
+  double aspeed = 1;
 
   public MoveGantryLeft() {
     // Use requires() here to declare subsystem dependencies

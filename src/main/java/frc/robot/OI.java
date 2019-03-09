@@ -29,6 +29,8 @@ import frc.robot.commands.intake.ScoreCargo_RocketL1_Intake;
 //import frc.robot.commands.intake.ScoreCargo_RocketL1;
 import frc.robot.commands.intake.IntakeCargo;
 import frc.robot.commands.intake.IntakeDown;
+import frc.robot.commands.intake.IntakePistonDown;
+import frc.robot.commands.intake.IntakePistonUp;
 import frc.robot.commands.rollers.MoveBallToChute;
 import frc.robot.commands.rollers.RollersIn;
 import frc.robot.commands.rollers.StopRollers;
@@ -66,8 +68,8 @@ public class OI {
     leftStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.2);
     rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.2);
 
-    xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.2);
-    xbox_climb = new XboxController(RobotMap.U_XBOX_CONTROLLER_CLIMB, 0.2);
+    xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.3);
+    xbox_climb = new XboxController(RobotMap.U_XBOX_CONTROLLER_CLIMB, 0.3);
     
     //Now Mapping Commands to XBox 
 
@@ -79,7 +81,6 @@ public class OI {
 
     xbox.getButtonStart().whenPressed(new OpenClaw());
     xbox.getButtonBack().whenPressed(new CloseClaw());
-
     xbox.getButtonLeftBumper().whenPressed(new PickupHatch());
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
 
@@ -142,8 +143,8 @@ public class OI {
     //xbox.getButtonStart().whenPressed(new Manual Control);
     
 
-    leftStick.getButton(8).whenPressed(new SwitchSides());
-    rightStick.getButton(8).whenPressed(new SwitchSides());
+    leftStick.getButton(6).whenPressed(new SwitchSides());
+    rightStick.getButton(6).whenPressed(new SwitchSides());
     leftStick.getButton(5).whenPressed(new ChangeHeading(180, .4));
     //rightStick.getButton(1).whenPressed(new PickupHatchHPS());
     //leftStick.getButton(1).whenPressed(new TranslateClawToCenter(10));
@@ -156,6 +157,9 @@ public class OI {
 
     rightStick.getButton(2).whenPressed(new MoveGantryRight());
     rightStick.getButton(2).whenReleased(new StopGantry());
+
+    leftStick.getButton(8).whenPressed(new IntakePistonDown());
+    leftStick.getButton(9).whenPressed(new IntakePistonUp());
   }
 
   /**

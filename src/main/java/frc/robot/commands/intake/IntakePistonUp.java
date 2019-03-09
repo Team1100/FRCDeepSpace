@@ -5,20 +5,24 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.gantry;
+package frc.robot.commands.intake;
 
+import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.Claw;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
-import frc.robot.input.XboxController;
-import frc.robot.subsystems.Gantry;
 
-public class MoveGantryRight extends Command {
-  double aspeed = -1;
+/**
+ * This command closes the claw by triggering the pneumatic solenoid valve controlling the claw
+ */
+public class IntakePistonUp extends Command {
+  
+  BallIntake intake;
 
-  public MoveGantryRight() {
+  public IntakePistonUp() {
+    requires(BallIntake.getInstance());
+    intake = BallIntake.getInstance();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Gantry.getInstance());
   }
 
   // Called just before this Command runs the first time
@@ -29,25 +33,23 @@ public class MoveGantryRight extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Gantry.getInstance().driveGantryMotor(aspeed);
+    intake.pistonUp();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Gantry.getInstance().driveGantryMotor(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Gantry.getInstance().driveGantryMotor(0);
   }
 }

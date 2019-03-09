@@ -39,10 +39,10 @@ public class DefaultIntake extends Command {
   @Override
   protected void execute() {
     if(Math.abs(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight)) > .05) {
-      speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+      speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight) / 2;
     }
     if(Math.abs(OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kYRight)) > .05) {
-      speed = OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kYRight);
+      speed = OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kYRight) /2;
     }
     //speed = OI.getInstance().getXbox().getAxis(rightJoystickY);
 
