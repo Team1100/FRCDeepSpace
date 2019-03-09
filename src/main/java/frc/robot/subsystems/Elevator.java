@@ -70,9 +70,9 @@ public class Elevator extends Subsystem {
       top = elevatorEncoder.getDistance();
     }
     
-    if (!canGoDown && speed < 0) {
+    if (!canGoDown && speed > 0) {
       speed = 0;
-    } else if (!canGoUp && speed > 0) {
+    } else if (!canGoUp && speed < 0) {
       speed = 0;
     }
     left.set(ControlMode.PercentOutput, -speed);
@@ -145,6 +145,6 @@ public class Elevator extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    //setDefaultCommand(new DefaultElevator());
+    setDefaultCommand(new DefaultElevator());
   }
 }

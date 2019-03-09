@@ -20,6 +20,9 @@ import frc.robot.commands.claw.PullClawBack;
 import frc.robot.commands.claw.PushClawForward;
 import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.commands.elevator.*;
+import frc.robot.commands.gantry.MoveGantryLeft;
+import frc.robot.commands.gantry.MoveGantryRight;
+import frc.robot.commands.gantry.StopGantry;
 import frc.robot.commands.intake.IntakeUp;
 import frc.robot.commands.intake.ScoreCargo_Intake;
 import frc.robot.commands.intake.ScoreCargo_RocketL1_Intake;
@@ -63,8 +66,8 @@ public class OI {
     leftStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.2);
     rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.2);
 
-    xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.1);
-    xbox_climb = new XboxController(RobotMap.U_XBOX_CONTROLLER_CLIMB, 0.1);
+    xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.2);
+    xbox_climb = new XboxController(RobotMap.U_XBOX_CONTROLLER_CLIMB, 0.2);
     
     //Now Mapping Commands to XBox 
 
@@ -74,8 +77,8 @@ public class OI {
     xbox.getButtonB().whenPressed(new CloseClawWhenSensed());
     xbox.getButtonA().whenPressed(new Elevator_L1());
 
-    xbox.getButtonStart().whenPressed(new PushClawForward());
-    xbox.getButtonBack().whenPressed(new PullClawBack());
+    xbox.getButtonStart().whenPressed(new OpenClaw());
+    xbox.getButtonBack().whenPressed(new CloseClaw());
 
     xbox.getButtonLeftBumper().whenPressed(new PickupHatch());
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
@@ -147,6 +150,12 @@ public class OI {
     //leftStick.getButton(3).whenPressed(new CenterRobot(10));
     leftStick.getButton(3).whenPressed(new PlaceHatch());
     //rightStick.getButton(3).whenPressed(new PullClawBack());
+
+    leftStick.getButton(2).whenPressed(new MoveGantryLeft());
+    leftStick.getButton(2).whenReleased(new StopGantry());
+
+    rightStick.getButton(2).whenPressed(new MoveGantryRight());
+    rightStick.getButton(2).whenReleased(new StopGantry());
   }
 
   /**

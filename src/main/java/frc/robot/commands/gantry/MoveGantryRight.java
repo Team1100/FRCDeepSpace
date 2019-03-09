@@ -5,48 +5,31 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.gantry;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.input.XboxController;
-import frc.robot.input.XboxController.*;
-import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.Gantry;
 
-/**
- * This command allows for operator control of the intake
- * It allows the operator to use the left joystick (scheduled to change) to control the speed
- * and direction of the intake.
- */
-public class DefaultIntake extends Command {
-  double speed;
-  XboxAxis rightJoystickY = XboxAxis.kYRight;
-  public DefaultIntake() {
+public class MoveGantryRight extends Command {
+  double aspeed = -.8;
+
+  public MoveGantryRight() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(BallIntake.getInstance());
-
+    requires(Gantry.getInstance());
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    BallIntake.getInstance().setIntakeSpeed(0);
-    speed = 0;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Math.abs(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight)) > .05) {
-      speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
-    }
-    if(Math.abs(OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kYRight)) > .05) {
-      speed = OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kYRight);
-    }
-    //speed = OI.getInstance().getXbox().getAxis(rightJoystickY);
-
-    BallIntake.getInstance().setIntakeSpeed(speed);
+    Gantry.getInstance().driveGantryMotor(aspeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -58,11 +41,13 @@ public class DefaultIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Gantry.getInstance().driveGantryMotor(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Gantry.getInstance().driveGantryMotor(0);
   }
 }

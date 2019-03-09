@@ -74,8 +74,8 @@ public class Robot extends TimedRobot {
     //ShowLogo.ShowLogoOnStartup();
 
     cs = CameraServer.getInstance();
-    //cs.startAutomaticCapture("Front Camera", 0);
-    //cs.startAutomaticCapture("Rear Camera", 1);
+    cs.startAutomaticCapture("Front Camera", 0);
+    cs.startAutomaticCapture("Rear Camera", 1);
     
     //setupAutoChooser();
     createTestingDashboard();

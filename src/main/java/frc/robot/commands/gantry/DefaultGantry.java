@@ -29,8 +29,8 @@ public class DefaultGantry extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    aspeed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight);
-    Gantry.getInstance().driveGantryMotor(aspeed);
+    aspeed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXLeft);
+    Gantry.getInstance().driveGantryMotor(-aspeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

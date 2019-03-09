@@ -22,7 +22,7 @@ public class PickupHatch extends CommandGroup {
     addSequential(new PushClawForward());
     addSequential(new Wait(0.25));
     addSequential(new CloseClaw());
-    addSequential(new Wait(0.25));
+    addSequential(new Wait(0.4));
     addSequential(new PullClawBack());
     //Vision.getInstance().setFinishedAligning(false);
     // Add Commands here:

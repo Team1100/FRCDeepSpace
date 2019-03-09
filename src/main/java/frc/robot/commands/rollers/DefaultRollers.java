@@ -39,10 +39,10 @@ public class DefaultRollers extends Command {
   protected void execute() {
     //speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXLeft);
     speed = 0;
-    if(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight) > .05) {
+    if(Math.abs(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight)) > .05) {
       speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight);
     }
-    if(OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight) > .05) {
+    if(Math.abs(OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight)) > .05) {
       speed = OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight);
     }
 
