@@ -38,6 +38,7 @@ import frc.robot.commands.vision.AlignGantry;
 import frc.robot.commands.vision.CenterRobot;
 import frc.robot.input.AttackThree;
 import frc.robot.input.XboxController;
+import frc.robot.commands.ToggleCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -78,9 +79,10 @@ public class OI {
     //xbox.getButtonB().whenPressed(new AlignGantry());
     xbox.getButtonB().whenPressed(new CloseClawWhenSensed());
     xbox.getButtonA().whenPressed(new Elevator_L1());
-
-    xbox.getButtonStart().whenPressed(new OpenClaw());
-    xbox.getButtonBack().whenPressed(new CloseClaw());
+    
+    xbox.getButtonStart().whenPressed(new ToggleCommand(new OpenClaw(), new CloseClaw()));
+    //xbox.getButtonStart().whenPressed(new OpenClaw());
+    xbox.getButtonBack().whenPressed(new ToggleCommand(new PushClawForward(), new PushClawForward()));
     xbox.getButtonLeftBumper().whenPressed(new PickupHatch());
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
 
