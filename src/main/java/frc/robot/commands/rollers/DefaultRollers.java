@@ -42,7 +42,7 @@ public class DefaultRollers extends Command {
     if(Math.abs(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight)) > .05) {
       speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight);
     }
-    if(Math.abs(OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight)) > .05) {
+    else if(Math.abs(OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight)) > .05) {
       speed = OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight);
     }
 

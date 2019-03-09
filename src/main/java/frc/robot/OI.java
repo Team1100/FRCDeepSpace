@@ -80,9 +80,8 @@ public class OI {
     xbox.getButtonB().whenPressed(new CloseClawWhenSensed());
     xbox.getButtonA().whenPressed(new Elevator_L1());
     
-    xbox.getButtonStart().whenPressed(new ToggleCommand(new OpenClaw(), new CloseClaw()));
-    //xbox.getButtonStart().whenPressed(new OpenClaw());
-    xbox.getButtonBack().whenPressed(new ToggleCommand(new PushClawForward(), new PushClawForward()));
+    xbox.getButtonStart().whenPressed(new OpenClaw());
+    xbox.getButtonBack().whenPressed(new CloseClaw());
     xbox.getButtonLeftBumper().whenPressed(new PickupHatch());
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
 
