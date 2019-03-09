@@ -21,6 +21,7 @@ public class AlignGantry extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Gantry.getInstance());
+    requires(Vision.getInstance());
     gantry = Gantry.getInstance();
     encoder = Gantry.getInstance().getEncoder();
   }
@@ -35,7 +36,7 @@ public class AlignGantry extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    sp = Gantry.getInstance().calculateGantryPosition()+0.08;
+    sp = Gantry.getInstance().calculateGantryPosition()+0.05;
     if(Gantry.getInstance().getEncoder().getDistance() < sp){
       Gantry.getInstance().driveGantryMotor(-1);
       if(((sp-0.02) < encoder.getDistance() && (encoder.getDistance() <(sp + 0.02)))){
@@ -43,7 +44,7 @@ public class AlignGantry extends Command {
       }
     }
     
-    else if (encoder.getDistance() > sp){
+    else if (encoder.getDistance() > sp+0.05){
       gantry.driveGantryMotor(1);
       if(((sp-0.02) < encoder.getDistance()) && (encoder.getDistance() <(sp + 0.02))){
         gantry.driveGantryMotor(0);
