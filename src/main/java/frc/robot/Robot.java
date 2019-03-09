@@ -122,6 +122,7 @@ public class Robot extends TimedRobot {
     intake_g1.add(new IntakeUp());
     intake_g1.add(new StopIntake());
     ShuffleboardLayout intake_g2 = intake_tab.getLayout("Climbing", BuiltInLayouts.kList);
+    intake_g2.add(new HoldPosition(2.0));
     intake_g2.add(new ClimbingIntakeDown(0.5));
     intake_g2.add(new IncrementIntakePower(0.1));
     intake_g2.add(new ClimbWhileIntake(5, 5));
