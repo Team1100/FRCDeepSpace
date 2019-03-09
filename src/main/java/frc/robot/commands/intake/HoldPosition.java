@@ -10,6 +10,7 @@ package frc.robot.commands.intake;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.input.XboxController;
@@ -45,6 +46,7 @@ public class HoldPosition extends PIDCommand {
     position = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
 
     position = position + 2; // change -1->1 to 1->3
+    SmartDashboard.putNumber("Intake position", position);
     setSetpoint(position);
   }
 
