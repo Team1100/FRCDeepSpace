@@ -36,12 +36,12 @@ public class DefaultStilts extends Command {
   @Override
   protected void execute() {
     speed = 0;
-    if((OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kLeftTrigger) == 0) && (OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kRightTrigger)== 0)){
+    if((OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kLeftTrigger) == 0) && (OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kRightTrigger)== 0)){
       speed = 0;
-    }else if((OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kLeftTrigger) > (OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kRightTrigger)))){
-      speed = (OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kLeftTrigger));
+    }else if((OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kLeftTrigger) > (OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kRightTrigger)))){
+      speed = -1 * (OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kLeftTrigger));
     }else{
-      speed = (OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kRightTrigger));
+      speed = (OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kRightTrigger));
     }
     stilts.setSpeed(speed);
   }

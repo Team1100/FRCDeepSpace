@@ -47,7 +47,7 @@ public class Elevator extends Subsystem {
     left = new VictorSPX(RobotMap.E_LEFT);
     right = new VictorSPX(RobotMap.E_RIGHT);
     sw1 = new DigitalInput(RobotMap.E_LEVEL_ONE_SWITCH);
-    //sw2 = new DigitalInput(RobotMap.E_LEVEL_TWO_SWITCH);
+    sw2 = new DigitalInput(RobotMap.E_LEVEL_TWO_SWITCH);
     sw3 = new DigitalInput(RobotMap.E_LEVEL_THREE_SWITCH);
     elevatorEncoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
     elevatorEncoder.setDistancePerPulse(1/PULSE_PER_FOOT);
@@ -89,9 +89,9 @@ public class Elevator extends Subsystem {
   /**
    * Checks if the elevator is at level two
    */
-  //public boolean isAtLevelTwo(){
-  //  return sw2.get();
-  //}
+  public boolean isAtLevelTwo(){
+    return sw2.get();
+  }
 
   /**
    * Checks if the elevator is at level three
