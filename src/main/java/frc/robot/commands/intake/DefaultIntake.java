@@ -41,6 +41,7 @@ public class DefaultIntake extends Command {
     speed = 0;
     //if(Math.abs(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight)) > .05) {
     speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+  
     
     /*
     else if(Math.abs(OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kYRight)) > .05) {

@@ -87,7 +87,7 @@ public class BallIntake extends Subsystem {
 
 
   public boolean isUp() {
-    return topSwitch.get();
+    return !topSwitch.get();
   }
 
 
@@ -124,7 +124,7 @@ public class BallIntake extends Subsystem {
   //}
 
   public boolean ballIsIn(){
-    return bb.get();
+    return !bb.get();
   }
 
   @Override

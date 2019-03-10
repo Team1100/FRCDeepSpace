@@ -18,6 +18,7 @@ import frc.robot.commands.claw.PickupHatchHPS;
 import frc.robot.commands.claw.PlaceHatch;
 import frc.robot.commands.claw.PullClawBack;
 import frc.robot.commands.claw.PushClawForward;
+import frc.robot.commands.claw.ScoreCargo;
 import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.gantry.MoveGantryLeft;
@@ -78,7 +79,7 @@ public class OI {
     xbox.getButtonX().whenPressed(new Elevator_Rocket_L2());
     //xbox.getButtonB().whenPressed(new AlignGantry());
     xbox.getButtonB().whenPressed(new CloseClawWhenSensed());
-    xbox.getButtonA().whenPressed(new Elevator_L1());
+    xbox.getButtonA().whenPressed(new PullClawBack());
     
     xbox.getButtonStart().whenPressed(new OpenClaw());
     xbox.getButtonBack().whenPressed(new CloseClaw());

@@ -277,6 +277,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Level 3 Limit Elevator", Elevator.getInstance().isAtLevelThree());
     SmartDashboard.putBoolean("Level 2 Limit Elevator", Elevator.getInstance().isAtLevelTwo());
     SmartDashboard.putBoolean("Level 1 Limit Elevator", Elevator.getInstance().isAtLevelOne());
+    SmartDashboard.putBoolean("Top Switch", BallIntake.getInstance().isUp());
   }
 
   /**

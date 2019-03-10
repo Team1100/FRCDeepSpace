@@ -47,7 +47,15 @@ public class DefaultRollers extends Command {
       speed = OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight);
     }
     */
-    Rollers.getInstance().rollersIn(speed/2);
+    if(speed > 0){
+      Rollers.getInstance().rollersIn(speed);
+    }
+    else if(speed < 0){
+      Rollers.getInstance().rollersIn(speed/2);
+    }
+    else{
+      Rollers.getInstance().rollersIn(0);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

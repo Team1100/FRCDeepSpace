@@ -7,6 +7,7 @@
 
 package frc.robot.commands.elevator;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Elevator;
 
@@ -16,29 +17,36 @@ import frc.robot.subsystems.Elevator;
 public class Elevator_Rocket_L2 extends Command {
 
   Elevator elevator;
+  Timer t;
   public Elevator_Rocket_L2() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Elevator.getInstance());
     elevator = Elevator.getInstance();
+    t = new Timer();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    t.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Elevator.getInstance().extend(.5);
+    if (t.get() > 0.5){
+      Elevator.getInstance().extend(-.65);
+    }
+    else{
+      Elevator.getInstance().extend(-0.5);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    //return elevator.isAtLevelTwo();
-    return true;
+    return elevator.isAtLevelTwo();
   }
 
   // Called once after isFinished returns true
@@ -51,5 +59,6 @@ public class Elevator_Rocket_L2 extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Elevator.getInstance().extend(0);
   }
 }
