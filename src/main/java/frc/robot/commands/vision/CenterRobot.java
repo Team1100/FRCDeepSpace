@@ -39,7 +39,7 @@ public class CenterRobot extends PIDCommand {
    * Finishes when robot is locked on target
    */
   protected boolean isFinished() {
-    if(Vision.getInstance().getCX() == -1){
+    if(Vision.getInstance().getTapeYaw() == -1){
       return true;
     }
     if(isTimedOut()) {
@@ -61,7 +61,7 @@ public class CenterRobot extends PIDCommand {
    */
   @Override
   protected double returnPIDInput() {
-    return Vision.getInstance().getCX();
+    return Vision.getInstance().getTapeYaw();
   }
 
   /**

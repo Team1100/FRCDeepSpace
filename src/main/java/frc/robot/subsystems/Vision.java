@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
@@ -19,8 +20,8 @@ public class Vision extends Subsystem {
   // here. Call these from Commands.
   public static Vision vision;
   public static NetworkTable nt;
-  private static boolean canAim = false;
-  private static boolean isAimed = false;
+  private boolean tapeSeen = false;
+  private NetworkTableEntry tapeDetected, tapeYaw;
   public static boolean finishedAligning;
   /**
    * Used outside of the Vision subsystem to return an instance of Vision subsystem.
@@ -28,55 +29,32 @@ public class Vision extends Subsystem {
    */
 
    private Vision(){
-     nt = NetworkTableInstance.getDefault().getTable("Pi");
-     finishedAligning = true;
+     nt = NetworkTableInstance.getDefault().getTable("ChickenVision");
+
+     tapeDetected = nt.getEntry("tapeDetected");
+     tapeYaw = nt.getEntry("tapeYaw");
    }
+
+
   public static Vision getInstance(){
     if (vision == null){
       vision = new Vision();
     }
     return vision;
   }
+
+  public double getTapeYaw(){
+    return tapeYaw.getDouble(-1);
+  }
+
   
-  public double getCX() {
-    return nt.getEntry("centerx").getDouble(-1);
+  public boolean isTapeSeen() {
+    tapeSeen = tapeDetected.getBoolean(false);
+    return tapeSeen;
   }
 
-  public void setisAimed(boolean set) {
-    if(set == true) {
-      isAimed = true;
-    } else {
-      isAimed = false;
-    }
-  }
-
-  public boolean getisAimed(){
-    return isAimed;
-  }
-
-  public boolean getcanAim(){
-    if (Vision.getInstance().getCX() != -1) {
-      canAim = true;
-    }
-    return canAim;
-  }
-
-  public double getCY() {
-    return nt.getEntry("centery").getDouble(-1);
-  }
-
-  public double getArea() {
-    return nt.getEntry("Area").getDouble(-1);
-  }
-
-  public void setFinishedAligning(boolean bool){
-    finishedAligning= bool;
-  }
-
-  public boolean returnFinishedAligning(){
-    return finishedAligning;
-  }
-
+  
+ 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

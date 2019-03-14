@@ -40,7 +40,7 @@ public class TranslateClawToCenter extends PIDCommand {
    * Finishes when claw is secured on target
    */
   protected boolean isFinished() {
-    if(Vision.getInstance().getCX() == -1){
+    if(Vision.getInstance().getTapeYaw() == -1){
       return true;
     }
     if(isTimedOut()) {
@@ -49,7 +49,6 @@ public class TranslateClawToCenter extends PIDCommand {
     if (pidController.onTarget()) {
       if (count >= 3) {
         isAimed = true;
-        Vision.getInstance().setisAimed(isAimed);
         return true;
       }
       count++;     
@@ -64,10 +63,10 @@ public class TranslateClawToCenter extends PIDCommand {
    */
   @Override
   protected double returnPIDInput() {
-    if (Vision.getInstance().getCX() == -1) {
+    if (Vision.getInstance().getTapeYaw() == -1) {
       return 0;
     } else {
-      return Vision.getInstance().getCX();
+      return Vision.getInstance().getTapeYaw();
     }
   }
 
@@ -78,7 +77,6 @@ public class TranslateClawToCenter extends PIDCommand {
   @Override
   protected void usePIDOutput(double output) {
     isAimed =  false;
-    Vision.getInstance().setisAimed(isAimed);
     Gantry.getInstance().driveGantryMotor(output);
   }
 }

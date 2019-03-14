@@ -26,10 +26,6 @@ import frc.robot.commands.gantry.*;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.rollers.*;
 import frc.robot.commands.testing.*;
-import frc.robot.commands.vision.AlignGantry;
-import frc.robot.commands.vision.CenterRobot;
-import frc.robot.commands.vision.DriveWhileCentered;
-import frc.robot.commands.vision.TranslateClawToCenter;
 import frc.robot.input.*;
 import frc.robot.subsystems.*;
 
@@ -152,10 +148,7 @@ public class Robot extends TimedRobot {
     ShuffleboardTab vision_tab = Shuffleboard.getTab("Vision");
     vision_tab.add(Vision.getInstance());
     ShuffleboardLayout vision_g1 = vision_tab.getLayout("Basic", BuiltInLayouts.kList);
-    vision_g1.add(new CenterRobot(1));
-    vision_g1.add(new DriveWhileCentered(1));
-    vision_g1.add(new TranslateClawToCenter(1));
-    vision_g1.add(new AlignGantry());
+
 
     // GANTRY commands
     ShuffleboardTab gantry_tab = Shuffleboard.getTab("Gantry");
@@ -193,8 +186,6 @@ public class Robot extends TimedRobot {
 
   public void updateDebugTab() {
     ShuffleboardTab debug_tab = Shuffleboard.getTab("Debug");
-    debug_tab.add("Can Aim", Vision.getInstance().getcanAim());
-    debug_tab.add("Is Aimed", Vision.getInstance().getisAimed());
     debug_tab.add("Claw is Closed", Claw.getInstance().isClosed());
     debug_tab.add("Claw is Pushed Forward", Claw.getInstance().isForward());
     debug_tab.add("Intake Pot", BallIntake.getInstance().getVoltage());
