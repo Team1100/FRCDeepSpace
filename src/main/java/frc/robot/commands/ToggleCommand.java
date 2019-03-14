@@ -17,7 +17,7 @@ public class ToggleCommand extends Command {
   Command commandA;
   Command commandB;
 
-  boolean a = true;
+  boolean state = true;
 
   public ToggleCommand(Command a, Command b) {
     // Use requires() here to declare subsystem dependencies
@@ -35,7 +35,7 @@ public class ToggleCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(a){
+    if(state){
       commandB.cancel();
       commandA.start();
     } else{
@@ -43,7 +43,7 @@ public class ToggleCommand extends Command {
       commandB.start();
     }
 
-    a = !a;
+    state = !state;
   }
 
   // Make this return true when this Command no longer needs to run execute()
