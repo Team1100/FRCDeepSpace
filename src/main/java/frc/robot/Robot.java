@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -25,7 +25,6 @@ import frc.robot.commands.elevator.*;
 import frc.robot.commands.gantry.*;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.rollers.*;
-import frc.robot.commands.stilts.*;
 import frc.robot.commands.testing.*;
 import frc.robot.commands.vision.AlignGantry;
 import frc.robot.commands.vision.CenterRobot;
@@ -66,7 +65,6 @@ public class Robot extends TimedRobot {
     Drive.getInstance();
     Elevator.getInstance();
     Gantry.getInstance();
-    Stilts.getInstance();
     NavX.getInstance();
     Vision.getInstance();
 
@@ -114,7 +112,6 @@ public class Robot extends TimedRobot {
     drive_g1.add(new ChangeHeading(0, 0.5));
     drive_g1.add(new MeasuredDrive(0.5, 0.5));
     ShuffleboardLayout drive_g2 = drive_tab.getLayout("Climbing", BuiltInLayouts.kList);
-    drive_g2.add(new NonPIDClimb(.5, .5));
 
 
     // INTAKE commands
@@ -150,16 +147,6 @@ public class Robot extends TimedRobot {
     rollers_g1.add(new StopRollers());
     rollers_g1.add(new PushBallOut(5));
     rollers_g1.add(new MoveBallToChute(5));
-
-    // STILTS commands
-    ShuffleboardTab stilts_tab = Shuffleboard.getTab("Stilts");
-    stilts_tab.add(Stilts.getInstance());
-    ShuffleboardLayout stilts_g1 = stilts_tab.getLayout("Basic", BuiltInLayouts.kList);
-    stilts_g1.add(new Climb());
-    stilts_g1.add(new BalanceStilts(0.5));
-    stilts_g1.add(new RetractStilts());
-    stilts_g1.add(new RaiseIntakeAndDrive());
-    stilts_g1.add(new JoystickClimb());
 
     // VISION commands
     ShuffleboardTab vision_tab = Shuffleboard.getTab("Vision");
@@ -247,9 +234,6 @@ public class Robot extends TimedRobot {
       testing_chooser.addOption("Test Pull Claw Back", new PullClawBack());
       testing_chooser.addOption("Test Intake Up", new IntakeUp());
       testing_chooser.addOption("Test Intake Down", new IntakeDown());
-      testing_chooser.addOption("Test Both Stilts", new TestBothStilts());
-      testing_chooser.addOption("Test Right Stilt", new TestLeftStilt());
-      testing_chooser.addOption("Test Left Stilt", new TestRightStilt());
       testing_chooser.addOption("Test Gantry", new DefaultGantry());
     }
     else
