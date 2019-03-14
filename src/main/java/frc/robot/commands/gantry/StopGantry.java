@@ -5,57 +5,30 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.rollers;
+package frc.robot.commands.gantry;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.input.XboxController;
-import frc.robot.input.XboxController.XboxAxis;
-import frc.robot.subsystems.Rollers;
+import frc.robot.subsystems.Gantry;
 
-/**
- * Gives the operator control of the rollers.
- * Currently bound to the right joystick on the Xbox Controller
- */
-public class DefaultRollers extends Command {
-  double speed;
-  XboxAxis rightJoystickY = XboxAxis.kYRight;
-  public DefaultRollers() {
+public class StopGantry extends Command {
+
+  public StopGantry() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Rollers.getInstance());
-    //requires(BallIntake.getInstance());
-
+    requires(Gantry.getInstance());
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Rollers.getInstance().spinRollers(0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXLeft);
-    speed = 0;
-    //if(Math.abs(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight)) > .05) {
-    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight);
-    
-    /*
-    else if(Math.abs(OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight)) > .05) {
-      speed = OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight);
-    }
-    */
-    if(speed > 0){
-      Rollers.getInstance().rollersIn(speed);
-    }
-    else if(speed < 0){
-      Rollers.getInstance().rollersIn(speed/2);
-    }
-    else{
-      Rollers.getInstance().rollersIn(0);
-    }
+    Gantry.getInstance().driveGantryMotor(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -67,11 +40,13 @@ public class DefaultRollers extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Gantry.getInstance().driveGantryMotor(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Gantry.getInstance().driveGantryMotor(0);
   }
 }

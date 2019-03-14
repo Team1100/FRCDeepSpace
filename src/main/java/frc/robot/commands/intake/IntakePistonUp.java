@@ -5,60 +5,51 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.elevator;
+package frc.robot.commands.intake;
 
-import edu.wpi.first.wpilibj.Timer;
+import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.Claw;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.Elevator;
 
 /**
- * Command to drive the elevator downwards until it hits the bottom limit switch.
+ * This command closes the claw by triggering the pneumatic solenoid valve controlling the claw
  */
-public class Elevator_Rocket_L2 extends Command {
+public class IntakePistonUp extends Command {
+  
+  BallIntake intake;
 
-  Elevator elevator;
-  Timer t;
-  public Elevator_Rocket_L2() {
+  public IntakePistonUp() {
+    requires(BallIntake.getInstance());
+    intake = BallIntake.getInstance();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Elevator.getInstance());
-    elevator = Elevator.getInstance();
-    t = new Timer();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    t.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (t.get() > 0.5){
-      Elevator.getInstance().extend(-.65);
-    }
-    else{
-      Elevator.getInstance().extend(-0.5);
-    }
+    intake.pistonUp();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return elevator.isAtLevelTwo();
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Elevator.getInstance().extend(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Elevator.getInstance().extend(0);
   }
 }

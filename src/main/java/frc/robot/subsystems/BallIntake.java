@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -30,6 +31,7 @@ public class BallIntake extends Subsystem {
   AnalogInput pot;
   boolean canGoUp, canGoDown = false;
   private double motorPower;
+  DoubleSolenoid intakePiston;
 
   public static BallIntake ballintake;
   // Put methods for controlling this subsystem
@@ -44,6 +46,7 @@ public class BallIntake extends Subsystem {
     bb = BeamBreak.getInstance();
     topSwitch = new DigitalInput(RobotMap.B_TOP_SWITCH);
     pot = new AnalogInput(RobotMap.B_POT);
+    intakePiston = new DoubleSolenoid(RobotMap.K_KICKER_CAN, RobotMap.K_KICK_OUT, RobotMap.K_KICK_IN);	
   }
 
   public static BallIntake getInstance(){
@@ -70,13 +73,21 @@ public class BallIntake extends Subsystem {
     axis_movement_right.set(ControlMode.PercentOutput, -intakeSpeed);
   }
 
+  public void pistonUp() {
+    intakePiston.set(DoubleSolenoid.Value.kForward);
+  }
+
+  public void pistonDown() {
+    intakePiston.set(DoubleSolenoid.Value.kReverse);
+  }
+
  // public void spinRollers(double rollerSpeed) {
    // rollers.set(ControlMode.PercentOutput, rollerSpeed);
   //}
 
 
   public boolean isUp() {
-    return topSwitch.get();
+    return !topSwitch.get();
   }
 
 
@@ -113,12 +124,12 @@ public class BallIntake extends Subsystem {
   //}
 
   public boolean ballIsIn(){
-    return bb.get();
+    return !bb.get();
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    //setDefaultCommand(new DefaultIntake());
+    setDefaultCommand(new DefaultIntake());
   }
 }

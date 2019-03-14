@@ -8,6 +8,7 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.Wait;
 //import frc.robot.subsystems.BeamBreak;
 import frc.robot.commands.rollers.*;
 
@@ -21,14 +22,16 @@ public class IntakeCargo extends CommandGroup {
    */
   public IntakeCargo() {
     //BeamBreak beamBreak;
+
     //beamBreak = BeamBreak.getInstance();
 
-    addParallel(new IntakeDown());
+    //addSequential(new IntakeDown());
+    addParallel(new DefaultIntake());
     addParallel(new RollersIn());
     addSequential(new AcquireBall());
+    addSequential(new Wait(0.05));
     addSequential(new StopRollers());
-    addSequential(new IntakeUp());
-    System.out.println("Sensed Ball");
+    //addSequential(new IntakeUp());
     /*
     addSequential(new IntakeUp());
     addSequential(new MoveBallToChute(1));

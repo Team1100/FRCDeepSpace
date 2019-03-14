@@ -5,57 +5,45 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.rollers;
+package frc.robot.commands.stilts;
 
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.input.XboxController;
 import frc.robot.input.XboxController.XboxAxis;
-import frc.robot.subsystems.Rollers;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.subsystems.Stilts;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 
-/**
- * Gives the operator control of the rollers.
- * Currently bound to the right joystick on the Xbox Controller
- */
-public class DefaultRollers extends Command {
+public class DefaultStilts extends Command {
+
+  private Stilts stilts;
   double speed;
-  XboxAxis rightJoystickY = XboxAxis.kYRight;
-  public DefaultRollers() {
+
+  public DefaultStilts() {
+    requires(Stilts.getInstance());
+    stilts = Stilts.getInstance();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Rollers.getInstance());
-    //requires(BallIntake.getInstance());
-
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Rollers.getInstance().spinRollers(0);
+    stilts.setSpeed(0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXLeft);
     speed = 0;
-    //if(Math.abs(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight)) > .05) {
-    speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight);
-    
-    /*
-    else if(Math.abs(OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight)) > .05) {
-      speed = OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight);
+    if((OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kLeftTrigger) == 0) && (OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kRightTrigger)== 0)){
+      speed = 0;
+    }else if((OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kLeftTrigger) > (OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kRightTrigger)))){
+      speed = -1 * (OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kLeftTrigger));
+    }else{
+      speed = (OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kRightTrigger));
     }
-    */
-    if(speed > 0){
-      Rollers.getInstance().rollersIn(speed);
-    }
-    else if(speed < 0){
-      Rollers.getInstance().rollersIn(speed/2);
-    }
-    else{
-      Rollers.getInstance().rollersIn(0);
-    }
+    stilts.setSpeed(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Gantry;
 
 public class MoveGantryToCenter extends Command {
-  public final double INCHES_TO_CENTER = 6;
+  public final double INCHES_TO_CENTER = .69;
   public MoveGantryToCenter() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -32,7 +32,7 @@ public class MoveGantryToCenter extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Gantry.getInstance().getEncoder().get() == Gantry.PULSES_PER_UNIT * INCHES_TO_CENTER;
+    return Gantry.getInstance().getEncoder().getDistance() >= INCHES_TO_CENTER;
   }
 
   // Called once after isFinished returns true
