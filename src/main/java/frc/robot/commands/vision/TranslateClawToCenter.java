@@ -1,82 +1,62 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package frc.robot.commands.vision;
 
-import frc.robot.subsystems.Drive;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Vision;
 
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.command.PIDCommand;
-
-/**
- * Moves the claw along the gantry until the claw is centered on the vision target
- */
-public class TranslateClawToCenter extends PIDCommand {
-  private PIDController pidController = getPIDController();
-  private int count;
-  private boolean isAimed = false;
-
-  /**
-   * Sets up PID Controller
-   * @param tolerance Percent tolerance of PID loop
-   */
-  public TranslateClawToCenter(double tolerance) {
-    //TODO: Tune these PID values
-    super(.05, .05, 0);
-    requires(Drive.getInstance()); 
-    //Max displacement from center of image (cx)
-    setInputRange(0, 640);
-    pidController.setOutputRange(-1, 1);
-    pidController.setPercentTolerance(tolerance);
-    //Ideally want center of target to be aligned with center of camera
-    setSetpoint(0);
+public class TranslateClawToCenter extends Command {
+  double offset = -1;
+  public TranslateClawToCenter() {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
+    requires(Gantry.getInstance());
+    requires(Vision.getInstance());
   }
 
+  // Called just before this Command runs the first time
+  @Override
   protected void initialize() {
-    count = 0;
-    setTimeout(2.5);
   }
 
-  /**
-   * Finishes when claw is secured on target
-   */
-  protected boolean isFinished() {
-    if(Vision.getInstance().getTapeYaw() == -1){
-      return true;
-    }
-    if(isTimedOut()) {
-      return true;
-    }
-    if (pidController.onTarget()) {
-      if (count >= 3) {
-        isAimed = true;
-        return true;
+  // Called repeatedly when this Command is scheduled to run
+  @Override
+  protected void execute() {
+    offset = Vision.getInstance().getTargetOffset();
+      if(offset >= 1){
+        Gantry.getInstance().driveGantryMotor(-1);
       }
-      count++;     
-    } else {
-      count = 0;
+      else if (offset <= -1){
+        Gantry.getInstance().driveGantryMotor(1);
+      }
+      else{
+        Gantry.getInstance().driveGantryMotor(0);
+      }
     }
+
+  // Make this return true when this Command no longer needs to run execute()
+  @Override
+  protected boolean isFinished() {
     return false;
   }
 
-  /**
-   * Returns the displacement from camera center to target center
-   */
+  // Called once after isFinished returns true
   @Override
-  protected double returnPIDInput() {
-    if (Vision.getInstance().getTapeYaw() == -1) {
-      return 0;
-    } else {
-      return Vision.getInstance().getTapeYaw();
-    }
+  protected void end() {
+    Gantry.getInstance().driveGantryMotor(0);
+
   }
 
-  /**
-   * drives Gantry based on the output of the PID controller
-   * @param output the output of the PID controller
-   */
+  // Called when another command which requires one or more of the same
+  // subsystems is scheduled to run
   @Override
-  protected void usePIDOutput(double output) {
-    isAimed =  false;
-    Gantry.getInstance().driveGantryMotor(output);
+  protected void interrupted() {
+    Gantry.getInstance().driveGantryMotor(0);
   }
 }

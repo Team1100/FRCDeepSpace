@@ -21,7 +21,7 @@ public class Vision extends Subsystem {
   public static Vision vision;
   public static NetworkTable nt;
   private boolean tapeSeen = false;
-  private NetworkTableEntry tapeDetected, tapeYaw;
+  private NetworkTableEntry tapeDetected, tapeYaw, centerOfTarget;
   public static boolean finishedAligning;
   /**
    * Used outside of the Vision subsystem to return an instance of Vision subsystem.
@@ -33,6 +33,7 @@ public class Vision extends Subsystem {
 
      tapeDetected = nt.getEntry("tapeDetected");
      tapeYaw = nt.getEntry("tapeYaw");
+     centerOfTarget = nt.getEntry("centerOfTarget");
    }
 
 
@@ -51,6 +52,10 @@ public class Vision extends Subsystem {
   public boolean isTapeSeen() {
     tapeSeen = tapeDetected.getBoolean(false);
     return tapeSeen;
+  }
+
+  public double getTargetOffset(){
+    return centerOfTarget.getDouble(-1);
   }
 
   
