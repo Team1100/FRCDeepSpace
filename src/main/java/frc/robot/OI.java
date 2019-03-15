@@ -77,7 +77,8 @@ public class OI {
     xbox.getButtonX().whenPressed(new Elevator_Rocket_L2());
     //xbox.getButtonB().whenPressed(new AlignGantry());
     xbox.getButtonB().whenPressed(new CloseClawWhenSensed());
-    xbox.getButtonA().whenPressed(new PullClawBack());
+    //xbox.getButtonA().whenPressed(new PullClawBack());
+    xbox.getButtonA().whenPressed(new Elevator_L1());
     
     xbox.getButtonStart().whenPressed(new OpenClaw());
     xbox.getButtonBack().whenPressed(new CloseClaw());
