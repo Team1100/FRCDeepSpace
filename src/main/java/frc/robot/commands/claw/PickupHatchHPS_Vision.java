@@ -20,7 +20,7 @@ public class PickupHatchHPS_Vision extends CommandGroup {
    */
   public PickupHatchHPS_Vision() {
     addParallel(new OpenClaw());
-    addParallel(new TranslateClawToCenter(10));
+    addParallel(new TranslateClawToCenter());
     addSequential(new PushClawForward());
     addSequential(new Wait(0.25));
     addSequential(new CloseClaw());
