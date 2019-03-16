@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.*;
 import frc.robot.commands.auto.*;
 import frc.robot.commands.claw.*;
 import frc.robot.commands.drive.*;
@@ -45,6 +46,8 @@ public class Robot extends TimedRobot {
   SendableChooser<Command> auto_chooser = new SendableChooser<>();
   CameraServer cs;
 
+  NetworkTableEntry isClosed, isForward, voltage, isAtLeftLimit, isAtRightLimit, isAtLevelThree, isAtLevelTwo, isAtLevelOne;
+  
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -181,19 +184,30 @@ public class Robot extends TimedRobot {
     elevator_g3.add(new L2_Placement());
     elevator_g3.add(new L3_Placement());
 
-    updateDebugTab();
+    createDebugTab();
+  }
+
+  public void createDebugTab() {
+    ShuffleboardTab debug_tab = Shuffleboard.getTab("Debug");
+    isClosed = debug_tab.add("Claw is Closed", Claw.getInstance().isClosed()).getEntry();
+    isForward = debug_tab.add("Claw is Pushed Forward", Claw.getInstance().isForward()).getEntry();
+    voltage = debug_tab.add("Intake Pot", BallIntake.getInstance().getVoltage()).getEntry();
+    isAtLeftLimit = debug_tab.add("Left Limit Gantry", Gantry.getInstance().isAtLeftLimit()).getEntry();
+    isAtRightLimit = debug_tab.add("Right Limit Gantry", Gantry.getInstance().isAtRightLimit()).getEntry();
+    debug_tab.add("Gantry Encoder", Gantry.getInstance().getEncoder());
+    isAtLevelThree = debug_tab.add("Level 3 Switch", Elevator.getInstance().isAtLevelThree()).getEntry();
+    isAtLevelTwo = debug_tab.add("Level 2 Switch", Elevator.getInstance().isAtLevelTwo()).getEntry();
+    isAtLevelOne = debug_tab.add("Level 1 Switch", Elevator.getInstance().isAtLevelOne()).getEntry();
   }
 
   public void updateDebugTab() {
-    ShuffleboardTab debug_tab = Shuffleboard.getTab("Debug");
-    debug_tab.add("Claw is Closed", Claw.getInstance().isClosed());
-    debug_tab.add("Claw is Pushed Forward", Claw.getInstance().isForward());
-    debug_tab.add("Intake Pot", BallIntake.getInstance().getVoltage());
-    debug_tab.add("Left Limit Gantry", Gantry.getInstance().isAtLeftLimit());
-    debug_tab.add("Right Limit Gantry", Gantry.getInstance().isAtRightLimit());
-    debug_tab.add("Gantry Encoder", Gantry.getInstance().getEncoder());
-    debug_tab.add("Level 3 Swich", Elevator.getInstance().isAtLevelThree());
-    debug_tab.add("Level 1 Swich", Elevator.getInstance().isAtLevelOne());
+    isClosed.setBoolean((Claw.getInstance().isClosed()));
+    isForward.setBoolean((Claw.getInstance().isForward()));
+    voltage.setValue(BallIntake.getInstance().getVoltage());
+    isAtLeftLimit.setBoolean(Gantry.getInstance().isAtLeftLimit());
+    isAtRightLimit.setBoolean(Elevator.getInstance().isAtLevelThree());
+    isAtLevelTwo.setBoolean(Elevator.getInstance().isAtLevelTwo());
+    isAtLevelOne.setBoolean(Elevator.getInstance().isAtLevelOne());
   }
 
   public void setupAutoChooser() {
@@ -323,7 +337,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    //updateDebugTab();
+    updateDebugTab();
     Scheduler.getInstance().run();
   }
 
