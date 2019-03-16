@@ -5,22 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.climber;
 
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.Claw;
+import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This command closes the claw by triggering the pneumatic solenoid valve controlling the claw
  */
-public class IntakePistonUp extends Command {
+public class BothPistonUp extends Command {
   
-  BallIntake intake;
+  Climber climber;
 
-  public IntakePistonUp() {
-    requires(BallIntake.getInstance());
-    intake = BallIntake.getInstance();
+  public BothPistonUp() {
+    requires(Climber.getInstance());
+    climber = Climber.getInstance();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -33,7 +34,7 @@ public class IntakePistonUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.pistonUp();
+    climber.liftBoth();
   }
 
   // Make this return true when this Command no longer needs to run execute()

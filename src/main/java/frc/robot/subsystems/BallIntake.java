@@ -46,7 +46,6 @@ public class BallIntake extends Subsystem {
     bb = BeamBreak.getInstance();
     topSwitch = new DigitalInput(RobotMap.B_TOP_SWITCH);
     pot = new AnalogInput(RobotMap.B_POT);
-    intakePiston = new DoubleSolenoid(RobotMap.K_KICKER_CAN, RobotMap.K_KICK_OUT, RobotMap.K_KICK_IN);	
   }
 
   public static BallIntake getInstance(){

@@ -20,6 +20,10 @@ import frc.robot.commands.claw.PlaceHatch;
 import frc.robot.commands.claw.PullClawBack;
 import frc.robot.commands.claw.PushClawForward;
 import frc.robot.commands.claw.ScoreCargo;
+import frc.robot.commands.climber.BothPistonDown;
+import frc.robot.commands.climber.BothPistonUp;
+import frc.robot.commands.climber.SixPistonDown;
+import frc.robot.commands.climber.SixPistonUp;
 import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.gantry.MoveGantryLeft;
@@ -31,8 +35,6 @@ import frc.robot.commands.intake.ScoreCargo_RocketL1_Intake;
 //import frc.robot.commands.intake.ScoreCargo_RocketL1;
 import frc.robot.commands.intake.IntakeCargo;
 import frc.robot.commands.intake.IntakeDown;
-import frc.robot.commands.intake.IntakePistonDown;
-import frc.robot.commands.intake.IntakePistonUp;
 import frc.robot.commands.rollers.MoveBallToChute;
 import frc.robot.commands.rollers.RollersIn;
 import frc.robot.commands.rollers.StopRollers;
@@ -75,12 +77,12 @@ public class OI {
     
     //Now Mapping Commands to XBox 
 
-    xbox.getButtonY().whenPressed(new Elevator_Rocket_L3());
+    //xbox.getButtonY().whenPressed(new Elevator_Rocket_L3());
     xbox.getButtonX().whenPressed(new Elevator_Rocket_L2());
     //xbox.getButtonB().whenPressed(new AlignGantry());
     xbox.getButtonB().whenPressed(new CloseClawWhenSensed());
     //xbox.getButtonA().whenPressed(new PullClawBack());
-    xbox.getButtonA().whenPressed(new Elevator_L1());
+    //xbox.getButtonA().whenPressed(new Elevator_L1());
     
     xbox.getButtonStart().whenPressed(new OpenClaw());
     xbox.getButtonBack().whenPressed(new CloseClaw());
@@ -163,8 +165,11 @@ public class OI {
     rightStick.getButton(2).whenPressed(new MoveGantryRight());
     rightStick.getButton(2).whenReleased(new StopGantry());
 
-    leftStick.getButton(8).whenPressed(new IntakePistonDown());
-    leftStick.getButton(9).whenPressed(new IntakePistonUp());
+    rightStick.getButton(8).whenPressed(new SixPistonDown());
+    rightStick.getButton(9).whenPressed(new SixPistonUp());
+
+    rightStick.getButton(6).whenPressed(new BothPistonDown());
+    rightStick.getButton(7).whenPressed(new BothPistonUp());
 
     rightStick.getButton(10).whenPressed(new TranslateClawToCenter());
   }

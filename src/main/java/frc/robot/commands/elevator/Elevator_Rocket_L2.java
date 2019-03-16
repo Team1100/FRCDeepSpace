@@ -35,11 +35,11 @@ public class Elevator_Rocket_L2 extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (t.get() > 0.5){
-      Elevator.getInstance().extend(-.1);
+    if (t.get() > 0.3){
+      Elevator.getInstance().extend(-1);
     }
     else{
-      Elevator.getInstance().extend(-.1);
+      Elevator.getInstance().extend(-.5);
     }
   }
 
