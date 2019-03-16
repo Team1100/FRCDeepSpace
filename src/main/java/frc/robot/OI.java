@@ -8,9 +8,10 @@
 package frc.robot;
 
 import frc.robot.commands.SwitchSides;
+import frc.robot.commands.claw.AcquireBallFromIntake;
 import frc.robot.commands.claw.CloseClaw;
 import frc.robot.commands.claw.CloseClawWhenSensed;
-import frc.robot.commands.claw.CloseOnBall;
+//import frc.robot.commands.claw.CloseOnBall;
 import frc.robot.commands.claw.DeployHatch;
 import frc.robot.commands.claw.OpenClaw;
 import frc.robot.commands.claw.PickupHatch;
@@ -87,7 +88,7 @@ public class OI {
     xbox.getButtonLeftBumper().whenPressed(new PickupHatch());
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
 
-    xbox.getDPad().getRight().whenPressed(new MoveBallToChute(2));
+    xbox.getDPad().getRight().whenPressed(new AcquireBallFromIntake());
     xbox.getDPad().getDown().whenPressed(new IntakeDown());
     xbox.getDPad().getLeft().whenPressed(new IntakeCargo());
     //xbox.getDPad().getDown().whenPressed(new IntakeCargo());

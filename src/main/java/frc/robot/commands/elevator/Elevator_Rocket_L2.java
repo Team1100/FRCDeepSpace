@@ -36,10 +36,10 @@ public class Elevator_Rocket_L2 extends Command {
   @Override
   protected void execute() {
     if (t.get() > 0.5){
-      Elevator.getInstance().extend(-.65);
+      Elevator.getInstance().extend(-.1);
     }
     else{
-      Elevator.getInstance().extend(-0.5);
+      Elevator.getInstance().extend(-.1);
     }
   }
 
