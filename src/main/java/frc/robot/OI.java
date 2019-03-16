@@ -78,7 +78,8 @@ public class OI {
     xbox.getButtonX().whenPressed(new Elevator_Rocket_L2());
     //xbox.getButtonB().whenPressed(new AlignGantry());
     xbox.getButtonB().whenPressed(new CloseClawWhenSensed());
-    xbox.getButtonA().whenPressed(new PullClawBack());
+    //xbox.getButtonA().whenPressed(new PullClawBack());
+    xbox.getButtonA().whenPressed(new Elevator_L1());
     
     xbox.getButtonStart().whenPressed(new OpenClaw());
     xbox.getButtonBack().whenPressed(new CloseClaw());
@@ -86,8 +87,10 @@ public class OI {
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
 
     xbox.getDPad().getRight().whenPressed(new MoveBallToChute(2));
-    xbox.getDPad().getDown().whenPressed(new IntakeCargo());
-    xbox.getDPad().getLeft().whenPressed(new ScoreCargo_RocketL1_Intake());
+    xbox.getDPad().getDown().whenPressed(new IntakeDown());
+    xbox.getDPad().getLeft().whenPressed(new IntakeCargo());
+    //xbox.getDPad().getDown().whenPressed(new IntakeCargo());
+    //xbox.getDPad().getLeft().whenPressed(new ScoreCargo_RocketL1_Intake());
     xbox.getDPad().getUp().whenPressed(new IntakeUp());
 
     /*
