@@ -102,7 +102,7 @@ public class Gantry extends Subsystem {
     double percentage = 0.5;
 
     if(Vision.getInstance().isTapeSeen()){
-      percentage = cx/640;
+      percentage = cx/320;
     }
 
     encoderPos = percentage;
