@@ -87,7 +87,7 @@ public class Robot extends TimedRobot {
     claw_g2.add(new PullClawBack());
     ShuffleboardLayout claw_g3 = Shuffleboard.getTab("Claw").getLayout("Ball", BuiltInLayouts.kList);
     claw_g3.add(new ClawAcquireBall());
-    claw_g3.add(new CloseOnBall());
+    //claw_g3.add(new CloseOnBall());
     claw_g3.add(new AcquireBallFromIntake());
     claw_g3.add(new ScoreCargo());
     claw_g3.add(new LaunchBall());
