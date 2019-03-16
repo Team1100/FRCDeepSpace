@@ -22,6 +22,8 @@ import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.ProximitySensor;
 import frc.robot.subsystems.Vision;
+import edu.wpi.first.networktables.*;
+import edu.wpi.first.wpilibj.shuffleboard.*;
 
 
 /**
@@ -38,6 +40,7 @@ public class Robot extends TimedRobot {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   CameraServer cs;
 
+  NetworkTableEntry isAtLevelOne, isAtBottom;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -61,6 +64,19 @@ public class Robot extends TimedRobot {
 
     cs = CameraServer.getInstance();
     cs.startAutomaticCapture("Gantry", 0);
+    createDebugTab();
+  }
+
+  public void createDebugTab() {
+    ShuffleboardTab debug_tab = Shuffleboard.getTab("Debug");
+    debug_tab.add("Elevator Encoder", Elevator.getInstance().getEncoder());
+    isAtLevelOne = debug_tab.add("Level 1 Switch", Elevator.getInstance().isAtLevelOne()).getEntry();
+    isAtBottom = debug_tab.add("Bottom Switch", Elevator.getInstance().isAtLevelOne()).getEntry();
+  }
+
+  public void updateDebugTab() {
+    isAtLevelOne.setValue(Elevator.getInstance().isAtLevelOne());
+    isAtBottom.setValue(Elevator.getInstance().isAtLevelOne());
   }
 
   /**
@@ -164,5 +180,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+    updateDebugTab();
   }
 }
