@@ -86,8 +86,10 @@ public class OI {
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
 
     xbox.getDPad().getRight().whenPressed(new MoveBallToChute(2));
-    xbox.getDPad().getDown().whenPressed(new IntakeCargo());
-    xbox.getDPad().getLeft().whenPressed(new ScoreCargo_RocketL1_Intake());
+    xbox.getDPad().getDown().whenPressed(new IntakeDown());
+    xbox.getDPad().getLeft().whenPressed(new IntakeCargo());
+    //xbox.getDPad().getDown().whenPressed(new IntakeCargo());
+    //xbox.getDPad().getLeft().whenPressed(new ScoreCargo_RocketL1_Intake());
     xbox.getDPad().getUp().whenPressed(new IntakeUp());
 
     /*
