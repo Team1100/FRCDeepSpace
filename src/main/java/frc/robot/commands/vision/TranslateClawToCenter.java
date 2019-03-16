@@ -29,10 +29,10 @@ public class TranslateClawToCenter extends Command {
   @Override
   protected void execute() {
     offset = Vision.getInstance().getTargetOffset();
-      if(offset >= 1){
+      if(offset > 164){
         Gantry.getInstance().driveGantryMotor(-1);
       }
-      else if (offset <= -1){
+      else if (offset < 156){
         Gantry.getInstance().driveGantryMotor(1);
       }
       else{
