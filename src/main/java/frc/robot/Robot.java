@@ -71,14 +71,14 @@ public class Robot extends TimedRobot {
     ShuffleboardTab debug_tab = Shuffleboard.getTab("Debug");
     debug_tab.add("Elevator Encoder", Elevator.getInstance().getEncoder());
     isAtLevelOne = debug_tab.add("Level 1 Switch", Elevator.getInstance().isAtLevelOne()).getEntry();
-    isAtBottom = debug_tab.add("Bottom Switch", Elevator.getInstance().isAtLevelOne()).getEntry();
+    isAtBottom = debug_tab.add("Bottom Switch", Elevator.getInstance().isAtBottom()).getEntry();
   }
 
   public void updateDebugTab() {
-    isAtLevelOne.setValue(Elevator.getInstance().isAtLevelOne());
-    isAtBottom.setValue(Elevator.getInstance().isAtLevelOne());
+    isAtLevelOne.setBoolean(Elevator.getInstance().isAtLevelOne());
+    isAtBottom.setBoolean(Elevator.getInstance().isAtBottom());
   }
-
+ 
   /**
    * This function is called every robot packet, no matter the mode. Use
    * this for items like diagnostics that you want ran during disabled,
