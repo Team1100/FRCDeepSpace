@@ -107,7 +107,9 @@ public class OI {
 
     rightStick.getButton(10).whenPressed(new CenterGantry());
 
-    leftStick.getButton(3).whenPressed(new AlignGantry());
+    leftStick.getButton(1).whenPressed(new AlignGantry());
+    rightStick.getButton(1).whenPressed(new AlignGantry());
+
     //rightStick.getButton(3).whenPressed(new DriveWhileAlign());
 
 

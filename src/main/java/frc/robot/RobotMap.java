@@ -199,13 +199,14 @@ public class RobotMap {
 
   //[L]ifter
   public static final int L_LIFTER_CAN = PCM_CAN;
+  //public static final int L_LIFTER_CAN2 = PCM_CAN_2;
   public static final int L_LIFT_UP_6 = PCM_4;
   public static final int L_LIFT_DOWN_6 = PCM_5;
   public static final int L_LIFT_UP_8 = PCM_6;
   public static final int L_LIFT_DOWN_8 = PCM_7;
 
-  public static final int L_LIFT_6 = PCM_4;
-  public static final int L_LIFT_8 = PCM_5;
+  //public static final int L_LIFT_6 = PCM_4;
+  //public static final int L_LIFT_8 = PCM_5;
 
   //[G]antry
   public static final int G_MOTOR = CAN_6;
