@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Vision;
 
-public class TranslateClawToCenter extends Command {
+public class AlignGantry extends Command {
   double offset = -1;
-  public TranslateClawToCenter() {
+  public AlignGantry() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Gantry.getInstance());
