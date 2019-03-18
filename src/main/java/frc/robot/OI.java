@@ -66,14 +66,14 @@ public class OI {
     //Now Mapping Commands to XBox 
 
     //xbox.getButtonY().whenPressed(new Elevator_Rocket_L3());
-    xbox.getButtonA().whenPressed(new Elevator_Rocket_L2());
+    xbox.getButtonA().whenPressed(new CloseClaw());
     //xbox.getButtonB().whenPressed(new AlignGantry());
     xbox.getButtonB().whenPressed(new CloseClawWhenSensed());
     //xbox.getButtonA().whenPressed(new PullClawBack());
     //xbox.getButtonA().whenPressed(new Elevator_L1());
     
-    xbox.getButtonX().whenPressed(new OpenClaw());
-    xbox.getButtonY().whenPressed(new CloseClaw());
+    xbox.getButtonX().whenPressed(new Elevator_Rocket_L2());
+    xbox.getButtonY().whenPressed(new OpenClaw());
 
     xbox.getButtonLeftBumper().whenPressed(new PickupHatch());
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
