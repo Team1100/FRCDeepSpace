@@ -14,6 +14,7 @@ import frc.robot.commands.claw.CloseClawWhenSensed;
 import frc.robot.commands.claw.DeployHatch;
 import frc.robot.commands.claw.OpenClaw;
 import frc.robot.commands.claw.PickupHatch;
+import frc.robot.commands.claw.ToggleForwardBack;
 import frc.robot.commands.claw.ToggleOpenClose;
 import frc.robot.commands.climber.BothPistonDown;
 import frc.robot.commands.climber.BothPistonUp;
@@ -67,14 +68,14 @@ public class OI {
     //Now Mapping Commands to XBox 
 
     //xbox.getButtonY().whenPressed(new Elevator_Rocket_L3());
-    xbox.getButtonA().whenPressed(new CloseClaw());
+    xbox.getButtonA().whenPressed(new ToggleOpenClose());
     //xbox.getButtonB().whenPressed(new AlignGantry());
     xbox.getButtonB().whenPressed(new CloseClawWhenSensed());
     //xbox.getButtonA().whenPressed(new PullClawBack());
     //xbox.getButtonA().whenPressed(new Elevator_L1());
     
     xbox.getButtonX().whenPressed(new Elevator_Rocket_L2());
-    xbox.getButtonY().whenPressed(new OpenClaw());
+    xbox.getButtonY().whenPressed(new ToggleForwardBack());
 
     xbox.getButtonLeftBumper().whenPressed(new PickupHatch());
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
@@ -87,7 +88,7 @@ public class OI {
     xbox.getDPad().getUp().whenPressed(new IntakeUp());
 
     xbox.getButtonStart().whenPressed(new CenterGantry());
-    xbox.getButtonBack().whenPressed(new ToggleOpenClose());
+    //xbox.getButtonBack().whenPressed(new ToggleOpenClose());
 
     leftStick.getButton(6).whenPressed(new SwitchSides());
     rightStick.getButton(6).whenPressed(new SwitchSides());

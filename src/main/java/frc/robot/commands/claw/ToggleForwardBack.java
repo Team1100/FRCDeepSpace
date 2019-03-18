@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * This command triggers a pneumatic solenoid valve that pushes the claw assembly forward.
  */
-public class ToggleOpenClose extends Command {
+public class ToggleForwardBack extends Command {
 
   Claw claw;
 
-  public ToggleOpenClose() {
+  public ToggleForwardBack() {
     requires(Claw.getInstance());
     claw = Claw.getInstance();
     // Use requires() here to declare subsystem dependencies
@@ -31,11 +31,11 @@ public class ToggleOpenClose extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(claw.isClosed() != true) {
-      claw.closeClaw();
+    if(claw.isForward() != true) {
+      claw.pushClawForward();
     }
     else {
-      claw.openClaw();
+      claw.pullClawBack();
     }
   }
 
