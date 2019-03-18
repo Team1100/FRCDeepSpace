@@ -14,6 +14,7 @@ import frc.robot.commands.claw.CloseClawWhenSensed;
 import frc.robot.commands.claw.DeployHatch;
 import frc.robot.commands.claw.OpenClaw;
 import frc.robot.commands.claw.PickupHatch;
+import frc.robot.commands.claw.ToggleOpenClose;
 import frc.robot.commands.climber.BothPistonDown;
 import frc.robot.commands.climber.BothPistonUp;
 import frc.robot.commands.climber.SixPistonDown;
@@ -86,6 +87,7 @@ public class OI {
     xbox.getDPad().getUp().whenPressed(new IntakeUp());
 
     xbox.getButtonStart().whenPressed(new CenterGantry());
+    xbox.getButtonBack().whenPressed(new ToggleOpenClose());
 
     leftStick.getButton(6).whenPressed(new SwitchSides());
     rightStick.getButton(6).whenPressed(new SwitchSides());
