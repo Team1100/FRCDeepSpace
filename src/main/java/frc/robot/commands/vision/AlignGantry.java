@@ -35,6 +35,9 @@ public class AlignGantry extends Command {
       else if (offset < 156){
         Gantry.getInstance().driveGantryMotor(1);
       }
+      else if (offset == -1){
+        Gantry.getInstance().driveGantryMotor(0);
+      }
       else{
         Gantry.getInstance().driveGantryMotor(0);
       }
