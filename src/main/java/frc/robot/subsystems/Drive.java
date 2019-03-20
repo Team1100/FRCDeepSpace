@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -39,6 +40,16 @@ public class Drive extends Subsystem {
     frontRight = new WPI_TalonSRX(RobotMap.D_FRONT_RIGHT);
     backLeft = new WPI_TalonSRX(RobotMap.D_BACK_LEFT);
     backRight = new WPI_TalonSRX(RobotMap.D_BACK_RIGHT);
+
+    backLeft.follow(frontLeft);
+    backRight.follow(frontRight);
+
+    backLeft.setInverted(InvertType.FollowMaster);
+    backRight.setInverted(InvertType.FollowMaster);
+
+    frontLeft.configFactoryDefault();
+    frontRight.configFactoryDefault();
+
 
     left = new SpeedControllerGroup(frontLeft, backLeft);
     right = new SpeedControllerGroup(frontRight, backRight);
