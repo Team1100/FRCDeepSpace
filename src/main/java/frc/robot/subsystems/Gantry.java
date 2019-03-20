@@ -29,6 +29,7 @@ public class Gantry extends Subsystem {
   DigitalInput leftLimit, rightLimit;
   boolean canGoLeft = true;
   boolean canGoRight = true;
+  boolean endCommand = false;
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -94,6 +95,14 @@ public class Gantry extends Subsystem {
    */
   public Boolean isAtRightLimit(){
     return !rightLimit.get();
+  }
+
+  public Boolean isCommandFinished(){
+    return endCommand;
+  }
+
+  public void setCommandFinished(Boolean state){
+    endCommand = state;
   }
 
   public double calculateGantryPosition(){
