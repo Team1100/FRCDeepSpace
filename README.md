@@ -6,7 +6,7 @@ If you notice a problem with this repository, please submit an issue.
 We will be commenting our code towards the end of the season, to help future programmers.
 
 # Vision
-In order to get vision working on this robot, you must implement ChickenVision on a RaspberryPi 3 connected to the robot. Refer to [Team1100/ChickenVision](https://github.com/Team1100/ChickenVision).
+In order to get vision working on this robot, you must implement ChickenVision on a RaspberryPi 3 connected to the robot. Refer to [Team1100/RoosterVision](https://github.com/Team1100/ChickenVision).
 
 # Branches
 
