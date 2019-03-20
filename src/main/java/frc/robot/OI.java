@@ -21,6 +21,7 @@ import frc.robot.commands.climber.BothPistonUp;
 import frc.robot.commands.climber.SixPistonDown;
 import frc.robot.commands.climber.SixPistonUp;
 import frc.robot.commands.drive.ChangeHeading;
+import frc.robot.commands.drive.DriveStraight;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.gantry.CenterGantry;
 import frc.robot.commands.gantry.MoveGantryLeft;
@@ -108,8 +109,7 @@ public class OI {
     
     rightStick.getButton(10).whenPressed(new CenterGantry());
 
-    leftStick.getButton(1).whenPressed(new AlignGantry());
-    rightStick.getButton(1).whenPressed(new AlignGantry());
+    leftStick.getButton(3).whenPressed(new DriveStraight(0.5));
 
     //rightStick.getButton(3).whenPressed(new DriveWhileAlign());
 

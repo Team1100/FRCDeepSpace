@@ -12,7 +12,6 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.NavX;
-import frc.robot.Constants;
 import frc.robot.OI;
 import frc.robot.input.AttackThree;
 import frc.robot.input.AttackThree.AttackThreeAxis;
@@ -24,7 +23,7 @@ public class DriveStraight extends Command {
   Drive drive;
   AHRS navX;
 
-  double leftY, rightY, leftX, rightX;
+  AttackThree left, right;
   double error;
   double turnPower;
   double power;
@@ -43,18 +42,15 @@ public class DriveStraight extends Command {
     navX = NavX.getInstance().getNavX();
     navX.zeroYaw();
 
-    leftY  = OI.getInstance().getLeftStick().getAxis(AttackThreeAxis.kY);
-    rightY = OI.getInstance().getRightStick().getAxis(AttackThreeAxis.kY);
-
-    leftX  = OI.getInstance().getLeftStick().getAxis(AttackThreeAxis.kX);
-    rightX = OI.getInstance().getRightStick().getAxis(AttackThreeAxis.kX);
+    left  = OI.getInstance().getLeftStick();
+    right = OI.getInstance().getRightStick();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     error = navX.getYaw();
-    turnPower = Constants.kDriveKp * -error;
+    turnPower = 0.1 * -error;
     drive.arcadeDrive(this.power, turnPower); 
   }
 
@@ -64,7 +60,7 @@ public class DriveStraight extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return(leftX > 0.2 || rightX > 0.2 || leftY > 0.2 || rightY > 0.2);
+    return(left.getRawButtonPressed(1));
   }
 
   // Called once after isFinished returns true
