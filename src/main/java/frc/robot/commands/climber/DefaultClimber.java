@@ -9,12 +9,15 @@ package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
+import frc.robot.input.AttackThree;
 import frc.robot.input.XboxController;
 import frc.robot.subsystems.Climber;
 
 public class DefaultClimber extends Command {
-  Climber climber;
-  XboxController xbox;
+  Climber climber;  
+  double pressed = 0;
+  AttackThree left, right;
+
   public DefaultClimber() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -25,28 +28,27 @@ public class DefaultClimber extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    xbox = OI.getInstance().getXbox();
-  }
+    left = OI.getInstance().getLeftStick();
+    right = OI.getInstance().getRightStick();
+
+    }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(xbox.getAxis(XboxController.XboxAxis.kLeftTrigger) > 0.5){
-      if(climber.isUp6()){
+    if(left.getRawButtonPressed(4) || right.getRawButtonPressed(4)){
+      if(pressed == 0){
         climber.extendSix();
+        pressed += 1;
       }
-      else{
-        climber.liftSix();
+      else if(pressed == 1){
+        climber.extendBoth();
       }
     }
 
-    else if(xbox.getAxis(XboxController.XboxAxis.kRightTrigger) > 0.5){
-      if(climber.isUp8()){
-        climber.extendBoth();
-      }
-      else{
-        climber.liftBoth();
-      }
+    if(left.getRawButtonPressed(5) || right.getRawButtonPressed(5)){
+      climber.liftBoth();
+      pressed = 0;
     }
   }
 

@@ -92,20 +92,20 @@ public class OI {
 
     leftStick.getButton(6).whenPressed(new SwitchSides());
     rightStick.getButton(6).whenPressed(new SwitchSides());
-    leftStick.getButton(5).whenPressed(new ChangeHeading(180, .4));
 
     leftStick.getButton(2).whenPressed(new MoveGantryLeft());
     leftStick.getButton(2).whenReleased(new StopGantry());
 
     rightStick.getButton(2).whenPressed(new MoveGantryRight());
     rightStick.getButton(2).whenReleased(new StopGantry());
-    /*
-    rightStick.getButton(8).whenPressed(new SixPistonDown());
-    rightStick.getButton(9).whenPressed(new SixPistonUp());
 
-    rightStick.getButton(6).whenPressed(new BothPistonDown());
-    rightStick.getButton(7).whenPressed(new BothPistonUp());
+    /*
+    rightStick.getButton(4).whenPressed(new BothPistonDown());
+    rightStick.getButton(5).whenPressed(new BothPistonUp());
+    leftStick.getButton(4).whenPressed(new BothPistonDown());
+    leftStick.getButton(5).whenPressed(new BothPistonUp());
     */
+    
     rightStick.getButton(10).whenPressed(new CenterGantry());
 
     leftStick.getButton(1).whenPressed(new AlignGantry());
