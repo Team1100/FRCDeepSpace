@@ -8,6 +8,8 @@
 package frc.robot;
 
 import frc.robot.commands.claw.*;
+import frc.robot.commands.drive.ChangeHeading;
+import frc.robot.commands.drive.DriveStraight;
 import frc.robot.commands.elevator.*;
 import frc.robot.commands.gantry.*;
 import frc.robot.commands.vision.AlignGantry;
@@ -57,8 +59,8 @@ public class OI {
     xbox.getDPad().getRight().whenPressed(new PickupHatch());
     xbox.getButtonLeftBumper().whenPressed(new CloseOnBall());
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
-    xbox.getButtonBack().whenPressed(new LaunchBall());
-
+    leftStick.getButton(3).whenPressed(new DriveStraight(0.5));
+    rightStick.getButton(3).whenPressed(new DriveStraight(1));
 
     /*
     xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());

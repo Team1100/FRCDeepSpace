@@ -73,6 +73,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("Encoder Left", Drive.getInstance().getLeftEncoder().getDistance());
+    SmartDashboard.putNumber("Encoder Right", Drive.getInstance().getRightEncoder().getDistance());
+    SmartDashboard.putNumber("Yaw", Drive.getInstance().getNavX().getYaw());
   }
 
   /**
@@ -136,6 +139,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
+    Drive.getInstance().getNavX().zeroYaw();
   }
 
   /**
