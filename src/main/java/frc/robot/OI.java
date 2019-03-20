@@ -99,13 +99,13 @@ public class OI {
 
     rightStick.getButton(2).whenPressed(new MoveGantryRight());
     rightStick.getButton(2).whenReleased(new StopGantry());
-
+    /*
     rightStick.getButton(8).whenPressed(new SixPistonDown());
     rightStick.getButton(9).whenPressed(new SixPistonUp());
 
     rightStick.getButton(6).whenPressed(new BothPistonDown());
     rightStick.getButton(7).whenPressed(new BothPistonUp());
-
+    */
     rightStick.getButton(10).whenPressed(new CenterGantry());
 
     leftStick.getButton(1).whenPressed(new AlignGantry());

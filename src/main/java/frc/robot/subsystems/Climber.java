@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.climber.BothPistonDown;
+import frc.robot.commands.climber.BothPistonUp;
 
 /**
  * Add your docs here.
@@ -76,6 +78,7 @@ public class Climber extends Subsystem {
     isUp6 = false;
     isUp8 = false;
   }
+
 
   public boolean isUp6 () {
     return isUp6();
