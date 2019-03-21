@@ -38,7 +38,11 @@ import frc.robot.commands.testing.*;
 public class TestingDashboard {
     private static TestingDashboard testingDashboard;
 
+    // Sensor variables
     NetworkTableEntry isClosed, isForward, voltage, isAtLeftLimit, isAtRightLimit, isAtLevelThree, isAtLevelTwo, isAtLevelOne;
+
+    // Debug variables
+    public NetworkTableEntry intakePosition;
 
     private TestingDashboard() {
     }
@@ -171,6 +175,7 @@ public class TestingDashboard {
         isAtLevelThree = debug_tab.add("Level 3 Switch", Elevator.getInstance().isAtLevelThree()).getEntry();
         isAtLevelTwo = debug_tab.add("Level 2 Switch", Elevator.getInstance().isAtLevelTwo()).getEntry();
         isAtLevelOne = debug_tab.add("Level 1 Switch", Elevator.getInstance().isAtLevelOne()).getEntry();
+        intakePosition = debug_tab.add("Intake Position", 1.8).getEntry();
       }
     
       public void updateDebugTab() {

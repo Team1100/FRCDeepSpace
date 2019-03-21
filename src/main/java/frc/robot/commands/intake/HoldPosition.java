@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
+import frc.robot.TestingDashboard;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.input.XboxController;
 import frc.robot.input.XboxController.*;
@@ -28,7 +29,7 @@ public class HoldPosition extends PIDCommand {
     requires(BallIntake.getInstance());
     intake = BallIntake.getInstance();
     setSetpoint(position); // Balance is at 0 pitch
-    setInputRange(1, 3); // Actuall about 1.8 to 2.8
+    setInputRange(1, 3); // Actual about 1.8 to 2.8
     pidController.setContinuous();
     pidController.setOutputRange(-1, 1);
     pidController.setPercentTolerance(1);
@@ -43,10 +44,8 @@ public class HoldPosition extends PIDCommand {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    position = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kYRight);
+    position = TestingDashboard.getInstance().intakePosition.getDouble(1.8);
 
-    position = position + 2; // change -1->1 to 1->3
-    SmartDashboard.putNumber("Intake position", position);
     setSetpoint(position);
   }
 
