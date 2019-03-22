@@ -105,6 +105,14 @@ public class Climber extends Subsystem {
     topVoltage = newTopVoltage;
   }
 
+  public boolean canClimb(){
+    boolean canClimb = true;
+    if(getCurrentPressure() <= 35){
+      canClimb = false;
+    }
+    return canClimb;
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

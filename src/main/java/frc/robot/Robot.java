@@ -142,7 +142,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Level 2 Limit Elevator", Elevator.getInstance().isAtLevelTwo());
     SmartDashboard.putBoolean("Level 1 Limit Elevator", Elevator.getInstance().isAtLevelOne());
     SmartDashboard.putBoolean("Top Switch", BallIntake.getInstance().isUp());
-    SmartDashboard.putData("Xbox", OI.getInstance().getXbox().getDPad().getLeft());
+    SmartDashboard.putBoolean("Can Climb?", Climber.getInstance().canClimb());
 
   }
 
