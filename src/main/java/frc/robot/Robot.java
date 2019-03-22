@@ -47,7 +47,6 @@ public class Robot extends TimedRobot {
   Command autoCommand;
   SendableChooser<Command> auto_chooser = new SendableChooser<>();
   CameraServer cs;
-  Compressor c;
   
   /**
    * This function is run when the robot is first started up and should be
@@ -82,7 +81,6 @@ public class Robot extends TimedRobot {
     // Add components to testing dashboard
     testingDashboard.createTestingDashboard();
 
-    c = new Compressor(0);
   }
 
   public void setupAutoChooser() {

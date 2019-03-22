@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -34,6 +35,8 @@ public class Climber extends Subsystem {
 
   AnalogInput pressureSensor;
 
+  Compressor compressor;
+
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -52,6 +55,7 @@ public class Climber extends Subsystem {
 
     pressureSensor = new AnalogInput(RobotMap.L_PRESSURE_SENS);
 
+    compressor = new Compressor(0);
     //pistonSix2 = new Solenoid(RobotMap.L_LIFTER_CAN2, RobotMap.L_LIFT_6);	
     //pistonEight2 = new Solenoid(RobotMap.L_LIFTER_CAN2, RobotMap.L_LIFT_8);
   }
@@ -113,6 +117,10 @@ public class Climber extends Subsystem {
     return canClimb;
   }
 
+  //Returns true when compressor is on
+  public boolean isSwitchOn(){
+    return compressor.getPressureSwitchValue();
+  }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
