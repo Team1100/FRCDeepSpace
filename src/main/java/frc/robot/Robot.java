@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -46,6 +47,7 @@ public class Robot extends TimedRobot {
   Command autoCommand;
   SendableChooser<Command> auto_chooser = new SendableChooser<>();
   CameraServer cs;
+  Compressor c;
   
   /**
    * This function is run when the robot is first started up and should be
@@ -65,6 +67,7 @@ public class Robot extends TimedRobot {
     Gantry.getInstance();
     NavX.getInstance();
     Vision.getInstance();
+    Climber.getInstance();
 
     //Prints out our logo to the console
     //ShowLogo.ShowLogoOnStartup();
@@ -78,6 +81,8 @@ public class Robot extends TimedRobot {
 
     // Add components to testing dashboard
     testingDashboard.createTestingDashboard();
+
+    c = new Compressor(0);
   }
 
   public void setupAutoChooser() {
@@ -138,6 +143,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Level 1 Limit Elevator", Elevator.getInstance().isAtLevelOne());
     SmartDashboard.putBoolean("Top Switch", BallIntake.getInstance().isUp());
     SmartDashboard.putData("Xbox", OI.getInstance().getXbox().getDPad().getLeft());
+
   }
 
   /**

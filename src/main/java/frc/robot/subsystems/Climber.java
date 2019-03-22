@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -29,6 +30,10 @@ public class Climber extends Subsystem {
   private Boolean isUp6 = true;
   private Boolean isUp8 = true;
 
+  public double topVoltage = 5.5;
+
+  AnalogInput pressureSensor;
+
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -44,6 +49,8 @@ public class Climber extends Subsystem {
     //Need to fill in parameters w/ robot map eventually
     pistonSix = new DoubleSolenoid(RobotMap.L_LIFTER_CAN, RobotMap.L_LIFT_UP_6, RobotMap.L_LIFT_DOWN_6);	
     pistonEight = new DoubleSolenoid(RobotMap.L_LIFTER_CAN, RobotMap.L_LIFT_UP_8, RobotMap.L_LIFT_DOWN_8);
+
+    pressureSensor = new AnalogInput(RobotMap.L_PRESSURE_SENS);
 
     //pistonSix2 = new Solenoid(RobotMap.L_LIFTER_CAN2, RobotMap.L_LIFT_6);	
     //pistonEight2 = new Solenoid(RobotMap.L_LIFTER_CAN2, RobotMap.L_LIFT_8);
@@ -87,6 +94,15 @@ public class Climber extends Subsystem {
 
   public boolean isUp8() {
     return isUp8();
+  }
+
+  public double getCurrentPressure(){
+    double voltage = pressureSensor.getAverageVoltage();
+    return 120 * (voltage/topVoltage);
+  }
+  
+  public void setTopVoltage(double newTopVoltage){
+    topVoltage = newTopVoltage;
   }
 
   @Override
