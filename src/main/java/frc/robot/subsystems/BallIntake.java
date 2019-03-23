@@ -68,8 +68,16 @@ public class BallIntake extends Subsystem {
   }
 
   public void setIntakeSpeed(double intakeSpeed) {
-    axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed);
-    axis_movement_right.set(ControlMode.PercentOutput, -intakeSpeed);
+    if(intakeSpeed < 0 && isUp()){
+      axis_movement_left.set(ControlMode.PercentOutput, 0);
+      axis_movement_right.set(ControlMode.PercentOutput, 0);
+    }
+    else{
+      axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed);
+      axis_movement_right.set(ControlMode.PercentOutput, -intakeSpeed);
+    
+    }
+    
   }
 
   public void pistonUp() {

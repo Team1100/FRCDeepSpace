@@ -31,7 +31,7 @@ public class Climber extends Subsystem {
   private Boolean isUp6 = true;
   private Boolean isUp8 = true;
 
-  public double topVoltage = 5.5;
+  public double topVoltage = 3.82;
 
   AnalogInput pressureSensor;
 
@@ -61,20 +61,20 @@ public class Climber extends Subsystem {
   }
   
   public void liftSix() {
-    pistonSix.set(DoubleSolenoid.Value.kForward);
+    pistonSix.set(DoubleSolenoid.Value.kReverse);
     //pistonSix2.set(true);
     isUp6 = true;
   }
 
   public void extendSix() {
-    pistonSix.set(DoubleSolenoid.Value.kReverse);
+    pistonSix.set(DoubleSolenoid.Value.kForward);
     //pistonSix2.set(false);
     isUp6 = false;
   }
 
   public void liftBoth() {
-    pistonSix.set(DoubleSolenoid.Value.kForward);
-    pistonEight.set(DoubleSolenoid.Value.kForward);
+    pistonSix.set(DoubleSolenoid.Value.kReverse);
+    pistonEight.set(DoubleSolenoid.Value.kReverse);
     //pistonSix2.set(true);
     //pistonEight2.set(true);
     isUp6 = true;
@@ -82,8 +82,8 @@ public class Climber extends Subsystem {
   }
 
   public void extendBoth() {
-    pistonSix.set(DoubleSolenoid.Value.kReverse);
-    pistonEight.set(DoubleSolenoid.Value.kReverse);
+    pistonSix.set(DoubleSolenoid.Value.kForward);
+    pistonEight.set(DoubleSolenoid.Value.kForward);
     //pistonSix2.set(false);
     //pistonEight2.set(false);
 
@@ -102,7 +102,11 @@ public class Climber extends Subsystem {
 
   public double getCurrentPressure(){
     double voltage = pressureSensor.getAverageVoltage();
-    return 120 * (voltage/topVoltage);
+    return 110 * (voltage/topVoltage);
+  }
+
+  public double getVoltage(){
+    return pressureSensor.getAverageVoltage();
   }
   
   public void setTopVoltage(double newTopVoltage){
@@ -111,7 +115,7 @@ public class Climber extends Subsystem {
 
   public boolean canClimb(){
     boolean canClimb = true;
-    if(getCurrentPressure() <= 35){
+    if(getCurrentPressure() <= 40){
       canClimb = false;
     }
     return canClimb;
