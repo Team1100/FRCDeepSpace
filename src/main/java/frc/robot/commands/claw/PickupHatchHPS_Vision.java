@@ -21,7 +21,7 @@ public class PickupHatchHPS_Vision extends CommandGroup {
    * Add your docs here.
    */
   public PickupHatchHPS_Vision() {
-    addParallel(new DriveStraight(0.45));
+    addParallel(new DriveStraight(0.4));
     addSequential(new AlignGantry());
     // Add Commands here:
     // e.g. addSequential(new Command1());

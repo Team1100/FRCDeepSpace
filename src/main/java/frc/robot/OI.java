@@ -14,6 +14,7 @@ import frc.robot.commands.claw.CloseClawWhenSensed;
 import frc.robot.commands.claw.DeployHatch;
 import frc.robot.commands.claw.OpenClaw;
 import frc.robot.commands.claw.PickupHatch;
+import frc.robot.commands.claw.PickupHatchHPS_Vision;
 import frc.robot.commands.claw.ScoreCargo;
 import frc.robot.commands.claw.ToggleForwardBack;
 import frc.robot.commands.claw.ToggleOpenClose;
@@ -102,6 +103,12 @@ public class OI {
     rightStick.getButton(2).whenPressed(new MoveGantryRight());
     rightStick.getButton(2).whenReleased(new StopGantry());
 
+    rightStick.getButton(1).whenPressed(new PickupHatchHPS_Vision());
+    rightStick.getButton(3).whenPressed(new ChangeHeading(90, 0.75));
+
+
+
+    
     /*
     rightStick.getButton(4).whenPressed(new BothPistonDown());
     rightStick.getButton(5).whenPressed(new BothPistonUp());
@@ -111,7 +118,7 @@ public class OI {
     
     rightStick.getButton(10).whenPressed(new AlignGantry());
 
-    leftStick.getButton(3).whenPressed(new DriveStraight(0.5));
+    leftStick.getButton(3).whenPressed(new DriveStraight(0.75));
 
     //rightStick.getButton(3).whenPressed(new DriveWhileAlign());
 

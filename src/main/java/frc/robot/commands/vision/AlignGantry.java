@@ -8,6 +8,7 @@
 package frc.robot.commands.vision;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Vision;
 
@@ -46,7 +47,7 @@ public class AlignGantry extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Gantry.getInstance().isCommandFinished();
+    return (Gantry.getInstance().isCommandFinished() || OI.getInstance().getLeftStick().getRawButtonPressed(1));
   }
 
   // Called once after isFinished returns true

@@ -201,7 +201,7 @@ public class RobotMap {
   public static final int L_LIFTER_CAN = PCM_CAN;
   //public static final int L_LIFTER_CAN2 = PCM_CAN_2;
   public static final int L_LIFT_UP_6 = PCM_4;
-  public static final int L_LIFT_DOWN_6 = PCM_5;
+  public static final int L_LIFT_DOWN_6 = PCM_5; 
   public static final int L_LIFT_UP_8 = PCM_6;
   public static final int L_LIFT_DOWN_8 = PCM_7;
   public static final int L_PRESSURE_SENS = ANALOG_1;

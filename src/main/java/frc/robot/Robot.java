@@ -72,8 +72,7 @@ public class Robot extends TimedRobot {
     //ShowLogo.ShowLogoOnStartup();
 
     cs = CameraServer.getInstance();
-    cs.startAutomaticCapture("Front Camera", 0).setResolution(540, 360);
-    cs.startAutomaticCapture("Rear Camera", 1);
+    cs.startAutomaticCapture("Front Camera", 0).setResolution(180, 120);
     
     // Create TestingDashboard last
     testingDashboard = TestingDashboard.getInstance();
@@ -143,7 +142,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Can Climb?", Climber.getInstance().canClimb());
     SmartDashboard.putNumber("Voltage", Climber.getInstance().getVoltage());
     SmartDashboard.putNumber("Pressure", Climber.getInstance().getCurrentPressure());
+    SmartDashboard.putNumber("Yaw", NavX.getInstance().getNavX().getYaw());
+    SmartDashboard.putBoolean("PS", ProximitySensor.getInstance().isTriggered());
 
+    if(OI.getInstance().getRightStick().getRawButtonPressed(3) == true){
+      NavX.getInstance().getNavX().zeroYaw();
+    }
 
   }
 
