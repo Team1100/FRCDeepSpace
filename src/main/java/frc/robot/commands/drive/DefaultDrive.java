@@ -1,5 +1,7 @@
 package frc.robot.commands.drive;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.input.AttackThree.AttackThreeAxis;
@@ -10,7 +12,7 @@ import frc.robot.subsystems.Drive;
  */
 public class DefaultDrive extends Command {
 
-    double left, right;
+    double targetLeft, targetRight;
     AttackThreeAxis yAxis = AttackThreeAxis.kY;
 
     public DefaultDrive() {
@@ -30,10 +32,12 @@ public class DefaultDrive extends Command {
      * Reads value of left and right joysticks and drives robot in TankDrive configuration using those values.
      */
     protected void execute() {
-        left  = OI.getInstance().getLeftStick().getAxis(yAxis);
-        right = OI.getInstance().getRightStick().getAxis(yAxis);
+        targetLeft  = OI.getInstance().getLeftStick().getAxis(yAxis) * 4096 * 10.0;
+        targetRight = OI.getInstance().getRightStick().getAxis(yAxis) * 4096 * 10.0;
 
-        Drive.getInstance().tankDrive(-left, -right);
+        Drive.getInstance().leftMaster.set(ControlMode.MotionMagic, targetLeft);
+        Drive.getInstance().rightMaster.set(ControlMode.MotionMagic, targetRight);
+
     }
 
     /**

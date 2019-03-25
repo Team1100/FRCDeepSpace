@@ -7,12 +7,16 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Constants;
 import frc.robot.RobotMap;
 import frc.robot.commands.drive.DefaultDrive;
 import edu.wpi.first.wpilibj.Encoder;
@@ -26,7 +30,7 @@ public class Drive extends Subsystem {
   // here. Call these from Commands.
   public static Drive drive;
   public static DifferentialDrive drivetrain;
-  private WPI_TalonSRX frontLeft, frontRight, backLeft, backRight;
+  public WPI_TalonSRX leftMaster, rightMaster, leftSlave, rightSlave;
   private SpeedControllerGroup left, right;
   Encoder encoderL, encoderR;
   final double PULSE_PER_FOOT = 4090;
@@ -36,30 +40,71 @@ public class Drive extends Subsystem {
    */
   private Drive() {
     //TODO:Update with names and proper ports
-    frontLeft = new WPI_TalonSRX(RobotMap.D_FRONT_LEFT);
-    frontRight = new WPI_TalonSRX(RobotMap.D_FRONT_RIGHT);
-    backLeft = new WPI_TalonSRX(RobotMap.D_BACK_LEFT);
-    backRight = new WPI_TalonSRX(RobotMap.D_BACK_RIGHT);
+    leftMaster = new WPI_TalonSRX(RobotMap.D_FRONT_LEFT);
+    rightMaster = new WPI_TalonSRX(RobotMap.D_FRONT_RIGHT);
+    leftSlave = new WPI_TalonSRX(RobotMap.D_BACK_LEFT);
+    rightSlave = new WPI_TalonSRX(RobotMap.D_BACK_RIGHT);
 
-    backLeft.follow(frontLeft);
-    backRight.follow(frontRight);
+    left = new SpeedControllerGroup(leftMaster, leftSlave);
+    right = new SpeedControllerGroup(rightMaster, rightSlave);
 
-    backLeft.setInverted(InvertType.FollowMaster);
-    backRight.setInverted(InvertType.FollowMaster);
+    leftSlave.follow(leftMaster);
+    rightSlave.follow(rightMaster);
 
-    frontLeft.configFactoryDefault();
-    frontRight.configFactoryDefault();
+    leftSlave.setInverted(InvertType.FollowMaster);
+    rightSlave.setInverted(InvertType.FollowMaster);
 
+    leftMaster.configFactoryDefault();
+    rightMaster.configFactoryDefault();
 
-    left = new SpeedControllerGroup(frontLeft, backLeft);
-    right = new SpeedControllerGroup(frontRight, backRight);
+    leftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+    rightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 
-    drivetrain = new DifferentialDrive(left, right);
+    leftMaster.setSensorPhase(true);//TODO: TUNE
+    rightMaster.setSensorPhase(true);
 
+    leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, Constants.kTimeoutMs);
+    rightMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, Constants.kTimeoutMs);
+
+    leftMaster.configNominalOutputForward(0, Constants.kTimeoutMs);
+    leftMaster.configNominalOutputReverse(0, Constants.kTimeoutMs);
+    rightMaster.configNominalOutputForward(0, Constants.kTimeoutMs);
+    rightMaster.configNominalOutputReverse(0, Constants.kTimeoutMs);
+
+    leftMaster.configPeakOutputForward(1, Constants.kTimeoutMs);
+    leftMaster.configPeakOutputReverse(-1, Constants.kTimeoutMs);
+    rightMaster.configPeakOutputForward(1, Constants.kTimeoutMs);
+    rightMaster.configPeakOutputReverse(-1, Constants.kTimeoutMs);
+
+    leftMaster.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
+		leftMaster.config_kF(Constants.kSlotIdx, Constants.kGains.kF, Constants.kTimeoutMs);
+		leftMaster.config_kP(Constants.kSlotIdx, Constants.kGains.kP, Constants.kTimeoutMs);
+		leftMaster.config_kI(Constants.kSlotIdx, Constants.kGains.kI, Constants.kTimeoutMs);
+    leftMaster.config_kD(Constants.kSlotIdx, Constants.kGains.kD, Constants.kTimeoutMs);
+
+    rightMaster.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
+		rightMaster.config_kF(Constants.kSlotIdx, Constants.kGains.kF, Constants.kTimeoutMs);
+		rightMaster.config_kP(Constants.kSlotIdx, Constants.kGains.kP, Constants.kTimeoutMs);
+		rightMaster.config_kI(Constants.kSlotIdx, Constants.kGains.kI, Constants.kTimeoutMs);
+    rightMaster.config_kD(Constants.kSlotIdx, Constants.kGains.kD, Constants.kTimeoutMs);
+
+    leftMaster.configMotionCruiseVelocity(15000, Constants.kTimeoutMs);
+    leftMaster.configMotionAcceleration(6000, Constants.kTimeoutMs);
+
+    rightMaster.configMotionCruiseVelocity(15000, Constants.kTimeoutMs);
+    rightMaster.configMotionAcceleration(6000, Constants.kTimeoutMs);
+
+    leftMaster.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+    rightMaster.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+
+    drivetrain = new DifferentialDrive(leftMaster, rightMaster);
+
+    /*
     encoderL = new Encoder(RobotMap.D_ENCODER_LEFT_A, RobotMap.D_ENCODER_LEFT_B);
     encoderL.setDistancePerPulse(1/PULSE_PER_FOOT);
     encoderR = new Encoder(RobotMap.D_ENCODER_RIGHT_A, RobotMap.D_ENCODER_RIGHT_B);
     encoderR.setDistancePerPulse(1/PULSE_PER_FOOT);
+    */
   }
 
   /**
@@ -70,6 +115,7 @@ public class Drive extends Subsystem {
   public void tankDrive(double leftSpeed, double rightSpeed){
     drivetrain.tankDrive(leftSpeed, rightSpeed);
   }
+
 
   public void setLeftSpeed(double speed) {
     this.left.set(speed);
@@ -106,6 +152,11 @@ public class Drive extends Subsystem {
   public Encoder getLeftEncoder() {
     return encoderL;
   }
+
+  public float getYaw(){
+    return NavX.getInstance().getNavX().getYaw();
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
