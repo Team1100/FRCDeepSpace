@@ -18,7 +18,7 @@ public class Right_RightRocket_2Hatches extends CommandGroup {
   public Right_RightRocket_2Hatches() {
     addParallel(new GantryLeftLimit());
     addParallel(new PathReader("Right_RightRocket", true));
-    addSequential(new CenterRobot(10));
+    addSequential(new CenterRobot());
     addSequential(new CenterGantry());
     /*
     addSequential(new TranslateClawToCenter(5));

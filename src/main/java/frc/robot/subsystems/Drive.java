@@ -60,6 +60,23 @@ public class Drive extends Subsystem {
     drivetrain.tankDrive(leftSpeed, rightSpeed);
   }
 
+  public void setLeftSpeed(double speed) {
+    this.left.set(speed);
+  }
+
+  public void setRightSpeed(double speed) {
+    this.left.set(speed);
+  }
+
+  public void arcadeDrive(double staightSpeed, double turnModifer) {
+    this.setLeftSpeed(-(staightSpeed - turnModifer));
+    this.setRightSpeed(staightSpeed + turnModifer);
+  }
+
+  public void visionArcadeDrive(DrivingDeltas drivingDeltas) {
+    arcadeDrive(drivingDeltas.getForwardPower(), drivingDeltas.getSteeringPower());
+  }
+
   /**
    * Used outside of the Drive subsystem to return an instance of Drive subsystem.
    * @return Returns instance of Drive subsystem formed from constructor.

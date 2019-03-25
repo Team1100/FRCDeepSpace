@@ -8,36 +8,33 @@
 package frc.robot;
 
 import frc.robot.commands.SwitchSides;
+import frc.robot.commands.claw.AcquireBallFromIntake;
 import frc.robot.commands.claw.CloseClaw;
 import frc.robot.commands.claw.CloseClawWhenSensed;
-import frc.robot.commands.claw.CloseOnBall;
 import frc.robot.commands.claw.DeployHatch;
 import frc.robot.commands.claw.OpenClaw;
 import frc.robot.commands.claw.PickupHatch;
-import frc.robot.commands.claw.PickupHatchHPS;
-import frc.robot.commands.claw.PlaceHatch;
-import frc.robot.commands.claw.PullClawBack;
-import frc.robot.commands.claw.PushClawForward;
+import frc.robot.commands.claw.PickupHatchHPS_Vision;
 import frc.robot.commands.claw.ScoreCargo;
+import frc.robot.commands.claw.ToggleForwardBack;
+import frc.robot.commands.claw.ToggleOpenClose;
+import frc.robot.commands.climber.BothPistonDown;
+import frc.robot.commands.climber.BothPistonUp;
+import frc.robot.commands.climber.SixPistonDown;
+import frc.robot.commands.climber.SixPistonUp;
 import frc.robot.commands.drive.ChangeHeading;
+import frc.robot.commands.drive.DriveStraight;
 import frc.robot.commands.elevator.*;
+import frc.robot.commands.gantry.CenterGantry;
 import frc.robot.commands.gantry.MoveGantryLeft;
 import frc.robot.commands.gantry.MoveGantryRight;
 import frc.robot.commands.gantry.StopGantry;
 import frc.robot.commands.intake.IntakeUp;
-import frc.robot.commands.intake.ScoreCargo_Intake;
-import frc.robot.commands.intake.ScoreCargo_RocketL1_Intake;
-//import frc.robot.commands.intake.ScoreCargo_RocketL1;
 import frc.robot.commands.intake.IntakeCargo;
 import frc.robot.commands.intake.IntakeDown;
-import frc.robot.commands.intake.IntakePistonDown;
-import frc.robot.commands.intake.IntakePistonUp;
-import frc.robot.commands.rollers.MoveBallToChute;
-import frc.robot.commands.rollers.RollersIn;
-import frc.robot.commands.rollers.StopRollers;
+import frc.robot.commands.vision.AlignGantry;
 import frc.robot.input.AttackThree;
 import frc.robot.input.XboxController;
-import frc.robot.commands.ToggleCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -69,88 +66,36 @@ public class OI {
     rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.2);
 
     xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.3);
-    xbox_climb = new XboxController(RobotMap.U_XBOX_CONTROLLER_CLIMB, 0.3);
+    //xbox_climb = new XboxController(RobotMap.U_XBOX_CONTROLLER_CLIMB, 0.3);
     
     //Now Mapping Commands to XBox 
 
-    xbox.getButtonY().whenPressed(new Elevator_Rocket_L3());
-    xbox.getButtonX().whenPressed(new Elevator_Rocket_L2());
+    //xbox.getButtonY().whenPressed(new Elevator_Rocket_L3());
+    xbox.getButtonA().whenPressed(new ToggleOpenClose());
     //xbox.getButtonB().whenPressed(new AlignGantry());
     xbox.getButtonB().whenPressed(new CloseClawWhenSensed());
-    xbox.getButtonA().whenPressed(new PullClawBack());
+    //xbox.getButtonA().whenPressed(new PullClawBack());
+    //xbox.getButtonA().whenPressed(new Elevator_L1());
     
-    xbox.getButtonStart().whenPressed(new OpenClaw());
-    xbox.getButtonBack().whenPressed(new CloseClaw());
+    xbox.getButtonX().whenPressed(new Elevator_Rocket_L2());
+    xbox.getButtonY().whenPressed(new ToggleForwardBack());
+
     xbox.getButtonLeftBumper().whenPressed(new PickupHatch());
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
 
-    xbox.getDPad().getRight().whenPressed(new MoveBallToChute(2));
-    xbox.getDPad().getDown().whenPressed(new IntakeCargo());
-    xbox.getDPad().getLeft().whenPressed(new ScoreCargo_RocketL1_Intake());
-    xbox.getDPad().getUp().whenPressed(new IntakeUp());
-
-    /*
-    xbox.getButtonY().whenPressed(new OpenClaw());
-    xbox.getButtonX().whenPressed(new CloseClaw());
-    xbox.getButtonB().whenPressed(new PushClawForward());
-    xbox.getButtonA().whenPressed(new PullClawBack());
-
-    xbox.getButtonStart().whenPressed(new AlignGantry());
-    xbox.getButtonBack().whenPressed(new CenterRobot(5));
-    xbox.getDPad().getRight().whenPressed(new PickupHatch());
-    xbox.getDPad().getDown().whenPressed(new Elevator_L1());
-    xbox.getDPad().getLeft().whenPressed(new Elevator_Rocket_L2());
-    xbox.getDPad().getUp().whenPressed(new Elevator_Rocket_L3());
-    */
-
-    //xbox.getButtonLeftBumper().whenPressed(new CloseOnBall());
-    //xbox.getButtonRightBumper().whenPressed(new DeployHatch());
-    //xbox.getButtonBack().whenPressed(new MoveToSetpoint(0.6));
-
-    /*
-    xbox.getButtonY().whenPressed(new PIDElevatorL3());
-    xbox.getButtonB().whenPressed(new ElevatorBottom());
-    xbox.getButtonA().whenPressed(new PIDElevatorL1());
-    xbox.getButtonX().whenPressed(new PIDElevatorL2());
-    */
-    /*
-    xbox.getButtonA().whenPressed(new RollersIn());
-    xbox.getButtonB().whenPressed(new StopRollers());
-    xbox.getButtonX().whenPressed(new CloseClawWhenSensed());
-    xbox.getButtonY().whenPressed(new PickupHatchHPS());
-
-    //xbox.getButtonRightBumper().whenPressed(new RollersIn());
-    //xbox.getButtonRightBumper().whenReleased(new StopRollers());
-
-    //xbox.getButtonLeftBumper().whenPressed(new PlaceHatch());
-    //xbox.getButtonLeftBumper().whenPressed(new PushBallOut());
-    //xbox.getDPad().getRight().whenPressed(new KickCargo());
-    //xbox.getDPad().getRight().whenReleased(new RetractCargoKicker());
-	//	xbox.getDPad().getLeft().whenPressed(new PushBallOut());
-    //xbox.getDPad().getDown().whenPressed(new IntakeCargo());
-    xbox.getDPad().getLeft().whenPressed(new OpenClaw());
-    xbox.getDPad().getRight().whenPressed(new CloseClaw());
-    xbox.getDPad().getUp().whenPressed(new IntakeUp());
+    xbox.getDPad().getRight().whenPressed(new AcquireBallFromIntake());
     xbox.getDPad().getDown().whenPressed(new IntakeDown());
+    xbox.getDPad().getLeft().whenPressed(new IntakeCargo());
+    //xbox.getDPad().getDown().whenPressed(new IntakeCargo());
+    //xbox.getDPad().getLeft().whenPressed(new ScoreCargo_RocketL1_Intake());
+    xbox.getDPad().getUp().whenPressed(new IntakeUp());
 
-    xbox.getButtonLeftBumper().whenPressed(new PushClawForward());
-    xbox.getButtonRightBumper().whenPressed(new PullClawBack());
-    */
-
-
-    //xbox.getDPad().getUp().whenPressed(new IntakeUp());
-
-    //xbox.getButtonStart().whenPressed(new Manual Control);
-    
+    xbox.getButtonStart().whenPressed(new CenterGantry());
+    xbox.getButtonBack().whenPressed(new ScoreCargo());
+    //xbox.getButtonBack().whenPressed(new ToggleOpenClose());
 
     leftStick.getButton(6).whenPressed(new SwitchSides());
     rightStick.getButton(6).whenPressed(new SwitchSides());
-    leftStick.getButton(5).whenPressed(new ChangeHeading(180, .4));
-    //rightStick.getButton(1).whenPressed(new PickupHatchHPS());
-    //leftStick.getButton(1).whenPressed(new TranslateClawToCenter(10));
-    //leftStick.getButton(3).whenPressed(new CenterRobot(10));
-    leftStick.getButton(3).whenPressed(new PlaceHatch());
-    //rightStick.getButton(3).whenPressed(new PullClawBack());
 
     leftStick.getButton(2).whenPressed(new MoveGantryLeft());
     leftStick.getButton(2).whenReleased(new StopGantry());
@@ -158,8 +103,26 @@ public class OI {
     rightStick.getButton(2).whenPressed(new MoveGantryRight());
     rightStick.getButton(2).whenReleased(new StopGantry());
 
-    leftStick.getButton(8).whenPressed(new IntakePistonDown());
-    leftStick.getButton(9).whenPressed(new IntakePistonUp());
+    rightStick.getButton(1).whenPressed(new PickupHatchHPS_Vision());
+    rightStick.getButton(3).whenPressed(new ChangeHeading(90, 0.75));
+
+
+
+    
+    /*
+    rightStick.getButton(4).whenPressed(new BothPistonDown());
+    rightStick.getButton(5).whenPressed(new BothPistonUp());
+    leftStick.getButton(4).whenPressed(new BothPistonDown());
+    leftStick.getButton(5).whenPressed(new BothPistonUp());
+    */
+    
+    rightStick.getButton(10).whenPressed(new AlignGantry());
+
+    leftStick.getButton(3).whenPressed(new DriveStraight(0.75));
+
+    //rightStick.getButton(3).whenPressed(new DriveWhileAlign());
+
+
   }
 
   /**

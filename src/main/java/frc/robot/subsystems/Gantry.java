@@ -29,6 +29,7 @@ public class Gantry extends Subsystem {
   DigitalInput leftLimit, rightLimit;
   boolean canGoLeft = true;
   boolean canGoRight = true;
+  boolean endCommand = false;
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -96,13 +97,21 @@ public class Gantry extends Subsystem {
     return !rightLimit.get();
   }
 
+  public Boolean isCommandFinished(){
+    return endCommand;
+  }
+
+  public void setCommandFinished(Boolean state){
+    endCommand = state;
+  }
+
   public double calculateGantryPosition(){
     double encoderPos = 0.5;
     double cx = Vision.getInstance().getTapeYaw();
     double percentage = 0.5;
 
     if(Vision.getInstance().isTapeSeen()){
-      percentage = cx/640;
+      percentage = cx/320;
     }
 
     encoderPos = percentage;

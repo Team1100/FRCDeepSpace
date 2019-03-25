@@ -21,8 +21,12 @@ public class Vision extends Subsystem {
   public static Vision vision;
   public static NetworkTable nt;
   private boolean tapeSeen = false;
-  private NetworkTableEntry tapeDetected, tapeYaw;
+  private NetworkTableEntry tapeDetected, tapeYaw, centerOfTarget, centerY;
   public static boolean finishedAligning;
+
+  private final double KpAIM = 0.005;
+  private final double KpDISTANCE = 0.025;
+  private final double DEADBAND_DEGREES = 0;
   /**
    * Used outside of the Vision subsystem to return an instance of Vision subsystem.
    * @return Returns instance of Vision subsystem formed from constructor.
@@ -33,6 +37,25 @@ public class Vision extends Subsystem {
 
      tapeDetected = nt.getEntry("tapeDetected");
      tapeYaw = nt.getEntry("tapeYaw");
+     centerOfTarget = nt.getEntry("centerOfTarget");
+     centerY = nt.getEntry("centerY");
+   }
+
+   public DrivingDeltas calculateDeltas(){
+     double steeringAdjust = 0;
+     double distanceAdjust = 0;
+
+     if(isTapeSeen()){
+       if(Math.abs(getTargetOffset()) > DEADBAND_DEGREES){
+         steeringAdjust = KpAIM * getTargetOffset();
+       }
+
+       if(Math.abs(getVerticalOffset()) > DEADBAND_DEGREES){
+         distanceAdjust = KpDISTANCE * getVerticalOffset();
+       }
+     }
+
+     return new DrivingDeltas(-distanceAdjust, steeringAdjust);
    }
 
 
@@ -51,6 +74,14 @@ public class Vision extends Subsystem {
   public boolean isTapeSeen() {
     tapeSeen = tapeDetected.getBoolean(false);
     return tapeSeen;
+  }
+
+  public double getTargetOffset(){
+    return centerOfTarget.getDouble(-1);
+  }
+
+  public double getVerticalOffset(){
+    return centerY.getDouble(-1);
   }
 
   

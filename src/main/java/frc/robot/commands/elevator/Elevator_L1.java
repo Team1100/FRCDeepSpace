@@ -31,7 +31,7 @@ public class Elevator_L1 extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Elevator.getInstance().extend(-.5);
+    Elevator.getInstance().extend(0.75);
   }
 
   // Make this return true when this Command no longer needs to run execute()

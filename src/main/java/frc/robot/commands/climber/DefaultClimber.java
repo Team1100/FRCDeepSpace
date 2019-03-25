@@ -5,52 +5,69 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.climber;
 
-import frc.robot.subsystems.BallIntake;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.input.AttackThree;
+import frc.robot.input.XboxController;
+import frc.robot.subsystems.Climber;
 
-/**
- * This command puts the intake up (at half speed) with a current timeout of three seconds.
- * Should be changed to use potentiometer value.
- */
-public class IntakeUp extends Command {
+public class DefaultClimber extends Command {
+  Climber climber;  
+  double pressed = 0;
+  AttackThree left, right;
 
-  BallIntake intake;
-
-  public IntakeUp() {
-    requires(BallIntake.getInstance());
-    intake = BallIntake.getInstance();
+  public DefaultClimber() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Climber.getInstance());
+    climber = Climber.getInstance();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-  }
+    left = OI.getInstance().getLeftStick();
+    right = OI.getInstance().getRightStick();
+
+    }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.intakeUp(-.5);
+    if(left.getRawButtonPressed(4) || right.getRawButtonPressed(4)){
+      if(pressed == 0){
+        climber.extendSix();
+        pressed += 1;
+      }
+      else if(pressed == 1){
+        climber.extendBoth();
+      }
+    }
+
+    if(left.getRawButtonPressed(5) || right.getRawButtonPressed(5)){
+      climber.liftBoth();
+      pressed = 0;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return BallIntake.getInstance().isUp();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    intake.intakeUp(0);
+    pressed = 0;
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    pressed = 0;
   }
 }

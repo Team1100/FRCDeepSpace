@@ -46,7 +46,6 @@ public class BallIntake extends Subsystem {
     bb = BeamBreak.getInstance();
     topSwitch = new DigitalInput(RobotMap.B_TOP_SWITCH);
     pot = new AnalogInput(RobotMap.B_POT);
-    intakePiston = new DoubleSolenoid(RobotMap.K_KICKER_CAN, RobotMap.K_KICK_OUT, RobotMap.K_KICK_IN);	
   }
 
   public static BallIntake getInstance(){
@@ -69,8 +68,16 @@ public class BallIntake extends Subsystem {
   }
 
   public void setIntakeSpeed(double intakeSpeed) {
-    axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed);
-    axis_movement_right.set(ControlMode.PercentOutput, -intakeSpeed);
+    if(intakeSpeed < 0 && isUp()){
+      axis_movement_left.set(ControlMode.PercentOutput, 0);
+      axis_movement_right.set(ControlMode.PercentOutput, 0);
+    }
+    else{
+      axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed);
+      axis_movement_right.set(ControlMode.PercentOutput, -intakeSpeed);
+    
+    }
+    
   }
 
   public void pistonUp() {

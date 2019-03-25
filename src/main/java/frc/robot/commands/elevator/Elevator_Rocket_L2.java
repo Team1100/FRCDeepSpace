@@ -30,29 +30,31 @@ public class Elevator_Rocket_L2 extends Command {
   @Override
   protected void initialize() {
     t.start();
+    setTimeout(3);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (t.get() > 0.5){
-      Elevator.getInstance().extend(-.65);
+    if (t.get() > 0.3){
+      Elevator.getInstance().extend(-0.75);
     }
     else{
-      Elevator.getInstance().extend(-0.5);
+      Elevator.getInstance().extend(-.5);
     }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return elevator.isAtLevelTwo();
+    return elevator.isAtLevelTwo() || isTimedOut() || elevator.isAtLevelThree();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
     Elevator.getInstance().extend(0);
+    t.reset();
   }
 
   // Called when another command which requires one or more of the same

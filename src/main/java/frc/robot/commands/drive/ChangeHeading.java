@@ -28,9 +28,10 @@ public class ChangeHeading extends PIDCommand {
    * @param speed the limiting speed of the robot while turning
    */
     public ChangeHeading(double target, double speed) {
-      super(.067, .02, .1);
-      ahrs.zeroYaw();
+      super(.067, .02, .2);
       requires(Drive.getInstance());
+      requires(NavX.getInstance());
+      NavX.getInstance().getNavX().zeroYaw();
       countOnTarget = 0;
       setSetpoint(target);
       setInputRange(-180.0, 180.0);
@@ -61,6 +62,7 @@ public class ChangeHeading extends PIDCommand {
     protected boolean isFinished() {
       if (pidController.onTarget()) {
         if (countOnTarget >= 3) {
+          NavX.getInstance().getNavX().zeroYaw();
           return true;
         }
         countOnTarget++;
@@ -70,5 +72,4 @@ public class ChangeHeading extends PIDCommand {
       }
       return false;
     }
-
 }

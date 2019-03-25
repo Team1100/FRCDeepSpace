@@ -5,24 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.vision;
 
-import frc.robot.subsystems.BallIntake;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.subsystems.Gantry;
+import frc.robot.subsystems.Vision;
 
-/**
- * This command puts the intake up (at half speed) with a current timeout of three seconds.
- * Should be changed to use potentiometer value.
- */
-public class IntakeUp extends Command {
-
-  BallIntake intake;
-
-  public IntakeUp() {
-    requires(BallIntake.getInstance());
-    intake = BallIntake.getInstance();
+public class AlignGantry extends Command {
+  double offset = -1;
+  public AlignGantry() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Gantry.getInstance());
+    requires(Vision.getInstance());
   }
 
   // Called just before this Command runs the first time
@@ -33,24 +29,38 @@ public class IntakeUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.intakeUp(-.5);
-  }
+    offset = Vision.getInstance().getTargetOffset();
+      if(offset > 164){
+        Gantry.getInstance().driveGantryMotor(-1);
+      }
+      else if (offset < 156){
+        Gantry.getInstance().driveGantryMotor(1);
+      }
+      else if (offset == -1){
+        Gantry.getInstance().driveGantryMotor(0);
+      }
+      else{
+        Gantry.getInstance().driveGantryMotor(0);
+      }
+    }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return BallIntake.getInstance().isUp();
+    return (Gantry.getInstance().isCommandFinished() || OI.getInstance().getLeftStick().getRawButtonPressed(1));
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    intake.intakeUp(0);
+    Gantry.getInstance().driveGantryMotor(0);
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Gantry.getInstance().driveGantryMotor(0);
   }
 }
