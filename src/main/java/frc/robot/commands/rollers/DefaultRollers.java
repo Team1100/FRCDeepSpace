@@ -13,12 +13,15 @@ import frc.robot.input.XboxController;
 import frc.robot.input.XboxController.XboxAxis;
 import frc.robot.subsystems.Rollers;
 
+import java.lang.Math;
+
 /**
  * Gives the operator control of the rollers.
  * Currently bound to the right joystick on the Xbox Controller
  */
 public class DefaultRollers extends Command {
-  double speed;
+  double speed, speedLeft, speedRight;
+  double dspeed;
   XboxAxis rightJoystickY = XboxAxis.kYRight;
   public DefaultRollers() {
     // Use requires() here to declare subsystem dependencies
@@ -42,20 +45,38 @@ public class DefaultRollers extends Command {
     //if(Math.abs(OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight)) > .05) {
     speed = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kXRight);
     
+    speedLeft = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kLeftTrigger);
+    speedRight = OI.getInstance().getXbox().getAxis(XboxController.XboxAxis.kRightTrigger);
+
+    double maxTrig = Math.max(speedLeft, speedRight);
+
+    if(Math.abs(maxTrig) > Math.abs(speed)){
+      if(maxTrig == speedLeft){
+        Rollers.getInstance().spinRollers(maxTrig/3.5);
+      }
+      else if(maxTrig == speedRight){
+        Rollers.getInstance().spinRollers(-maxTrig/4);
+      }
+    }
+    else{
+      if(speed > 0){
+        Rollers.getInstance().rollersIn(speed);
+      }
+      else if(speed < 0){
+        Rollers.getInstance().rollersIn(speed/2);
+      }
+      else{
+        Rollers.getInstance().rollersIn(0);
+      }
+    }
+
     /*
     else if(Math.abs(OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight)) > .05) {
       speed = OI.getInstance().getXboxClimb().getAxis(XboxController.XboxAxis.kXRight);
     }
     */
-    if(speed > 0){
-      Rollers.getInstance().rollersIn(speed);
-    }
-    else if(speed < 0){
-      Rollers.getInstance().rollersIn(speed/2);
-    }
-    else{
-      Rollers.getInstance().rollersIn(0);
-    }
+    
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

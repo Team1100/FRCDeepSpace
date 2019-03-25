@@ -8,6 +8,7 @@
 package frc.robot.commands.claw;
 
 import frc.robot.subsystems.Claw;
+import frc.robot.subsystems.Gantry;
 import edu.wpi.first.wpilibj.command.Command;
 /**
  * This command triggers a pneumatic solenoid valve that pushes the claw assembly forward.
@@ -32,6 +33,7 @@ public class PushClawForward extends Command {
   @Override
   protected void execute() {
     claw.pushClawForward();
+    Gantry.getInstance().setCommandFinished(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -43,6 +45,8 @@ public class PushClawForward extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Gantry.getInstance().setCommandFinished(false);
+
   }
 
   // Called when another command which requires one or more of the same

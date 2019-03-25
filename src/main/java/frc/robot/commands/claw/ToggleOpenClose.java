@@ -5,22 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.claw;
 
-import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.Claw;
 import edu.wpi.first.wpilibj.command.Command;
-
 /**
- * This command closes the claw by triggering the pneumatic solenoid valve controlling the claw
+ * This command triggers a pneumatic solenoid valve that pushes the claw assembly forward.
  */
-public class IntakePistonDown extends Command {
-  
-  BallIntake intake;
+public class ToggleOpenClose extends Command {
 
-  public IntakePistonDown() {
-    requires(BallIntake.getInstance());
-    intake = BallIntake.getInstance();
+  Claw claw;
+
+  public ToggleOpenClose() {
+    requires(Claw.getInstance());
+    claw = Claw.getInstance();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -33,7 +31,12 @@ public class IntakePistonDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.pistonDown();
+    if(claw.isClosed() != true) {
+      claw.closeClaw();
+    }
+    else {
+      claw.openClaw();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

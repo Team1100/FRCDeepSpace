@@ -5,22 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.claw;
 
-import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.Claw;
 import edu.wpi.first.wpilibj.command.Command;
-
 /**
- * This command puts the intake up (at half speed) with a current timeout of three seconds.
- * Should be changed to use potentiometer value.
+ * This command triggers a pneumatic solenoid valve that pushes the claw assembly forward.
  */
-public class IntakeUp extends Command {
+public class ToggleForwardBack extends Command {
 
-  BallIntake intake;
+  Claw claw;
 
-  public IntakeUp() {
-    requires(BallIntake.getInstance());
-    intake = BallIntake.getInstance();
+  public ToggleForwardBack() {
+    requires(Claw.getInstance());
+    claw = Claw.getInstance();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -33,19 +31,23 @@ public class IntakeUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.intakeUp(-.5);
+    if(claw.isForward() != true) {
+      claw.pushClawForward();
+    }
+    else {
+      claw.pullClawBack();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return BallIntake.getInstance().isUp();
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    intake.intakeUp(0);
   }
 
   // Called when another command which requires one or more of the same

@@ -18,7 +18,7 @@ public class Middle_LeftRocket_2Hatches extends CommandGroup {
   public Middle_LeftRocket_2Hatches() {
     addParallel(new CenterGantry());
     addParallel(new PathReader("Middle_LeftRocket", true));
-    addSequential(new CenterRobot(10));
+    addSequential(new CenterRobot());
     /*
     addSequential(new TranslateClawToCenter(5));
     addSequential(new PIDElevatorL3());

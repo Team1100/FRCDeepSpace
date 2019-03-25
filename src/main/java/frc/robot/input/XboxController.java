@@ -269,7 +269,7 @@ public class XboxController extends Joystick {
             this.downRight = new DPadButton(this, Direction.kDownRight);
             this.down = new DPadButton(this, Direction.kDown);
             this.downLeft = new DPadButton(this, Direction.kDownLeft);
-            this.left = new DPadButton(this, Direction.kDown);
+            this.left = new DPadButton(this, Direction.kLeft);
             this.upLeft = new DPadButton(this, Direction.kUpLeft);
         }
         

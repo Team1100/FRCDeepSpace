@@ -9,7 +9,9 @@ package frc.robot.commands.claw;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
-import frc.robot.commands.vision.TranslateClawToCenter;
+import frc.robot.commands.drive.DriveStraight;
+import frc.robot.commands.gantry.CenterGantry;
+import frc.robot.commands.vision.AlignGantry;
 /**
  * This command group will center on the Human Player station and will grap a
  * hatch panel from there.
@@ -19,14 +21,8 @@ public class PickupHatchHPS_Vision extends CommandGroup {
    * Add your docs here.
    */
   public PickupHatchHPS_Vision() {
-    addParallel(new OpenClaw());
-    addParallel(new TranslateClawToCenter(10));
-    addSequential(new PushClawForward());
-    addSequential(new Wait(0.25));
-    addSequential(new CloseClaw());
-    addSequential(new Wait(0.25));
-    addSequential(new PullClawBack());
-
+    addParallel(new DriveStraight(0.4));
+    addSequential(new AlignGantry());
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

@@ -1,75 +1,37 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package frc.robot.commands.vision;
 
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.command.PIDCommand;
-import frc.robot.subsystems.Drive;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.drive.ChangeHeading;
 import frc.robot.subsystems.Vision;
 
-/**
- * Moves the robot until it is centered on the vision target
- */
-public class CenterRobot extends PIDCommand {
-  private PIDController pidController = getPIDController();
-  private int count;
-  private boolean isAimed = false;
-
+public class CenterRobot extends CommandGroup {
   /**
-   * Sets up PID Controller
-   * @param tolerance Percent tolerance of PID loop
+   * Add your docs here.
    */
-  public CenterRobot(double tolerance) {
-    //TODO: Tune these PID values
-    super(.05, .05, 0);
-    requires(Drive.getInstance()); 
-    //Max displacement from center of image (cx)
-    setInputRange(0, 640);
-    pidController.setOutputRange(-0.5, 0.5);
-    pidController.setPercentTolerance(tolerance);
-    //Ideally want center of target to be aligned with center of camera
-    setSetpoint(0);
-  }
+  public CenterRobot() {
+    // Add Commands here:
+    // e.g. addSequential(new Command1());
+    // addSequential(new Command2());
+    // these will run in order.
 
-  protected void initialize() {
-    count = 0;
-    setTimeout(2.5);
-  }
+    // To run multiple commands at the same time,
+    // use addParallel()
+    // e.g. addParallel(new Command1());
+    // addSequential(new Command2());
+    // Command1 and Command2 will run in parallel.
 
-
-  /**
-   * Finishes when robot is locked on target
-   */
-  protected boolean isFinished() {
-    if(Vision.getInstance().getTapeYaw() == -1){
-      return true;
-    }
-    if(isTimedOut()) {
-      return true;
-    }
-    if (pidController.onTarget()) {
-      if (count >= 3) {
-        return true;
-      }
-      count++;     
-    } else {
-      count = 0;
-    }
-    return false;
-  }
-
-  /**
-   * Returns the displacement from camera center to target center
-   */
-  @Override
-  protected double returnPIDInput() {
-    return Vision.getInstance().getTapeYaw();
-  }
-
-  /**
-   * drives robot based on the output of the PID controller
-   * @param output the output of the PID controller
-   */
-  @Override
-  protected void usePIDOutput(double output) {
-    Drive.getInstance().tankDrive(output, -output);
+    // A command group will require all of the subsystems that each member
+    // would require.
+    // e.g. if Command1 requires chassis, and Command2 requires arm,
+    // a CommandGroup containing them would require both the chassis and the
+    // arm.
+    addSequential(new ChangeHeading(Vision.getInstance().getTapeYaw(), 1));
   }
 }

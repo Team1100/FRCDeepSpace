@@ -5,24 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.elevator;
 
-import frc.robot.subsystems.BallIntake;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.subsystems.Elevator;
 
-/**
- * This command puts the intake up (at half speed) with a current timeout of three seconds.
- * Should be changed to use potentiometer value.
- */
-public class IntakeUp extends Command {
-
-  BallIntake intake;
-
-  public IntakeUp() {
-    requires(BallIntake.getInstance());
-    intake = BallIntake.getInstance();
+public class StopElevator extends Command {
+  public StopElevator() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Elevator.getInstance());
   }
 
   // Called just before this Command runs the first time
@@ -33,24 +25,25 @@ public class IntakeUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    intake.intakeUp(-.5);
+    Elevator.getInstance().extend(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return BallIntake.getInstance().isUp();
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    intake.intakeUp(0);
+    Elevator.getInstance().extend(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Elevator.getInstance().extend(0);
   }
 }

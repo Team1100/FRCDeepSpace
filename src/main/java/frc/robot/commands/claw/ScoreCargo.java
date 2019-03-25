@@ -8,6 +8,7 @@
 package frc.robot.commands.claw;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.Wait;
 
 public class ScoreCargo extends CommandGroup {
   /**
@@ -30,8 +31,9 @@ public class ScoreCargo extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    addParallel(new PushClawForward()); //TODO: Compare scoring capability with PlaceHatch
-    addParallel(new OpenClaw());
+    addSequential(new PushClawForward());
+    addSequential(new OpenClaw());
+    addSequential(new Wait(0.4));
     addSequential(new PullClawBack());
   }
 }

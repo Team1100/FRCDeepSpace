@@ -50,7 +50,7 @@ public class RobotMap {
 
 	// List of PCM CAN IDs
 	private final static int PCM_CAN = 17;
-	private final static int PCM_CAN_LED = 1;
+	private final static int PCM_CAN_2 = 18;
 
 	// List of Talon SRX CAN IDs
 	private final static int SRX_CAN_0 = 0;
@@ -197,10 +197,17 @@ public class RobotMap {
   //[P]roximity Sensor
   public static final int P_PROX_SENS = DIO_MXP_5;
 
-  //[K]icker
-  public static final int K_KICKER_CAN = PCM_CAN;
-  public static final int K_KICK_OUT = PCM_4;
-  public static final int K_KICK_IN = PCM_5;
+  //[L]ifter
+  public static final int L_LIFTER_CAN = PCM_CAN;
+  //public static final int L_LIFTER_CAN2 = PCM_CAN_2;
+  public static final int L_LIFT_UP_6 = PCM_4;
+  public static final int L_LIFT_DOWN_6 = PCM_5; 
+  public static final int L_LIFT_UP_8 = PCM_6;
+  public static final int L_LIFT_DOWN_8 = PCM_7;
+  public static final int L_PRESSURE_SENS = ANALOG_1;
+
+  //public static final int L_LIFT_6 = PCM_4;
+  //public static final int L_LIFT_8 = PCM_5;
 
   //[G]antry
   public static final int G_MOTOR = CAN_6;
