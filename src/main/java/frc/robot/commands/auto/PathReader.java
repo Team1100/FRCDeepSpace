@@ -40,7 +40,7 @@ public class PathReader extends Command {
   double p = 0.067;
   double i = 0.02;
   double d = .2;
-  double v = 1 / 12;
+  double v = 1 / 10.5;
   double a = 0;
 
   boolean forward;
