@@ -33,6 +33,19 @@ public class DefaultDrive extends Command {
         left  = OI.getInstance().getLeftStick().getAxis(yAxis);
         right = OI.getInstance().getRightStick().getAxis(yAxis);
 
+        if(left > 0) {
+            left = Math.abs(left)*2.3;
+        }
+        else if(left < 0) {
+            left = -Math.abs(left)*2.3;
+        }
+        if(right > 0) {
+            right = Math.abs(left)*2.3;
+        }
+        else if(right < 0) {
+            right = -Math.abs(left)*2.3;
+        }
+
         Drive.getInstance().tankDrive(-left, -right);
     }
 
