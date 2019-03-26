@@ -50,6 +50,11 @@ public class Drive extends Subsystem {
     leftSlave.configContinuousCurrentLimit(45);
     rightSlave.configContinuousCurrentLimit(45);
 
+    leftMaster.enableCurrentLimit(true);
+    rightMaster.enableCurrentLimit(true);
+    leftSlave.enableCurrentLimit(true);
+    rightSlave.enableCurrentLimit(true);
+
     left = new SpeedControllerGroup(leftMaster, leftSlave);
     right = new SpeedControllerGroup(rightMaster, rightSlave);
 
