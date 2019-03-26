@@ -31,7 +31,7 @@ public class ChangeHeading extends PIDCommand {
       super(.067, .02, .2);
       requires(Drive.getInstance());
       requires(NavX.getInstance());
-      NavX.getInstance().getNavX().zeroYaw();
+      NavX.getInstance().getNavX().reset();;
       countOnTarget = 0;
       setSetpoint(target);
       setInputRange(-180.0, 180.0);
