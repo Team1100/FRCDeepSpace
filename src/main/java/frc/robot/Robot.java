@@ -73,6 +73,7 @@ public class Robot extends TimedRobot {
 
     cs = CameraServer.getInstance();
     cs.startAutomaticCapture("Front Camera", 0).setResolution(180, 120);
+    //cs.startAutomaticCapture("Back Camera", 1).setResolution(180, 120);
     
     // Create TestingDashboard last
     testingDashboard = TestingDashboard.getInstance();
