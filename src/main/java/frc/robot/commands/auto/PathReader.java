@@ -37,9 +37,9 @@ public class PathReader extends Command {
 
   double dt;
 
-  double p = 0.1;
-  double i = 0;
-  double d = 15;
+  double p = 0.067;
+  double i = 0.02;
+  double d = .2;
   double v = 1 / 12;
   double a = 0;
 

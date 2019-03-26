@@ -118,6 +118,7 @@ public class Robot extends TimedRobot {
       SmartDashboard.delete("Testing mode");
     }
     SmartDashboard.putData("Testing mode", testing_chooser);
+    SmartDashboard.putData("Auto Mode", auto_chooser);
 
     SmartDashboard.putBoolean("Is In Testing", AttackThree.isInTesting);
   }
