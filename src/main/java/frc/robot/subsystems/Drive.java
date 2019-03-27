@@ -39,7 +39,6 @@ public class Drive extends Subsystem {
    * Contructor that sets up speed controllers and the drive train.
    */
   private Drive() {
-    //TODO:Update with names and proper ports
     leftMaster = new WPI_TalonSRX(RobotMap.D_FRONT_LEFT);
     rightMaster = new WPI_TalonSRX(RobotMap.D_FRONT_RIGHT);
     leftSlave = new WPI_TalonSRX(RobotMap.D_BACK_LEFT);

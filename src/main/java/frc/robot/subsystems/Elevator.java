@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import frc.robot.RobotMap;
 import frc.robot.commands.elevator.DefaultElevator;
 
@@ -24,6 +25,7 @@ public class Elevator extends Subsystem {
   // here. Call these from Commands.
   public static Elevator elevator;
   private VictorSPX left, right;
+  private PowerDistributionPanel pdp;
   /* Level information
    * s3 = top
    * s2
@@ -37,6 +39,7 @@ public class Elevator extends Subsystem {
   boolean canGoDown = true;
   double bottom = 0;
   double top = 0.413;
+  double current = 0;
 
 
   /**
@@ -50,6 +53,7 @@ public class Elevator extends Subsystem {
     sw2 = new DigitalInput(RobotMap.E_LEVEL_TWO_SWITCH);
     sw3 = new DigitalInput(RobotMap.E_LEVEL_THREE_SWITCH);
     elevatorEncoder = new Encoder(RobotMap.E_ENCODER_A, RobotMap.E_ENCODER_B);
+    pdp = new PowerDistributionPanel();
     elevatorEncoder.setDistancePerPulse(1/PULSE_PER_FOOT);
   }
 
@@ -140,6 +144,14 @@ public class Elevator extends Subsystem {
       elevator = new Elevator();
     }
     return elevator;
+  }
+
+  public double getLeftCurrent(){
+    return pdp.getCurrent(RobotMap.E_LEFT);
+  }
+
+  public double getRightCurrent(){
+    return pdp.getCurrent(RobotMap.E_LEFT);
   }
 
   @Override

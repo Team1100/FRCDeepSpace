@@ -149,6 +149,14 @@ public class Robot extends TimedRobot {
       NavX.getInstance().getNavX().zeroYaw();
     }
 
+    if(BallIntake.getInstance().getLeftCurrent() > 25){
+      BallIntake.getInstance().setLimitPercent(25 / BallIntake.getInstance().getLeftCurrent());
+    }
+    else{
+      BallIntake.getInstance().setLimitPercent(1);
+    }
+
+
   }
 
   /**

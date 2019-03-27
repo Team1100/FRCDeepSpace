@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -32,6 +33,8 @@ public class BallIntake extends Subsystem {
   boolean canGoUp, canGoDown = false;
   private double motorPower;
   DoubleSolenoid intakePiston;
+  private PowerDistributionPanel pdp;
+  private double limitPercent;
 
   public static BallIntake ballintake;
   // Put methods for controlling this subsystem
@@ -46,6 +49,9 @@ public class BallIntake extends Subsystem {
     bb = BeamBreak.getInstance();
     topSwitch = new DigitalInput(RobotMap.B_TOP_SWITCH);
     pot = new AnalogInput(RobotMap.B_POT);
+    pdp = new PowerDistributionPanel();
+
+    limitPercent = 1;
   }
 
   public static BallIntake getInstance(){
@@ -73,8 +79,8 @@ public class BallIntake extends Subsystem {
       axis_movement_right.set(ControlMode.PercentOutput, 0);
     }
     else{
-      axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed);
-      axis_movement_right.set(ControlMode.PercentOutput, -intakeSpeed);
+      axis_movement_left.set(ControlMode.PercentOutput, intakeSpeed * limitPercent);
+      axis_movement_right.set(ControlMode.PercentOutput, -intakeSpeed * limitPercent);
     
     }
     
@@ -133,6 +139,21 @@ public class BallIntake extends Subsystem {
   public boolean ballIsIn(){
     return !bb.get();
   }
+
+  public double getLeftCurrent(){
+    return pdp.getCurrent(RobotMap.B_AXIS_MOVEMENT_LEFT);
+  }
+
+  public double getRightCurrent(){
+    return pdp.getCurrent(RobotMap.B_AXIS_MOVEMENT_RIGHT);
+  }
+
+  public void setLimitPercent(double limit){
+    if(limit >= 0 && limit <= 1){
+      limitPercent = limit;
+    }
+  }
+
 
   @Override
   public void initDefaultCommand() {
