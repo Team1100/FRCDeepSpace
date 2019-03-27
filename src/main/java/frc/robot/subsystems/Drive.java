@@ -40,6 +40,16 @@ public class Drive extends Subsystem {
     backLeft = new WPI_TalonSRX(RobotMap.D_BACK_LEFT);
     backRight = new WPI_TalonSRX(RobotMap.D_BACK_RIGHT);
 
+    frontLeft.configContinuousCurrentLimit(20);
+    frontRight.configContinuousCurrentLimit(20);
+    backLeft.configContinuousCurrentLimit(20);
+    backRight.configContinuousCurrentLimit(20);
+
+    frontLeft.enableCurrentLimit(true);
+    frontRight.enableCurrentLimit(true);
+    backLeft.enableCurrentLimit(true);
+    backRight.enableCurrentLimit(true);
+
     left = new SpeedControllerGroup(frontLeft, backLeft);
     right = new SpeedControllerGroup(frontRight, backRight);
 

@@ -147,6 +147,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Yaw", NavX.getInstance().getNavX().getYaw());
     SmartDashboard.putBoolean("PS", ProximitySensor.getInstance().isTriggered());
 
+    /*
     SmartDashboard.putNumber("PDP Channel 0 Current (A)", pdp.getCurrent(0));
     SmartDashboard.putNumber("PDP Channel 1 Current (A)", pdp.getCurrent(1));
     SmartDashboard.putNumber("PDP Channel 2 Current (A)", pdp.getCurrent(2));
@@ -163,7 +164,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("PDP Channel 13 Current (A)", pdp.getCurrent(13));
     SmartDashboard.putNumber("PDP Channel 14 Current (A)", pdp.getCurrent(14));
     SmartDashboard.putNumber("PDP Channel 15 Current (A)", pdp.getCurrent(15));
-
+    */
     if(OI.getInstance().getRightStick().getRawButtonPressed(3) == true){
       NavX.getInstance().getNavX().zeroYaw();
     }

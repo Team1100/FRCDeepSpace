@@ -62,8 +62,8 @@ public class OI {
   public OI(){
     //User Input
     //TODO:Tune deadband
-    leftStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.2);
-    rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.2);
+    leftStick = new AttackThree(RobotMap.U_JOYSTICK_LEFT, 0.01);
+    rightStick = new AttackThree(RobotMap.U_JOYSTICK_RIGHT, 0.01);
 
     xbox = new XboxController(RobotMap.U_XBOX_CONTROLLER, 0.3);
     //xbox_climb = new XboxController(RobotMap.U_XBOX_CONTROLLER_CLIMB, 0.3);
