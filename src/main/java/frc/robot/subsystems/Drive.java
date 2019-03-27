@@ -40,10 +40,10 @@ public class Drive extends Subsystem {
     backLeft = new WPI_TalonSRX(RobotMap.D_BACK_LEFT);
     backRight = new WPI_TalonSRX(RobotMap.D_BACK_RIGHT);
 
-    frontLeft.configContinuousCurrentLimit(20);
-    frontRight.configContinuousCurrentLimit(20);
-    backLeft.configContinuousCurrentLimit(20);
-    backRight.configContinuousCurrentLimit(20);
+    frontLeft.configContinuousCurrentLimit(45);
+    frontRight.configContinuousCurrentLimit(45);
+    backLeft.configContinuousCurrentLimit(45);
+    backRight.configContinuousCurrentLimit(45);
 
     frontLeft.enableCurrentLimit(true);
     frontRight.enableCurrentLimit(true);
