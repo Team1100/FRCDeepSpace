@@ -88,16 +88,16 @@ public class Drive extends Subsystem {
     rightMaster.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 
     leftMaster.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
-		leftMaster.config_kF(Constants.kSlotIdx, Constants.kGains.kF, Constants.kTimeoutMs);
-		leftMaster.config_kP(Constants.kSlotIdx, Constants.kGains.kP, Constants.kTimeoutMs);
-		leftMaster.config_kI(Constants.kSlotIdx, Constants.kGains.kI, Constants.kTimeoutMs);
-    leftMaster.config_kD(Constants.kSlotIdx, Constants.kGains.kD, Constants.kTimeoutMs);
+		leftMaster.config_kF(Constants.kSlotIdx, Constants.kDriveGains.kF, Constants.kTimeoutMs);
+		leftMaster.config_kP(Constants.kSlotIdx, Constants.kDriveGains.kP, Constants.kTimeoutMs);
+		leftMaster.config_kI(Constants.kSlotIdx, Constants.kDriveGains.kI, Constants.kTimeoutMs);
+    leftMaster.config_kD(Constants.kSlotIdx, Constants.kDriveGains.kD, Constants.kTimeoutMs);
 
     rightMaster.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
-		rightMaster.config_kF(Constants.kSlotIdx, Constants.kGains.kF, Constants.kTimeoutMs);
-		rightMaster.config_kP(Constants.kSlotIdx, Constants.kGains.kP, Constants.kTimeoutMs);
-		rightMaster.config_kI(Constants.kSlotIdx, Constants.kGains.kI, Constants.kTimeoutMs);
-    rightMaster.config_kD(Constants.kSlotIdx, Constants.kGains.kD, Constants.kTimeoutMs);
+		rightMaster.config_kF(Constants.kSlotIdx, Constants.kDriveGains.kF, Constants.kTimeoutMs);
+		rightMaster.config_kP(Constants.kSlotIdx, Constants.kDriveGains.kP, Constants.kTimeoutMs);
+		rightMaster.config_kI(Constants.kSlotIdx, Constants.kDriveGains.kI, Constants.kTimeoutMs);
+    rightMaster.config_kD(Constants.kSlotIdx, Constants.kDriveGains.kD, Constants.kTimeoutMs);
 
     leftMaster.configMotionCruiseVelocity(15000, Constants.kTimeoutMs);
     leftMaster.configMotionAcceleration(6000, Constants.kTimeoutMs);
