@@ -32,19 +32,20 @@ public class DefaultDrive extends Command {
     protected void execute() {
         left  = OI.getInstance().getLeftStick().getAxis(yAxis);
         right = OI.getInstance().getRightStick().getAxis(yAxis);
-
+        /*
         if(left > 0) {
-            left = Math.pow(Math.abs(left),2.3);
+            left = Math.pow(Math.abs(left),3.5);
         }
         else if(left < 0) {
-            left = -Math.pow(Math.abs(left),2.3);
+            left = -Math.pow(Math.abs(left),3.5);
         }
         if(right > 0) {
-            right = Math.pow(Math.abs(left),2.3);
+            right = Math.pow(Math.abs(right),3.5);
         }
         else if(right < 0) {
-            right = -Math.pow(Math.abs(left),2.3);
+            right = -Math.pow(Math.abs(right),3.5);
         }
+        */
 
         Drive.getInstance().tankDrive(-left, -right);
     }

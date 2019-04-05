@@ -5,46 +5,44 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.gantry;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.Gantry;
+import frc.robot.subsystems.Elevator;
 
-public class GantryLeftLimit extends Command {
-  public GantryLeftLimit() {
+public class TinyElevator extends Command {
+  public TinyElevator() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Gantry.getInstance());
+    requires(Elevator.getInstance());
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    setTimeout(0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Gantry.getInstance().driveGantryMotor(1);
-
+    Elevator.getInstance().extend(-0.3);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Gantry.getInstance().isAtLeftLimit();
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Gantry.getInstance().driveGantryMotor(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Gantry.getInstance().driveGantryMotor(0);
   }
 }

@@ -211,8 +211,8 @@ public class RobotMap {
 
   //[G]antry
   public static final int G_MOTOR = CAN_6;
-  public static final int G_ENCODER_A = DIO_4;
-  public static final int G_ENCODER_B = DIO_5;
+  public static final int G_ENCODER_A = DIO_5;
+  public static final int G_ENCODER_B = DIO_4;
   public static final int G_LIMIT_L = DIO_MXP_3; //TODO: Replace with correct DIO port 
   public static final int G_LIMIT_R = DIO_MXP_4;
 

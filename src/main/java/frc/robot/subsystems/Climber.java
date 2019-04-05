@@ -55,7 +55,7 @@ public class Climber extends Subsystem {
 
     pressureSensor = new AnalogInput(RobotMap.L_PRESSURE_SENS);
 
-    compressor = new Compressor(0);
+    //compressor = new Compressor(0);
     //pistonSix2 = new Solenoid(RobotMap.L_LIFTER_CAN2, RobotMap.L_LIFT_6);	
     //pistonEight2 = new Solenoid(RobotMap.L_LIFTER_CAN2, RobotMap.L_LIFT_8);
   }

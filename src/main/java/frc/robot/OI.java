@@ -14,6 +14,7 @@ import frc.robot.commands.claw.CloseClawWhenSensed;
 import frc.robot.commands.claw.DeployHatch;
 import frc.robot.commands.claw.OpenClaw;
 import frc.robot.commands.claw.PickupHatch;
+import frc.robot.commands.claw.PickupHatchElevator;
 import frc.robot.commands.claw.PickupHatchHPS_Vision;
 import frc.robot.commands.claw.ScoreCargo;
 import frc.robot.commands.claw.ToggleForwardBack;
@@ -80,7 +81,7 @@ public class OI {
     xbox.getButtonX().whenPressed(new Elevator_Rocket_L2());
     xbox.getButtonY().whenPressed(new ToggleForwardBack());
 
-    xbox.getButtonLeftBumper().whenPressed(new PickupHatch());
+    xbox.getButtonLeftBumper().whenPressed(new PickupHatchElevator());
     xbox.getButtonRightBumper().whenPressed(new DeployHatch());
 
     xbox.getDPad().getRight().whenPressed(new AcquireBallFromIntake());
@@ -88,14 +89,11 @@ public class OI {
     xbox.getDPad().getLeft().whenPressed(new IntakeCargo());
     //xbox.getDPad().getDown().whenPressed(new IntakeCargo());
     //xbox.getDPad().getLeft().whenPressed(new ScoreCargo_RocketL1_Intake());
-    xbox.getDPad().getUp().whenPressed(new IntakeUp());
+    xbox.getDPad().getUp().whenPressed(new PickupHatch());
 
     xbox.getButtonStart().whenPressed(new CenterGantry());
     xbox.getButtonBack().whenPressed(new ScoreCargo());
     //xbox.getButtonBack().whenPressed(new ToggleOpenClose());
-
-    leftStick.getButton(6).whenPressed(new SwitchSides());
-    rightStick.getButton(6).whenPressed(new SwitchSides());
 
     leftStick.getButton(2).whenPressed(new MoveGantryLeft());
     leftStick.getButton(2).whenReleased(new StopGantry());

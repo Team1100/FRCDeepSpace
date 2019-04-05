@@ -9,6 +9,8 @@ package frc.robot.commands.claw;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
+import frc.robot.commands.elevator.TinyElevator;
+import frc.robot.commands.gantry.CenterGantry;
 import frc.robot.subsystems.Vision;
 
 public class PickupHatch extends CommandGroup {

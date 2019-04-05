@@ -15,7 +15,7 @@ public class AcquireBallFromIntake extends CommandGroup {
    * Add your docs here.
    */
   public AcquireBallFromIntake() {
-    addParallel(new MoveBallToChute(2));
+    addParallel(new MoveBallToChute(1));
     addParallel(new CloseClawWhenSensed());
     // Add Commands here:
     // e.g. addSequential(new Command1());

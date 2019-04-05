@@ -8,27 +8,26 @@
 package frc.robot.commands.claw;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.*;
+import frc.robot.commands.elevator.TinyElevator;
 import frc.robot.commands.gantry.CenterGantry;
-import frc.robot.subsystems.Gantry;
 import frc.robot.subsystems.Vision;
 
-public class DeployHatch extends CommandGroup {
+public class PickupHatchElevator extends CommandGroup {
   /**
    * Add your docs here.
    */
-
-  public DeployHatch() {
-    Vision.getInstance().finishedAligning = true;
-    //addSequential(new OpenClaw());
+  public PickupHatchElevator() {
+    addSequential(new OpenClaw());
+    addSequential(new Wait(0.15));
     addSequential(new PushClawForward());
     addSequential(new Wait(0.25));
-    addSequential(new OpenClaw());
-    addSequential(new Wait(0.65));
+    addSequential(new CloseClaw());
+    addSequential(new Wait(0.4));
+    addSequential(new TinyElevator());
+    addSequential(new Wait(0.05));
     addSequential(new PullClawBack());
     //Vision.getInstance().setFinishedAligning(false);
-    //addSequential(new CenterGantry());
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

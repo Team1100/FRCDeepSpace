@@ -28,7 +28,7 @@ public class Drive extends Subsystem {
   private WPI_TalonSRX frontLeft, frontRight, backLeft, backRight;
   private SpeedControllerGroup left, right;
   Encoder encoderL, encoderR;
-  final double PULSE_PER_FOOT = 4090;
+  final double PULSE_PER_FOOT = 4096;
 
   /**
    * Contructor that sets up speed controllers and the drive train.
@@ -40,16 +40,16 @@ public class Drive extends Subsystem {
     backLeft = new WPI_TalonSRX(RobotMap.D_BACK_LEFT);
     backRight = new WPI_TalonSRX(RobotMap.D_BACK_RIGHT);
 
-    frontLeft.configContinuousCurrentLimit(45);
-    frontRight.configContinuousCurrentLimit(45);
-    backLeft.configContinuousCurrentLimit(45);
-    backRight.configContinuousCurrentLimit(45);
-
+    frontLeft.configContinuousCurrentLimit(50);
+    frontRight.configContinuousCurrentLimit(50);
+    backLeft.configContinuousCurrentLimit(50);
+    backRight.configContinuousCurrentLimit(50);
+    
     frontLeft.enableCurrentLimit(true);
     frontRight.enableCurrentLimit(true);
     backLeft.enableCurrentLimit(true);
     backRight.enableCurrentLimit(true);
-
+    
     left = new SpeedControllerGroup(frontLeft, backLeft);
     right = new SpeedControllerGroup(frontRight, backRight);
 
@@ -87,7 +87,7 @@ public class Drive extends Subsystem {
     arcadeDrive(drivingDeltas.getForwardPower(), drivingDeltas.getSteeringPower());
   }
 
-  /**
+  /**[]
    * Used outside of the Drive subsystem to return an instance of Drive subsystem.
    * @return Returns instance of Drive subsystem formed from constructor.
    */

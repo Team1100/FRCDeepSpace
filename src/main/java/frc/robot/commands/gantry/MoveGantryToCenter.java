@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Gantry;
 
 public class MoveGantryToCenter extends Command {
-  public final double INCHES_TO_CENTER = .5;
+  public final double INCHES_TO_CENTER = .5
+  
+  ;
   public MoveGantryToCenter() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -45,5 +47,6 @@ public class MoveGantryToCenter extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Gantry.getInstance().driveGantryMotor(0);
   }
 }
