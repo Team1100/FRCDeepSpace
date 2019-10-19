@@ -132,6 +132,9 @@ public class TestingDashboard {
         ShuffleboardLayout gantry_g1 = gantry_tab.getLayout("Basic", BuiltInLayouts.kList);
         gantry_g1.add(new CenterGantry());
         gantry_g1.add(new DefaultGantry());
+        gantry_g1.add(new MoveGantryLeft());
+        gantry_g1.add(new MoveGantryRight());
+        gantry_g1.add(new StopGantry());
         gantry_g1.add(new GantryLeftLimit());
         gantry_g1.add(new GantryRightLimit());
         ShuffleboardLayout gantry_g2 = gantry_tab.getLayout("Complex", BuiltInLayouts.kList);
@@ -178,7 +181,7 @@ public class TestingDashboard {
         isForward.setBoolean((Claw.getInstance().isForward()));
         voltage.setValue(BallIntake.getInstance().getVoltage());
         isAtLeftLimit.setBoolean(Gantry.getInstance().isAtLeftLimit());
-        isAtRightLimit.setBoolean(Elevator.getInstance().isAtLevelThree());
+        isAtRightLimit.setBoolean(Gantry.getInstance().isAtRightLimit());
         isAtLevelTwo.setBoolean(Elevator.getInstance().isAtLevelTwo());
         isAtLevelOne.setBoolean(Elevator.getInstance().isAtLevelOne());
       }
